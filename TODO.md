@@ -1,27 +1,44 @@
-Minishell has to :
+<h2>Minishell has to:</h2>
 
-	- display a prompt
+- display a prompt.
 
-	- have a working history
+- have a working history.
 
-	- search and launch the right executable (PATH/relative/absolute path)
+	Use `ft_split` and `get_next_line` for this.
 
-	- Use one global variable
+- search and launch the right executable (PATH/relative/absolute path).
 
-	- Not interpret unclosed " or special characters (\;)
+- Use one global variable.
 
-	- Handle ' to prevent the shell from interpreting meta characters in the quoted sentence
+- Not interpret unclosed `"` or special characters (`\;`).
 
-	- Handle " to prevent the shell from interpreting meta characters except the $
+- Handle `'` to prevent the shell from interpreting meta characters in the quoted sentence.
 
-	- Implement redirections and pipes
+- Handle `"` to prevent the shell from interpreting meta characters except the `$`.
 
-	- Handle environment variables and also $?
+- Implement redirections and pipes.
 
-	- Handle ctrl-C, ctrl-D, ctrl-\ which should respectively display a new prompt, exit the shell, do nothing.
+- Handle environment variables and also `$?`
 
-	-Implement the following builtins: echo -n, cd, pwd, export, unset, env, exit
+- Handle `ctrl-C`, `ctrl-D`, `ctrl-\` which should respectively display a new prompt, exit the shell, do nothing.
 
-	-Implement && and || with parenthesis for priorities
+- Implement the following builtins: `echo` `-n`, `cd`, `pwd`, `export`, `unset`, `env`, `exit`.
 
-	-Wildcards * should work for current wd
+- Implement `&&` and `||` with parenthesis for priorities.
+
+- Wildcards `*` should work for current wd.
+
+
+<h2>Subject:</h2>
+
+https://cdn.intra.42.fr/pdf/pdf/95920/fr.subject.pdf
+
+<h2>Useful links:</h2>
+
+https://achrafbelarif.medium.com/42cursus-minishell-29cd25f972e6
+
+https://segfault42.github.io/posts/minishell/
+
+https://www.lamsade.dauphine.fr/~bnegrevergne/ens/Unix/static/projet.pdf
+
+https://carlagoeshacking.files.wordpress.com/2017/01/minisheel.pdf < il y a des tests de commandes avec explications, ca peut aider
