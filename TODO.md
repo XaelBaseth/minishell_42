@@ -42,3 +42,15 @@ https://segfault42.github.io/posts/minishell/
 https://www.lamsade.dauphine.fr/~bnegrevergne/ens/Unix/static/projet.pdf
 
 https://carlagoeshacking.files.wordpress.com/2017/01/minisheel.pdf < il y a des tests de commandes avec explications, ca peut aider
+
+https://www.cs.purdue.edu/homes/grr/SystemsProgrammingBook/Book/Chapter5-WritingYourOwnShell.pdf
+Complet, mais ALED!
+
+
+<h2>WorkFlow</h2>
+https://github.com/maiadegraaf/minishell
+
+- The Lexer: takes as the entered line as input. It then reads through the line word by word, using white space as delimiters. First it checks wether or not the word is a token, ie: |, <, <<, >, or >>, and otherwise it assumes it is a word.
+- The Parser: The lexer then gets sent to the parser which then groups the different nodes together based on the tokens. Each group becomes a command. The first thing the parser does is loop through the lexer list until it encounters a pipe. It then takes all the nodes before the pipe as one command, and creates a node in the t_simple_cmds struct. If it doesn't find a pipe it takes all the (remaining) nodes as one command.
+- Builtins: We handle builtins, as discussed above through storing a function pointer in the t_simple_cmds. We achieve this by sending the the first word of a command to a function builtin_arr which loops through a static array of the different builtin functions. If it finds a corresponding function it returns it to the parser, else it returns NULL.
+- Executor: When the parser returns the t_simple_cmds list back to minishell_loop, a simple check is done to determine how many commands there are, as they are handled by different functions. However, with the exception of a few builtins, the commands are ultimately executed by the same function handle_cmd, which finds, and if successful, executes the command.
