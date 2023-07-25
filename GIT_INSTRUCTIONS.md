@@ -35,6 +35,8 @@ le merge, celà permet de n’ajouter qu’un seul commit dans le main peu impor
 de commit dans la PR. Les commits resteront quand même en historique dans la PR même
 un fois la branche supprimée.
 
+![https://i.pinimg.com/originals/10/3f/df/103fdfefcedd2954d62260d34adae6e0.jpg](https://i.pinimg.com/originals/10/3f/df/103fdfefcedd2954d62260d34adae6e0.jpg)
+
 Un bouton pour supprimer la branche est disponible.
 
 Maintenant que le merge à été fait sur github et faut mettre son git local à jour :
