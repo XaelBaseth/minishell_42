@@ -46,8 +46,12 @@ https://carlagoeshacking.files.wordpress.com/2017/01/minisheel.pdf < il y a des 
 https://www.cs.purdue.edu/homes/grr/SystemsProgrammingBook/Book/Chapter5-WritingYourOwnShell.pdf
 Complet, mais ALED!
 
+[Conversation with chatGPT on how to create the lexer.](https://chat.openai.com/share/321ad963-0231-4505-872b-b3a8d3420c61)
+
+[Arrows handling on shell.](https://chat.openai.com/share/329b8e5a-0361-470d-bd06-d05f8358660c)
 
 <h2>WorkFlow</h2>
+
 https://github.com/maiadegraaf/minishell
 
 - The Lexer: takes as the entered line as input. It then reads through the line word by word, using white space as delimiters. First it checks wether or not the word is a token, ie: |, <, <<, >, or >>, and otherwise it assumes it is a word.
