@@ -1,12 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   minishell.h                                        :+:      :+:    :+:   */
+/*   ft_putchar_fd.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: acharlot <acharlot@student.42.fr>          +#+  +:+       +#+        */
+/*   By: acharlot <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/07/25 07:36:25 by acharlot          #+#    #+#             */
-/*   Updated: 2023/07/25 07:36:27 by acharlot         ###   ########.fr       */
+/*   Created: 2023/04/14 12:25:43 by acharlot          #+#    #+#             */
+/*   Updated: 2023/04/14 12:25:47 by acharlot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+/*
+	LIBRARY: N/A
 
+	SYNOPSIS: Write the c character on the file descriptor.
+*/
+#include "libft.h"
+
+void	ft_putchar_fd(char c, int fd)
+{
+	write(fd, &c, 1);
+}

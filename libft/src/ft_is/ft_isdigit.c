@@ -1,12 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   minishell.h                                        :+:      :+:    :+:   */
+/*   ft_isdigit.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: acharlot <acharlot@student.42.fr>          +#+  +:+       +#+        */
+/*   By: acharlot <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/07/25 07:36:25 by acharlot          #+#    #+#             */
-/*   Updated: 2023/07/25 07:36:27 by acharlot         ###   ########.fr       */
+/*   Created: 2023/04/11 14:14:25 by acharlot          #+#    #+#             */
+/*   Updated: 2023/04/11 14:14:30 by acharlot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+/*
+	LIBRARY: ctype.h
 
+	SYNOPSIS: Check for digit character.
+*/
+#include "libft.h"
+
+int	ft_isdigit(int c)
+{
+	if (c >= 48 && c <= 57)
+		return (1);
+	else
+		return (0);
+}

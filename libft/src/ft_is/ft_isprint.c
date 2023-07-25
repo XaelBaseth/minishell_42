@@ -1,12 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   minishell.h                                        :+:      :+:    :+:   */
+/*   ft_isprint.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: acharlot <acharlot@student.42.fr>          +#+  +:+       +#+        */
+/*   By: acharlot <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/07/25 07:36:25 by acharlot          #+#    #+#             */
-/*   Updated: 2023/07/25 07:36:27 by acharlot         ###   ########.fr       */
+/*   Created: 2023/04/11 14:25:16 by acharlot          #+#    #+#             */
+/*   Updated: 2023/04/11 14:25:18 by acharlot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+/*
+	LIBRARY: ctype.h
 
+	SYNOPSIS: Check for printable character.
+*/
+#include "libft.h"
+
+int	ft_isprint(int c)
+{
+	if (c >= 32 && c <= 126)
+		return (1);
+	else
+		return (0);
+}

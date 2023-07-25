@@ -1,12 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   minishell.h                                        :+:      :+:    :+:   */
+/*   ft_strlen.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: acharlot <acharlot@student.42.fr>          +#+  +:+       +#+        */
+/*   By: acharlot <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/07/25 07:36:25 by acharlot          #+#    #+#             */
-/*   Updated: 2023/07/25 07:36:27 by acharlot         ###   ########.fr       */
+/*   Created: 2023/04/11 15:00:06 by acharlot          #+#    #+#             */
+/*   Updated: 2023/04/11 15:00:08 by acharlot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+/*
+	LIBRARY: string.h
 
+	SYNOPSIS: 	Calculate the lenght of the string pointed to by s.
+*/
+#include "libft.h"
+
+size_t	ft_strlen(const char *s)
+{
+	size_t	i;
+
+	i = 0;
+	while (s[i])
+		i++;
+	return (i);
+}
