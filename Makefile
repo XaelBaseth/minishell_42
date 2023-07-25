@@ -6,7 +6,7 @@
 #    By: acharlot <acharlot@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/07/25 07:42:45 by acharlot          #+#    #+#              #
-#    Updated: 2023/07/25 08:09:18 by acharlot         ###   ########.fr        #
+#    Updated: 2023/07/25 08:22:45 by acharlot         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -95,6 +95,7 @@ clean:
 
 fclean:			clean
 					@$(RM) $(NAME)
+					@$(RM) libft.a
 					@$(RM) *.dSYM
 					@find . -name ".DS_Store" -delete
 					@$(ECHO) "$(CYAN)[MINISHELL]:\texec. files$(DEF_COLOR)\t$(GREEN) => Cleaned!$(DEF_COLOR)\n"
