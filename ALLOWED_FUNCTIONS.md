@@ -14,4 +14,5 @@
 | [strerror](https://koor.fr/C/cstring/strerror.wp) | [perror](https://koor.fr/C/cstdio/perror.wp) | [isatty](https://www.ibm.com/docs/en/zos/2.2.0?topic=functions-isatty-test-if-descriptor-represents-terminal) |
 | [ttyname](https://www.ibm.com/docs/en/zos/2.1.0?topic=functions-ttyname-get-name-terminal) | [ttyslot](http://manpagesfr.free.fr/man/man3/ttyslot.3.html) | [ioctl](http://manpagesfr.free.fr/man/man2/ioctl.2.html) |
 | [getenv](https://koor.fr/C/cstdlib/getenv.wp) | [tcsetattr](https://pubs.opengroup.org/onlinepubs/009696799/functions/tcsetattr.html) | [tcgetattr](https://pubs.opengroup.org/onlinepubs/007904975/functions/tcgetattr.html) |
-| [tgetent/tgetflag/tgetnum/tgetstr/tgoto/tputs](https://linux.die.net/man/3/tgetent) |
+
+[tgetent/tgetflag/tgetnum/tgetstr/tgoto/tputs](https://linux.die.net/man/3/tgetent)
