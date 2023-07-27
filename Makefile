@@ -6,7 +6,7 @@
 #    By: acharlot <acharlot@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/07/25 07:42:45 by acharlot          #+#    #+#              #
-#    Updated: 2023/07/25 08:22:45 by acharlot         ###   ########.fr        #
+#    Updated: 2023/07/27 08:43:08 by acharlot         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -19,6 +19,7 @@ SRC_DIR 	=	src/
 OBJ_DIR 	=	obj/
 CC			=	gcc
 CFLAGS		=	-Wall -Wextra -Werror -g3
+READLINE	=	-lreadline
 LIBFT		=	libft/
 RM			=	rm -rf
 ECHO		=	echo
@@ -43,7 +44,7 @@ PARS_FILES	=	placeholder
 SHELL_DIR	=	shell/
 SHELL_FILES	=	placeholder
 MAIN_DIR	=	main/
-MAIN_FILES	=	main
+MAIN_FILES	=	main utils
 
 
 SRC_BUI_FILE=	$(addprefix $(BUILT_DIR), $(BUILT_FILES))
@@ -74,7 +75,7 @@ all:			$(NAME)
 $(NAME):		$(OBJ) $(OBJF)
 					@make -C $(LIBFT)
 					@cp libft/libft.a .
-					@$(CC) $(CFLAGS) $(OBJ) $(HEADER) libft.a -o $(NAME)
+					@$(CC) $(CFLAGS) $(OBJ) $(HEADER) libft.a -o $(NAME) $(READLINE)
 					@$(ECHO) "$(YELLOW)[MINISHELL]:\t$(ORANGE)[==========]\t$(GREEN) => Success!$(DEF_COLOR)"
 
 $(OBJ_DIR)%.o:	$(SRC_DIR)%.c $(OBJF)

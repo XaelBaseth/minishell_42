@@ -1,14 +1,15 @@
-/*
-Run the program with < gcc microshell.c -lreadline >
-Quit the program with Ctrl + C
-*/
-
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
 #include <sys/wait.h>
 #include <readline/readline.h>
+#include <readline/history.h>
 #include <unistd.h>
+
+/*
+Run the program with < gcc microshell.c -lreadline >
+Quit the program with Ctrl + C
+*/
 
 int cd(char *path)
 //As this command is not a system program, it is executed
@@ -54,6 +55,7 @@ int	main(void)
 	while (1)
 	{
 		input = readline("\033[32mmicroshell$\033[0m ");
+		add_history(input);
 		command = get_input(input);
 		if (!command[0]) //Handle empty commands
 		{
