@@ -6,7 +6,7 @@
 /*   By: acharlot <acharlot@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/25 07:42:03 by acharlot          #+#    #+#             */
-/*   Updated: 2023/07/27 09:48:38 by acharlot         ###   ########.fr       */
+/*   Updated: 2023/07/27 14:48:06 by acharlot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ static char	**get_input(void)
 	return (input);
 }
 
-void	create_processes(char **command)
+void	create_processes(char *command)
 {
 	__pid_t	child_pid;
 	int	stat_loc;
