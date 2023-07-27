@@ -28,7 +28,8 @@ struct  s_env
 typedef struct  s_data
 {
     char    **envp;
-    t_env   *lst_env;
+    t_env   *arr_env;
+    int     nb_env;
 }               t_data;
 
 void    store_env(char **envp, t_data *data);

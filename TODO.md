@@ -4,8 +4,6 @@
 
 - have a working history.
 
-	Use `ft_split` and `get_next_line` for this.
-
 - search and launch the right executable (PATH/relative/absolute path).
 
 - Use one global variable.
