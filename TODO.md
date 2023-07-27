@@ -46,9 +46,11 @@ https://carlagoeshacking.files.wordpress.com/2017/01/minisheel.pdf < il y a des 
 https://www.cs.purdue.edu/homes/grr/SystemsProgrammingBook/Book/Chapter5-WritingYourOwnShell.pdf
 Complet, mais ALED!
 
-[Conversation with chatGPT on how to create the lexer.](https://chat.openai.com/share/321ad963-0231-4505-872b-b3a8d3420c61)
+[Shell command language](https://pubs.opengroup.org/onlinepubs/9699919799.2018edition/utilities/V3_chap02.html) Tres complet ! Decrit une partie du fonctionnement du Shell.
 
-[Arrows handling on shell.](https://chat.openai.com/share/329b8e5a-0361-470d-bd06-d05f8358660c)
+[\[ChatGPT\] How to create the lexer.](https://chat.openai.com/share/321ad963-0231-4505-872b-b3a8d3420c61)
+
+[\[ChatGPT\] Arrows handling on shell.](https://chat.openai.com/share/329b8e5a-0361-470d-bd06-d05f8358660c)
 
 <h2>WorkFlow</h2>
 
