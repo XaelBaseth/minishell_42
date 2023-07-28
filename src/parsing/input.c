@@ -6,7 +6,7 @@
 /*   By: cpothin <cpothin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/25 07:41:55 by acharlot          #+#    #+#             */
-/*   Updated: 2023/07/28 17:29:08 by cpothin          ###   ########.fr       */
+/*   Updated: 2023/07/28 17:44:49 by cpothin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,29 @@
 //}
 
 // ne prend pas encore en compte si les parentheses sont dans des guillemets...
+
+bool 	is_inside_quotes(char *input, int index)
+{
+	int	quotes;
+	int	double_quotes;
+	int	i;
+
+	quotes = 0;
+	double_quotes = 0;
+	i = -1;
+	while (++i < index)
+	{
+		if (input[i] == '\'')
+			quotes++;
+		else if (input[i] == '\"')
+			double_quotes++;
+	}
+	printf("\nFor the %dth place, there are %d quotes and %d double_quotes before.", index, quotes, double_quotes);
+	if (quotes % 2 != 0 || double_quotes % 2 != 0)
+		return (false);
+	return (true);
+}
+
 bool check_brackets(char *raw_input)
 {
 	int	i;
@@ -34,14 +57,14 @@ bool check_brackets(char *raw_input)
 	close_brackets = 0;
 	while (raw_input[++i])
 	{
-		if (raw_input[i] == '(')
+		if (raw_input[i] == '(' && !is_inside_quotes(raw_input, i))
 			open_brackets++;
-		else if (raw_input[i] == ')')
+		else if (raw_input[i] == ')' && !is_inside_quotes(raw_input, i))
 			close_brackets++;
 	}
-	if (open_brackets == close_brackets)
-		return (true);
-	return (false);
+	if (open_brackets != close_brackets)
+		return (false);
+	return (true);
 }
 
 /*	Returns the input of the user after validating it. */
@@ -51,6 +74,8 @@ char	*get_input(void)
 	//char *input;
 
 	raw_input = readline("\033[32mminishell$\033[0m ");
+	if (!check_brackets(raw_input))
+		return (NULL);
 	//input = validate_input(raw_input);
 	//penser a changer le return en input
  	return (raw_input);

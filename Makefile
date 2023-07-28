@@ -3,15 +3,16 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: acharlot <acharlot@student.42.fr>          +#+  +:+       +#+         #
+#    By: cpothin <cpothin@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/07/25 07:42:45 by acharlot          #+#    #+#              #
-#    Updated: 2023/07/28 08:29:46 by acharlot         ###   ########.fr        #
+#    Updated: 2023/07/28 18:20:27 by cpothin          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 
 #Variable
+MAKEFLAGS	+= --silent
 NAME		=	minishell
 INC			=	inc/
 HEADER		=	-I inc
@@ -70,7 +71,9 @@ OBJF		=	.cache_exists
 OBJ 		=	$(BOBJ) $(POBJ) $(SOBJ) $(MOBJ)
 
 #Rules
-all:			$(NAME)
+all:			echo_message $(NAME)
+echo_message:
+	@echo "\n$(YELLOW)[Starting to build...]$(DEF_COLOR)\n\n$(MAGENTA)"
 
 $(NAME):		$(OBJ) $(OBJF)
 					@make -C $(LIBFT)
@@ -80,6 +83,7 @@ $(NAME):		$(OBJ) $(OBJF)
 
 $(OBJ_DIR)%.o:	$(SRC_DIR)%.c $(OBJF)
 					@$(CC) $(CFLAGS) -c $< -o $@
+					@$(ECHO) "\033[1A\033[K$< created"
 
 $(OBJF):		
 					@mkdir -p $(OBJ_DIR)
@@ -96,12 +100,9 @@ clean:
 
 fclean:			clean
 					@$(RM) $(NAME)
-					@$(RM) libft.a
 					@make fclean -C $(LIBFT)
-					@$(RM) *.dSYM
-					@find . -name ".DS_Store" -delete
 					@$(ECHO) "$(CYAN)[MINISHELL]:\texec. files$(DEF_COLOR)\t$(GREEN) => Cleaned!$(DEF_COLOR)\n"
 re:				fclean all
-					@$(ECHO) "$(GREEN)Cleaned and rebuilt everything for [MINISHELL]! $(DEF_COLOR)\n"
+					@$(ECHO) "\n$(GREEN)Cleaned and rebuilt everything for [MINISHELL]! $(DEF_COLOR)\n"
 
 .PHONY:			all clean fclean re

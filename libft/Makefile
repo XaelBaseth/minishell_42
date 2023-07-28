@@ -73,10 +73,12 @@ all:		$(NAME)
 
 $(NAME):	$(OBJ)
 			@$(AR) $(NAME) $(OBJ)
-			@$(ECHO) "$(GREEN) => 100%$(DEF_COLOR)"
+			@$(ECHO) ""
+			# @$(ECHO) "\n$(GREEN) => 100%$(DEF_COLOR)"
 
 $(OBJ_DIR)%.o : $(SRC_DIR)%.c | $(OBJF)
 			@$(CC) $(CFLAGS) $(INCLUDE) -c $< -o $@
+			@$(ECHO) "\033[1A\033[K$< created"
 
 $(OBJF):
 			@mkdir -p $(OBJ_DIR)
