@@ -1,6 +1,11 @@
 #ifndef MINISHELL_H
 # define MINISHELL_H
 
+/*	LIBRAIRY	*/
+# include "../libft/inc/ft_printf.h"
+# include "../libft/inc/libft.h"
+# include "../libft/inc/get_next_line.h"
+
 # include <readline/readline.h>
 # include <readline/history.h>
 # include <stdlib.h>
@@ -9,10 +14,11 @@
 # include <unistd.h>
 # include <stdbool.h>
 
+/*	CONSTANT	*/
 # define FAILURE -1
 # define SUCCESS 0
 
-void	panic(char *str);
+/*	STRUCTURES	*/
 
 typedef struct s_env t_env;
 
@@ -32,6 +38,17 @@ typedef struct  s_data
     int     nb_env;
 }               t_data;
 
+
+/*	FUNCTIONS	*/
+
+//env.c
+
 void    store_env(char **envp, t_data *data);
+//utils.c
+
+void	panic(char *str);
+//input.c
+
+char	*get_input(void);
 
 #endif

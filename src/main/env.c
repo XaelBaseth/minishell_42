@@ -3,16 +3,17 @@
 /*                                                        :::      ::::::::   */
 /*   env.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cpothin <cpothin@student.42.fr>            +#+  +:+       +#+        */
+/*   By: acharlot <acharlot@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/27 11:01:28 by cpothin           #+#    #+#             */
-/*   Updated: 2023/07/27 14:19:30 by cpothin          ###   ########.fr       */
+/*   Updated: 2023/07/28 08:33:53 by acharlot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../inc/minishell.h"
 
-void	free_env(t_data *data)
+/*	Free the variables used by the structure. */
+static void	free_env(t_data *data)
 {
 	int	i;
 
@@ -22,12 +23,12 @@ void	free_env(t_data *data)
 		free(data->arr_env[i].key);
 		free(data->arr_env[i++].value);
 	}
-	// free(data->arr_env);
-	// envp = NULL;
 	free(data->arr_env);
 }
 
-t_env	split_env(char *envp)
+/*	Split the environment variables through a 'key
+	and value' variable setup in the t_env structure. */
+static t_env	split_env(char *envp)
 {
 	t_env	new_var;
 	int     i;
@@ -55,7 +56,8 @@ t_env	split_env(char *envp)
 	new_var.value[i - key_size - 1] = '\0';
 	return (new_var);
 }
-
+/*	Duplicates and store the environment variables through a 'key
+	and value' variable setup in the t_env structure. */
 void    store_env(char **envp, t_data *data)
 {
 	int i;
@@ -72,8 +74,6 @@ void    store_env(char **envp, t_data *data)
 	while (o < i)
 	{
 		data->arr_env[o] = split_env(envp[o]);
-		// split_env(envp[o], &data->lst_env[o]);
-		// printf("%s\n", data->lst_env[o].key);
 		o++;
 	}
 	data->nb_env = o;
