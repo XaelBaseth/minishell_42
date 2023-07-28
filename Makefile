@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: acharlot <acharlot@student.42.fr>          +#+  +:+       +#+         #
+#    By: cpothin <cpothin@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/07/25 07:42:45 by acharlot          #+#    #+#              #
-#    Updated: 2023/07/27 09:24:21 by acharlot         ###   ########.fr        #
+#    Updated: 2023/07/27 11:44:20 by cpothin          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -18,7 +18,8 @@ HEADER		=	-I inc
 SRC_DIR 	=	src/
 OBJ_DIR 	=	obj/
 CC			=	gcc
-CFLAGS		=	-Wall -Wextra -Werror -g3
+CFLAGS		=	-Wall -Wextra -Werror -fsanitize=address -g3
+READLINE	=	-lreadline
 LIBFT		=	libft/
 RM			=	rm -rf
 ECHO		=	echo
@@ -43,7 +44,7 @@ PARS_FILES	=	placeholder
 SHELL_DIR	=	shell/
 SHELL_FILES	=	placeholder
 MAIN_DIR	=	main/
-MAIN_FILES	=	main
+MAIN_FILES	=	main utils env
 
 
 SRC_BUI_FILE=	$(addprefix $(BUILT_DIR), $(BUILT_FILES))
@@ -74,7 +75,7 @@ all:			$(NAME)
 $(NAME):		$(OBJ) $(OBJF)
 					@make -C $(LIBFT)
 					@cp libft/libft.a .
-					@$(CC) $(CFLAGS) $(OBJ) $(HEADER) libft.a -o $(NAME)
+					@$(CC) $(CFLAGS) $(OBJ) $(HEADER) libft.a -o $(NAME) $(READLINE)
 					@$(ECHO) "$(YELLOW)[MINISHELL]:\t$(ORANGE)[==========]\t$(GREEN) => Success!$(DEF_COLOR)"
 
 $(OBJ_DIR)%.o:	$(SRC_DIR)%.c $(OBJF)
@@ -100,7 +101,6 @@ fclean:			clean
 					@$(RM) *.dSYM
 					@find . -name ".DS_Store" -delete
 					@$(ECHO) "$(CYAN)[MINISHELL]:\texec. files$(DEF_COLOR)\t$(GREEN) => Cleaned!$(DEF_COLOR)\n"
-
 re:				fclean all
 					@$(ECHO) "$(GREEN)Cleaned and rebuilt everything for [MINISHELL]! $(DEF_COLOR)\n"
 
