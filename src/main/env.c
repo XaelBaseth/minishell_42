@@ -6,7 +6,7 @@
 /*   By: acharlot <acharlot@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/27 11:01:28 by cpothin           #+#    #+#             */
-/*   Updated: 2023/07/28 08:33:53 by acharlot         ###   ########.fr       */
+/*   Updated: 2023/07/28 10:40:02 by acharlot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,7 +58,7 @@ static t_env	split_env(char *envp)
 }
 /*	Duplicates and store the environment variables through a 'key
 	and value' variable setup in the t_env structure. */
-void    store_env(char **envp, t_data *data)
+void	store_env(char **envp, t_data *data)
 {
 	int i;
 	int	o;

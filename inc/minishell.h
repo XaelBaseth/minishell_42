@@ -50,5 +50,6 @@ void	panic(char *str);
 //input.c
 
 char	*get_input(void);
+char	**get_command(char *input);
 
 #endif

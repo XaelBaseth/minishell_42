@@ -6,12 +6,14 @@
 #    By: acharlot <acharlot@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/07/25 07:42:45 by acharlot          #+#    #+#              #
-#    Updated: 2023/07/28 08:29:46 by acharlot         ###   ########.fr        #
+#    Updated: 2023/07/28 11:11:29 by acharlot         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 
 #Variable
+MAKEFLAGS	+= --silent
+
 NAME		=	minishell
 INC			=	inc/
 HEADER		=	-I inc
@@ -76,7 +78,7 @@ $(NAME):		$(OBJ) $(OBJF)
 					@make -C $(LIBFT)
 					@cp libft/libft.a .
 					@$(CC) $(CFLAGS) $(OBJ) $(HEADER) libft.a -o $(NAME) $(READLINE)
-					@$(ECHO) "$(YELLOW)[MINISHELL]:\t$(ORANGE)[==========]\t$(GREEN) => Success!$(DEF_COLOR)"
+					@$(ECHO) "$(YELLOW)[MINISHELL]:\t$(ORANGE)[==========]\t$(GREEN) => Success!$(DEF_COLOR)\n"
 
 $(OBJ_DIR)%.o:	$(SRC_DIR)%.c $(OBJF)
 					@$(CC) $(CFLAGS) -c $< -o $@
@@ -102,6 +104,6 @@ fclean:			clean
 					@find . -name ".DS_Store" -delete
 					@$(ECHO) "$(CYAN)[MINISHELL]:\texec. files$(DEF_COLOR)\t$(GREEN) => Cleaned!$(DEF_COLOR)\n"
 re:				fclean all
-					@$(ECHO) "$(GREEN)Cleaned and rebuilt everything for [MINISHELL]! $(DEF_COLOR)\n"
+					@$(ECHO) "$(GREEN)###\tCleaned and rebuilt everything for [MINISHELL]!\t###$(DEF_COLOR)\n"
 
 .PHONY:			all clean fclean re

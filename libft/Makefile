@@ -73,7 +73,7 @@ all:		$(NAME)
 
 $(NAME):	$(OBJ)
 			@$(AR) $(NAME) $(OBJ)
-			@$(ECHO) "$(GREEN) => 100%$(DEF_COLOR)"
+			@$(ECHO) "$(YELLOW)[LIBFT]:\t$(ORANGE)[==========]\t$(GREEN) => Success!$(DEF_COLOR)\n"
 
 $(OBJ_DIR)%.o : $(SRC_DIR)%.c | $(OBJF)
 			@$(CC) $(CFLAGS) $(INCLUDE) -c $< -o $@
@@ -93,13 +93,13 @@ $(OBJF):
 clean:
 			@$(RM) -r $(OBJ_DIR)
 			@$(RM) $(OBJF)
-			@echo "$(BLUE)[LIBFT]:\tobject files$(DEF_COLOR)$(GREEN)  => Cleaned!$(DEF_COLOR)\n"
+			@$(ECHO) "$(BLUE)[LIBFT]:\tobject files$(DEF_COLOR)\t$(GREEN) => Cleaned!$(DEF_COLOR)\n"
 
 fclean:		clean
 			@$(RM) $(NAME)
-			@echo "$(CYAN)[LIBFT]:\texec. files$(DEF_COLOR)$(GREEN)  => Cleaned!$(DEF_COLOR)\n"
+			@$(ECHO) "$(CYAN)[LIBFT]:\texec. files$(DEF_COLOR)\t$(GREEN) => Cleaned!$(DEF_COLOR)\n"
 
 re:			fclean all
-			@echo"$(GREEN)Cleaned and rebuilt everything for libft!$(DEF_COLOR)\n"
+			@$(ECHO) "$(GREEN)Cleaned and rebuilt everything for libft!$(DEF_COLOR)\n"
 
 .PHONY:		all clean fclean re
