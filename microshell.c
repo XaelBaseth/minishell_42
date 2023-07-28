@@ -44,13 +44,36 @@ char	**get_input(char *input)
 	return command;
 }
 
-int	main(void)
+void	print_envp(char **envp)
+{
+	int	i = 0;
+	int o = 0;
+
+	while (envp[i])
+	{
+		o = 0;
+		while (envp[i][o])
+		{
+			write(1, &envp[i][o], 1);
+			o++;
+		}
+		i++;
+		write(1, "\n", 1);
+	}
+}
+
+
+int main(int argc, char **argv, char **envp)
 {
 	char **command;
 	char *input;
 	__pid_t child_pid;
 	int stat_loc;
 
+	(void)argc;
+	(void)argv;
+	if (envp)
+		print_envp(envp);
 	while (1)
 	{
 		input = readline("\033[32mmicroshell$\033[0m ");
