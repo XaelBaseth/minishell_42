@@ -6,7 +6,7 @@
 #    By: cpothin <cpothin@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/07/25 07:42:45 by acharlot          #+#    #+#              #
-#    Updated: 2023/07/28 18:20:27 by cpothin          ###   ########.fr        #
+#    Updated: 2023/07/29 15:25:23 by cpothin          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -45,7 +45,7 @@ PARS_FILES	=	input
 SHELL_DIR	=	shell/
 SHELL_FILES	=	placeholder
 MAIN_DIR	=	main/
-MAIN_FILES	=	main utils env
+MAIN_FILES	=	main utils env free_all
 
 
 SRC_BUI_FILE=	$(addprefix $(BUILT_DIR), $(BUILT_FILES))

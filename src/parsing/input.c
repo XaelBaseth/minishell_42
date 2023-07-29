@@ -6,7 +6,7 @@
 /*   By: cpothin <cpothin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/25 07:41:55 by acharlot          #+#    #+#             */
-/*   Updated: 2023/07/28 17:44:49 by cpothin          ###   ########.fr       */
+/*   Updated: 2023/07/29 16:08:31 by cpothin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,8 @@
 
 // ne prend pas encore en compte si les parentheses sont dans des guillemets...
 
+/*	checks if the character at index is inside quotes so we can ignore
+	the meta-characters except $ */
 bool 	is_inside_quotes(char *input, int index)
 {
 	int	quotes;
@@ -40,12 +42,12 @@ bool 	is_inside_quotes(char *input, int index)
 		else if (input[i] == '\"')
 			double_quotes++;
 	}
-	printf("\nFor the %dth place, there are %d quotes and %d double_quotes before.", index, quotes, double_quotes);
-	if (quotes % 2 != 0 || double_quotes % 2 != 0)
-		return (false);
-	return (true);
+	if (quotes % 2 == 1 || double_quotes % 2 == 1)
+		return (true);
+	return (false);
 }
 
+/*	checks the amount of open '(' and closed ')' brackets so we can make the command fail*/
 bool check_brackets(char *raw_input)
 {
 	int	i;
@@ -68,6 +70,24 @@ bool check_brackets(char *raw_input)
 }
 
 /*	Returns the input of the user after validating it. */
+/*
+	Reproduire ce comportement ? :
+
+	➜  minishell git:(parsing) ✗ ( (
+	subsh subsh> (
+	subsh subsh subsh> (
+	subsh subsh subsh subsh> (
+	subsh subsh subsh subsh subsh> "
+	subsh subsh subsh subsh subsh dquote> 
+
+	➜  minishell git:(parsing) ✗ (
+	echo "coucou" 
+	)  
+	coucou
+	➜  minishell git:(parsing) ✗ 
+
+	Chaque ligne est un \n.
+*/
 char	*get_input(void)
 {
 	char *raw_input;
@@ -75,7 +95,10 @@ char	*get_input(void)
 
 	raw_input = readline("\033[32mminishell$\033[0m ");
 	if (!check_brackets(raw_input))
+	{
+		printf("Not the same amount of brackets.\n");
 		return (NULL);
+	}
 	//input = validate_input(raw_input);
 	//penser a changer le return en input
  	return (raw_input);

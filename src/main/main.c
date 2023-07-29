@@ -3,13 +3,12 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: acharlot <acharlot@student.42.fr>          +#+  +:+       +#+        */
+/*   By: cpothin <cpothin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/25 07:42:03 by acharlot          #+#    #+#             */
-/*   Updated: 2023/07/28 08:36:06 by acharlot         ###   ########.fr       */
+/*   Updated: 2023/07/29 16:16:39 by cpothin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-
 
 #include "../../inc/minishell.h"
 
@@ -38,13 +37,22 @@ int main(int argc, char **argv, char **envp)
 	if (argc > 1 && argv)
 		panic("No arguments are needed.");
 	store_env(envp, &data);
-	// while (1)
-	// {
-	// 	input = get_input();
-	// 	add_history(input);
-	// 	create_processes(input);
-	// 	/* ADD SHIT*/
-	// 	return (EXIT_SUCCESS);
-	// }
+	while (1)
+	{
+		data.input = get_input();
+		// add_history(data.input);
+		// create_processes(data.input);
+		/* ADD SHIT*/
+
+		// si la ligne est vide, on ne quitte pas le programme.
+		if (!data.input || ft_strncmp(data.input, "", ft_strlen(data.input)) == 0)
+			continue ;
+		if (ft_strncmp(data.input, "exit", ft_strlen(data.input)) == 0)
+		{
+			// si on ecrit "exit", on quitte le programme
+			free_all(&data);
+			return (EXIT_SUCCESS);
+		}
+	}
 	
 }
