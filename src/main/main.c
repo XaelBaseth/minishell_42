@@ -6,7 +6,7 @@
 /*   By: cpothin <cpothin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/25 07:42:03 by acharlot          #+#    #+#             */
-/*   Updated: 2023/07/29 16:43:18 by cpothin          ###   ########.fr       */
+/*   Updated: 2023/07/29 17:21:33 by cpothin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,11 +53,14 @@ int main(int argc, char **argv, char **envp)
 		// create_processes(data.input);
 		/* ADD SHIT*/
 
-		// si la ligne est vide, on ne quitte pas le programme.
+		/* si la ligne est vide, on ne quitte pas le programme.
+		Si on ecrit "env" ou "exit", on lance les commandes associees.
+		Ca ne remplace pas le systeme de parsing, mais ca fonctionne */
 		if (!data.input || line_is(&data, ""))
 			continue ;
-		// on quitte le programme si on ecrit "exit", c'est juste pour tester.
-		if (line_is(&data, "exit"))
+		else if (line_is(&data, "env"))
+			print_env(&data);
+		else if (line_is(&data, "exit"))
 		{
 			free_all(&data);
 			return (EXIT_SUCCESS);

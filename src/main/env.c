@@ -6,7 +6,7 @@
 /*   By: cpothin <cpothin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/27 11:01:28 by cpothin           #+#    #+#             */
-/*   Updated: 2023/07/29 16:03:57 by cpothin          ###   ########.fr       */
+/*   Updated: 2023/07/29 17:18:46 by cpothin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,5 +62,17 @@ void    store_env(char **envp, t_data *data)
 	{
 		data->arr_env[o] = split_env(envp[o]);
 		o++;
+	}
+}
+
+void	print_env(t_data *data)
+{
+	int	i;
+
+	i = 0;
+	while (data->envp[i])
+	{
+		printf("%s\n", data->envp[i]);
+		i++;
 	}
 }

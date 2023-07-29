@@ -45,6 +45,7 @@ typedef struct  s_data
 //env.c
 
 void    store_env(char **envp, t_data *data);
+void	print_env(t_data *data);
 
 //utils.c
 
