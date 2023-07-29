@@ -53,6 +53,7 @@ void	panic(char *str);
 //input.c
 
 char	*get_input(void);
+bool	line_is(t_data *data, char *content);
 
 //free_all.c
 

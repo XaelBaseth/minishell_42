@@ -6,11 +6,18 @@
 /*   By: cpothin <cpothin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/25 07:41:55 by acharlot          #+#    #+#             */
-/*   Updated: 2023/07/29 16:08:31 by cpothin          ###   ########.fr       */
+/*   Updated: 2023/07/29 16:32:32 by cpothin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../inc/minishell.h"
+
+bool	line_is(t_data *data, char *content)
+{
+	if (ft_strncmp(data->input, content, ft_strlen(content) + 1) == 0)
+		return (true);
+	return (false);
+}
 
 //static char	validate_input(char *raw_input)
 //{

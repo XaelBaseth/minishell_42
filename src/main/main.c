@@ -6,7 +6,7 @@
 /*   By: cpothin <cpothin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/25 07:42:03 by acharlot          #+#    #+#             */
-/*   Updated: 2023/07/29 16:16:39 by cpothin          ###   ########.fr       */
+/*   Updated: 2023/07/29 16:43:18 by cpothin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,12 @@
 		waitpid(child_pid, &stat_loc, WUNTRACED);
 }*/
 
+/*	On initialise pour eviter problemes de memoire */
+void	init_data(t_data *data)
+{
+	data->input = NULL;
+}
+
 int main(int argc, char **argv, char **envp)
 {
 	t_data	data;
@@ -36,20 +42,23 @@ int main(int argc, char **argv, char **envp)
 
 	if (argc > 1 && argv)
 		panic("No arguments are needed.");
+	init_data(&data);
 	store_env(envp, &data);
 	while (1)
 	{
+		if (data.input) // on free sinon ca leak pour chaque ligne malloc.
+			free(data.input);
 		data.input = get_input();
 		// add_history(data.input);
 		// create_processes(data.input);
 		/* ADD SHIT*/
 
 		// si la ligne est vide, on ne quitte pas le programme.
-		if (!data.input || ft_strncmp(data.input, "", ft_strlen(data.input)) == 0)
+		if (!data.input || line_is(&data, ""))
 			continue ;
-		if (ft_strncmp(data.input, "exit", ft_strlen(data.input)) == 0)
+		// on quitte le programme si on ecrit "exit", c'est juste pour tester.
+		if (line_is(&data, "exit"))
 		{
-			// si on ecrit "exit", on quitte le programme
 			free_all(&data);
 			return (EXIT_SUCCESS);
 		}
