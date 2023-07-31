@@ -6,7 +6,7 @@
 /*   By: acharlot <acharlot@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/25 07:42:03 by acharlot          #+#    #+#             */
-/*   Updated: 2023/07/31 08:35:49 by acharlot         ###   ########.fr       */
+/*   Updated: 2023/07/31 10:43:38 by acharlot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,6 @@ void	create_processes(char **envp)
 	char	**command;
 	int		stat_loc;
 	char	*input;
-
 
 	input = get_input();
 	add_history(input);

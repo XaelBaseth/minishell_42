@@ -6,7 +6,7 @@
 /*   By: acharlot <acharlot@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/27 11:01:28 by cpothin           #+#    #+#             */
-/*   Updated: 2023/07/31 08:37:41 by acharlot         ###   ########.fr       */
+/*   Updated: 2023/07/31 10:34:46 by acharlot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,6 +74,8 @@ void	store_env(char **envp, t_data *data)
 	while (o < i)
 	{
 		data->arr_env[o] = split_env(envp[o]);
+		//ft_printf("%s\n", data->arr_env[o].key);
+		//ft_printf("%s\n", data->arr_env[o].value);
 		o++;
 	}
 	data->nb_env = o;
