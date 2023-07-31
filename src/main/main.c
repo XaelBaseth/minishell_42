@@ -6,10 +6,9 @@
 /*   By: acharlot <acharlot@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/25 07:42:03 by acharlot          #+#    #+#             */
-/*   Updated: 2023/07/31 10:43:38 by acharlot         ###   ########.fr       */
+/*   Updated: 2023/07/31 10:49:48 by acharlot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-
 
 #include "../../inc/minishell.h"
 
@@ -39,19 +38,29 @@ void	create_processes(char **envp)
 		waitpid(child_pid, &stat_loc, WUNTRACED);
 }
 
+/*	On initialise pour eviter problemes de memoire */
+void	init_data(t_data *data)
+{
+	data->input = NULL;
+}
+
 int main(int argc, char **argv, char **envp)
 {
 	t_data	data;
 
 	if (argc > 1 && argv)
 		panic("No arguments are needed.");
+	init_data(&data);
 	store_env(envp, &data);
-	while (1)
-	{
-	 	create_processes(data.envp);
-	 	/* ADD SHIT*/
-	}
-	return (EXIT_SUCCESS);
+	// while (1)
+	// {
+	// 	input = get_input();
+	// 	add_history(input);
+	// 	create_processes(input);
+	// 	/* ADD SHIT*/
+	// 	return (EXIT_SUCCESS);
+	// }
+	
 }
 
 //execve(PATH | Arguments | Enviro)

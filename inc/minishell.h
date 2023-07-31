@@ -34,6 +34,7 @@ struct  s_env
 typedef struct  s_data
 {
     char    **envp;
+    char    *input;
     t_env   *arr_env;
     int     nb_env;
 }               t_data;
@@ -44,12 +45,19 @@ typedef struct  s_data
 //env.c
 
 void    store_env(char **envp, t_data *data);
+void	print_env(t_data *data);
+
 //utils.c
 
 void	panic(char *str);
+
 //input.c
 
 char	*get_input(void);
-char	**get_command(char *input);
+bool	line_is(t_data *data, char *content);
+
+//free_all.c
+
+void	free_all(t_data *data);
 
 #endif

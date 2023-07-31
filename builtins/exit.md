@@ -1,0 +1,1 @@
+When you run `exit` without any argument, the shell session will be closed, and you'll return to the parent shell or terminal from which the current shell session was launched.

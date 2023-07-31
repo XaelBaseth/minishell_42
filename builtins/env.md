@@ -1,0 +1,1 @@
+When you run `env` without any arguments, it will display a list of all the environment variables currently set in your shell session.

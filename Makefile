@@ -6,7 +6,7 @@
 #    By: acharlot <acharlot@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/07/25 07:42:45 by acharlot          #+#    #+#              #
-#    Updated: 2023/07/28 11:11:29 by acharlot         ###   ########.fr        #
+#    Updated: 2023/07/31 10:47:56 by acharlot         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -46,7 +46,7 @@ PARS_FILES	=	input
 SHELL_DIR	=	shell/
 SHELL_FILES	=	placeholder
 MAIN_DIR	=	main/
-MAIN_FILES	=	main utils env
+MAIN_FILES	=	main utils env free_all
 
 
 SRC_BUI_FILE=	$(addprefix $(BUILT_DIR), $(BUILT_FILES))
@@ -72,7 +72,9 @@ OBJF		=	.cache_exists
 OBJ 		=	$(BOBJ) $(POBJ) $(SOBJ) $(MOBJ)
 
 #Rules
-all:			$(NAME)
+all:			echo_message $(NAME)
+echo_message:
+	@echo "\n$(YELLOW)[Starting to build...]$(DEF_COLOR)\n\n$(MAGENTA)"
 
 $(NAME):		$(OBJ) $(OBJF)
 					@make -C $(LIBFT)
@@ -82,6 +84,7 @@ $(NAME):		$(OBJ) $(OBJF)
 
 $(OBJ_DIR)%.o:	$(SRC_DIR)%.c $(OBJF)
 					@$(CC) $(CFLAGS) -c $< -o $@
+					@$(ECHO) "\033[1A\033[K$< created"
 
 $(OBJF):		
 					@mkdir -p $(OBJ_DIR)
@@ -98,12 +101,9 @@ clean:
 
 fclean:			clean
 					@$(RM) $(NAME)
-					@$(RM) libft.a
 					@make fclean -C $(LIBFT)
-					@$(RM) *.dSYM
-					@find . -name ".DS_Store" -delete
 					@$(ECHO) "$(CYAN)[MINISHELL]:\texec. files$(DEF_COLOR)\t$(GREEN) => Cleaned!$(DEF_COLOR)\n"
 re:				fclean all
-					@$(ECHO) "$(GREEN)###\tCleaned and rebuilt everything for [MINISHELL]!\t###$(DEF_COLOR)\n"
+					@$(ECHO) "\n$(GREEN)###\tCleaned and rebuilt everything for [MINISHELL]!\t###$(DEF_COLOR)\n"
 
 .PHONY:			all clean fclean re
