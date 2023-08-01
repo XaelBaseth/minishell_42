@@ -1,32 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   free_all.c                                         :+:      :+:    :+:   */
+/*   path.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cpothin <cpothin@student.42.fr>            +#+  +:+       +#+        */
+/*   By: acharlot <acharlot@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/07/29 14:00:03 by cpothin           #+#    #+#             */
-/*   Updated: 2023/07/29 16:37:51 by cpothin          ###   ########.fr       */
+/*   Created: 2023/07/31 10:37:29 by acharlot          #+#    #+#             */
+/*   Updated: 2023/07/31 12:46:31 by acharlot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../inc/minishell.h"
 
-// free everything
-void	free_all(t_data *data)
+int	get_path(t_env *envp)
 {
-	int	i;
 
-	if (data->input)
-		free(data->input);
-	if (data->nb_env > 0)
-	{
-		i = 0;
-		while (i < data->nb_env)
-		{
-			free(data->arr_env[i].key);
-			free(data->arr_env[i++].value);
-		}
-		free(data->arr_env);
-	}
+	
+	//getenv("PATH") on the dupe
+	//separate with each ":"
+	
+	//allows a cycle search between the different path via a binary tree search
+	//in order to return the correct commands
+	
 }
