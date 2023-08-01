@@ -6,9 +6,10 @@
 /*   By: cpothin <cpothin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/25 07:41:55 by acharlot          #+#    #+#             */
-/*   Updated: 2023/08/01 08:57:12 by cpothin          ###   ########.fr       */
+/*   Updated: 2023/08/01 09:01:50 by cpothin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
 
 #include "../../inc/minishell.h"
 
@@ -109,4 +110,25 @@ char	*get_input(void)
 	//input = validate_input(raw_input);
 	//penser a changer le return en input
  	return (raw_input);
+}
+
+char	**get_command(char *input)
+{
+	char **command;	
+	char *separator = " ";
+	char *parsed;
+	int index = 0;
+
+	command = malloc(64 * sizeof(char *));
+	if (!command)
+		panic("Command mem allocation failed.");
+	parsed = strtok(input, separator);
+	while (parsed != NULL)
+	{
+		command[index] = parsed;
+		index++;
+		parsed = strtok(NULL, separator);
+	}
+	command[index] = NULL;
+	return (command);
 }

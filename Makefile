@@ -3,16 +3,17 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: cpothin <cpothin@student.42.fr>            +#+  +:+       +#+         #
+#    By: acharlot <acharlot@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/07/25 07:42:45 by acharlot          #+#    #+#              #
-#    Updated: 2023/07/29 17:01:52 by cpothin          ###   ########.fr        #
+#    Updated: 2023/07/31 10:47:56 by acharlot         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 
 #Variable
 MAKEFLAGS	+= --silent
+
 NAME		=	minishell
 INC			=	inc/
 HEADER		=	-I inc
@@ -79,7 +80,7 @@ $(NAME):		$(OBJ) $(OBJF)
 					@make -C $(LIBFT)
 					@cp libft/libft.a .
 					@$(CC) $(CFLAGS) $(OBJ) $(HEADER) libft.a -o $(NAME) $(READLINE)
-					@$(ECHO) "$(YELLOW)[MINISHELL]:\t$(ORANGE)[==========]\t$(GREEN) => Success!$(DEF_COLOR)"
+					@$(ECHO) "$(YELLOW)[MINISHELL]:\t$(ORANGE)[==========]\t$(GREEN) => Success!$(DEF_COLOR)\n"
 
 $(OBJ_DIR)%.o:	$(SRC_DIR)%.c $(OBJF)
 					@$(CC) $(CFLAGS) -c $< -o $@
@@ -103,6 +104,6 @@ fclean:			clean
 					@make fclean -C $(LIBFT)
 					@$(ECHO) "$(CYAN)[MINISHELL]:\texec. files$(DEF_COLOR)\t$(GREEN) => Cleaned!$(DEF_COLOR)\n"
 re:				fclean all
-					@$(ECHO) "\n$(GREEN)Cleaned and rebuilt everything for [MINISHELL]! $(DEF_COLOR)\n"
+					@$(ECHO) "\n$(GREEN)###\tCleaned and rebuilt everything for [MINISHELL]!\t###$(DEF_COLOR)\n"
 
 .PHONY:			all clean fclean re

@@ -72,8 +72,8 @@ int main(int argc, char **argv, char **envp)
 
 	(void)argc;
 	(void)argv;
-	if (envp)
-		print_envp(envp);
+	//if (envp)
+	//	print_envp(envp);
 	while (1)
 	{
 		input = readline("\033[32mmicroshell$\033[0m ");
@@ -106,16 +106,11 @@ int main(int argc, char **argv, char **envp)
 		if (child_pid == 0)
 		{
 			//Never return if the calls is successful
-			if (execvp(command[0], command) < 0)
+			if (execve(command[0], command, envp) < 0)
 			{
 				perror(command[0]);
 				exit(1);
 			}
-			//The <execvp> allows us to execute a program.
-			//It provides an array of pointer to \0 strings that represent
-			//the arguments lists available to the program.
-			//the <execvp> duplicates the actions of shell in searching
-			//for an executable file in the PATH env variables.
 		}
 		else
 			waitpid(child_pid, &stat_loc, WUNTRACED);

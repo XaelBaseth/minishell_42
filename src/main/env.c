@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   env.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cpothin <cpothin@student.42.fr>            +#+  +:+       +#+        */
+/*   By: acharlot <acharlot@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/27 11:01:28 by cpothin           #+#    #+#             */
-/*   Updated: 2023/07/29 17:18:46 by cpothin          ###   ########.fr       */
+/*   Updated: 2023/07/31 10:48:51 by acharlot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,7 @@ static t_env	split_env(char *envp)
 }
 /*	Duplicates and store the environment variables through a 'key
 	and value' variable setup in the t_env structure. */
-void    store_env(char **envp, t_data *data)
+void	store_env(char **envp, t_data *data)
 {
 	int i;
 	int	o;
@@ -61,6 +61,8 @@ void    store_env(char **envp, t_data *data)
 	while (o < i)
 	{
 		data->arr_env[o] = split_env(envp[o]);
+		//ft_printf("%s\n", data->arr_env[o].key);
+		//ft_printf("%s\n", data->arr_env[o].value);
 		o++;
 	}
 }

@@ -101,6 +101,6 @@ fclean:		clean
 			@echo "$(CYAN)[LIBFT]:\texec. files$(DEF_COLOR)$(GREEN)\t => Cleaned!$(DEF_COLOR)\n"
 
 re:			fclean all
-			@echo"$(GREEN)Cleaned and rebuilt everything for libft!$(DEF_COLOR)\n"
+			@$(ECHO) "$(GREEN)Cleaned and rebuilt everything for libft!$(DEF_COLOR)\n"
 
 .PHONY:		all clean fclean re
