@@ -6,7 +6,7 @@
 #    By: acharlot <acharlot@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/07/25 07:42:45 by acharlot          #+#    #+#              #
-#    Updated: 2023/07/31 10:47:56 by acharlot         ###   ########.fr        #
+#    Updated: 2023/08/01 08:22:47 by acharlot         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -42,11 +42,11 @@ WHITE		=	\033[0;97m
 BUILT_DIR	=	builtins/
 BUILT_FILES	=	placeholder
 PARS_DIR	=	parsing/
-PARS_FILES	=	input 
+PARS_FILES	=	input
 SHELL_DIR	=	shell/
-SHELL_FILES	=	placeholder
+SHELL_FILES	=	env
 MAIN_DIR	=	main/
-MAIN_FILES	=	main utils env free_all
+MAIN_FILES	=	main utils config_sig
 
 
 SRC_BUI_FILE=	$(addprefix $(BUILT_DIR), $(BUILT_FILES))
@@ -101,6 +101,7 @@ clean:
 
 fclean:			clean
 					@$(RM) $(NAME)
+					@$(RM) libft.a
 					@make fclean -C $(LIBFT)
 					@$(ECHO) "$(CYAN)[MINISHELL]:\texec. files$(DEF_COLOR)\t$(GREEN) => Cleaned!$(DEF_COLOR)\n"
 re:				fclean all
