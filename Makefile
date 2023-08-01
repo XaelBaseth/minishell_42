@@ -6,7 +6,7 @@
 #    By: acharlot <acharlot@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/07/25 07:42:45 by acharlot          #+#    #+#              #
-#    Updated: 2023/08/01 08:22:47 by acharlot         ###   ########.fr        #
+#    Updated: 2023/08/01 08:51:58 by acharlot         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -73,8 +73,25 @@ OBJ 		=	$(BOBJ) $(POBJ) $(SOBJ) $(MOBJ)
 
 #Rules
 all:			echo_message $(NAME)
+			@$(MAKE) build_with_loading_bar
+
 echo_message:
-	@echo "\n$(YELLOW)[Starting to build...]$(DEF_COLOR)\n\n$(MAGENTA)"
+			@echo "\n$(YELLOW)[Starting to build...]$(DEF_COLOR)\n\n$(MAGENTA)"
+
+build_with_loading_bar:
+			@$(MAKE) build_progress_bar -s
+			@$(MAKE) $(NAME)
+			@$(MAKE) build_progress_bar -s
+
+build_progress_bar:
+			@tput civis # Hide the cursor
+			@echo -n " ["
+			@for i in {1..4}; do \
+				sleep 0.05; \
+				echo -n "#"; \
+			done
+			@echo "]"
+			@tput cnorm # Restore the cursor
 
 $(NAME):		$(OBJ) $(OBJF)
 					@make -C $(LIBFT)
@@ -107,4 +124,4 @@ fclean:			clean
 re:				fclean all
 					@$(ECHO) "\n$(GREEN)###\tCleaned and rebuilt everything for [MINISHELL]!\t###$(DEF_COLOR)\n"
 
-.PHONY:			all clean fclean re
+.PHONY:			build_progress_bar build_with_loading_bar all clean fclean re
