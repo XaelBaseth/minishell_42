@@ -73,10 +73,11 @@ all:		$(NAME)
 
 $(NAME):	$(OBJ)
 			@$(AR) $(NAME) $(OBJ)
-			@$(ECHO) "$(GREEN) => 100%$(DEF_COLOR)"
+			@$(ECHO) "\n$(YELLOW)[LIBFT]:\t$(ORANGE)[==========]\t$(GREEN) => Success!$(DEF_COLOR)"
 
 $(OBJ_DIR)%.o : $(SRC_DIR)%.c | $(OBJF)
 			@$(CC) $(CFLAGS) $(INCLUDE) -c $< -o $@
+			@$(ECHO) "\033[1A\033[K$< created"
 
 $(OBJF):
 			@mkdir -p $(OBJ_DIR)
@@ -93,13 +94,13 @@ $(OBJF):
 clean:
 			@$(RM) -r $(OBJ_DIR)
 			@$(RM) $(OBJF)
-			@echo "$(BLUE)[LIBFT]:\tobject files$(DEF_COLOR)$(GREEN)  => Cleaned!$(DEF_COLOR)\n"
+			@echo "$(BLUE)[LIBFT]:\tobject files$(DEF_COLOR)$(GREEN)\t => Cleaned!$(DEF_COLOR)\n"
 
 fclean:		clean
 			@$(RM) $(NAME)
-			@echo "$(CYAN)[LIBFT]:\texec. files$(DEF_COLOR)$(GREEN)  => Cleaned!$(DEF_COLOR)\n"
+			@echo "$(CYAN)[LIBFT]:\texec. files$(DEF_COLOR)$(GREEN)\t => Cleaned!$(DEF_COLOR)\n"
 
 re:			fclean all
-			@echo"$(GREEN)Cleaned and rebuilt everything for libft!$(DEF_COLOR)\n"
+			@$(ECHO) "$(GREEN)Cleaned and rebuilt everything for libft!$(DEF_COLOR)\n"
 
 .PHONY:		all clean fclean re

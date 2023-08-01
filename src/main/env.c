@@ -6,25 +6,11 @@
 /*   By: acharlot <acharlot@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/27 11:01:28 by cpothin           #+#    #+#             */
-/*   Updated: 2023/07/28 08:33:53 by acharlot         ###   ########.fr       */
+/*   Updated: 2023/07/31 10:48:51 by acharlot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../inc/minishell.h"
-
-/*	Free the variables used by the structure. */
-static void	free_env(t_data *data)
-{
-	int	i;
-
-	i = 0;
-	while (i < data->nb_env)
-	{
-		free(data->arr_env[i].key);
-		free(data->arr_env[i++].value);
-	}
-	free(data->arr_env);
-}
 
 /*	Split the environment variables through a 'key
 	and value' variable setup in the t_env structure. */
@@ -58,7 +44,7 @@ static t_env	split_env(char *envp)
 }
 /*	Duplicates and store the environment variables through a 'key
 	and value' variable setup in the t_env structure. */
-void    store_env(char **envp, t_data *data)
+void	store_env(char **envp, t_data *data)
 {
 	int i;
 	int	o;
@@ -67,6 +53,7 @@ void    store_env(char **envp, t_data *data)
 	data->envp = envp;
 	while (envp[i])
 		i++;
+	data->nb_env = i;
 	data->arr_env = (t_env *)malloc(sizeof(t_env) * i + 1);
 	if (!data->arr_env)
 		return ;
@@ -74,8 +61,20 @@ void    store_env(char **envp, t_data *data)
 	while (o < i)
 	{
 		data->arr_env[o] = split_env(envp[o]);
+		//ft_printf("%s\n", data->arr_env[o].key);
+		//ft_printf("%s\n", data->arr_env[o].value);
 		o++;
 	}
-	data->nb_env = o;
-	free_env(data);
+}
+
+void	print_env(t_data *data)
+{
+	int	i;
+
+	i = 0;
+	while (data->envp[i])
+	{
+		printf("%s\n", data->envp[i]);
+		i++;
+	}
 }
