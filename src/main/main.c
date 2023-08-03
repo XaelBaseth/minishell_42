@@ -6,60 +6,73 @@
 /*   By: acharlot <acharlot@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/25 07:42:03 by acharlot          #+#    #+#             */
-/*   Updated: 2023/07/31 10:49:48 by acharlot         ###   ########.fr       */
+/*   Updated: 2023/08/03 10:33:24 by acharlot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../inc/minishell.h"
 
-void	create_processes(char **envp)
+/*void	create_processes(char *command)
 {
 	__pid_t	child_pid;
-	char	**command;
-	int		stat_loc;
-	char	*input;
+	int	stat_loc;
 
-	input = get_input();
-	add_history(input);
-	command = get_command(input);
 	child_pid = fork();
 	if (child_pid < 0)
 		panic("Fork failed.");
 	if (child_pid == 0)
 	{
-		if (execve(envp[0], command, envp) < 0)
-		{
-			ft_printf("execve: %d\n", execve(command[0], command, envp));
-			ft_printf("execvp: %d\n", execvp(command[0], command));
-			//panic("The command is unknown.");
-		}
+ 		if (execvp(command[0], command) < 0)
+ 			panic("The command is unknown.");
 	}
 	else
 		waitpid(child_pid, &stat_loc, WUNTRACED);
-}
+}*/
 
 /*	On initialise pour eviter problemes de memoire */
 void	init_data(t_data *data)
 {
+	signal(SIGQUIT, sigint_handler);
+	signal(SIGINT, sigint_handler);
 	data->input = NULL;
+	g_pid = 0;
 }
 
 int main(int argc, char **argv, char **envp)
 {
 	t_data	data;
+	// char *input;
 
 	if (argc > 1 && argv)
 		panic("No arguments are needed.");
 	init_data(&data);
 	store_env(envp, &data);
-	// while (1)
-	// {
-	// 	input = get_input();
-	// 	add_history(input);
-	// 	create_processes(input);
-	// 	/* ADD SHIT*/
-	// 	return (EXIT_SUCCESS);
-	// }
+	print_address();
+	while (1)
+	{
+		if (data.input) // on free sinon ca leak pour chaque ligne malloc.
+			free(data.input);
+		data.input = get_input();
+		add_history(data.input);
+		// create_processes(data.input);
+		/* ADD SHIT*/
+
+		/* si la ligne est vide, on ne quitte pas le programme.
+		Si on ecrit "env" ou "exit", on lance les commandes associees.
+		Ca ne remplace pas le systeme de parsing, mais ca fonctionne */
+		if (!data.input || line_is(&data, ""))
+			continue ;
+		if (!builtins(&data))
+		{
+			gc_free_all();
+			return (EXIT_FAILURE);
+		}	
+		if (line_is(&data, "exit"))
+		{
+			gc_free_all();
+			return (EXIT_SUCCESS);
+		}
+	}
 	
 }
 
