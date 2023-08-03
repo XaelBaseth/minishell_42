@@ -6,7 +6,7 @@
 /*   By: acharlot <acharlot@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/25 07:41:55 by acharlot          #+#    #+#             */
-/*   Updated: 2023/07/31 10:48:18 by acharlot         ###   ########.fr       */
+/*   Updated: 2023/08/03 10:02:31 by acharlot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -120,7 +120,7 @@ char	**get_command(char *input)
 
 	command = malloc(64 * sizeof(char *));
 	if (!command)
-		panic("Command mem allocation failed.");
+		panic(MALLOC_ERR);
 	parsed = strtok(input, separator);
 	while (parsed != NULL)
 	{

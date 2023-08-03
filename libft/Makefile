@@ -53,6 +53,9 @@ GNL			=	get_next_line get_next_line_utils
 FTPRINTF_DIR	= ft_printf/
 FTPRINTF	=	ft_printf ft_printf_utils ft_printf_hex ft_printf_ptr ft_printf_unsigned
 
+FTGC_DIR	=	ft_gc_alloc/
+FTGC		=	ft_gc_alloc ft_gc_alloc_lst
+
 SRC_FILES+=$(addprefix $(FTIS_DIR),$(FTIS))
 SRC_FILES+=$(addprefix $(FTMEM_DIR),$(FTMEM))
 SRC_FILES+=$(addprefix $(FTPUT_DIR),$(FTPUT))
@@ -61,6 +64,7 @@ SRC_FILES+=$(addprefix $(FTSTR_DIR),$(FTSTR))
 SRC_FILES+=$(addprefix $(FTLST_DIR),$(FTLST))
 SRC_FILES+=$(addprefix $(GNL_DIR),$(GNL))
 SRC_FILES+=$(addprefix $(FTPRINTF_DIR),$(FTPRINTF))
+SRC_FILES+=$(addprefix $(FTGC_DIR), $(FTGC))
 
 SRC 		= 	$(addprefix $(SRC_DIR), $(addsuffix .c, $(SRC_FILES)))
 OBJ 		= 	$(addprefix $(OBJ_DIR), $(addsuffix .o, $(SRC_FILES)))
@@ -89,11 +93,13 @@ $(OBJF):
 			@mkdir -p $(OBJ_DIR)$(FTLST_DIR)
 			@mkdir -p $(OBJ_DIR)$(GNL_DIR)
 			@mkdir -p $(OBJ_DIR)$(FTPRINTF_DIR)
+			@mkdir -p $(OBJ_DIR)$(FTGC_DIR)
 			@touch $(OBJF)
 
 clean:
 			@$(RM) -r $(OBJ_DIR)
 			@$(RM) $(OBJF)
+			@$(RM) .cache_exists
 			@echo "$(BLUE)[LIBFT]:\tobject files$(DEF_COLOR)$(GREEN)\t => Cleaned!$(DEF_COLOR)\n"
 
 fclean:		clean

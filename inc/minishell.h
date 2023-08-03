@@ -5,6 +5,7 @@
 # include "../libft/inc/ft_printf.h"
 # include "../libft/inc/libft.h"
 # include "../libft/inc/get_next_line.h"
+# include "../libft/inc/ft_gc_alloc.h"
 
 # include <readline/readline.h>
 # include <readline/history.h>
@@ -18,6 +19,7 @@
 /*	CONSTANT	*/
 # define FAILURE -1
 # define SUCCESS 0
+# define MALLOC_ERR "Memory Allocation has failed."
 
 /*	GLOBAL	*/
 extern pid_t	g_pid;
@@ -45,6 +47,13 @@ typedef struct	s_data
 	int		nb_env;
 }			t_data;
 
+typedef struct	s_statement
+{
+	int					argc;
+	char				**argv;
+	struct s_statement	*next;
+}			t_statement;
+
 
 /*	FUNCTIONS	*/
 
@@ -57,6 +66,7 @@ void	print_env(t_data *data);
 
 void	panic(char *str);
 void	free_all_struct(t_data *data);
+bool	streq(char *str1, char *str2);
 //input.c
 
 char	*get_input(void);
@@ -69,5 +79,10 @@ void	free_all(t_data *data);
 //config_shell.c
 
 void	sigint_handler(int signum);
+
+
+//builtins.c
+
+bool	builtins(t_data *data);
 
 #endif

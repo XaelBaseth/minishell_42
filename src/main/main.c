@@ -6,7 +6,7 @@
 /*   By: acharlot <acharlot@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/25 07:42:03 by acharlot          #+#    #+#             */
-/*   Updated: 2023/08/01 08:26:47 by acharlot         ###   ########.fr       */
+/*   Updated: 2023/08/03 10:33:24 by acharlot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,6 +47,7 @@ int main(int argc, char **argv, char **envp)
 		panic("No arguments are needed.");
 	init_data(&data);
 	store_env(envp, &data);
+	print_address();
 	while (1)
 	{
 		if (data.input) // on free sinon ca leak pour chaque ligne malloc.
@@ -61,11 +62,14 @@ int main(int argc, char **argv, char **envp)
 		Ca ne remplace pas le systeme de parsing, mais ca fonctionne */
 		if (!data.input || line_is(&data, ""))
 			continue ;
-		else if (line_is(&data, "env"))
-			print_env(&data);
-		else if (line_is(&data, "exit"))
+		if (!builtins(&data))
 		{
-			free_all_struct(&data);
+			gc_free_all();
+			return (EXIT_FAILURE);
+		}	
+		if (line_is(&data, "exit"))
+		{
+			gc_free_all();
 			return (EXIT_SUCCESS);
 		}
 	}

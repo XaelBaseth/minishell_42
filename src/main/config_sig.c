@@ -6,7 +6,7 @@
 /*   By: acharlot <acharlot@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/31 12:03:38 by acharlot          #+#    #+#             */
-/*   Updated: 2023/08/01 08:17:30 by acharlot         ###   ########.fr       */
+/*   Updated: 2023/08/01 09:56:59 by acharlot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ static void	process(int sign_num)
 		if (sign_num == SIGQUIT)
 		{
 			ft_printf("Quit: \n");
-			g_status = 131;
+			g_status = 130;
 		}
 		else if (sign_num == SIGINT)
 		{
