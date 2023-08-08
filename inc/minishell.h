@@ -20,6 +20,7 @@
 # define FAILURE -1
 # define SUCCESS 0
 # define MALLOC_ERR "Memory Allocation has failed."
+# define PATH_ERR "PATH not found."
 
 /*	GLOBAL	*/
 extern pid_t	g_pid;
@@ -29,6 +30,14 @@ extern int		g_status;
 /*	STRUCTURES	*/
 
 typedef struct s_env t_env;
+typedef struct s_path t_path;
+
+struct s_path
+{
+	char	*path;
+	t_path	*next;
+	t_path	*previous;
+};
 
 struct	s_env
 {
@@ -41,48 +50,46 @@ struct	s_env
 
 typedef struct	s_data
 {
-	char	**envp;
 	char	*input;
+
+	char	**envp;
 	t_env	*arr_env;
 	int		nb_env;
+	
+	char	**path;
+	t_path	*arr_path;
+	int		nb_path;
 }			t_data;
-
-typedef struct	s_statement
-{
-	int					argc;
-	char				**argv;
-	struct s_statement	*next;
-}			t_statement;
-
 
 /*	FUNCTIONS	*/
 
-//env.c
+//shell/env.c
 
 void    store_env(char **envp, t_data *data);
 void	print_env(t_data *data);
 
-//utils.c
+//main/utils.c
 
 void	panic(char *str);
-void	free_all_struct(t_data *data);
-bool	streq(char *str1, char *str2);
+
 //input.c
 
 char	*get_input(void);
 bool	line_is(t_data *data, char *content);
 
-//free_all.c
-
-void	free_all(t_data *data);
-
-//config_shell.c
+//main/config_sig.c
 
 void	sigint_handler(int signum);
 
-
-//builtins.c
+//builtins/builtins.c
 
 bool	builtins(t_data *data);
+
+//parsing/path.c
+
+void 	store_path(char **path, t_data *data);
+void	print_path(t_data *data);
+char	*get_path(t_data *data);
+
 
 #endif

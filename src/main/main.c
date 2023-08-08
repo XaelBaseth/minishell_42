@@ -35,18 +35,28 @@ void	init_data(t_data *data)
 	signal(SIGQUIT, sigint_handler);
 	signal(SIGINT, sigint_handler);
 	data->input = NULL;
+	data->path = NULL;
 	g_pid = 0;
 }
 
 int main(int argc, char **argv, char **envp)
 {
 	t_data	data;
+	char 	*path;
 	// char *input;
 
 	if (argc > 1 && argv)
 		panic("No arguments are needed.");
 	init_data(&data);
 	store_env(envp, &data);
+	//print_env(&data);
+	path = get_path(&data);
+	/*if (path)
+		ft_printf("PATH environment variable: %s\n", path);
+	else
+		ft_printf("PATH environment variable not found");*/
+	store_path(&path, &data);
+	print_path(&data);
 	print_address();
 	while (1)
 	{
@@ -73,7 +83,8 @@ int main(int argc, char **argv, char **envp)
 			return (EXIT_SUCCESS);
 		}
 	}
-	
+	gc_free_all();
+	return (EXIT_SUCCESS);
 }
 
 //execve(PATH | Arguments | Enviro)

@@ -48,7 +48,8 @@ void	free_elem(t_alloc_ptr *element)
 		free(element);
 	}
 }
-/*	This function frees and remove the address of the given node in the list. */
+/*	This function frees and remove the address of the given node in the
+	list. */
 t_alloc_ptr	*remove_address(int index, t_alloc_ptr *lst)
 {
 	t_alloc_ptr	*new_list;
@@ -82,10 +83,12 @@ void	print_address(void)
 	lst = addr_save(NULL, 1);
 	ft_printf("\tGarbage Collector Address:\n");
 	ft_printf("------------------------\n\n");
+	ft_printf("\033[1m[Index]\033[0m\t->\t\033[32m[Address]\033[34m\t\t[Name]\
+		\033[0m\t->\t[Size]\n");
 	while (lst)
 	{
-		ft_printf("[%d]\t->\t[%p][%s]\t|%d|\n", i++, lst->addr,
-			lst->name, lst->size);
+		ft_printf("\033[1m[%d]\033[0m\t->\t\033[32m[%p]\033[34m\t[%s]\
+			\033[0m->[%d]\n", i++, lst->addr, lst->name, lst->size);
 		lst = lst->next;
 	}
 	ft_printf("------------------------\n");
