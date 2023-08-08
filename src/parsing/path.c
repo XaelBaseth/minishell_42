@@ -51,15 +51,20 @@ static t_path	split_path(char *path)
 	path_size = i;
 	new_path.path = (char *)gc_alloc(sizeof(char) *
 		(path_size + 1), "path: PATH var");
-	if (new_path.path)
-	{
-		strncpy(new_path.path, path, path_size);
-		new_path.path[path_size] = '\0';
-	}
+	if (!new_path.path)
+		return (new_path);
+	i = -1;
+	while (path[++i] != ':')
+		new_path.path[i] = path[i];
+	new_path.path[i] = '\0';
+	/*	TODO	
+		Make sure that the split path only split the path
+		up to the ':' mark and not letter by letter afterwards. */
+	ft_printf("path from split_path: %s\n", new_path.path);
 	return (new_path);
 }
 
-void	store_path(char **path, t_data *data)
+void	store_path(char *path, t_data *data)
 {
 	int i;
 	int o;
@@ -69,10 +74,9 @@ void	store_path(char **path, t_data *data)
 	if (!data->path)
 		return ;
 	ft_printf("path from store_path: %s\n", path);
-	ft_printf("data->path[%d]: %s\n", i, data->path);
 	while (data->path[i])
 	{
-		ft_printf("data->path[%d]: %p\n", i, (void*)data->path);
+		//ft_printf("data->path[%d]: %s\n", i, data->path);
 		i++;
 	}
 	data->nb_path = i;
@@ -83,8 +87,8 @@ void	store_path(char **path, t_data *data)
 	o = 0;
 	while (o < i)
 	{
-		data->arr_path[o] = split_path(path[o]);
-		//ft_printf("%s\n", data->arr_path[o].path);
+		data->arr_path[o] = split_path(&path[o]);
+		ft_printf("path from arr_path: %s\n", data->arr_path[o].path);
 		o++;
 	}
 }

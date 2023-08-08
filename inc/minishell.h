@@ -56,7 +56,7 @@ typedef struct	s_data
 	t_env	*arr_env;
 	int		nb_env;
 	
-	char	**path;
+	char	*path;
 	t_path	*arr_path;
 	int		nb_path;
 }			t_data;
@@ -87,7 +87,7 @@ bool	builtins(t_data *data);
 
 //parsing/path.c
 
-void 	store_path(char **path, t_data *data);
+void 	store_path(char *path, t_data *data);
 void	print_path(t_data *data);
 char	*get_path(t_data *data);
 

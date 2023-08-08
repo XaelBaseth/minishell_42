@@ -51,11 +51,12 @@ int main(int argc, char **argv, char **envp)
 	store_env(envp, &data);
 	//print_env(&data);
 	path = get_path(&data);
+	ft_printf("path from main: %s\n", path);
 	/*if (path)
 		ft_printf("PATH environment variable: %s\n", path);
 	else
 		ft_printf("PATH environment variable not found");*/
-	store_path(&path, &data);
+	store_path(path, &data);
 	print_path(&data);
 	print_address();
 	while (1)
