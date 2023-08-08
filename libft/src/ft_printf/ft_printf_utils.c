@@ -11,7 +11,7 @@
 /* ************************************************************************** */
 
 #include "ft_printf.h"
-#include "libft.h"
+
 
 /* Print a singular character on the stdout.*/
 int	ft_printchar(int c)
@@ -28,7 +28,7 @@ int	ft_printstr(char *str)
 	i = 0;
 	if (!str)
 	{
-		ft_printstr("(null)");
+		write(1, "(null)", 6);
 		return (6);
 	}
 	while (str[i])

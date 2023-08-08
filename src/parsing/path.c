@@ -12,6 +12,7 @@
 
 #include "../../inc/minishell.h"
 
+/*	Get the PATH variable from the duplicated environment. */
 char	*get_path(t_data *data)
 {
 	char	*path;
@@ -28,7 +29,6 @@ char	*get_path(t_data *data)
 		}
 		i++;
 	}
-	ft_printf("path from get_path: %s\n", path);
 	return (path);
 	//getenv("PATH") on the dupe X
 	//separate with each ":" X
@@ -37,71 +37,42 @@ char	*get_path(t_data *data)
 	//in order to return the correct commands
 	
 }
-static t_path	split_path(char *path)
-{
-	t_path new_path;
-	int i;
-	int path_size;
 
-	i = 0;
-	if (!path)
-		panic(PATH_ERR);
-	while (path[i] != ':' && path[i] != '\0')
-		i++;
-	path_size = i;
-	new_path.path = (char *)gc_alloc(sizeof(char) *
-		(path_size + 1), "path: PATH var");
-	if (!new_path.path)
-		return (new_path);
-	i = -1;
-	while (path[++i] != ':')
-		new_path.path[i] = path[i];
-	new_path.path[i] = '\0';
-	/*	TODO	
-		Make sure that the split path only split the path
-		up to the ':' mark and not letter by letter afterwards. */
-	ft_printf("path from split_path: %s\n", new_path.path);
-	return (new_path);
-}
-
+/*	Split and store the PATH variables into the path structure. */
 void	store_path(char *path, t_data *data)
 {
 	int i;
 	int o;
+	char **split_path;
 
 	i = 0;
 	data->path = path;
 	if (!data->path)
 		return ;
-	ft_printf("path from store_path: %s\n", path);
-	while (data->path[i])
-	{
-		//ft_printf("data->path[%d]: %s\n", i, data->path);
+	split_path = ft_split(path, ':');
+	while (split_path[i])
 		i++;
-	}
-	data->nb_path = i;
 	data->arr_path = (t_path *)gc_alloc(sizeof(t_path) * (i + 1),
-		"path: path_array");
+		"path:path_array");
 	if (!data->arr_path)
-		return;
+		return ;
 	o = 0;
 	while (o < i)
 	{
-		data->arr_path[o] = split_path(&path[o]);
-		ft_printf("path from arr_path: %s\n", data->arr_path[o].path);
+		data->arr_path[o].path = ft_strdup(split_path[o]);
 		o++;
 	}
 }
 
-
+/*	Print out the PATH variables /!\ MEM_LEAKS TO CHECK. */
 void	print_path(t_data *data)
 {
 	int	i;
 
 	i = 0;
-	while (data->path[i])
+	while (data->arr_path[i].path)
 	{
-		ft_printf("%s\n", data->arr_path[i]);
+		ft_printf("The PATH variable is: %s\n", data->arr_path[i].path);
 		i++;
 	}
 }

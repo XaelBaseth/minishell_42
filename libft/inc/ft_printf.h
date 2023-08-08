@@ -16,6 +16,8 @@
 # include <stdint.h>
 # include <stdlib.h>
 # include <stdarg.h>
+# include "libft.h"
+# include "ft_gc_alloc.h"
 
 int		ft_printf(const char *str, ...);
 int		ft_formats(va_list args, const char format);

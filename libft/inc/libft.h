@@ -15,6 +15,8 @@
 # include <stdlib.h>
 # include <stdint.h>
 # include <unistd.h>
+# include "ft_gc_alloc.h"
+
 
 typedef struct s_list
 {
