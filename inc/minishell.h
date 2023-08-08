@@ -43,6 +43,7 @@ typedef struct	s_data
 	char	*input;
 	t_env	*arr_env;
 	int		nb_env;
+	char	*cur_dir;
 }			t_data;
 
 
@@ -57,6 +58,7 @@ void	print_env(t_data *data);
 
 void	panic(char *str);
 void	free_all_struct(t_data *data);
+
 //input.c
 
 char	*get_input(void);
