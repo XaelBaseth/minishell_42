@@ -1,0 +1,10 @@
+{
+    "files.associations": {
+        "history.h": "c",
+        "unistd.h": "c",
+        "wait.h": "c",
+        "string.h": "c",
+        "type_traits": "c",
+        "minishell.h": "c"
+    }
+}
