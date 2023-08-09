@@ -37,7 +37,6 @@ struct s_path
 {
 	char	*path;
 	t_path	*next;
-	t_path	*previous;
 };
 
 struct	s_env
