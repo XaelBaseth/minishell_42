@@ -6,7 +6,7 @@
 /*   By: acharlot <acharlot@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/27 11:01:28 by cpothin           #+#    #+#             */
-/*   Updated: 2023/07/31 10:48:51 by acharlot         ###   ########.fr       */
+/*   Updated: 2023/08/09 11:20:25 by acharlot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,11 +26,11 @@ static t_env	split_env(char *envp)
 	while (envp[i] != '=')
 		i++;
 	key_size = i;
-	new_var.key = (char *)malloc(sizeof(char) * key_size + 1);
+	new_var.key = (char *)gc_alloc(sizeof(char) * key_size + 1, "env: var_key");
 	i++;
 	while (envp[i])
 		i++;
-	new_var.value = (char *)malloc(sizeof(char) * i - key_size + 1);
+	new_var.value = (char *)gc_alloc(sizeof(char) * i - key_size + 1, "env: var_value");
 	if (!new_var.key || !new_var.value)
 		return (new_var);
 	i = -1;
@@ -54,7 +54,7 @@ void	store_env(char **envp, t_data *data)
 	while (envp[i])
 		i++;
 	data->nb_env = i;
-	data->arr_env = (t_env *)malloc(sizeof(t_env) * i + 1);
+	data->arr_env = (t_env *)gc_alloc(sizeof(t_env) * i + 1, "env: var_array");
 	if (!data->arr_env)
 		return ;
 	o = 0;

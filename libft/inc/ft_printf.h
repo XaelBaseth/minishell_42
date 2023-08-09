@@ -3,12 +3,13 @@
 /*                                                        :::      ::::::::   */
 /*   ft_printf.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: acharlot <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: acharlot <acharlot@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/27 12:29:29 by acharlot          #+#    #+#             */
-/*   Updated: 2023/04/27 12:29:31 by acharlot         ###   ########.fr       */
+/*   Updated: 2023/08/09 08:30:06 by acharlot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
 #ifndef FT_PRINTF_H
 # define FT_PRINTF_H
 
@@ -16,6 +17,7 @@
 # include <stdint.h>
 # include <stdlib.h>
 # include <stdarg.h>
+# include "ft_gc_alloc.h"
 
 int		ft_printf(const char *str, ...);
 int		ft_formats(va_list args, const char format);

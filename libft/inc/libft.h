@@ -3,18 +3,20 @@
 /*                                                        :::      ::::::::   */
 /*   libft.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: acharlot <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: acharlot <acharlot@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/12 08:05:21 by acharlot          #+#    #+#             */
-/*   Updated: 2023/04/12 08:05:23 by acharlot         ###   ########.fr       */
+/*   Updated: 2023/08/09 08:04:11 by acharlot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-#ifndef LIBFT_H
+
+#ifndef	LIBFT_H
 # define LIBFT_H
 
 # include <stdlib.h>
 # include <stdint.h>
 # include <unistd.h>
+# include "ft_gc_alloc.h"
 
 typedef struct s_list
 {

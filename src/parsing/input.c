@@ -6,7 +6,7 @@
 /*   By: cpothin <cpothin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/25 07:41:55 by acharlot          #+#    #+#             */
-/*   Updated: 2023/08/01 09:01:50 by cpothin          ###   ########.fr       */
+/*   Updated: 2023/08/09 11:23:11 by cpothin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -121,7 +121,7 @@ char	**get_command(char *input)
 
 	command = malloc(64 * sizeof(char *));
 	if (!command)
-		panic("Command mem allocation failed.");
+		panic(MALLOC_ERR);
 	parsed = strtok(input, separator);
 	while (parsed != NULL)
 	{
