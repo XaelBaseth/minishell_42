@@ -6,7 +6,7 @@
 /*   By: acharlot <acharlot@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/09 08:17:00 by acharlot          #+#    #+#             */
-/*   Updated: 2023/08/09 10:41:55 by acharlot         ###   ########.fr       */
+/*   Updated: 2023/08/09 11:20:20 by acharlot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 void	execute_in_path(t_data *data)
 {
-	//While PATH exist
+	//While PATH exist => Circle through the path_arr
 	//if access the input via the path, with en exec mode OK is == 0
 	//execve with data->path, data->input, data->envp from copy
 	//returns an error if it returns
