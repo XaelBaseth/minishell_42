@@ -21,6 +21,7 @@
 # define SUCCESS 0
 # define MALLOC_ERR "Memory Allocation has failed."
 # define PATH_ERR "PATH not found."
+# define EXEC_ERR "An error occured while executing the program."
 
 /*	GLOBAL	*/
 extern pid_t	g_pid;
@@ -63,33 +64,40 @@ typedef struct	s_data
 
 /*	FUNCTIONS	*/
 
-//shell/env.c
+/*	SHELL	*/
+//env
 
 void    store_env(char **envp, t_data *data);
 void	print_env(t_data *data);
 
-//main/utils.c
+/*	MAIN	*/
+//utils
 
 void	panic(char *str);
 
-//input.c
+//config_sig
+
+void	sigint_handler(int signum);
+
+/*	PARSING	*/
+//input
 
 char	*get_input(void);
 bool	line_is(t_data *data, char *content);
 
-//main/config_sig.c
+//path
 
-void	sigint_handler(int signum);
-
-//builtins/builtins.c
-
-bool	builtins(t_data *data);
-
-//parsing/path.c
-
-void 	store_path(char *path, t_data *data);
+void	store_path(char *path, t_data *data);
 void	print_path(t_data *data);
 char	*get_path(t_data *data);
 
+/*	BUILTINS	*/
+//builtins
+
+bool	builtins(t_data *data);
+
+//exec
+
+void	execute_in_path(t_data *data);
 
 #endif

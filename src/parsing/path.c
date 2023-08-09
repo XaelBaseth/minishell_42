@@ -6,7 +6,7 @@
 /*   By: acharlot <acharlot@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/31 10:37:29 by acharlot          #+#    #+#             */
-/*   Updated: 2023/07/31 12:46:31 by acharlot         ###   ########.fr       */
+/*   Updated: 2023/08/09 10:07:27 by acharlot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,12 +30,6 @@ char	*get_path(t_data *data)
 		i++;
 	}
 	return (path);
-	//getenv("PATH") on the dupe X
-	//separate with each ":" X
-	
-	//allows a cycle search between the different path via a binary tree search
-	//in order to return the correct commands
-	
 }
 
 /*	Split and store the PATH variables into the path structure. */
@@ -62,6 +56,8 @@ void	store_path(char *path, t_data *data)
 		data->arr_path[o].path = ft_strdup(split_path[o]);
 		o++;
 	}
+	data->arr_path[o].path = NULL;
+	gc_free(split_path);
 }
 
 /*	Print out the PATH variables /!\ MEM_LEAKS TO CHECK. */

@@ -84,7 +84,7 @@ void execute_in_path(const char *program, char **args, char **envp)
 {
 	char *path = getenv("PATH");
  	char *token = strtok(path, ":");
-
+	printf("%s\n", token);
 	while (token != NULL) 
 	{
 		char full_path[1024];

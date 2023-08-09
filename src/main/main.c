@@ -6,11 +6,10 @@
 /*   By: acharlot <acharlot@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/25 07:42:03 by acharlot          #+#    #+#             */
-/*   Updated: 2023/08/03 10:33:24 by acharlot         ###   ########.fr       */
+/*   Updated: 2023/08/09 09:38:10 by acharlot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../inc/minishell.h"
 #include "../../inc/minishell.h"
 
 /*void	create_processes(char *command)
@@ -44,7 +43,6 @@ int main(int argc, char **argv, char **envp)
 {
 	t_data	data;
 	char 	*path;
-	// char *input;
 
 	if (argc > 1 && argv)
 		panic("No arguments are needed.");
@@ -57,7 +55,7 @@ int main(int argc, char **argv, char **envp)
 	else
 		ft_printf("PATH environment variable not found");*/
 	store_path(path, &data);
-	//print_path(&data);
+	print_path(&data);
 	print_address();
 	while (1)
 	{
@@ -65,6 +63,7 @@ int main(int argc, char **argv, char **envp)
 			free(data.input);
 		data.input = get_input();
 		add_history(data.input);
+		execute_in_path(&data);
 		// create_processes(data.input);
 		/* ADD SHIT*/
 

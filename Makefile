@@ -6,7 +6,7 @@
 #    By: acharlot <acharlot@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/07/25 07:42:45 by acharlot          #+#    #+#              #
-#    Updated: 2023/08/09 08:04:46 by acharlot         ###   ########.fr        #
+#    Updated: 2023/08/09 08:34:37 by acharlot         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -40,7 +40,7 @@ WHITE		=	\033[0;97m
 
 #Files
 BUILT_DIR	=	builtins/
-BUILT_FILES	=	builtins
+BUILT_FILES	=	builtins exec
 PARS_DIR	=	parsing/
 PARS_FILES	=	input path
 SHELL_DIR	=	shell/
