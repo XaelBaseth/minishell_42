@@ -25,18 +25,4 @@ void	ft_putendl_fd(char *s, int fd)
 	write(fd, s, ft_strlen(s));
 	write(fd, &nl, 1);
 }
-/*
-size_t	ft_strlen(const char *s)
-{
-	size_t	i;
 
-	i = 0;
-	while (s[i])
-		i++;
-	return (i);
-}
-int main(void)
-{
-	ft_putendl_fd("\nabcdef\n1234\n567\nend!\n", 1);
-}
-*/

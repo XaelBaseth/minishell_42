@@ -6,7 +6,7 @@
 /*   By: acharlot <acharlot@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/25 07:42:03 by acharlot          #+#    #+#             */
-/*   Updated: 2023/08/03 10:33:24 by acharlot         ###   ########.fr       */
+/*   Updated: 2023/08/09 09:38:10 by acharlot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,18 +35,27 @@ void	init_data(t_data *data)
 	signal(SIGQUIT, sigint_handler);
 	signal(SIGINT, sigint_handler);
 	data->input = NULL;
+	data->path = NULL;
 	g_pid = 0;
 }
 
 int main(int argc, char **argv, char **envp)
 {
 	t_data	data;
-	// char *input;
+	char 	*path;
 
 	if (argc > 1 && argv)
 		panic("No arguments are needed.");
 	init_data(&data);
 	store_env(envp, &data);
+	//print_env(&data);
+	path = get_path(&data);
+	/*if (path)
+		ft_printf("PATH environment variable: %s\n", path);
+	else
+		ft_printf("PATH environment variable not found");*/
+	store_path(path, &data);
+	print_path(&data);
 	print_address();
 	while (1)
 	{
@@ -54,6 +63,7 @@ int main(int argc, char **argv, char **envp)
 			free(data.input);
 		data.input = get_input();
 		add_history(data.input);
+		execute_in_path(&data);
 		// create_processes(data.input);
 		/* ADD SHIT*/
 
@@ -73,7 +83,8 @@ int main(int argc, char **argv, char **envp)
 			return (EXIT_SUCCESS);
 		}
 	}
-	
+	gc_free_all();
+	return (EXIT_SUCCESS);
 }
 
 //execve(PATH | Arguments | Enviro)

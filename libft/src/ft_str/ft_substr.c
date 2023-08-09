@@ -29,7 +29,7 @@ char	*ft_substr(char const *s, unsigned int start, size_t len)
 		return (ft_strdup(""));
 	if (len > s_len - start)
 		len = s_len - start;
-	substr = (char *)malloc((len + 1) * sizeof(char));
+	substr = (char *)gc_alloc((len + 1) * sizeof(char), "ft_substr");
 	if (!substr)
 		return (NULL);
 	ft_memcpy(substr, s + start, len);

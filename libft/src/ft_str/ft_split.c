@@ -45,7 +45,7 @@ static char	*word_dup(const char *str, int start, int finish)
 	int		i;
 
 	i = 0;
-	word = malloc((finish - start +1) * sizeof(char));
+	word = gc_alloc((finish - start +1) * sizeof(char), "word_dup");
 	while (start < finish)
 		word[i++] = str[start++];
 	word[i] = '\0';
@@ -59,7 +59,7 @@ char	**ft_split(char const *s, char c)
 	int		index;
 	char	**split;
 
-	split = malloc((count_words(s, c) + 1) * sizeof(char *));
+	split = gc_alloc((count_words(s, c) + 1) * sizeof(char *), "ft_split");
 	if (!s || !split)
 		return (0);
 	i = 0;
