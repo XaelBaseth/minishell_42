@@ -31,7 +31,7 @@ char	*ft_uitoa(unsigned int n)
 	int		len;
 
 	len = ft_num_len(n);
-	num = (char *)malloc(sizeof(char) * (len + 1));
+	num = (char *)gc_alloc(sizeof(char) * (len + 1), "ft_printf: uitoa");
 	if (!num)
 		return (0);
 	num[len] = '\0';
@@ -56,7 +56,6 @@ int	ft_printf_unsigned(unsigned int n)
 	{
 		num = ft_uitoa(n);
 		print_len += ft_printstr(num);
-		free(num);
 	}
 	return (print_len);
 }
