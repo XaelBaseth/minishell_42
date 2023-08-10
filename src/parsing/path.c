@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   path.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: acharlot <acharlot@student.42.fr>          +#+  +:+       +#+        */
+/*   By: axel <axel@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/31 10:37:29 by acharlot          #+#    #+#             */
-/*   Updated: 2023/08/09 10:07:27 by acharlot         ###   ########.fr       */
+/*   Updated: 2023/08/10 10:07:16 by axel             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,6 +56,7 @@ void	store_path(char *path, t_data *data)
 		data->arr_path[o].path = ft_strdup(split_path[o]);
 		o++;
 	}
+	data->nb_path = o;
 	data->arr_path[o].path = NULL;
 	gc_free(split_path);
 }
