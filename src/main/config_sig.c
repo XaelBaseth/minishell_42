@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   config_sig.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: acharlot <acharlot@student.42.fr>          +#+  +:+       +#+        */
+/*   By: cpothin <cpothin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/31 12:03:38 by acharlot          #+#    #+#             */
-/*   Updated: 2023/08/09 08:29:26 by acharlot         ###   ########.fr       */
+/*   Updated: 2023/08/10 10:51:36 by cpothin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,10 +46,13 @@ void	sigint_handler(int signum)
 	{
 		if (signum == SIGINT)
 		{
-			ft_printf("\n");
+			rl_replace_line("", 0);
+			rl_redisplay();
+			rl_done = 1;
 			g_status = 1;
+			// exit the current process
 		}
 		else if (signum == SIGQUIT)
-			ft_printf("\b\b \b\b");
+			ft_printf("\n");
 	}
 }

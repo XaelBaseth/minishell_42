@@ -3,12 +3,13 @@
 /*                                                        :::      ::::::::   */
 /*   ft_memchr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: acharlot <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: cpothin <cpothin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/13 08:21:01 by acharlot          #+#    #+#             */
-/*   Updated: 2023/04/13 08:21:14 by acharlot         ###   ########.fr       */
+/*   Updated: 2023/08/11 11:52:42 by cpothin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
 /*
 	LIBRARY: string.h
 
@@ -16,7 +17,7 @@
 				first instace of c. Both c and the bytes pointed by s
 				are unsigned char.
 */
-#include "libft.h"
+#include "../../inc/libft.h"
 
 void	*ft_memchr(const void *s, int c, size_t n)
 {

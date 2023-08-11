@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   path.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: acharlot <acharlot@student.42.fr>          +#+  +:+       +#+        */
+/*   By: cpothin <cpothin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/31 10:37:29 by acharlot          #+#    #+#             */
-/*   Updated: 2023/08/09 10:07:27 by acharlot         ###   ########.fr       */
+/*   Updated: 2023/08/09 17:26:04 by cpothin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,9 +68,8 @@ void	print_path(t_data *data)
 	i = 0;
 	while (data->arr_path[i].path)
 	{
-		ft_printf("The PATH variable is: %s\n", 
+		ft_printf("The PATH variable is: %s\n",
 			data->arr_path[i].path);
 		i++;
 	}
 }
-

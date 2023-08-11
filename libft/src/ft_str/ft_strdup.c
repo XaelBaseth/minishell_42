@@ -3,12 +3,13 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strdup.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: acharlot <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: cpothin <cpothin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/13 10:53:59 by acharlot          #+#    #+#             */
-/*   Updated: 2023/04/13 10:54:04 by acharlot         ###   ########.fr       */
+/*   Updated: 2023/08/11 11:49:50 by cpothin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
 /*
 	LIBRARY: string.h
 
@@ -16,7 +17,7 @@
 				the string s.Memory is obtained with malloc and has to be
 				freed with free.
 */
-#include "libft.h"
+#include "../../inc/libft.h"
 
 char	*ft_strdup(const char *s)
 {

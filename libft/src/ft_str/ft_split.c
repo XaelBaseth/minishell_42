@@ -3,12 +3,13 @@
 /*                                                        :::      ::::::::   */
 /*   ft_split.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: acharlot <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: cpothin <cpothin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/14 10:25:44 by acharlot          #+#    #+#             */
-/*   Updated: 2023/04/14 10:25:46 by acharlot         ###   ########.fr       */
+/*   Updated: 2023/08/11 11:49:57 by cpothin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
 /*
 	LIBRARY: N/A
 
@@ -16,7 +17,7 @@
 				separating s with c, as a deliminator. The array
 				must end by a NULL.
 */
-#include "libft.h"
+#include "../../inc/libft.h"
 
 static int	count_words(const char *str, char c)
 {

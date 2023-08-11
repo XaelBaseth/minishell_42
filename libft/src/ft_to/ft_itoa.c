@@ -3,19 +3,20 @@
 /*                                                        :::      ::::::::   */
 /*   ft_itoa.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: acharlot <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: cpothin <cpothin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/14 10:56:24 by acharlot          #+#    #+#             */
-/*   Updated: 2023/04/14 10:56:27 by acharlot         ###   ########.fr       */
+/*   Updated: 2023/08/11 11:50:07 by cpothin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
 /*
 	LIBRARY: N/A
 
 	SYNOPSIS: Returns a string from a n int.
 */
 
-#include "libft.h"
+#include "../../inc/libft.h"
 
 static size_t	ft_number_size(int number)
 {

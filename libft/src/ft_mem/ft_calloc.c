@@ -3,12 +3,13 @@
 /*                                                        :::      ::::::::   */
 /*   ft_calloc.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: acharlot <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: cpothin <cpothin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/14 08:26:17 by acharlot          #+#    #+#             */
-/*   Updated: 2023/04/14 08:26:24 by acharlot         ###   ########.fr       */
+/*   Updated: 2023/08/11 11:52:50 by cpothin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
 /*
 	LIBRARY: stdlib.h
 
@@ -16,7 +17,7 @@
 				and returns a pointer to the allocated memory.
 */
 
-#include "libft.h"
+#include "../../inc/libft.h"
 
 void	*ft_calloc(size_t nmemb, size_t size)
 {

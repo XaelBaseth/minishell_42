@@ -3,19 +3,20 @@
 /*                                                        :::      ::::::::   */
 /*   ft_atoi.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: acharlot <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: cpothin <cpothin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/13 09:31:03 by acharlot          #+#    #+#             */
-/*   Updated: 2023/04/13 09:31:07 by acharlot         ###   ########.fr       */
+/*   Updated: 2023/08/11 11:50:04 by cpothin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
 /*
 	LIBRARY: stdlib.h
 	
 	SYNOPSIS: 	Convert the portion of a string pointed to by
 				nptr to int.
 */
-#include "libft.h"
+#include "../../inc/libft.h"
 
 int	ft_atoi(const char *nptr)
 {

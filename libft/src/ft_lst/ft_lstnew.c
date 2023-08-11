@@ -3,18 +3,19 @@
 /*                                                        :::      ::::::::   */
 /*   ft_lstnew.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: acharlot <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: cpothin <cpothin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/17 08:11:58 by acharlot          #+#    #+#             */
-/*   Updated: 2023/04/17 08:12:01 by acharlot         ###   ########.fr       */
+/*   Updated: 2023/08/11 11:53:21 by cpothin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
 /*
 	LIBRARY: N/A
 
 	SYNOPSIS: Allocate memory and returns a new element initialized to NULL.
 */
-#include "libft.h"
+#include "../../inc/libft.h"
 
 t_list	*ft_lstnew(void *content)
 {

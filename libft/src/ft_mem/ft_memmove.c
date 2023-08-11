@@ -3,12 +3,13 @@
 /*                                                        :::      ::::::::   */
 /*   ft_memmove.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: acharlot <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: cpothin <cpothin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/12 09:58:29 by acharlot          #+#    #+#             */
-/*   Updated: 2023/04/12 09:58:30 by acharlot         ###   ########.fr       */
+/*   Updated: 2023/08/11 11:52:32 by cpothin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
 /*
 	LIBRARY: string.h
 
@@ -19,7 +20,7 @@
        			does not overlap src or dest, and the bytes are then copied 
        			from the temporary array to dest.
 */
-#include "libft.h"
+#include "../../inc/libft.h"
 
 void	*ft_memmove(void *dest, const void *src, size_t n)
 {

@@ -3,15 +3,15 @@
 /*                                                        :::      ::::::::   */
 /*   ft_printf_hex.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: acharlot <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: cpothin <cpothin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/27 12:25:34 by acharlot          #+#    #+#             */
-/*   Updated: 2023/04/27 12:25:36 by acharlot         ###   ########.fr       */
+/*   Updated: 2023/08/11 11:50:43 by cpothin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_printf.h"
-#include "libft.h"
+#include "../../inc/ft_printf.h"
+#include "../../inc/libft.h"
 
 int	ft_hex_len(unsigned int num)
 {
