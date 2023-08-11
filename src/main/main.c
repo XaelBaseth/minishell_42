@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: acharlot <acharlot@student.42.fr>          +#+  +:+       +#+        */
+/*   By: axel <axel@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/25 07:42:03 by acharlot          #+#    #+#             */
-/*   Updated: 2023/08/09 09:38:10 by acharlot         ###   ########.fr       */
+/*   Updated: 2023/08/11 13:47:50 by axel             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../inc/minishell.h"
 
-/*void	create_processes(char *command)
+void	create_processes(t_data *data)
 {
 	__pid_t	child_pid;
 	int	stat_loc;
@@ -22,12 +22,11 @@
 		panic("Fork failed.");
 	if (child_pid == 0)
 	{
- 		if (execvp(command[0], command) < 0)
- 			panic("The command is unknown.");
+ 		execute_in_path(data);
 	}
 	else
 		waitpid(child_pid, &stat_loc, WUNTRACED);
-}*/
+}
 
 /*	On initialise pour eviter problemes de memoire */
 void	init_data(t_data *data)
@@ -55,7 +54,7 @@ int main(int argc, char **argv, char **envp)
 	else
 		ft_printf("PATH environment variable not found");*/
 	store_path(path, &data);
-	print_path(&data);
+	//print_path(&data);
 	print_address();
 	while (1)
 	{
@@ -63,8 +62,7 @@ int main(int argc, char **argv, char **envp)
 			free(data.input);
 		data.input = get_input();
 		add_history(data.input);
-		execute_in_path(&data);
-		// create_processes(data.input);
+		create_processes(&data);
 		/* ADD SHIT*/
 
 		/* si la ligne est vide, on ne quitte pas le programme.

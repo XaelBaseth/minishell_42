@@ -6,7 +6,7 @@
 /*   By: axel <axel@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/09 08:17:00 by acharlot          #+#    #+#             */
-/*   Updated: 2023/08/10 10:35:12 by axel             ###   ########.fr       */
+/*   Updated: 2023/08/11 13:50:22 by axel             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,10 @@ void	execute_in_path(t_data *data)
 			ft_printf("Looking for %s in %s.\n", data->input,
 				data->arr_path[i].path);
 			char *exec_args[] = {data->arr_path[i].path, data->input, NULL};
-			execve(data->arr_path[3].path, exec_args, data->envp);
+			ft_printf("Return of execve: %d\n", execve(data->arr_path[i].path,
+				exec_args, data->envp));
+			execve(data->arr_path[i].path, exec_args, data->envp);
+			perror("execve");
 			panic(EXEC_ERR);
 		}
 		i++;
