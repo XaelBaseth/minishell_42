@@ -6,7 +6,7 @@
 /*   By: cpothin <cpothin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/27 08:38:49 by acharlot          #+#    #+#             */
-/*   Updated: 2023/08/11 09:20:18 by cpothin          ###   ########.fr       */
+/*   Updated: 2023/08/12 09:43:24 by cpothin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,5 +23,7 @@ void	panic(char *str)
 void	free_all(t_data *data)
 {
 	if (data->input)
+	{
 		free(data->input);
+	}
 }

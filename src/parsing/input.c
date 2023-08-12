@@ -6,7 +6,7 @@
 /*   By: cpothin <cpothin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/25 07:41:55 by acharlot          #+#    #+#             */
-/*   Updated: 2023/08/11 10:09:27 by cpothin          ###   ########.fr       */
+/*   Updated: 2023/08/12 10:03:34 by cpothin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,7 @@ bool 	is_inside_quotes(char *input, int index)
 }
 
 /*	checks the amount of open '(' and closed ')' brackets so we can make the command fail*/
-bool check_brackets(char *raw_input)
+bool	check_brackets(char *raw_input)
 {
 	int	i;
 	int	open_brackets;

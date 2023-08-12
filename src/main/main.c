@@ -6,7 +6,7 @@
 /*   By: cpothin <cpothin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/25 07:42:03 by acharlot          #+#    #+#             */
-/*   Updated: 2023/08/11 10:53:39 by cpothin          ###   ########.fr       */
+/*   Updated: 2023/08/12 09:45:24 by cpothin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,6 +58,7 @@ int main(int argc, char **argv, char **envp)
 	store_env(envp, &data);
 	//print_env(&data);
 	path = get_path(&data);
+	set_pwd(&data);
 	/*if (path)
 		ft_printf("PATH environment variable: %s\n", path);
 	else
@@ -68,7 +69,7 @@ int main(int argc, char **argv, char **envp)
 	while (1)
 	{
 		if (data.input) // on free sinon ca leak pour chaque ligne malloc.
-			gc_free(data.input);
+			free(data.input);
 		data.input = get_input();
 		add_history(data.input);
 		// execute_in_path(&data);
@@ -80,16 +81,16 @@ int main(int argc, char **argv, char **envp)
 		Ca ne remplace pas le systeme de parsing, mais ca fonctionne */
 		if (!data.input || line_is(&data, ""))
 			continue ;
-		if (!builtins(&data))
-		{
-			gc_free_all();
-			return (EXIT_FAILURE);
-		}
 		if (line_is(&data, "exit"))
 		{
 			free_all(&data);
 			gc_free_all();
 			return (EXIT_SUCCESS);
+		}
+		if (!builtins(&data))
+		{
+			gc_free_all();
+			return (EXIT_FAILURE);
 		}
 	}
 	gc_free_all();

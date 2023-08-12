@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   env.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: acharlot <acharlot@student.42.fr>          +#+  +:+       +#+        */
+/*   By: cpothin <cpothin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/27 11:01:28 by cpothin           #+#    #+#             */
-/*   Updated: 2023/08/09 11:20:25 by acharlot         ###   ########.fr       */
+/*   Updated: 2023/08/12 11:52:25 by cpothin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,36 +17,35 @@
 static t_env	split_env(char *envp)
 {
 	t_env	new_var;
-	int     i;
-	int     key_size;
+	int		i;
+	int		key_size;
 
 	i = 0;
-	// if (!envp)
-	//     return (new_var); <- protection if something fails!
 	while (envp[i] != '=')
 		i++;
 	key_size = i;
-	new_var.key = (char *)gc_alloc(sizeof(char) * key_size + 1, "env: var_key");
+	new_var.key = (char *)gc_alloc(sizeof(char) * key_size + 1, "env_key");
 	i++;
 	while (envp[i])
 		i++;
-	new_var.value = (char *)gc_alloc(sizeof(char) * i - key_size + 1, "env: var_value");
-	if (!new_var.key || !new_var.value)
+	new_var.val = (char *)gc_alloc(sizeof(char) * i - key_size + 1, "env_val");
+	if (!new_var.key || !new_var.val)
 		return (new_var);
 	i = -1;
 	while (envp[++i] != '=')
 		new_var.key[i] = envp[i];
 	new_var.key[i] = '\0';
 	while (envp[++i])
-		new_var.value[i - key_size - 1] = envp[i];
-	new_var.value[i - key_size - 1] = '\0';
+		new_var.val[i - key_size - 1] = envp[i];
+	new_var.val[i - key_size - 1] = '\0';
 	return (new_var);
 }
-/*	Duplicates and store the environment variables through a 'key
+/*	Duplicates and stores the environment variables through a 'key
 	and value' variable setup in the t_env structure. */
+
 void	store_env(char **envp, t_data *data)
 {
-	int i;
+	int	i;
 	int	o;
 
 	i = 0;
@@ -61,8 +60,6 @@ void	store_env(char **envp, t_data *data)
 	while (o < i)
 	{
 		data->arr_env[o] = split_env(envp[o]);
-		//ft_printf("%s\n", data->arr_env[o].key);
-		//ft_printf("%s\n", data->arr_env[o].value);
 		o++;
 	}
 }

@@ -44,7 +44,7 @@ struct s_path
 struct	s_env
 {
 	char	*key;
-	char	*value;
+	char	*val;
 	t_env	*previous;
 	t_env	*next;
 	bool	exported;
@@ -75,7 +75,8 @@ void	print_env(t_data *data);
 void	do_echo(t_data *data);
 
 //pwd
-void	do_pwd(t_data *data);
+void	set_pwd(t_data *data);
+void	get_pwd(t_data *data);
 
 /*	MAIN	*/
 //utils
