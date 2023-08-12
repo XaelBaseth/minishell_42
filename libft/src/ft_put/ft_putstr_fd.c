@@ -3,18 +3,19 @@
 /*                                                        :::      ::::::::   */
 /*   ft_putstr_fd.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: acharlot <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: cpothin <cpothin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/14 12:35:11 by acharlot          #+#    #+#             */
-/*   Updated: 2023/04/14 12:35:13 by acharlot         ###   ########.fr       */
+/*   Updated: 2023/08/11 11:50:30 by cpothin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
 /*
 	LIBRARY: N/A
 
 	SYNOPSIS: Writes a string s on the file descriptor fd.
 */
-#include "libft.h"
+#include "../../inc/libft.h"
 
 void	ft_putstr_fd(char *s, int fd)
 {

@@ -3,21 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   input.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: acharlot <acharlot@student.42.fr>          +#+  +:+       +#+        */
+/*   By: cpothin <cpothin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/25 07:41:55 by acharlot          #+#    #+#             */
-/*   Updated: 2023/08/03 10:02:31 by acharlot         ###   ########.fr       */
+/*   Updated: 2023/08/12 10:03:34 by cpothin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../inc/minishell.h"
-
-bool	line_is(t_data *data, char *content)
-{
-	if (ft_strncmp(data->input, content, ft_strlen(content) + 1) == 0)
-		return (true);
-	return (false);
-}
 
 //static char	validate_input(char *raw_input)
 //{
@@ -55,7 +48,7 @@ bool 	is_inside_quotes(char *input, int index)
 }
 
 /*	checks the amount of open '(' and closed ')' brackets so we can make the command fail*/
-bool check_brackets(char *raw_input)
+bool	check_brackets(char *raw_input)
 {
 	int	i;
 	int	open_brackets;
@@ -101,6 +94,8 @@ char	*get_input(void)
 	//char *input;
 
 	raw_input = readline("\033[32mminishell$\033[0m ");
+	if (!raw_input)
+		return (NULL);
 	if (!check_brackets(raw_input))
 	{
 		printf("Not the same amount of brackets.\n");
@@ -118,9 +113,10 @@ char	**get_command(char *input)
 	char *parsed;
 	int index = 0;
 
-	command = malloc(64 * sizeof(char *));
+	command = gc_alloc(64 * sizeof(char *), "command");
 	if (!command)
 		panic(MALLOC_ERR);
+	input = ft_remove_spaces(input);
 	parsed = strtok(input, separator);
 	while (parsed != NULL)
 	{

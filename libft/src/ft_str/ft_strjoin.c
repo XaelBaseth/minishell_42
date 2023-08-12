@@ -3,12 +3,13 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strjoin.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: acharlot <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: cpothin <cpothin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/14 08:50:15 by acharlot          #+#    #+#             */
-/*   Updated: 2023/04/14 08:50:17 by acharlot         ###   ########.fr       */
+/*   Updated: 2023/08/11 11:49:42 by cpothin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
 /*
 	LIBRARY: N/A
 
@@ -16,7 +17,7 @@
 				concatenation of s1 and s2.
 */
 
-#include "libft.h"
+#include "../../inc/libft.h"
 
 char	*ft_strjoin(char const *s1, char const *s2)
 {

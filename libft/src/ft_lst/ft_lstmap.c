@@ -3,12 +3,13 @@
 /*                                                        :::      ::::::::   */
 /*   ft_lstmap.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: acharlot <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: cpothin <cpothin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/17 11:28:08 by acharlot          #+#    #+#             */
-/*   Updated: 2023/04/17 11:28:10 by acharlot         ###   ########.fr       */
+/*   Updated: 2023/08/11 11:53:18 by cpothin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
 /*
 	LIBRARY: N/A
 
@@ -16,7 +17,7 @@
 				Create a new list as a result. Del is only here destroy
 				the content of an elements if necessary.
 */
-#include "libft.h"
+#include "../../inc/libft.h"
 
 t_list	*ft_lstmap(t_list *lst, void *(*f)(void *), void (*del)(void *))
 {

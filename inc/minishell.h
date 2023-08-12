@@ -15,6 +15,7 @@
 # include <unistd.h>
 # include <stdbool.h>
 # include <signal.h>
+# include "parser.h"
 
 /*	CONSTANT	*/
 # define FAILURE -1
@@ -43,7 +44,7 @@ struct s_path
 struct	s_env
 {
 	char	*key;
-	char	*value;
+	char	*val;
 	t_env	*previous;
 	t_env	*next;
 	bool	exported;
@@ -56,7 +57,7 @@ typedef struct	s_data
 	char	**envp;
 	t_env	*arr_env;
 	int		nb_env;
-	
+	char	*pwd;
 	char	*path;
 	t_path	*arr_path;
 	int		nb_path;
@@ -70,10 +71,18 @@ typedef struct	s_data
 void    store_env(char **envp, t_data *data);
 void	print_env(t_data *data);
 
+//echo
+void	do_echo(t_data *data);
+
+//pwd
+void	set_pwd(t_data *data);
+void	get_pwd(t_data *data);
+
 /*	MAIN	*/
 //utils
 
 void	panic(char *str);
+void	free_all(t_data *data);
 
 //config_sig
 
@@ -82,8 +91,13 @@ void	sigint_handler(int signum);
 /*	PARSING	*/
 //input
 
+bool 	is_inside_quotes(char *input, int index);
 char	*get_input(void);
 bool	line_is(t_data *data, char *content);
+bool	line_starts_by(t_data *data, char *content);
+
+//parsing_utils
+char	*ft_remove_spaces(char *str);
 
 //path
 

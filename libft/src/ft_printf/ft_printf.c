@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   ft_printf.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: acharlot <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: cpothin <cpothin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/27 12:25:22 by acharlot          #+#    #+#             */
-/*   Updated: 2023/04/27 12:25:25 by acharlot         ###   ########.fr       */
+/*   Updated: 2023/08/11 11:51:47 by cpothin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_printf.h"
+#include "../../inc/ft_printf.h"
 
 /* Applies the correct format to the args passed. */
 int	ft_formats(va_list args, const char format)

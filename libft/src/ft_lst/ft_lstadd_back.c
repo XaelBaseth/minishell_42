@@ -3,18 +3,19 @@
 /*                                                        :::      ::::::::   */
 /*   ft_lstadd_back.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: acharlot <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: cpothin <cpothin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/17 09:37:24 by acharlot          #+#    #+#             */
-/*   Updated: 2023/04/17 09:37:27 by acharlot         ###   ########.fr       */
+/*   Updated: 2023/08/11 11:52:59 by cpothin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
 /*
 	LIBRARY: N/A
 
 	SYNOPSIS: Create a new element at the end of the list, or create a list.
 */
-#include "libft.h"
+#include "../../inc/libft.h"
 
 void	ft_lstadd_back(t_list **lst, t_list *new)
 {

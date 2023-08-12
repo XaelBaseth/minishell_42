@@ -3,19 +3,20 @@
 /*                                                        :::      ::::::::   */
 /*   ft_putendl_fd.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: acharlot <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: cpothin <cpothin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/14 12:42:47 by acharlot          #+#    #+#             */
-/*   Updated: 2023/04/14 12:42:49 by acharlot         ###   ########.fr       */
+/*   Updated: 2023/08/11 11:50:24 by cpothin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
 /*
 	LIBRARY: N/A
 
 	SYNOPSIS: 	Writes a string s on the file descriptor fd followed by a new
 				line.
 */
-#include "libft.h"
+#include "../../inc/libft.h"
 
 void	ft_putendl_fd(char *s, int fd)
 {

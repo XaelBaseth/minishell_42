@@ -3,15 +3,15 @@
 /*                                                        :::      ::::::::   */
 /*   ft_printf_utils.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: acharlot <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: cpothin <cpothin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/27 12:26:08 by acharlot          #+#    #+#             */
-/*   Updated: 2023/04/27 12:26:10 by acharlot         ###   ########.fr       */
+/*   Updated: 2023/08/11 11:51:41 by cpothin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_printf.h"
-#include "libft.h"
+#include "../../inc/ft_printf.h"
+#include "../../inc/libft.h"
 
 /* Print a singular character on the stdout.*/
 int	ft_printchar(int c)

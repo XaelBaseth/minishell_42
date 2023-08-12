@@ -3,19 +3,20 @@
 /*                                                        :::      ::::::::   */
 /*   ft_memset.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: acharlot <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: cpothin <cpothin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/11 16:15:13 by acharlot          #+#    #+#             */
-/*   Updated: 2023/04/11 16:15:16 by acharlot         ###   ########.fr       */
+/*   Updated: 2023/08/11 11:52:26 by cpothin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
 /*
 	LIBRARY: string.h
 
 	SYNOPSIS: 	Fills the first n bytes of the memory area pointed by s
 				with the constant byte c.
 */
-#include "libft.h"
+#include "../../inc/libft.h"
 
 void	*ft_memset(void *s, int c, size_t n)
 {

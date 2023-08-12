@@ -3,18 +3,19 @@
 /*                                                        :::      ::::::::   */
 /*   ft_toupper.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: acharlot <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: cpothin <cpothin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/12 11:38:55 by acharlot          #+#    #+#             */
-/*   Updated: 2023/04/12 11:38:58 by acharlot         ###   ########.fr       */
+/*   Updated: 2023/08/11 11:50:14 by cpothin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
 /*
 	LIBRARY: ctype.h
 
 	SYNOPSIS: 	Converts uppercase letter.
 */
-#include "libft.h"
+#include "../../inc/libft.h"
 
 int	ft_toupper(int c)
 {

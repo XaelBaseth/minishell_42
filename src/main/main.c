@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: acharlot <acharlot@student.42.fr>          +#+  +:+       +#+        */
+/*   By: cpothin <cpothin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/25 07:42:03 by acharlot          #+#    #+#             */
-/*   Updated: 2023/08/09 09:38:10 by acharlot         ###   ########.fr       */
+/*   Updated: 2023/08/12 09:45:24 by cpothin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,8 +30,16 @@
 }*/
 
 /*	On initialise pour eviter problemes de memoire */
+
+int	event(void)
+{
+	return (EXIT_SUCCESS);
+}
+
 void	init_data(t_data *data)
 {
+	rl_event_hook = event;
+	signal(SIGQUIT, SIG_IGN);
 	signal(SIGQUIT, sigint_handler);
 	signal(SIGINT, sigint_handler);
 	data->input = NULL;
@@ -50,20 +58,21 @@ int main(int argc, char **argv, char **envp)
 	store_env(envp, &data);
 	//print_env(&data);
 	path = get_path(&data);
+	set_pwd(&data);
 	/*if (path)
 		ft_printf("PATH environment variable: %s\n", path);
 	else
 		ft_printf("PATH environment variable not found");*/
 	store_path(path, &data);
-	print_path(&data);
-	print_address();
+	// print_path(&data);
+	// print_address();
 	while (1)
 	{
 		if (data.input) // on free sinon ca leak pour chaque ligne malloc.
 			free(data.input);
 		data.input = get_input();
 		add_history(data.input);
-		execute_in_path(&data);
+		// execute_in_path(&data);
 		// create_processes(data.input);
 		/* ADD SHIT*/
 
@@ -72,15 +81,16 @@ int main(int argc, char **argv, char **envp)
 		Ca ne remplace pas le systeme de parsing, mais ca fonctionne */
 		if (!data.input || line_is(&data, ""))
 			continue ;
+		if (line_is(&data, "exit"))
+		{
+			free_all(&data);
+			gc_free_all();
+			return (EXIT_SUCCESS);
+		}
 		if (!builtins(&data))
 		{
 			gc_free_all();
 			return (EXIT_FAILURE);
-		}	
-		if (line_is(&data, "exit"))
-		{
-			gc_free_all();
-			return (EXIT_SUCCESS);
 		}
 	}
 	gc_free_all();

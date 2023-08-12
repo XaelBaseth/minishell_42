@@ -1,33 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strrchr.c                                       :+:      :+:    :+:   */
+/*   pwd.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: cpothin <cpothin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/04/12 13:42:06 by acharlot          #+#    #+#             */
-/*   Updated: 2023/08/11 11:49:06 by cpothin          ###   ########.fr       */
+/*   Created: 2023/08/11 10:58:31 by cpothin           #+#    #+#             */
+/*   Updated: 2023/08/12 11:52:14 by cpothin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-/*
-	LIBRARY: string.h
+#include "../../inc/minishell.h"
 
-	SYNOPSIS: 	Retunrs a pointer to the first occurence of the character c
-				in the string s.
-*/
-#include "../../inc/libft.h"
-
-char	*ft_strrchr(const char *s, int c)
+void	set_pwd(t_data *data)
 {
-	int	lenght;
+	int	i;
 
-	lenght = ft_strlen(s);
-	while (lenght >= 0)
+	i = 0;
+	while (data->envp[i])
 	{
-		if (s[lenght] == (char)c)
-			return ((char *)s + lenght);
-		lenght--;
+		if (!ft_strncmp(data->envp[i], "PWD=", 4))
+			data->pwd = ft_substr(data->envp[i],
+					4, ft_strlen(data->envp[i]) - 4);
+		i++;
 	}
-	return (NULL);
+}
+
+void	get_pwd(t_data *data)
+{
+	ft_printf("%s\n", data->pwd);
 }
