@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   exec.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cpothin <cpothin@student.42.fr>            +#+  +:+       +#+        */
+/*   By: acharlot <acharlot@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/09 08:17:00 by acharlot          #+#    #+#             */
-/*   Updated: 2023/08/11 09:43:48 by cpothin          ###   ########.fr       */
+/*   Updated: 2023/08/14 07:59:13 by acharlot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ void	execute_in_path(t_data *data)
 	while (data->arr_path[3].path)
 	{
 		ft_printf("Data path: %s\n", data->arr_path[3].path);
-		ft_printf("Returns of access: %d\n", access(data->arr_path[3].path, X_OK));
+		ft_printf("Returns of access: %d\n", access(data->arr_path[3].path, F_OK));
 		if (!access(data->arr_path[3].path, F_OK))
 		{
 			ft_printf("Looking for %s in %s.\n", data->input, data->path);
