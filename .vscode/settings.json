@@ -1,0 +1,13 @@
+{
+    "files.associations": {
+        "history.h": "c",
+        "unistd.h": "c",
+        "wait.h": "c",
+        "string.h": "c",
+        "type_traits": "c",
+        "minishell.h": "c",
+        "signal.h": "c",
+        "libft.h": "c",
+        "ft_printf.h": "c"
+    }
+}

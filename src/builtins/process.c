@@ -1,29 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   utils.c                                            :+:      :+:    :+:   */
+/*   process.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cpothin <cpothin@student.42.fr>            +#+  +:+       +#+        */
+/*   By: acharlot <acharlot@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/07/27 08:38:49 by acharlot          #+#    #+#             */
-/*   Updated: 2023/08/12 09:43:24 by cpothin          ###   ########.fr       */
+/*   Created: 2023/08/14 08:08:31 by acharlot          #+#    #+#             */
+/*   Updated: 2023/08/14 08:23:41 by acharlot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../inc/minishell.h"
 
-/*	Throw out an error message and exit the program. */
-void	panic(char *str)
+void	create_processes(t_data *data)
 {
-	gc_free_all();
-	ft_printf("\033[31mError!\n%s\n\033[0m", str);
-	exit(EXIT_FAILURE);
-}
+	__pid_t	child_pid;
+	int	stat_loc;
 
-void	free_all(t_data *data)
-{
-	if (data->input)
+	child_pid = fork();
+	if (child_pid < 0)
+		panic("Fork failed.");
+	if (child_pid == 0)
 	{
-		free(data->input);
+ 		execute_cmd(data);
 	}
+	else
+		waitpid(child_pid, &stat_loc, WUNTRACED);
 }

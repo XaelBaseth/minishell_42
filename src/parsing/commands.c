@@ -1,33 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strrchr.c                                       :+:      :+:    :+:   */
+/*   commands.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: cpothin <cpothin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/04/12 13:42:06 by acharlot          #+#    #+#             */
-/*   Updated: 2023/08/11 11:49:06 by cpothin          ###   ########.fr       */
+/*   Created: 2023/08/10 09:15:47 by cpothin           #+#    #+#             */
+/*   Updated: 2023/08/10 09:17:34 by cpothin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-/*
-	LIBRARY: string.h
+#include "../../inc/minishell.h"
 
-	SYNOPSIS: 	Retunrs a pointer to the first occurence of the character c
-				in the string s.
-*/
-#include "../../inc/libft.h"
-
-char	*ft_strrchr(const char *s, int c)
+t_command	*new_command(t_data *data)
 {
-	int	lenght;
+	t_command	*command;
 
-	lenght = ft_strlen(s);
-	while (lenght >= 0)
-	{
-		if (s[lenght] == (char)c)
-			return ((char *)s + lenght);
-		lenght--;
-	}
-	return (NULL);
-}
+	command->next = NULL;
+	command->previous = NULL;
+}	

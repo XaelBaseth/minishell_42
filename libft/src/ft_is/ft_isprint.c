@@ -3,18 +3,19 @@
 /*                                                        :::      ::::::::   */
 /*   ft_isprint.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: acharlot <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: cpothin <cpothin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/11 14:25:16 by acharlot          #+#    #+#             */
-/*   Updated: 2023/04/11 14:25:18 by acharlot         ###   ########.fr       */
+/*   Updated: 2023/08/11 11:53:56 by cpothin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
 /*
 	LIBRARY: ctype.h
 
 	SYNOPSIS: Check for printable character.
 */
-#include "libft.h"
+#include "../../inc/libft.h"
 
 int	ft_isprint(int c)
 {

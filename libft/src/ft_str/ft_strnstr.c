@@ -3,19 +3,20 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strnstr.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: acharlot <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: cpothin <cpothin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/13 08:59:06 by acharlot          #+#    #+#             */
-/*   Updated: 2023/04/13 08:59:23 by acharlot         ###   ########.fr       */
+/*   Updated: 2023/08/11 11:49:11 by cpothin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
 /*
 	LIBRARY: string.h + libbsd
 
 	SYNOPSIS: 	Locate the first occurence of the null-terminated string
 				little in the string big.
 */
-#include "libft.h"
+#include "../../inc/libft.h"
 
 char	*ft_strnstr(const char *big, const char *little, size_t len)
 {

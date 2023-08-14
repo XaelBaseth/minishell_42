@@ -3,14 +3,15 @@
 /*                                                        :::      ::::::::   */
 /*   ft_printf_unsigned.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: acharlot <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: cpothin <cpothin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/27 12:27:34 by acharlot          #+#    #+#             */
-/*   Updated: 2023/04/27 12:27:35 by acharlot         ###   ########.fr       */
+/*   Updated: 2023/08/11 11:51:37 by cpothin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-#include "ft_printf.h"
-#include "libft.h"
+
+#include "../../inc/ft_printf.h"
+#include "../../inc/libft.h"
 
 int	ft_num_len(unsigned int num)
 {

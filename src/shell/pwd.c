@@ -1,29 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   utils.c                                            :+:      :+:    :+:   */
+/*   pwd.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cpothin <cpothin@student.42.fr>            +#+  +:+       +#+        */
+/*   By: acharlot <acharlot@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/07/27 08:38:49 by acharlot          #+#    #+#             */
-/*   Updated: 2023/08/12 09:43:24 by cpothin          ###   ########.fr       */
+/*   Created: 2023/08/11 10:58:31 by cpothin           #+#    #+#             */
+/*   Updated: 2023/08/14 07:56:32 by acharlot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../inc/minishell.h"
 
-/*	Throw out an error message and exit the program. */
-void	panic(char *str)
+void	set_pwd(t_data *data)
 {
-	gc_free_all();
-	ft_printf("\033[31mError!\n%s\n\033[0m", str);
-	exit(EXIT_FAILURE);
+	int	i;
+
+	i = 0;
+	while (data->envp[i])
+	{
+		if (!ft_strncmp(data->envp[i], "PWD=", 4))
+			data->pwd = ft_substr(data->envp[i],
+					4, ft_strlen(data->envp[i]) - 4);
+		i++;
+	}
 }
 
-void	free_all(t_data *data)
+void	get_pwd(t_data *data)
 {
-	if (data->input)
-	{
-		free(data->input);
-	}
+	ft_printf("%s\n", data->pwd);
 }

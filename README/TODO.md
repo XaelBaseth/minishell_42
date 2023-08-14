@@ -46,9 +46,9 @@ Complet, mais ALED!
 
 [Shell command language](https://pubs.opengroup.org/onlinepubs/9699919799.2018edition/utilities/V3_chap02.html) Tres complet ! Decrit une partie du fonctionnement du Shell.
 
-[\[ChatGPT\] How to create the lexer.](https://chat.openai.com/share/321ad963-0231-4505-872b-b3a8d3420c61)
+[\[ChatGPT\] How to create the lexer. Useless?](https://chat.openai.com/share/321ad963-0231-4505-872b-b3a8d3420c61)
 
-[\[ChatGPT\] Arrows handling on shell.](https://chat.openai.com/share/329b8e5a-0361-470d-bd06-d05f8358660c)
+[\[ChatGPT\] Arrows handling on shell. Useless?](https://chat.openai.com/share/329b8e5a-0361-470d-bd06-d05f8358660c)
 
 <h2>WorkFlow</h2>
 
