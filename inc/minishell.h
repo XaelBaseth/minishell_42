@@ -49,6 +49,8 @@ struct	s_env
 	bool	exported;
 };
 
+
+
 typedef struct	s_data
 {
 	char	*input;
