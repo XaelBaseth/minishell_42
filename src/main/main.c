@@ -6,19 +6,18 @@
 /*   By: cpothin <cpothin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/25 07:42:03 by acharlot          #+#    #+#             */
-/*   Updated: 2023/08/15 14:15:04 by cpothin          ###   ########.fr       */
+/*   Updated: 2023/08/15 14:40:50 by cpothin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../inc/minishell.h"
-
-/*	On initialise pour eviter problemes de memoire */
 
 int	event(void)
 {
 	return (EXIT_SUCCESS);
 }
 
+/*	On initialise pour eviter problemes de memoire */
 void	init_data(t_data *data)
 {
 	rl_event_hook = event;
@@ -51,23 +50,8 @@ int main(int argc, char **argv, char **envp)
 			free(data.input);
 		data.input = get_input();
 		add_history(data.input);
-		// execute_in_path(&data);
-		// create_processes(data.input);
-		/* ADD SHIT*/
-
-		/* si la ligne est vide, on ne quitte pas le programme.
-		Si on ecrit "env" ou "exit", on lance les commandes associees.
-		Ca ne remplace pas le systeme de parsing, mais ca fonctionne */
-		if (!data.input || line_is(&data, ""))
-			continue ;
-		if (!builtins(&data))
-		{
-			free_all(&data);
-			gc_free_all();
-			return (EXIT_FAILURE);
-		}
+		create_processes(&data);
 	}
-	free_all(&data);
 	gc_free_all();
 	return (EXIT_SUCCESS);
 }

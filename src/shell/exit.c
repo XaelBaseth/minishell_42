@@ -6,7 +6,7 @@
 /*   By: cpothin <cpothin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/12 16:46:50 by cpothin           #+#    #+#             */
-/*   Updated: 2023/08/15 14:19:51 by cpothin          ###   ########.fr       */
+/*   Updated: 2023/08/15 16:23:56 by cpothin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,8 @@ bool	do_exit(t_data *data)
 			if the argument is incorrect, the shells shows "bash: exit: truc: numeric argument required"
 	*/
 
-	(void)data;
-	return (false); // return false exits the program (see in `main`)
+	free_all(data);
+	gc_free_all();
+	exit(0);
+	return (true); // return false exits the program (see in `main`)
 }
