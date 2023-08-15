@@ -38,7 +38,6 @@ struct s_path
 {
 	char	*path;
 	t_path	*next;
-	t_path	*previous;
 };
 
 struct	s_env
@@ -49,6 +48,8 @@ struct	s_env
 	t_env	*next;
 	bool	exported;
 };
+
+
 
 typedef struct	s_data
 {
@@ -112,6 +113,10 @@ bool	builtins(t_data *data);
 
 //exec
 
-void	execute_in_path(t_data *data);
+void	execute_cmd(t_data *data);
+
+//process
+
+void	create_processes(t_data *data);
 
 #endif

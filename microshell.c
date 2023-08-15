@@ -89,6 +89,7 @@ void execute_in_path(const char *program, char **args, char **envp)
 	{
 		char full_path[1024];
 		snprintf(full_path, sizeof(full_path), "%s/%s", token, program);
+
 		if (access(full_path, X_OK) == 0) {
 			printf("Executing %s from %s\n", program, token);
 			execve(full_path, args, envp);

@@ -3,38 +3,49 @@
 /*                                                        :::      ::::::::   */
 /*   exec.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cpothin <cpothin@student.42.fr>            +#+  +:+       +#+        */
+/*   By: axel <axel@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/09 08:17:00 by acharlot          #+#    #+#             */
-/*   Updated: 2023/08/11 09:43:48 by cpothin          ###   ########.fr       */
+/*   Updated: 2023/08/15 10:58:25 by axel             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../inc/minishell.h"
 
-void	execute_in_path(t_data *data)
+/*	Looks for command to be executed in PATH variables and execute 
+	them. */
+static void	execute_in_path(t_data *data)
 {
-	//While PATH exist => Circle through the path_arr
-	//if access the input via the path, with en exec mode OK is == 0
-	//execve with data->path, data->input, data->envp from copy
-	//returns an error if it returns
-	//else printf an error message.
-	ft_printf("command in exec is: %s\n", data->input);
-	while (data->arr_path[3].path)
+	int	i;
+	char *bin_path;
+	char *temp;
+
+	i = -1;
+	while (++i < data->nb_path)
 	{
-		ft_printf("Data path: %s\n", data->arr_path[3].path);
-		ft_printf("Returns of access: %d\n", access(data->arr_path[3].path, X_OK));
-		if (!access(data->arr_path[3].path, F_OK))
+		temp = ft_strjoin(data->arr_path[i].path, "/");
+		bin_path = ft_strjoin(temp, data->input);
+		if (access(bin_path, F_OK | X_OK) == 0)
 		{
-			ft_printf("Looking for %s in %s.\n", data->input, data->path);
-			execve(data->arr_path[3].path, &data->input, data->envp);
-			return ;
-		}
-		else
-		{
-			perror("Error");
+			char *exec_args[] = {data->input, NULL};
+			execve(bin_path, exec_args, data->envp);
+			perror("execve");
 			panic(EXEC_ERR);
 		}
 	}
 	ft_printf("%s not found in any directories in PATH\n", data->input);
+}
+
+
+/*	Check if the command inputed is either part of the added built-ins
+	function or part of the PATH functions. */
+void	execute_cmd(t_data *data)
+{
+	if (builtins(data))
+		return ;
+	else
+	{
+		execute_in_path(data);
+		return ;
+	}
 }

@@ -6,28 +6,11 @@
 /*   By: cpothin <cpothin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/25 07:42:03 by acharlot          #+#    #+#             */
-/*   Updated: 2023/08/15 11:53:56 by cpothin          ###   ########.fr       */
+/*   Updated: 2023/08/15 11:59:01 by cpothin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../inc/minishell.h"
-
-/*void	create_processes(char *command)
-{
-	__pid_t	child_pid;
-	int	stat_loc;
-
-	child_pid = fork();
-	if (child_pid < 0)
-		panic("Fork failed.");
-	if (child_pid == 0)
-	{
- 		if (execvp(command[0], command) < 0)
- 			panic("The command is unknown.");
-	}
-	else
-		waitpid(child_pid, &stat_loc, WUNTRACED);
-}*/
 
 /*	On initialise pour eviter problemes de memoire */
 
@@ -59,13 +42,9 @@ int main(int argc, char **argv, char **envp)
 	//print_env(&data);
 	path = get_path(&data);
 	set_pwd(&data);
-	/*if (path)
-		ft_printf("PATH environment variable: %s\n", path);
-	else
-		ft_printf("PATH environment variable not found");*/
 	store_path(path, &data);
-	// print_path(&data);
-	// print_address();
+	//print_path();
+	//print_addr();
 	while (1)
 	{
 		if (data.input) // on free sinon ca leak pour chaque ligne malloc.

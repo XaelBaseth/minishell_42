@@ -1,32 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   pwd.c                                              :+:      :+:    :+:   */
+/*   process.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: acharlot <acharlot@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/08/11 10:58:31 by cpothin           #+#    #+#             */
-/*   Updated: 2023/08/14 07:56:32 by acharlot         ###   ########.fr       */
+/*   Created: 2023/08/14 08:08:31 by acharlot          #+#    #+#             */
+/*   Updated: 2023/08/14 08:23:41 by acharlot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../inc/minishell.h"
 
-void	set_pwd(t_data *data)
+void	create_processes(t_data *data)
 {
-	int	i;
+	__pid_t	child_pid;
+	int	stat_loc;
 
-	i = 0;
-	while (data->envp[i])
+	child_pid = fork();
+	if (child_pid < 0)
+		panic("Fork failed.");
+	if (child_pid == 0)
 	{
-		if (!ft_strncmp(data->envp[i], "PWD=", 4))
-			data->pwd = ft_substr(data->envp[i],
-					4, ft_strlen(data->envp[i]) - 4);
-		i++;
+ 		execute_cmd(data);
 	}
-}
-
-void	get_pwd(t_data *data)
-{
-	ft_printf("%s\n", data->pwd);
+	else
+		waitpid(child_pid, &stat_loc, WUNTRACED);
 }

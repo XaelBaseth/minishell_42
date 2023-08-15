@@ -6,7 +6,7 @@
 /*   By: cpothin <cpothin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/31 10:37:29 by acharlot          #+#    #+#             */
-/*   Updated: 2023/08/15 11:47:11 by cpothin          ###   ########.fr       */
+/*   Updated: 2023/08/15 11:59:01 by cpothin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,6 +56,7 @@ void	store_path(char *path, t_data *data)
 		data->arr_path[o].path = ft_strdup(split_path[o]);
 		o++;
 	}
+	data->nb_path = o;
 	data->arr_path[o].path = NULL;
 	gc_free(split_path);
 }

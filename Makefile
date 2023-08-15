@@ -6,7 +6,7 @@
 #    By: cpothin <cpothin@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/07/25 07:42:45 by acharlot          #+#    #+#              #
-#    Updated: 2023/08/15 11:46:10 by cpothin          ###   ########.fr        #
+#    Updated: 2023/08/15 11:59:01 by cpothin          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -40,7 +40,7 @@ WHITE		=	\033[0;97m
 
 #Files
 BUILT_DIR	=	builtins/
-BUILT_FILES	=	builtins exec
+BUILT_FILES	=	builtins exec process
 PARS_DIR	=	parsing/
 PARS_FILES	=	input path parsing_utils
 SHELL_DIR	=	shell/
