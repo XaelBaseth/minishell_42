@@ -63,7 +63,7 @@ void	store_env(char **envp, t_data *data)
 		o++;
 	}
 }
-
+/*	Print out the env duplicate. */
 void	print_env(t_data *data)
 {
 	int	i;
