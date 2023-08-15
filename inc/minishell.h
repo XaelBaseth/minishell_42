@@ -94,6 +94,7 @@ void	sigint_handler(int signum);
 
 bool 	is_inside_quotes(char *input, int index);
 char	*get_input(void);
+char	**get_command(char *input);
 bool	line_is(t_data *data, char *content);
 bool	line_starts_by(t_data *data, char *content);
 
