@@ -6,7 +6,7 @@
 /*   By: cpothin <cpothin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/25 07:42:03 by acharlot          #+#    #+#             */
-/*   Updated: 2023/08/15 14:40:50 by cpothin          ###   ########.fr       */
+/*   Updated: 2023/08/15 17:21:31 by cpothin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,6 +49,8 @@ int main(int argc, char **argv, char **envp)
 		if (data.input) // on free sinon ca leak pour chaque ligne malloc.
 			free(data.input);
 		data.input = get_input();
+		data.args = ft_split(data.input, ' ');
+		data.argc = count_words(data.input, ' ');
 		add_history(data.input);
 		create_processes(&data);
 	}

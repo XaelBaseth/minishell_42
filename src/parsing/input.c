@@ -6,7 +6,7 @@
 /*   By: cpothin <cpothin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/25 07:41:55 by acharlot          #+#    #+#             */
-/*   Updated: 2023/08/14 11:16:14 by cpothin          ###   ########.fr       */
+/*   Updated: 2023/08/15 16:42:40 by cpothin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -101,10 +101,10 @@ bool	check_brackets(char *raw_input)
 
 	Chaque ligne est un \n.
 */
+
 char	*get_input(void)
 {
-	char *raw_input;
-	//char *input;
+	char	*raw_input;
 
 	raw_input = readline("\033[32mminishell$\033[0m ");
 	if (!raw_input)
@@ -114,8 +114,6 @@ char	*get_input(void)
 		printf("Not the same amount of brackets.\n");
 		return (NULL);
 	}
-	//input = validate_input(raw_input);
-	//penser a changer le return en input
  	return (raw_input);
 }
 
@@ -130,7 +128,7 @@ char	**get_command(char *input)
 	if (!command)
 		panic(MALLOC_ERR);
 	input = ft_remove_spaces(input);
-	parsed = strtok(input, separator);
+	parsed = strtok(input, separator); // strtok not allowed!
 	while (parsed != NULL)
 	{
 		command[index] = parsed;

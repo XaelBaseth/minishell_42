@@ -6,7 +6,7 @@
 /*   By: cpothin <cpothin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/27 08:38:49 by acharlot          #+#    #+#             */
-/*   Updated: 2023/08/12 09:43:24 by cpothin          ###   ########.fr       */
+/*   Updated: 2023/08/15 17:24:25 by cpothin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,4 +26,31 @@ void	free_all(t_data *data)
 	{
 		free(data->input);
 	}
+}
+
+bool	is_numeric(char *str)
+{
+	int	i;
+
+	i = -1;
+	if (str[0] == '-' || str[0] == '+')
+		i++;
+	while (str[++i])
+	{
+		if (str[i] < '0' || str[i] > '9')
+			return (false);
+	}
+	return (true);
+}
+
+bool	is_int(char *str)
+{
+	long long	big_number;
+
+	if (!is_numeric(str))
+		return (false);
+	big_number = ft_atoll(str);
+	if (big_number < INT_MIN || big_number > INT_MAX)
+		return (false);
+	return(true);
 }

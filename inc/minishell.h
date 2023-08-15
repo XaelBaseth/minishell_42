@@ -16,6 +16,7 @@
 # include <stdbool.h>
 # include <signal.h>
 # include "parser.h"
+# include <limits.h>
 
 /*	CONSTANT	*/
 # define FAILURE -1
@@ -54,7 +55,8 @@ struct	s_env
 typedef struct	s_data
 {
 	char	*input;
-
+	char	**args;
+	int		argc;
 	char	**envp;
 	t_env	*arr_env;
 	int		nb_env;
@@ -80,6 +82,7 @@ void	set_pwd(t_data *data);
 void	get_pwd(t_data *data);
 
 //exit
+/*Builtin: exits the current process*/
 bool	do_exit(t_data *data);
 
 /*	MAIN	*/
@@ -87,6 +90,7 @@ bool	do_exit(t_data *data);
 
 void	panic(char *str);
 void	free_all(t_data *data);
+bool	is_int(char *str);
 
 //config_sig
 
