@@ -6,7 +6,7 @@
 /*   By: axel <axel@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/09 08:17:00 by acharlot          #+#    #+#             */
-/*   Updated: 2023/08/15 10:58:25 by axel             ###   ########.fr       */
+/*   Updated: 2023/08/15 12:17:23 by axel             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,16 +19,17 @@ static void	execute_in_path(t_data *data)
 	int	i;
 	char *bin_path;
 	char *temp;
+	char **input;
 
 	i = -1;
+	input = get_command(data->input);
 	while (++i < data->nb_path)
 	{
 		temp = ft_strjoin(data->arr_path[i].path, "/");
 		bin_path = ft_strjoin(temp, data->input);
 		if (access(bin_path, F_OK | X_OK) == 0)
 		{
-			char *exec_args[] = {data->input, NULL};
-			execve(bin_path, exec_args, data->envp);
+			execve(bin_path, input, data->envp);
 			perror("execve");
 			panic(EXEC_ERR);
 		}

@@ -6,7 +6,7 @@
 /*   By: cpothin <cpothin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/25 07:42:03 by acharlot          #+#    #+#             */
-/*   Updated: 2023/08/15 11:59:01 by cpothin          ###   ########.fr       */
+/*   Updated: 2023/08/15 14:00:10 by cpothin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,6 @@ void	init_data(t_data *data)
 	signal(SIGQUIT, SIG_IGN);
 	signal(SIGQUIT, sigint_handler);
 	signal(SIGINT, sigint_handler);
-	data->input = NULL;
 	data->path = NULL;
 	g_pid = 0;
 }
@@ -43,8 +42,8 @@ int main(int argc, char **argv, char **envp)
 	path = get_path(&data);
 	set_pwd(&data);
 	store_path(path, &data);
-	//print_path();
-	//print_addr();
+	//print_path(&data);
+	//print_addr(&data);
 	while (1)
 	{
 		if (data.input) // on free sinon ca leak pour chaque ligne malloc.
@@ -72,12 +71,3 @@ int main(int argc, char **argv, char **envp)
 	return (EXIT_SUCCESS);
 }
 
-//execve(PATH | Arguments | Enviro)
-//On a le PATH avec getenv()
-
-/*	PARSING	*/
-//Gerer les parentheses
-//Gerer les espaces.
-//Recuperer les commandes
-//Gere les operateurs
-//Executer
