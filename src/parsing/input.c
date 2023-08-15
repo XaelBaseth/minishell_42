@@ -6,7 +6,7 @@
 /*   By: cpothin <cpothin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/25 07:41:55 by acharlot          #+#    #+#             */
-/*   Updated: 2023/08/12 10:03:34 by cpothin          ###   ########.fr       */
+/*   Updated: 2023/08/14 11:16:14 by cpothin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,21 +28,34 @@
 	the meta-characters except $ */
 bool 	is_inside_quotes(char *input, int index)
 {
-	int	quotes;
-	int	double_quotes;
-	int	i;
+	char	first_quote;
+	int		quotes;
+	int		i;
 
 	quotes = 0;
-	double_quotes = 0;
+	first_quote = '\0';
 	i = -1;
-	while (++i < index)
+	while (++i <= index)
 	{
-		if (input[i] == '\'')
+		if (!first_quote && (input[i] == '\'' || input[i] == '"'))
+		{
+			first_quote = input[i];
+			ft_printf("quote: %c\n", first_quote);
+			if (i == index)
+			{
+				ft_printf("\nNOOB\n");
+				return (false);
+			}
+		}
+		if (first_quote == input[i])
+		{
 			quotes++;
-		else if (input[i] == '\"')
-			double_quotes++;
+			if (quotes % 2 == 0)
+				first_quote = 0;
+		}
 	}
-	if (quotes % 2 == 1 || double_quotes % 2 == 1)
+	ft_printf("  %d\n", quotes);
+	if (quotes % 2 == 1)
 		return (true);
 	return (false);
 }
