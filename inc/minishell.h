@@ -75,6 +75,7 @@ void    store_env(char **envp, t_data *data);
 void	print_env(t_data *data);
 
 //echo
+/*Does the echo command*/
 void	do_echo(t_data *data);
 
 //pwd
