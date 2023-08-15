@@ -80,7 +80,7 @@ void	set_pwd(t_data *data);
 void	get_pwd(t_data *data);
 
 //exit
-void	do_exit(t_data *data);
+bool	do_exit(t_data *data);
 
 /*	MAIN	*/
 //utils

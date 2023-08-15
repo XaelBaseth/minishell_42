@@ -6,13 +6,13 @@
 /*   By: cpothin <cpothin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/12 16:46:50 by cpothin           #+#    #+#             */
-/*   Updated: 2023/08/15 12:02:22 by cpothin          ###   ########.fr       */
+/*   Updated: 2023/08/15 14:19:51 by cpothin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../inc/minishell.h"
 
-void	do_exit(t_data *data)
+bool	do_exit(t_data *data)
 {
 	ft_printf("exit\n");
 	/*
@@ -25,6 +25,7 @@ void	do_exit(t_data *data)
 		- if there is only one argument, the shell exits.
 			if the argument is incorrect, the shells shows "bash: exit: truc: numeric argument required"
 	*/
-	free_all(data);
-	gc_free_all();
+
+	(void)data;
+	return (false); // return false exits the program (see in `main`)
 }
