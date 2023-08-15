@@ -6,19 +6,18 @@
 /*   By: axel <axel@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/25 07:42:03 by acharlot          #+#    #+#             */
-/*   Updated: 2023/08/15 12:17:44 by axel             ###   ########.fr       */
+/*   Updated: 2023/08/15 14:25:41 by axel             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../inc/minishell.h"
-
-/*	On initialise pour eviter problemes de memoire */
 
 int	event(void)
 {
 	return (EXIT_SUCCESS);
 }
 
+/*	On initialise pour eviter problemes de memoire */
 void	init_data(t_data *data)
 {
 	rl_event_hook = event;
@@ -26,6 +25,7 @@ void	init_data(t_data *data)
 	signal(SIGQUIT, sigint_handler);
 	signal(SIGINT, sigint_handler);
 	data->path = NULL;
+	data->input = NULL;
 	g_pid = 0;
 }
 
