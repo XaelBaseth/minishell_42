@@ -72,6 +72,7 @@ typedef struct	s_data
 //env
 
 void    store_env(char **envp, t_data *data);
+/*Prints the environment variables*/
 void	print_env(t_data *data);
 
 //echo
