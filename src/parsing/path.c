@@ -6,7 +6,7 @@
 /*   By: cpothin <cpothin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/31 10:37:29 by acharlot          #+#    #+#             */
-/*   Updated: 2023/08/15 11:42:55 by cpothin          ###   ########.fr       */
+/*   Updated: 2023/08/15 11:47:11 by cpothin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,45 +70,6 @@ void	print_path(t_data *data)
 	{
 		ft_printf("The PATH variable is: %s\n",
 			data->arr_path[i].path);
-		i++;
-	}
-}
-
-/*	Split and store the PATH variables into the path structure. */
-void	store_path(char *path, t_data *data)
-{
-	int i;
-	int o;
-	char **split_path;
-
-	i = 0;
-	data->path = path;
-	if (!data->path)
-		return ;
-	split_path = ft_split(path, ':');
-	while (split_path[i])
-		i++;
-	data->arr_path = (t_path *)gc_alloc(sizeof(t_path) * (i + 1),
-		"path:path_array");
-	if (!data->arr_path)
-		return ;
-	o = 0;
-	while (o < i)
-	{
-		data->arr_path[o].path = ft_strdup(split_path[o]);
-		o++;
-	}
-}
-
-/*	Print out the PATH variables /!\ MEM_LEAKS TO CHECK. */
-void	print_path(t_data *data)
-{
-	int	i;
-
-	i = 0;
-	while (data->arr_path[i].path)
-	{
-		ft_printf("The PATH variable is: %s\n", data->arr_path[i].path);
 		i++;
 	}
 }

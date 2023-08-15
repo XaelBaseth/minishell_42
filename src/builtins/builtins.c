@@ -6,7 +6,7 @@
 /*   By: cpothin <cpothin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/25 07:41:52 by acharlot          #+#    #+#             */
-/*   Updated: 2023/08/12 09:34:45 by cpothin          ###   ########.fr       */
+/*   Updated: 2023/08/15 11:56:31 by cpothin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,8 @@ bool	builtins(t_data *data)
 		do_echo(data);
 	else if (line_is(data, "pwd"))
 		get_pwd(data);
+	else if (line_is(data, "exit"))
+		do_exit(data);
 	else
 		return (false);
 	return (true);

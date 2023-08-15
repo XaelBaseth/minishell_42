@@ -6,7 +6,7 @@
 /*   By: cpothin <cpothin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/25 07:42:03 by acharlot          #+#    #+#             */
-/*   Updated: 2023/08/15 11:46:10 by cpothin          ###   ########.fr       */
+/*   Updated: 2023/08/15 11:53:56 by cpothin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,18 +81,14 @@ int main(int argc, char **argv, char **envp)
 		Ca ne remplace pas le systeme de parsing, mais ca fonctionne */
 		if (!data.input || line_is(&data, ""))
 			continue ;
-		if (line_is(&data, "exit"))
-		{
-			free_all(&data);
-			gc_free_all();
-			return (EXIT_SUCCESS);
-		}
 		if (!builtins(&data))
 		{
+			free_all(&data);
 			gc_free_all();
 			return (EXIT_FAILURE);
 		}
 	}
+	free_all(&data);
 	gc_free_all();
 	return (EXIT_SUCCESS);
 }
