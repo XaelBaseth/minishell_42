@@ -79,6 +79,9 @@ void	do_echo(t_data *data);
 void	set_pwd(t_data *data);
 void	get_pwd(t_data *data);
 
+//exit
+bool	do_exit(t_data *data);
+
 /*	MAIN	*/
 //utils
 

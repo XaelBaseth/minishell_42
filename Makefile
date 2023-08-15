@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: acharlot <acharlot@student.42.fr>          +#+  +:+       +#+         #
+#    By: cpothin <cpothin@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/07/25 07:42:45 by acharlot          #+#    #+#              #
-#    Updated: 2023/08/14 08:10:40 by acharlot         ###   ########.fr        #
+#    Updated: 2023/08/15 12:01:25 by cpothin          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -44,7 +44,7 @@ BUILT_FILES	=	builtins exec process
 PARS_DIR	=	parsing/
 PARS_FILES	=	input path parsing_utils
 SHELL_DIR	=	shell/
-SHELL_FILES	=	env echo pwd
+SHELL_FILES	=	env echo pwd exit
 MAIN_DIR	=	main/
 MAIN_FILES	=	main utils config_sig
 

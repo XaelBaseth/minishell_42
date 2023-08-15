@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: axel <axel@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: cpothin <cpothin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/25 07:42:03 by acharlot          #+#    #+#             */
-/*   Updated: 2023/08/15 12:17:44 by axel             ###   ########.fr       */
+/*   Updated: 2023/08/15 14:15:04 by cpothin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,7 @@ void	init_data(t_data *data)
 	signal(SIGQUIT, sigint_handler);
 	signal(SIGINT, sigint_handler);
 	data->path = NULL;
+	data->input = NULL;
 	g_pid = 0;
 }
 
@@ -50,8 +51,23 @@ int main(int argc, char **argv, char **envp)
 			free(data.input);
 		data.input = get_input();
 		add_history(data.input);
-		create_processes(&data);
+		// execute_in_path(&data);
+		// create_processes(data.input);
+		/* ADD SHIT*/
+
+		/* si la ligne est vide, on ne quitte pas le programme.
+		Si on ecrit "env" ou "exit", on lance les commandes associees.
+		Ca ne remplace pas le systeme de parsing, mais ca fonctionne */
+		if (!data.input || line_is(&data, ""))
+			continue ;
+		if (!builtins(&data))
+		{
+			free_all(&data);
+			gc_free_all();
+			return (EXIT_FAILURE);
+		}
 	}
+	free_all(&data);
 	gc_free_all();
 	return (EXIT_SUCCESS);
 }

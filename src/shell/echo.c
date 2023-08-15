@@ -3,16 +3,18 @@
 /*                                                        :::      ::::::::   */
 /*   echo.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: axel <axel@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: cpothin <cpothin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/11 09:54:55 by cpothin           #+#    #+#             */
-/*   Updated: 2023/08/15 10:42:23 by axel             ###   ########.fr       */
+/*   Updated: 2023/08/15 11:59:01 by cpothin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../inc/minishell.h"
 
-// must add the fd for the redirections!
+/*
+	must add the fd for the redirections!
+*/
 void	check_parameter(char *str, int *i, int *new_start, bool *has_parameter)
 {
 	while (true)
@@ -38,36 +40,63 @@ void	check_parameter(char *str, int *i, int *new_start, bool *has_parameter)
 	}
 }
 
-void	pass_spaces(char *str, int *i)
+void	skip_spaces(char *str, int *i)
 {
 	while (str[*i] == ' ')
 		(*i)++;
 }
 
+bool	is_next_space(char *str, int i)
+{
+	if (str[i] == ' ' && (str[i + 1] == ' ' || str[i + 1] == 0))
+		return (true);
+	return (false);
+}
+
+void	re_echo(char *str, int i, bool has_parameter)
+{
+	int		quote_position;
+	char	quote_type;
+	int		new_start;
+
+	new_start = 0;
+	quote_type = 0;
+	while (str[i])
+	{
+		if (quote_type == 0 && (str[i] == '\'' || str[i] == '"'))
+		{
+			quote_type = str[i];
+			quote_position = i;
+		}
+		if (str[i] != quote_type)
+		{
+			if (!(is_next_space(str, i) && quote_type == 0))
+				str[new_start++] = str[i];
+		}
+		else if (quote_position != i)
+			quote_type = '\0';
+		i++;
+	}
+	if (!has_parameter)
+		str[new_start++] = '\n';
+	str[new_start] = 0;
+}
+
 void	do_echo(t_data *data)
 {
-	char	*n_str;
+	char	*str;
 	int		i;
 	int		new_start;
 	bool	has_parameter;
 
 	i = 4;
-	n_str = data->input;
+	str = data->input;
 	has_parameter = false;
-	pass_spaces(n_str, &i);
+	skip_spaces(str, &i);
 	new_start = i;
-	check_parameter(n_str, &i, &new_start, &has_parameter);
-	pass_spaces(n_str, &i);
+	check_parameter(str, &i, &new_start, &has_parameter);
+	skip_spaces(str, &i);
 	new_start = 0;
-	while (n_str[i])
-	{
-		if (!(n_str[i] == ' ' && (n_str[i + 1] == ' ' || n_str[i + 1] == 0))
-			&& (n_str[i] != '\'' && n_str[i] != '\"'))
-			n_str[new_start++] = n_str[i];
-		i++;
-	}
-	if (!has_parameter)
-		n_str[new_start++] = '\n';
-	n_str[new_start] = 0;
-	ft_printf("%s", n_str);
+	re_echo(str, i, has_parameter);
+	ft_printf("%s", str);
 }
