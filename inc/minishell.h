@@ -33,6 +33,17 @@ extern int		g_status;
 
 typedef struct s_env t_env;
 typedef struct s_path t_path;
+typedef struct s_args t_args;
+
+typedef enum	e_operator
+{
+	NONE,
+	REDIR_OUTPUT,
+	REDIR_INPUT,
+	HEREDOC_APPEND,
+	HEREDOC_REPLACE,
+	PIPE,
+}				t_operator;
 
 struct s_path
 {
@@ -49,12 +60,18 @@ struct	s_env
 	bool	exported;
 };
 
+struct s_args
+{
+	char		**argv;
+	int			argc;
+	t_operator operator;
+	t_args		*next;
+};
 
 
 typedef struct	s_data
 {
 	char	*input;
-
 	char	**envp;
 	t_env	*arr_env;
 	int		nb_env;
@@ -62,6 +79,7 @@ typedef struct	s_data
 	char	*path;
 	t_path	*arr_path;
 	int		nb_path;
+	t_args	*args;
 }			t_data;
 
 /*	FUNCTIONS	*/
@@ -94,7 +112,6 @@ void	sigint_handler(int signum);
 
 bool 	is_inside_quotes(char *input, int index);
 char	*get_input(void);
-char	**get_command(char *input);
 bool	line_is(t_data *data, char *content);
 bool	line_starts_by(t_data *data, char *content);
 
@@ -114,10 +131,14 @@ bool	builtins(t_data *data);
 
 //exec
 
-void	execute_cmd(t_data *data);
+void	execute_cmd(t_args *input, t_data *data);
 
 //process
 
-void	create_processes(t_data *data);
+void	create_processes(t_args *input, t_data *data);
+
+//redirect
+
+void	exec_redirect(t_args *input, t_data *data);
 
 #endif

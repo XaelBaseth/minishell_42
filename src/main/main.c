@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: axel <axel@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: acharlot <acharlot@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/25 07:42:03 by acharlot          #+#    #+#             */
-/*   Updated: 2023/08/15 14:25:41 by axel             ###   ########.fr       */
+/*   Updated: 2023/08/16 10:58:58 by acharlot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,13 @@ void	init_data(t_data *data)
 	g_pid = 0;
 }
 
+void	init_args(t_data *data)
+{
+	data->args->argc = 0;
+	data->args->operator = NONE;
+	data->args->argv = ft_split(data->input, ' ');
+}
+
 int main(int argc, char **argv, char **envp)
 {
 	t_data	data;
@@ -42,6 +49,7 @@ int main(int argc, char **argv, char **envp)
 	path = get_path(&data);
 	set_pwd(&data);
 	store_path(path, &data);
+	
 	//print_path(&data);
 	//print_addr(&data);
 	while (1)
@@ -49,8 +57,9 @@ int main(int argc, char **argv, char **envp)
 		if (data.input) // on free sinon ca leak pour chaque ligne malloc.
 			free(data.input);
 		data.input = get_input();
+		init_args(&data);
 		add_history(data.input);
-		create_processes(&data);
+		create_processes(data.args, &data);
 	}
 	gc_free_all();
 	return (EXIT_SUCCESS);

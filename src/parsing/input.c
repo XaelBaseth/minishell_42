@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   input.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cpothin <cpothin@student.42.fr>            +#+  +:+       +#+        */
+/*   By: acharlot <acharlot@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/25 07:41:55 by acharlot          #+#    #+#             */
-/*   Updated: 2023/08/12 10:03:34 by cpothin          ###   ########.fr       */
+/*   Updated: 2023/08/16 10:57:07 by acharlot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -106,24 +106,3 @@ char	*get_input(void)
  	return (raw_input);
 }
 
-char	**get_command(char *input)
-{
-	char **command;	
-	char *separator = " ";
-	char *parsed;
-	int index = 0;
-
-	command = gc_alloc(64 * sizeof(char *), "command");
-	if (!command)
-		panic(MALLOC_ERR);
-	input = ft_remove_spaces(input);
-	parsed = strtok(input, separator);
-	while (parsed != NULL)
-	{
-		command[index] = parsed;
-		index++;
-		parsed = strtok(NULL, separator);
-	}
-	command[index] = NULL;
-	return (command);
-}
