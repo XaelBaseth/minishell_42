@@ -87,6 +87,10 @@ void	get_pwd(t_data *data);
 /*Builtin: exits the current process and SHOULD return an exit status*/
 bool	do_exit(t_data *data);
 
+//cd
+
+void	do_cd(t_data *data);
+
 /*	MAIN	*/
 //utils
 

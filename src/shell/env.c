@@ -6,7 +6,7 @@
 /*   By: cpothin <cpothin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/27 11:01:28 by cpothin           #+#    #+#             */
-/*   Updated: 2023/08/15 11:59:01 by cpothin          ###   ########.fr       */
+/*   Updated: 2023/08/16 09:59:16 by cpothin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,9 +70,14 @@ void	print_env(t_data *data)
 	int	i;
 
 	i = 0;
+	if (data->args[1])
+	{
+		ft_printf("env: %s: No arguments are authorized\n", data->args[1]);
+		return ;
+	}
 	while (data->envp[i])
 	{
-		printf("%s\n", data->envp[i]);
+		ft_printf("%s\n", data->envp[i]);
 		i++;
 	}
 }
