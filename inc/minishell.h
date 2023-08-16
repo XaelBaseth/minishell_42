@@ -31,7 +31,6 @@ extern int		g_status;
 
 
 /*	STRUCTURES	*/
-
 typedef struct s_env t_env;
 typedef struct s_path t_path;
 
@@ -49,8 +48,6 @@ struct	s_env
 	t_env	*next;
 	bool	exported;
 };
-
-
 
 typedef struct	s_data
 {
