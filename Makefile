@@ -3,13 +3,12 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: cpothin <cpothin@student.42.fr>            +#+  +:+       +#+         #
+#    By: acharlot <acharlot@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/07/25 07:42:45 by acharlot          #+#    #+#              #
-#    Updated: 2023/08/15 12:01:25 by cpothin          ###   ########.fr        #
+#    Updated: 2023/08/16 08:02:56 by acharlot         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
-
 
 #Variable
 MAKEFLAGS	+= --silent
@@ -42,9 +41,9 @@ WHITE		=	\033[0;97m
 BUILT_DIR	=	builtins/
 BUILT_FILES	=	builtins exec process
 PARS_DIR	=	parsing/
-PARS_FILES	=	input path parsing_utils
+PARS_FILES	=	input path parsing_utils expander
 SHELL_DIR	=	shell/
-SHELL_FILES	=	env echo pwd exit
+SHELL_FILES	=	env echo pwd exit 
 MAIN_DIR	=	main/
 MAIN_FILES	=	main utils config_sig
 
@@ -105,6 +104,7 @@ fclean:			clean
 					@$(RM) libft.a
 					@make fclean -C $(LIBFT)
 					@$(ECHO) "$(CYAN)[MINISHELL]:\texec. files$(DEF_COLOR)\t$(GREEN) => Cleaned!$(DEF_COLOR)\n"
+					
 re:				fclean all
 					@$(ECHO) "\n$(GREEN)###\tCleaned and rebuilt everything for [MINISHELL]!\t###$(DEF_COLOR)\n"
 
