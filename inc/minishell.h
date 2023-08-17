@@ -72,7 +72,7 @@ typedef struct	s_data
 //env
 
 void    store_env(char **envp, t_data *data);
-/*Prints the environment variables*/
+/*Prints the environment variables.*/
 void	print_env(t_data *data);
 
 //echo
@@ -84,12 +84,18 @@ void	set_pwd(t_data *data);
 void	get_pwd(t_data *data);
 
 //exit
-/*Builtin: exits the current process and SHOULD return an exit status*/
+/*Builtin: exits the current process and SHOULD return an exit status.*/
 bool	do_exit(t_data *data);
 
 //cd
 
 void	do_cd(t_data *data);
+
+//unset
+/*Unsets the specified environment variables.
+If they exist, they are removed.
+If they don't, nothing happens.*/
+void	do_unset(t_data *data);
 
 /*	MAIN	*/
 //utils
@@ -100,7 +106,7 @@ bool	is_int(char *str);
 
 //env_utils
 
-void	ft_envadd_back(t_env *lst, t_env *new);
+char	**env_copy(t_data *data, char **envp);
 
 //config_sig
 

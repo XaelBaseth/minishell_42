@@ -6,35 +6,41 @@
 /*   By: cpothin <cpothin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/17 09:34:08 by cpothin           #+#    #+#             */
-/*   Updated: 2023/08/17 10:01:41 by cpothin          ###   ########.fr       */
+/*   Updated: 2023/08/17 18:07:15 by cpothin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../inc/minishell.h"
 
-t_env	*ft_envlast(t_env *lst)
+void	free_env_arr(t_data *data)
 {
-	while (lst)
-	{
-		if (!lst->next)
-			return (lst);
-		lst = lst->next;
-	}
-	return (lst);
+	int	i;
+
+	i = 0;
+	while (data->envp[i])
+		gc_free(data->envp[i++]);
+	gc_free(data->envp);
+	data->envp = NULL;
 }
 
-void	ft_envadd_back(t_env *lst, t_env *new)
+char	**env_copy(t_data *data, char **envp)
 {
-	t_env	*last;
-	t_env	*head;
+	char	**new_env;
+	int		i;
 
-	if (lst)
+	i = 0;
+	if (data->envp)
+		free_env_arr(data);
+	while (envp[i])
+		i++;
+	new_env = (char **)gc_alloc(sizeof(char *) * (i + 1), "new_env");
+	i = 0;
+	while (envp[i])
 	{
-		head = lst;
-		last = ft_envlast(lst);
-		last->next = new;
-		lst = head;
+		new_env[i] = (char *)gc_alloc(sizeof(char) * ft_strlen(envp[i]) + 1, "new_env_line");
+		ft_strlcpy(new_env[i], envp[i], ft_strlen(envp[i]) + 1);
+		i++;
 	}
-	else
-		lst = new;
+	new_env[i] = 0;
+	return (new_env);
 }

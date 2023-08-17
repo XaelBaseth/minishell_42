@@ -6,7 +6,7 @@
 /*   By: cpothin <cpothin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/27 11:01:28 by cpothin           #+#    #+#             */
-/*   Updated: 2023/08/17 11:33:16 by cpothin          ###   ########.fr       */
+/*   Updated: 2023/08/17 17:36:27 by cpothin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,6 +61,7 @@ void	store_env(char **envp, t_data *data)
 		if (data->arr_env)
 		{
 			data->arr_env->next = split_env(envp[i++]);
+			data->arr_env = data->arr_env->next;
 		}
 		else
 		{
@@ -74,18 +75,18 @@ void	store_env(char **envp, t_data *data)
 /*	Print out a copy of the ENV data cloned into envp. */
 void	print_env(t_data *data)
 {
-	int	i;
+	t_env	*tmp;
 
-	i = 0;
 	if (data->args[1])
 	{
 		ft_printf("env: %s: No arguments are authorized\n", data->args[1]);
 		return ;
 	}
-	while (data->envp[i])
+	tmp = data->arr_env;
+	while (tmp)
 	{
-		ft_printf("%s\n", data->envp[i]);
-		i++;
+		ft_printf("%s=%s\n", tmp->key, tmp->val);
+		tmp = tmp->next;
 	}
 }
 
