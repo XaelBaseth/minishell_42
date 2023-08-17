@@ -6,7 +6,7 @@
 /*   By: cpothin <cpothin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/25 07:41:52 by acharlot          #+#    #+#             */
-/*   Updated: 2023/08/16 10:28:23 by cpothin          ###   ########.fr       */
+/*   Updated: 2023/08/17 11:51:22 by cpothin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ bool	builtins(t_data *data)
 		get_pwd(data);
 	else if (ft_strncmp(data->args[0], "exit", 4) == 0)
 		return (do_exit(data));
-	else if (ft_strncmp(data->args[0], "Suce", 4) == 0)
+	else if (ft_strncmp(data->args[0], "cd", 2) == 0)
 		do_cd(data);
 	else
 		return (false);

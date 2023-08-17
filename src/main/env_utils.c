@@ -1,31 +1,40 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_lstadd_back.c                                   :+:      :+:    :+:   */
+/*   env_utils.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: cpothin <cpothin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/04/17 09:37:24 by acharlot          #+#    #+#             */
-/*   Updated: 2023/08/17 09:39:26 by cpothin          ###   ########.fr       */
+/*   Created: 2023/08/17 09:34:08 by cpothin           #+#    #+#             */
+/*   Updated: 2023/08/17 10:01:41 by cpothin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-/*
-	LIBRARY: N/A
+#include "../../inc/minishell.h"
 
-	SYNOPSIS: Create a new element at the end of the list, or create a list.
-*/
-#include "../../inc/libft.h"
-
-void	ft_lstadd_back(t_list **lst, t_list *new)
+t_env	*ft_envlast(t_env *lst)
 {
-	t_list	*last;
-
-	if (*lst)
+	while (lst)
 	{
-		last = ft_lstlast(*lst);
+		if (!lst->next)
+			return (lst);
+		lst = lst->next;
+	}
+	return (lst);
+}
+
+void	ft_envadd_back(t_env *lst, t_env *new)
+{
+	t_env	*last;
+	t_env	*head;
+
+	if (lst)
+	{
+		head = lst;
+		last = ft_envlast(lst);
 		last->next = new;
+		lst = head;
 	}
 	else
-		*lst = new;
+		lst = new;
 }

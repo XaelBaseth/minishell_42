@@ -6,7 +6,7 @@
 /*   By: cpothin <cpothin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/25 07:42:03 by acharlot          #+#    #+#             */
-/*   Updated: 2023/08/15 17:21:31 by cpothin          ###   ########.fr       */
+/*   Updated: 2023/08/17 11:34:53 by cpothin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,7 @@ void	init_data(t_data *data)
 	signal(SIGINT, sigint_handler);
 	data->path = NULL;
 	data->input = NULL;
+	data->arr_env = NULL;
 	g_pid = 0;
 }
 

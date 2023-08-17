@@ -6,7 +6,7 @@
 #    By: cpothin <cpothin@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/07/25 07:42:45 by acharlot          #+#    #+#              #
-#    Updated: 2023/08/16 11:41:49 by cpothin          ###   ########.fr        #
+#    Updated: 2023/08/17 09:38:08 by cpothin          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -45,7 +45,7 @@ PARS_FILES	=	input path parsing_utils
 SHELL_DIR	=	shell/
 SHELL_FILES	=	env echo pwd exit cd
 MAIN_DIR	=	main/
-MAIN_FILES	=	main utils config_sig
+MAIN_FILES	=	main utils config_sig env_utils
 
 
 SRC_BUI_FILE=	$(addprefix $(BUILT_DIR), $(BUILT_FILES))

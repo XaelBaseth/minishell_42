@@ -25,6 +25,8 @@
 # define PATH_ERR "PATH not found."
 # define EXEC_ERR "An error occured while executing the program."
 
+# define PATH_MAX 4096
+
 /*	GLOBAL	*/
 extern pid_t	g_pid;
 extern int		g_status;
@@ -59,6 +61,7 @@ typedef struct	s_data
 	int		nb_env;
 	char	*pwd;
 	char	*path;
+	char	*old_path;
 	t_path	*arr_path;
 	int		nb_path;
 }			t_data;
@@ -94,6 +97,10 @@ void	do_cd(t_data *data);
 void	panic(char *str);
 void	free_all(t_data *data);
 bool	is_int(char *str);
+
+//env_utils
+
+void	ft_envadd_back(t_env *lst, t_env *new);
 
 //config_sig
 
