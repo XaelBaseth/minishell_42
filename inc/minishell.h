@@ -20,9 +20,17 @@
 /*	CONSTANT	*/
 # define FAILURE -1
 # define SUCCESS 0
+# define OPERATOR "|<>"
+# define REDIRECTS "><"
+# define QUOTES "\"\'"
+//ERROR MESSAGE
 # define MALLOC_ERR "Memory Allocation has failed."
 # define PATH_ERR "PATH not found."
 # define EXEC_ERR "An error occured while executing the program."
+# define PIPE_PROMPT "No support for pipe prompt."
+# define SYNTAXT_ERR "Syntax error near unexpected token 'newline'."
+# define UNEXPECTED_TOKEN "Syntax error near unexpected token '"
+
 
 /*	GLOBAL	*/
 extern pid_t	g_pid;
@@ -87,58 +95,79 @@ typedef struct	s_data
 /*	SHELL	*/
 //env
 
-void    store_env(char **envp, t_data *data);
-void	print_env(t_data *data);
+void    	store_env(char **envp, t_data *data);
+void		print_env(t_data *data);
 
 //echo
-void	do_echo(t_data *data);
+void		do_echo(t_data *data);
 
 //pwd
-void	set_pwd(t_data *data);
-void	get_pwd(t_data *data);
+void		set_pwd(t_data *data);
+void		get_pwd(t_data *data);
 
 /*	MAIN	*/
 //utils
 
-void	panic(char *str);
-void	free_all(t_data *data);
+void		panic(char *str);
+void		free_all(t_data *data);
+bool		is_char(const char *str, int c);
+t_args		*new_lst(int argc);
+void		lst_clear(t_args **args);
 
 //config_sig
 
-void	sigint_handler(int signum);
+void		sigint_handler(int signum);
 
 /*	PARSING	*/
-//input
+//parser
 
-bool 	is_inside_quotes(char *input, int index);
-char	*get_input(void);
-bool	line_is(t_data *data, char *content);
-bool	line_starts_by(t_data *data, char *content);
+t_args		*parser(char *input);
+void		clean_parsed(t_args **args, t_data *data);
+
+//quotes_handler
+
+bool 		is_inside_quotes(char *input, int index);
+char		*get_input(void);
+bool		line_is(t_data *data, char *content);
+bool		line_starts_by(t_data *data, char *content);
+char		*remove_quote(char *parsed);
 
 //parsing_utils
-char	*ft_remove_spaces(char *str);
 
-//path
+char		*ft_remove_spaces(char *str);
+bool		check_brackets(char *raw_input);
 
-void	store_path(char *path, t_data *data);
-void	print_path(t_data *data);
-char	*get_path(t_data *data);
+//operator
+
+bool		has_operator(char *input);
+int			get_token_len(char *input_at_i);
+t_operator	get_operator(char *operator);
+
+//valid_input
+
+bool		valid_input(char *input);
 
 /*	BUILTINS	*/
+//path
+
+void		store_path(char *path, t_data *data);
+void		print_path(t_data *data);
+char		*get_path(t_data *data);
+
 //builtins
 
-bool	builtins(t_data *data);
+bool		builtins(t_data *data);
 
 //exec
 
-void	execute_cmd(t_args *input, t_data *data);
+void		execute_cmd(t_args *input, t_data *data);
 
 //process
 
-void	create_processes(t_args *input, t_data *data);
+void		create_processes(t_args *input, t_data *data);
 
 //redirect
 
-void	exec_redirect(t_args *input, t_data *data);
+void		exec_redirect(t_args *input, t_data *data);
 
 #endif

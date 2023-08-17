@@ -1,28 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   input.c                                            :+:      :+:    :+:   */
+/*   quotes_handler.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: acharlot <acharlot@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/25 07:41:55 by acharlot          #+#    #+#             */
-/*   Updated: 2023/08/16 10:57:07 by acharlot         ###   ########.fr       */
+/*   Updated: 2023/08/17 11:34:04 by acharlot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../inc/minishell.h"
-
-//static char	validate_input(char *raw_input)
-//{
-//	Pass it throught the parser & lexer
-//	That means : 	- get length of args
-//					- get number of args
-//					- get rid of whitespace (space or tabs)
-//					- get operator and applies it.
-//	GLHF :)
-//}
-
-// ne prend pas encore en compte si les parentheses sont dans des guillemets...
 
 /*	checks if the character at index is inside quotes so we can ignore
 	the meta-characters except $ */
@@ -47,7 +35,8 @@ bool 	is_inside_quotes(char *input, int index)
 	return (false);
 }
 
-/*	checks the amount of open '(' and closed ')' brackets so we can make the command fail*/
+/*	checks the amount of open '(' and closed ')' brackets so we can make the command
+	fail*/
 bool	check_brackets(char *raw_input)
 {
 	int	i;
@@ -69,40 +58,60 @@ bool	check_brackets(char *raw_input)
 	return (true);
 }
 
-/*	Returns the input of the user after validating it. */
-/*
-	Reproduire ce comportement ? :
-
-	➜  minishell git:(parsing) ✗ ( (
-	subsh subsh> (
-	subsh subsh subsh> (
-	subsh subsh subsh subsh> (
-	subsh subsh subsh subsh subsh> "
-	subsh subsh subsh subsh subsh dquote> 
-
-	➜  minishell git:(parsing) ✗ (
-	echo "coucou" 
-	)  
-	coucou
-	➜  minishell git:(parsing) ✗ 
-
-	Chaque ligne est un \n.
-*/
-char	*get_input(void)
+int	remove_quote_size(char *parsed)
 {
-	char *raw_input;
-	//char *input;
+	int	i;
+	int size;
+	char	quote;
 
-	raw_input = readline("\033[32mminishell$\033[0m ");
-	if (!raw_input)
-		return (NULL);
-	if (!check_brackets(raw_input))
+	i = 0;
+	size = 0;
+	while (parsed[i])
 	{
-		printf("Not the same amount of brackets.\n");
-		return (NULL);
+		while (parsed[i] && !is_char(QUOTES, parsed[i]))
+		{
+			i += 1;
+			size += 1;
+		}
+		if (!parsed[i])
+			break ;
+		quote = parsed[i++];
+		while (parsed[i] && parsed[i] != quote)
+		{
+			i += 1;
+			size += 1;
+		}
+		quote = 0;
 	}
-	//input = validate_input(raw_input);
-	//penser a changer le return en input
- 	return (raw_input);
+	return (size);
+}
+
+char	*remove_quote(char *parsed)
+{
+	int	i;
+	int	j;
+	char	quote;
+	char	*unquoted_parsed;
+
+	i = 0;
+	j = 0;
+	quote = '\0';
+	unquoted_parsed = gc_alloc((remove_quote_size(parsed) + 1) *
+		sizeof(char), "unquoted parsed");
+	while (parsed[i])
+	{
+		while (parsed[i] && !is_char(QUOTES, parsed[i]))
+			unquoted_parsed[j++] = parsed[i++];
+		if (!parsed[i])
+			break ;
+		quote = parsed[i];
+		i += 1;
+		while (parsed[i] && parsed[i] != quote)
+			unquoted_parsed[j++] = parsed[i++];
+		quote = '\0';
+	}
+	unquoted_parsed[j] = '\0';
+	free(parsed);
+	return (unquoted_parsed);
 }
 

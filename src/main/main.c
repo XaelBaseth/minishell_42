@@ -6,7 +6,7 @@
 /*   By: acharlot <acharlot@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/25 07:42:03 by acharlot          #+#    #+#             */
-/*   Updated: 2023/08/16 10:58:58 by acharlot         ###   ########.fr       */
+/*   Updated: 2023/08/17 11:45:46 by acharlot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,37 +29,30 @@ void	init_data(t_data *data)
 	g_pid = 0;
 }
 
-void	init_args(t_data *data)
-{
-	data->args->argc = 0;
-	data->args->operator = NONE;
-	data->args->argv = ft_split(data->input, ' ');
-}
-
 int main(int argc, char **argv, char **envp)
 {
 	t_data	data;
+	t_args	*args;
 	char 	*path;
+	char	*input;
 
 	if (argc > 1 && argv)
 		panic("No arguments are needed.");
 	init_data(&data);
 	store_env(envp, &data);
-	//print_env(&data);
 	path = get_path(&data);
 	set_pwd(&data);
 	store_path(path, &data);
 	
-	//print_path(&data);
-	//print_addr(&data);
 	while (1)
 	{
-		if (data.input) // on free sinon ca leak pour chaque ligne malloc.
-			free(data.input);
-		data.input = get_input();
-		init_args(&data);
+		input = get_input();
+		if (!valid_input(input))
+			continue ;
 		add_history(data.input);
-		create_processes(data.args, &data);
+		args = parser(input);
+		create_processes(args, &data);
+		clean_parsed(&args, &data);
 	}
 	gc_free_all();
 	return (EXIT_SUCCESS);

@@ -3,14 +3,29 @@
 /*                                                        :::      ::::::::   */
 /*   parsing_utils.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: axel <axel@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: acharlot <acharlot@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/09 15:32:28 by cpothin           #+#    #+#             */
-/*   Updated: 2023/08/15 10:42:28 by axel             ###   ########.fr       */
+/*   Updated: 2023/08/17 08:15:48 by acharlot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../inc/minishell.h"
+
+char	*get_input(void)
+{
+	char *raw_input;
+
+	raw_input = readline("\033[32mminishell$\033[0m ");
+	if (!raw_input)
+		return (NULL);
+	if (!check_brackets(raw_input))
+	{
+		printf("Not the same amount of brackets.\n");
+		return (NULL);
+	}
+ 	return (raw_input);
+}
 
 char	*ft_remove_last_spaces(char *str)
 {

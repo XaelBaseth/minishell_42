@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   builtins.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cpothin <cpothin@student.42.fr>            +#+  +:+       +#+        */
+/*   By: acharlot <acharlot@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/25 07:41:52 by acharlot          #+#    #+#             */
-/*   Updated: 2023/08/12 09:34:45 by cpothin          ###   ########.fr       */
+/*   Updated: 2023/08/17 11:52:16 by acharlot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 /*	Handles the builtins commands. */
 bool	builtins(t_data *data)
 {
-	if (line_is(data, "env"))
+	if (ft_strncmp(data->args->argv[0], "env", 3))
 		print_env(data);
 	else if (line_starts_by(data, "echo "))
 		do_echo(data);

@@ -6,7 +6,7 @@
 #    By: acharlot <acharlot@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/07/25 07:42:45 by acharlot          #+#    #+#              #
-#    Updated: 2023/08/16 10:25:00 by acharlot         ###   ########.fr        #
+#    Updated: 2023/08/17 11:13:42 by acharlot         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -40,9 +40,9 @@ WHITE		=	\033[0;97m
 
 #Files
 BUILT_DIR	=	builtins/
-BUILT_FILES	=	builtins exec process redirect
+BUILT_FILES	=	builtins exec process redirect path
 PARS_DIR	=	parsing/
-PARS_FILES	=	input path parsing_utils
+PARS_FILES	=	operator parser parsing_utils quotes_handler valid_input
 SHELL_DIR	=	shell/
 SHELL_FILES	=	env echo pwd
 MAIN_DIR	=	main/
