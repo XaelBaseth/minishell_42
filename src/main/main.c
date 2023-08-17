@@ -6,7 +6,7 @@
 /*   By: acharlot <acharlot@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/25 07:42:03 by acharlot          #+#    #+#             */
-/*   Updated: 2023/08/17 11:45:46 by acharlot         ###   ########.fr       */
+/*   Updated: 2023/08/17 13:12:24 by acharlot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,6 @@ void	init_data(t_data *data)
 	signal(SIGQUIT, sigint_handler);
 	signal(SIGINT, sigint_handler);
 	data->path = NULL;
-	data->input = NULL;
 	g_pid = 0;
 }
 
@@ -43,14 +42,28 @@ int main(int argc, char **argv, char **envp)
 	path = get_path(&data);
 	set_pwd(&data);
 	store_path(path, &data);
-	
 	while (1)
 	{
 		input = get_input();
 		if (!valid_input(input))
 			continue ;
-		add_history(data.input);
+		add_history(input);
 		args = parser(input);
+		// Print the parsed arguments
+		printf("##########################\n");
+        printf("Printing parsed arguments:\n");
+        t_args *temp = args;
+        while (temp)
+        {
+            for (int i = 0; temp->argv[i]; i++)
+            {
+                printf("Argument %d: %s\n", i, temp->argv[i]);
+            }
+            printf("Operator: %d\n", temp->operator);
+            printf("----------\n");
+            temp = temp->next;
+        }
+		//END OF PRINTING
 		create_processes(args, &data);
 		clean_parsed(&args, &data);
 	}

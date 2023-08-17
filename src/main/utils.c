@@ -6,7 +6,7 @@
 /*   By: acharlot <acharlot@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/27 08:38:49 by acharlot          #+#    #+#             */
-/*   Updated: 2023/08/17 10:58:29 by acharlot         ###   ########.fr       */
+/*   Updated: 2023/08/17 13:25:55 by acharlot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ void	panic(char *str)
 	ft_printf("\033[31mError!\n%s\n\033[0m", str);
 	exit(EXIT_FAILURE);
 }
-
+/*	Free the matrix used for the args linked list. */
 void	free_matrix(char **matrix)
 {
 	int	i;
@@ -35,23 +35,6 @@ void	free_matrix(char **matrix)
 	}
 	gc_free(matrix);
 	matrix = NULL;
-}
-
-void	lst_clear(t_args **args)
-{
-	t_args	*temp;
-	t_args	*next_node;
-
-	if (!args)
-		return ;
-	temp = *args;
-	while (temp != NULL)
-	{
-		next_node = temp->next;
-		free(temp);
-		temp = next_node;
-	}
-	*args = NULL;
 }
 
 bool	is_char(const char *str, int c)
@@ -70,14 +53,18 @@ bool	is_char(const char *str, int c)
 	return (false);
 }
 
-t_args	*new_lst(int argc)
+bool	streq(char *str1, char *str2)
 {
-	t_args	*new_node;
+	int	i;
 
-	new_node = gc_alloc(sizeof(t_args), "t_args : new_node");
-	new_node->argc = argc;
-	new_node->argv = gc_alloc((argc + 1) * sizeof(char *), "t_args: argv");
-	new_node->operator = NONE;
-	new_node->next = NULL;
-	return (new_node);
+	if ((str1 && !str2) || (!str1 && str2))
+		return (false);
+	i = 0;
+	while (str1[i] || str2[i])
+	{
+		if (str1[i] != str2[i])
+			return (false);
+		i += 1;
+	}
+	return (true);
 }

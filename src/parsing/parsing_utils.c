@@ -6,7 +6,7 @@
 /*   By: acharlot <acharlot@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/09 15:32:28 by cpothin           #+#    #+#             */
-/*   Updated: 2023/08/17 08:15:48 by acharlot         ###   ########.fr       */
+/*   Updated: 2023/08/17 13:24:25 by acharlot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,27 +61,31 @@ char	*ft_remove_spaces(char *str)
 	return (str);
 }
 
-bool	line_is(t_data *data, char *content)
+t_args	*new_lst(int argc)
 {
-	if (ft_strncmp(data->input, content, ft_strlen(content) + 1) == 0)
-		return (true);
-	return (false);
+	t_args	*new_node;
+
+	new_node = gc_alloc(sizeof(t_args), "t_args : new_node");
+	new_node->argc = argc;
+	new_node->argv = gc_alloc((argc + 1) * sizeof(char *), "t_args: argv");
+	new_node->operator = NONE;
+	new_node->next = NULL;
+	return (new_node);
 }
 
-bool	line_starts_by(t_data *data, char *content)
+void	lst_clear(t_args **args)
 {
-	int	n;
-	int	i;
+	t_args	*temp;
+	t_args	*next_node;
 
-	n = 0;
-	while (content[n])
-		n++;
-	i = 0;
-	while (i < n)
+	if (!args)
+		return ;
+	temp = *args;
+	while (temp != NULL)
 	{
-		if (data->input[i] != content[i])
-			return (false);
-		i++;
+		next_node = temp->next;
+		free(temp);
+		temp = next_node;
 	}
-	return (true);
+	*args = NULL;
 }

@@ -23,6 +23,7 @@
 # define OPERATOR "|<>"
 # define REDIRECTS "><"
 # define QUOTES "\"\'"
+
 //ERROR MESSAGE
 # define MALLOC_ERR "Memory Allocation has failed."
 # define PATH_ERR "PATH not found."
@@ -79,7 +80,6 @@ struct s_args
 
 typedef struct	s_data
 {
-	char	*input;
 	char	**envp;
 	t_env	*arr_env;
 	int		nb_env;
@@ -109,10 +109,8 @@ void		get_pwd(t_data *data);
 //utils
 
 void		panic(char *str);
-void		free_all(t_data *data);
 bool		is_char(const char *str, int c);
-t_args		*new_lst(int argc);
-void		lst_clear(t_args **args);
+bool		streq(char *str1, char *str2);
 
 //config_sig
 
@@ -127,15 +125,16 @@ void		clean_parsed(t_args **args, t_data *data);
 //quotes_handler
 
 bool 		is_inside_quotes(char *input, int index);
-char		*get_input(void);
-bool		line_is(t_data *data, char *content);
-bool		line_starts_by(t_data *data, char *content);
+
 char		*remove_quote(char *parsed);
 
 //parsing_utils
 
 char		*ft_remove_spaces(char *str);
 bool		check_brackets(char *raw_input);
+t_args		*new_lst(int argc);
+void		lst_clear(t_args **args);
+char		*get_input(void);
 
 //operator
 
@@ -156,7 +155,7 @@ char		*get_path(t_data *data);
 
 //builtins
 
-bool		builtins(t_data *data);
+bool	builtins(t_args *input, t_data *data);
 
 //exec
 

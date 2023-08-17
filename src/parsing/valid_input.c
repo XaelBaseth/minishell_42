@@ -6,7 +6,7 @@
 /*   By: acharlot <acharlot@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/17 08:17:48 by acharlot          #+#    #+#             */
-/*   Updated: 2023/08/17 11:17:12 by acharlot         ###   ########.fr       */
+/*   Updated: 2023/08/17 13:07:32 by acharlot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ bool	invalid_operator(char *input)
 	in_quotes = false;
 	while (has_operator(&input[i]))
 	{
-		if (is_inside_quotes(input, i))
+		if (is_char(QUOTES, input[i]))
 			in_quotes = !in_quotes;
 		if (is_char(OPERATOR, input[i]) && !in_quotes)
 		{
@@ -57,7 +57,7 @@ bool	invalid_syntax2(char *input)
 	i = 0;
 	while(input[i])
 	{
-		if (is_inside_quotes(input, i))
+		if (is_char(QUOTES, input[i]))
 			in_quotes = !in_quotes;
 		if (((input[i] == '>' && input[i + 1] == '<')
 			||(input[i] == '<' && input[i + 1] == '>')

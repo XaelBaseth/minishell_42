@@ -6,12 +6,14 @@
 /*   By: acharlot <acharlot@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/17 08:00:57 by acharlot          #+#    #+#             */
-/*   Updated: 2023/08/17 11:11:18 by acharlot         ###   ########.fr       */
+/*   Updated: 2023/08/17 13:09:14 by acharlot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../inc/minishell.h"
 
+/*	Returns the number of argument passed in the matrix given in the
+	parameter. */
 int	get_argc(char **parsed)
 {
 	int	i;
@@ -22,6 +24,7 @@ int	get_argc(char **parsed)
 	return (i);
 }
 
+/*	*/
 int	get_nb_input(char *input)
 {
 	int		count;
@@ -51,6 +54,7 @@ int	get_nb_input(char *input)
 	return (count);
 }
 
+/*	Free the linked list of arguments. */
 void	clean_parsed(t_args **args, t_data *data)
 {
 	lst_clear(args);
@@ -113,5 +117,20 @@ t_args	*parser(char *input)
 	}
 	temp->next = NULL;
 	free(parsed);
+	// Print the contents of the linked list
+    printf("-----------------\n");
+	printf("Printing the linked list:\n");
+    temp = head;
+    while (temp)
+    {
+        for (int i = 0; temp->argv[i]; i++)
+        {
+            printf("Argument %d=> %s\n", i, temp->argv[i]);
+        }
+        printf("Operator: %d\n", temp->operator);
+        printf("----------\n");
+        temp = temp->next;
+    }
+	// END OF PRINTED CONTENT
 	return (head);
 }

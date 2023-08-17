@@ -3,3 +3,5 @@ L
 O
 l
 eof
+
+GERER LES ESPACES DANS LES QUOTES /!\
