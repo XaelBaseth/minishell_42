@@ -6,12 +6,15 @@
 /*   By: acharlot <acharlot@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/17 08:17:48 by acharlot          #+#    #+#             */
-/*   Updated: 2023/08/17 13:07:32 by acharlot         ###   ########.fr       */
+/*   Updated: 2023/08/18 09:37:36 by acharlot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../inc/minishell.h"
 
+/*	Prints out an error message if a character is unrecognized.
+	char token: character that is not recognized.
+*/
 bool	unexpected_token(char token)
 {
 	ft_putstr_fd(UNEXPECTED_TOKEN, STDERR_FILENO);
@@ -20,35 +23,26 @@ bool	unexpected_token(char token)
 	return (true);
 }
 
+/*	Check if the operator (or combination of operator) is correct.
+	char *input: command entered by the user.
+*/
 bool	invalid_operator(char *input)
 {
-	int		i;
-	bool	in_quotes;
+	int	i;
 
 	i = 0;
-	in_quotes = false;
 	while (has_operator(&input[i]))
 	{
-		if (is_char(QUOTES, input[i]))
-			in_quotes = !in_quotes;
-		if (is_char(OPERATOR, input[i]) && !in_quotes)
-		{
-			if (input[i] == input[i + 1])
-				i += 2;
-			else
-				i += 1;
-			if (input[i] == ' ')
-			{
-				ft_remove_spaces(input);
-			}
-			if (is_char(OPERATOR, input[i]))
-				return (unexpected_token(input[i]));
-		}
+		if (check_operator_sequence(input, i))
+			return (true);
 		i++;
 	}
 	return (false);
 }
 
+/*	Continuation of the checking for the validation of the inputed string.
+	char *input: command entered by the user.
+*/
 bool	invalid_syntax2(char *input)
 {
 	int		i;
@@ -74,6 +68,9 @@ bool	invalid_syntax2(char *input)
 	return (false);
 }
 
+/*	Start of the checking for the validation of the inputed string. 
+	char *input: command entered by the user.
+*/
 bool	invalid_syntax(char *input)
 {
 	if (input[0] == '|')
@@ -92,6 +89,9 @@ bool	invalid_syntax(char *input)
 
 }
 
+/*	Check if the input is valid or not.
+	char *input: command entered by the user.
+*/
 bool	valid_input(char *input)
 {
 	bool	valid;

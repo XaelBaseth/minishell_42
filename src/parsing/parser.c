@@ -6,14 +6,17 @@
 /*   By: acharlot <acharlot@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/17 08:00:57 by acharlot          #+#    #+#             */
-/*   Updated: 2023/08/17 13:09:14 by acharlot         ###   ########.fr       */
+/*   Updated: 2023/08/18 10:34:42 by acharlot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../inc/minishell.h"
 
 /*	Returns the number of argument passed in the matrix given in the
-	parameter. */
+	parameter. 
+	char **parsed: pointer toward an array of arguments passed as the user
+	input.
+*/
 int	get_argc(char **parsed)
 {
 	int	i;
@@ -24,7 +27,9 @@ int	get_argc(char **parsed)
 	return (i);
 }
 
-/*	*/
+/*	Return the number of arguments entered via the input.
+	char *input: command entered by the user.
+*/
 int	get_nb_input(char *input)
 {
 	int		count;
@@ -54,7 +59,11 @@ int	get_nb_input(char *input)
 	return (count);
 }
 
-/*	Free the linked list of arguments. */
+/*	Free the linked list of arguments. 
+	t_args **args: pointer to array of command entered by the user.
+	t_data *data: linked list of enviromnent in which there are the
+	arguments.
+*/
 void	clean_parsed(t_args **args, t_data *data)
 {
 	lst_clear(args);
@@ -62,6 +71,10 @@ void	clean_parsed(t_args **args, t_data *data)
 	data->args = NULL;
 }
 
+/*	Transform the input of the user into an array of command that can be
+	understood by the minishell.
+	char *input: command entered by the user.	
+*/
 char	**parse_input(char *input)
 {
 	int		i;
@@ -91,6 +104,9 @@ char	**parse_input(char *input)
 	return (parsed);
 }
 
+/*	Take the command of the user and return a trimed string.
+	char *input: command entered by the user.
+*/
 t_args	*parser(char *input)
 {
 	char	**parsed;
@@ -117,20 +133,5 @@ t_args	*parser(char *input)
 	}
 	temp->next = NULL;
 	free(parsed);
-	// Print the contents of the linked list
-    printf("-----------------\n");
-	printf("Printing the linked list:\n");
-    temp = head;
-    while (temp)
-    {
-        for (int i = 0; temp->argv[i]; i++)
-        {
-            printf("Argument %d=> %s\n", i, temp->argv[i]);
-        }
-        printf("Operator: %d\n", temp->operator);
-        printf("----------\n");
-        temp = temp->next;
-    }
-	// END OF PRINTED CONTENT
 	return (head);
 }

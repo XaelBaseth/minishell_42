@@ -6,14 +6,17 @@
 /*   By: acharlot <acharlot@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/25 07:41:55 by acharlot          #+#    #+#             */
-/*   Updated: 2023/08/17 11:34:04 by acharlot         ###   ########.fr       */
+/*   Updated: 2023/08/18 11:14:48 by acharlot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../inc/minishell.h"
 
-/*	checks if the character at index is inside quotes so we can ignore
-	the meta-characters except $ */
+/*	Checks if the character at index is inside quotes so we can ignore
+	the meta-characters except $ 
+	char *input: command entered by the user.
+	int index: number of character in the input.
+*/
 bool 	is_inside_quotes(char *input, int index)
 {
 	int	quotes;
@@ -36,7 +39,9 @@ bool 	is_inside_quotes(char *input, int index)
 }
 
 /*	checks the amount of open '(' and closed ')' brackets so we can make the command
-	fail*/
+	fail.
+	char *raw_input: command entered by the user not trimed.
+*/
 bool	check_brackets(char *raw_input)
 {
 	int	i;
@@ -58,6 +63,9 @@ bool	check_brackets(char *raw_input)
 	return (true);
 }
 
+/*	Return the size of a string ignoring quoted characters.
+	char *parsed: input by the user parsed.
+*/
 int	remove_quote_size(char *parsed)
 {
 	int	i;
@@ -86,6 +94,9 @@ int	remove_quote_size(char *parsed)
 	return (size);
 }
 
+/*	Returns a string with the quoted characters removed.
+	char *parsed: input by the user parsed.
+*/
 char	*remove_quote(char *parsed)
 {
 	int	i;
@@ -111,7 +122,7 @@ char	*remove_quote(char *parsed)
 		quote = '\0';
 	}
 	unquoted_parsed[j] = '\0';
-	free(parsed);
+	gc_free(parsed);
 	return (unquoted_parsed);
 }
 

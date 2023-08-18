@@ -6,12 +6,13 @@
 /*   By: acharlot <acharlot@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/09 15:32:28 by cpothin           #+#    #+#             */
-/*   Updated: 2023/08/17 13:24:25 by acharlot         ###   ########.fr       */
+/*   Updated: 2023/08/18 08:55:04 by acharlot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../inc/minishell.h"
 
+/*	Get the input entered as a command in the minishell. */
 char	*get_input(void)
 {
 	char *raw_input;
@@ -26,7 +27,9 @@ char	*get_input(void)
 	}
  	return (raw_input);
 }
-
+/*	Remove from the last space from a string.
+	char *str: input from the user.
+*/
 char	*ft_remove_last_spaces(char *str)
 {
 	int	i;
@@ -41,6 +44,9 @@ char	*ft_remove_last_spaces(char *str)
 	return (str);
 }
 
+/*	Deletes the extra space from a string. 
+	char *str: input from the user.
+*/
 char	*ft_remove_spaces(char *str)
 {
 	int	i;
@@ -61,6 +67,9 @@ char	*ft_remove_spaces(char *str)
 	return (str);
 }
 
+/*	Initialize the t_args linked list.
+	int argc: number of argument in one command.
+*/
 t_args	*new_lst(int argc)
 {
 	t_args	*new_node;
@@ -72,7 +81,9 @@ t_args	*new_lst(int argc)
 	new_node->next = NULL;
 	return (new_node);
 }
-
+/*	Clear the t_args linked list. 
+	t_args **args: array of arguments entered by the user in a command.
+*/
 void	lst_clear(t_args **args)
 {
 	t_args	*temp;
@@ -84,7 +95,7 @@ void	lst_clear(t_args **args)
 	while (temp != NULL)
 	{
 		next_node = temp->next;
-		free(temp);
+		gc_free(temp);
 		temp = next_node;
 	}
 	*args = NULL;

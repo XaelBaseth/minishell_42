@@ -116,6 +116,10 @@ bool		streq(char *str1, char *str2);
 
 void		sigint_handler(int signum);
 
+//init
+
+void	setup_shell(char **envp, t_data *data, t_args **args);
+
 /*	PARSING	*/
 //parser
 
@@ -146,6 +150,11 @@ t_operator	get_operator(char *operator);
 
 bool		valid_input(char *input);
 
+//valid_operator
+
+bool		check_operator_sequence(char *input, int index);
+bool		check_in_quotes(char *input, int index);
+
 /*	BUILTINS	*/
 //path
 
@@ -167,6 +176,6 @@ void		create_processes(t_args *input, t_data *data);
 
 //redirect
 
-void		exec_redirect(t_args *input, t_data *data);
+void		exec_redirect(t_args *input);
 
 #endif

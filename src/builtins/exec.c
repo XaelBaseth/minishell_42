@@ -6,14 +6,17 @@
 /*   By: acharlot <acharlot@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/09 08:17:00 by acharlot          #+#    #+#             */
-/*   Updated: 2023/08/17 13:32:45 by acharlot         ###   ########.fr       */
+/*   Updated: 2023/08/18 09:42:25 by acharlot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../inc/minishell.h"
 
 /*	Looks for command to be executed in PATH variables and execute 
-	them. */
+	them. 
+	t_args *input : command inputed.
+	t_data *data : environment in which the command must be executed.
+*/
 static void	execute_in_path(t_args *input, t_data *data)
 {
 	int	i;
@@ -36,7 +39,10 @@ static void	execute_in_path(t_args *input, t_data *data)
 }
 
 /*	Check if the command inputed is either part of the added built-ins
-	function or part of the PATH functions. */
+	function or part of the PATH functions.
+	t_args *input : command inputed.
+	t_data *data : environment in which the command must be executed.
+*/
 void	execute_cmd(t_args *input, t_data *data)
 {
 	if (input->operator == NONE)
@@ -48,5 +54,5 @@ void	execute_cmd(t_args *input, t_data *data)
 	}
 	else
 	ft_printf("OK");
-		exec_redirect(input, data);
+		exec_redirect(input);
 }

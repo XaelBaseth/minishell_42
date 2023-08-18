@@ -6,12 +6,15 @@
 /*   By: acharlot <acharlot@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/10 09:15:47 by cpothin           #+#    #+#             */
-/*   Updated: 2023/08/17 11:14:43 by acharlot         ###   ########.fr       */
+/*   Updated: 2023/08/18 08:33:53 by acharlot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../inc/minishell.h"
 
+/*	Check if the inputed string contains an operator from the enum t_operator.
+	char *input: string passed as a command from the user.
+*/
 bool	has_operator(char *input)
 {
 	int	i;
@@ -26,6 +29,11 @@ bool	has_operator(char *input)
 	return (false);
 }
 
+/*	Returns the lenght of a token, wether it's a string, an operator or
+	quoted character.
+	char *input_at_i: pointer towards a character from a string inputed
+		by the user.
+*/
 int	get_token_len(char *input_at_i)
 {
 	int		i;
@@ -53,21 +61,25 @@ int	get_token_len(char *input_at_i)
 	return (i);
 }
 
+/*	Compare the character inputed to an operator and attribute the correct
+	t_operator symbol.
+	char *operator: string containing, or not, an operator.
+*/
 t_operator	get_operator(char *operator)
 {
 	t_operator	op;
 
 	if (operator)
 		op = NONE;
-	else if (ft_strncmp(operator, "|", 1))
+	else if (streq(operator, "|"))
 		op = PIPE;
-	else if (ft_strncmp(operator, ">>", 1))
+	else if (streq(operator, ">>"))
 		op = HEREDOC_APPEND;
-	else if (ft_strncmp(operator, ">", 1))
+	else if (streq(operator, ">"))
 		op = REDIR_OUTPUT;
-	else if (ft_strncmp(operator, "<<", 2))
+	else if (streq(operator, "<<"))
 		op = HEREDOC_REPLACE;
-	else if (ft_strncmp(operator, "<", 1))
+	else if (streq(operator, "<"))
 		op = REDIR_INPUT;
 	else
 		op = NONE;

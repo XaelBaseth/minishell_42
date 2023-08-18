@@ -6,7 +6,7 @@
 /*   By: acharlot <acharlot@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/15 14:37:22 by axel              #+#    #+#             */
-/*   Updated: 2023/08/16 11:06:40 by acharlot         ###   ########.fr       */
+/*   Updated: 2023/08/18 09:41:46 by acharlot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,18 +26,19 @@
 	meaning it adds the output to the end of the file without overwriting
 	existing content.
 */
-
+ /*	Redirect the input of the command into a file.
+	t_args *input: command that has been inputed.
+ */
 void	redirect_input(t_args *input)
 {
 	char	*buffer;
 	int		fd[2];
 
-	input->operator = REDIR_INPUT;
 	pipe(fd);
 	while (1)
 	{
 		buffer = readline("< ");
-		if (ft_strncmp(buffer, input->argv[0], 2))
+		if (streq(buffer, input->argv[0]))
 			break ;
 		ft_putendl_fd(buffer, fd[1]);
 	}
@@ -46,12 +47,11 @@ void	redirect_input(t_args *input)
 	close(fd[0]);
 	free(buffer);
 }
-
-
-void	exec_redirect(t_args *input, t_data *data)
+/*	Check for the redirection symbol, or pipe, and execute the correct command.
+	t_args *input: command inputed with the operator.
+*/
+void	exec_redirect(t_args *input)
 {
 	if (input->operator == REDIR_INPUT)
 		redirect_input(input);
-	if (input->operator == NONE)
-		execute_cmd(input, data);
 }
