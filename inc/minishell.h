@@ -48,7 +48,7 @@ struct	s_env
 	char	*val;
 	t_env	*previous;
 	t_env	*next;
-	bool	exported;
+	bool	has_value;
 };
 
 typedef struct	s_data
@@ -57,7 +57,7 @@ typedef struct	s_data
 	char	**args;
 	int		argc;
 	char	**envp;
-	t_env	*arr_env;
+	t_env	*lst_env;
 	int		nb_env;
 	char	*pwd;
 	char	*path;
@@ -69,9 +69,16 @@ typedef struct	s_data
 /*	FUNCTIONS	*/
 
 /*	SHELL	*/
+
+//env_utils
+
+char	**env_copy(t_data *data, char **envp);
+void	re_store_env(t_data *data);
+
 //env
 
 void    store_env(char **envp, t_data *data);
+t_env	*split_env(char *envp);
 /*Prints the environment variables.*/
 void	print_env(t_data *data);
 
@@ -97,16 +104,17 @@ If they exist, they are removed.
 If they don't, nothing happens.*/
 void	do_unset(t_data *data);
 
+//export
+
+void	do_export(t_data *data);
+
 /*	MAIN	*/
 //utils
 
 void	panic(char *str);
 void	free_all(t_data *data);
 bool	is_int(char *str);
-
-//env_utils
-
-char	**env_copy(t_data *data, char **envp);
+char	*ft_strdup_range(const char *s, size_t from, size_t to);
 
 //config_sig
 

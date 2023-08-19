@@ -6,7 +6,7 @@
 /*   By: cpothin <cpothin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/17 09:06:04 by cpothin           #+#    #+#             */
-/*   Updated: 2023/08/18 18:27:32 by cpothin          ###   ########.fr       */
+/*   Updated: 2023/08/19 12:10:58 by cpothin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,8 +30,8 @@ void	unset_var(t_data *data, char *arg)
 	t_env	*previous;
 	int		i;
 
-	tmp = data->arr_env;
-	next = data->arr_env;
+	tmp = data->lst_env;
+	next = data->lst_env;
 	i = 0;
 	while (tmp)
 	{
@@ -40,13 +40,14 @@ void	unset_var(t_data *data, char *arg)
 			if (i == 0)
 			{
 				if (tmp->next)
-					data->arr_env = data->arr_env->next;
+					data->lst_env = data->lst_env->next;
 				else
-					data->arr_env = NULL;
+					data->lst_env = NULL;
 				return ;
 			}
 			previous->next = tmp->next;
 			free_node(tmp);
+			data->nb_env--;
 			return ;
 		}
 		i++;
@@ -63,6 +64,6 @@ void	do_unset(t_data *data)
 	i = 1;
 	while (data->args[i])
 		unset_var(data, data->args[i++]);
-
+	re_store_env(data);
 	// on recree la variable data->envp apres avoir tout unset
 }

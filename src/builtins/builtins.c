@@ -6,7 +6,7 @@
 /*   By: cpothin <cpothin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/25 07:41:52 by acharlot          #+#    #+#             */
-/*   Updated: 2023/08/17 17:30:27 by cpothin          ###   ########.fr       */
+/*   Updated: 2023/08/19 14:41:31 by cpothin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,8 @@ bool	builtins(t_data *data)
 		do_cd(data);
 	else if (ft_strncmp(data->args[0], "unset", 5) == 0)
 		do_unset(data);
+	else if (ft_strncmp(data->args[0], "export", 6) == 0)
+		do_export(data);
 	else
 		return (false);
 	return (true);

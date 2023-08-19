@@ -6,7 +6,7 @@
 /*   By: cpothin <cpothin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/25 07:42:03 by acharlot          #+#    #+#             */
-/*   Updated: 2023/08/18 18:28:38 by cpothin          ###   ########.fr       */
+/*   Updated: 2023/08/19 12:06:06 by cpothin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ void	init_data(t_data *data)
 	signal(SIGINT, sigint_handler);
 	data->path = NULL;
 	data->input = NULL;
-	data->arr_env = NULL;
+	data->lst_env = NULL;
 	data->envp = NULL;
 	g_pid = 0;
 }
@@ -39,8 +39,8 @@ int main(int argc, char **argv, char **envp)
 	if (argc > 1 && argv)
 		panic("No arguments are needed.");
 	init_data(&data);
-	store_env(envp, &data);
 	data.envp = env_copy(&data, envp);
+	store_env(envp, &data);
 	//print_env(&data);
 	path = get_path(&data);
 	set_pwd(&data);

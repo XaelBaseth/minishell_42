@@ -6,7 +6,7 @@
 /*   By: cpothin <cpothin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/27 08:38:49 by acharlot          #+#    #+#             */
-/*   Updated: 2023/08/16 10:36:42 by cpothin          ###   ########.fr       */
+/*   Updated: 2023/08/19 15:49:09 by cpothin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,4 +53,25 @@ bool	is_int(char *str)
 	if (big_number < INT_MIN || big_number > INT_MAX)
 		return (false);
 	return(true);
+}
+
+char	*ft_strdup_range(const char *s, size_t from, size_t to)
+{
+	size_t	i;
+	size_t	start;
+	char	*s_copy;
+
+	s_copy = (char *)gc_alloc((to - from + 1) * sizeof(char), "ft_strdup");
+	if (!s_copy)
+		return (NULL);
+	i = 0;
+	start = 0;
+	while (s[i])
+	{
+		if (i >= from && i <= to)
+			s_copy[start++] = s[i];
+		i++;
+	}
+	s_copy[start] = '\0';
+	return (s_copy);
 }

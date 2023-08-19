@@ -6,7 +6,7 @@
 /*   By: cpothin <cpothin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/27 11:01:28 by cpothin           #+#    #+#             */
-/*   Updated: 2023/08/18 18:28:17 by cpothin          ###   ########.fr       */
+/*   Updated: 2023/08/19 15:54:34 by cpothin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,27 +24,34 @@ t_env	*split_env(char *envp)
 	new_var = (t_env *)gc_alloc(sizeof(t_env), "env_var");
 	new_var->next = NULL;
 	new_var->previous = NULL;
-	while (envp[i] != '=')
+	while (envp[i] != '=' && envp[i] != '\0')
 		i++;
-	key_size = i++;
+	key_size = i;
 	new_var->key = (char *)gc_alloc(sizeof(char) * key_size + 1, "env_key");
+	ft_strlcpy(new_var->key, envp, key_size + 1);
+	ft_printf("\nkey: %s\n", new_var->key);
+	// ft_printf("\ncopied the key: %s\n", new_var->key);
+	if (!envp[i]) // s'il n'y a pas de =
+		return (new_var);
 	while (envp[i])
 		i++;
-	new_var->val = (char *)gc_alloc(sizeof(char) * i - key_size + 1, "env_val");
-	if (!new_var->key || !new_var->val)
-		return (new_var);
-	i = -1;
-	while (envp[++i] != '=')
-		new_var->key[i] = envp[i];
-	new_var->key[i] = '\0';
-	while (envp[++i])
-		new_var->val[i - key_size - 1] = envp[i];
-	new_var->val[i - key_size - 1] = '\0';
+	new_var->val = ft_strdup_range(envp, key_size + 1, ft_strlen(envp));
+	ft_printf("\nval: %s\n", new_var->val);
+	// new_var->val = (char *)gc_alloc(sizeof(char) * i - key_size + 2, "env_val");
+	// if (!new_var->key || !new_var->val)
+	// 	return (new_var);
+	// i = 0;
+	// while (envp[i] && envp[i] != '=')
+	// 	i++;
+	// while (envp[++i])
+	// 	new_var->val[i - key_size - 1] = envp[i];
+	// new_var->val[i - key_size - 1] = '\0';
+	// ft_printf("\ncopied the value: %s\n", new_var->val);
 	return (new_var);
 }
+
 /*	Duplicates and stores the environment variables through a 'key
 	and value' variable setup in the t_env structure. */
-
 void	store_env(char **envp, t_data *data)
 {
 	int	i;
@@ -58,36 +65,42 @@ void	store_env(char **envp, t_data *data)
 	i = 0;
 	while (i < data->nb_env)
 	{
-		if (data->arr_env)
+		if (data->lst_env)
 		{
-			data->arr_env->next = split_env(envp[i++]);
-			data->arr_env = data->arr_env->next;
+			data->lst_env->next = split_env(envp[i++]);
+			data->lst_env = data->lst_env->next;
 		}
 		else
 		{
-			data->arr_env = split_env(envp[i++]);
-			head = data->arr_env;
+			data->lst_env = split_env(envp[i++]);
+			head = data->lst_env;
 		}
 	}
-	data->arr_env = head;
+	data->lst_env = head;
 }
 
 /*	Print out a copy of the ENV data cloned into envp. */
 void	print_env(t_data *data)
 {
-	t_env	*tmp;
+	// t_env	*tmp;
+	int	i = 0;
 
 	if (data->args[1])
 	{
 		ft_printf("env: %s: No arguments are authorized\n", data->args[1]);
 		return ;
 	}
-	tmp = data->arr_env;
-	while (tmp)
+	while (data->envp[i])
 	{
-		ft_printf("%s=%s\n", tmp->key, tmp->val);
-		tmp = tmp->next;
+		ft_printf("%s\n", data->envp[i++]);
 	}
+
+	// tmp = data->lst_env;
+	// while (tmp)
+	// {
+	// 	ft_printf("%s=%s\n", tmp->key, tmp->val);
+	// 	tmp = tmp->next;
+	// }
 }
 
 // void	update_env(t_data *data)
