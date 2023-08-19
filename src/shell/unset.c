@@ -6,7 +6,7 @@
 /*   By: cpothin <cpothin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/17 09:06:04 by cpothin           #+#    #+#             */
-/*   Updated: 2023/08/17 18:22:36 by cpothin          ###   ########.fr       */
+/*   Updated: 2023/08/18 18:27:32 by cpothin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,7 +56,7 @@ void	unset_var(t_data *data, char *arg)
 	(void)next;
 }
 
-void	do_unset(t_data *data)
+void	do_unset(t_data *data) 
 {
 	int	i;
 
