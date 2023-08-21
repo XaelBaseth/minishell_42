@@ -6,6 +6,7 @@
 # include "../libft/inc/libft.h"
 # include "../libft/inc/get_next_line.h"
 # include "../libft/inc/ft_gc_alloc.h"
+# include "parser.h"
 
 # include <readline/readline.h>
 # include <readline/history.h>
@@ -15,7 +16,9 @@
 # include <unistd.h>
 # include <stdbool.h>
 # include <signal.h>
-# include "parser.h"
+# include <sys/types.h>
+# include <sys/stat.h>
+# include <fcntl.h>
 
 /*	CONSTANT	*/
 # define FAILURE -1
@@ -47,10 +50,10 @@ typedef struct s_args t_args;
 typedef enum	e_operator
 {
 	NONE,
-	REDIR_OUTPUT,
+	REDIR_OUTPUT_REPLACE,
+	REDIR_OUTPUT_APPEND,
 	REDIR_INPUT,
-	HEREDOC_APPEND,
-	HEREDOC_REPLACE,
+	REDIR_INPUT_UNTIL,
 	PIPE,
 }				t_operator;
 

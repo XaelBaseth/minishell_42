@@ -6,7 +6,7 @@
 /*   By: axel <axel@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/15 14:37:22 by axel              #+#    #+#             */
-/*   Updated: 2023/08/21 14:22:32 by axel             ###   ########.fr       */
+/*   Updated: 2023/08/21 15:04:39 by axel             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@
  /*	Redirect the input of the command into a file.
 	t_args *input: command that has been inputed.
  */
-static void	redirect_input(t_args *input)
+static void	redirect_heredoc(t_args *input)
 {
 	char	*buffer;
 	int		fd[2];
@@ -48,9 +48,47 @@ static void	redirect_input(t_args *input)
 	free(buffer);
 }
 
+static void	redirect_input(t_args *input)
+{
+	int		in_file;
+	char	*error_msg;
+
+	if (input->next->argv[0])
+	{
+		while (input->next->operator == REDIR_INPUT)
+			input = input->next;
+		if (access(input->next->argv[0], F_OK) == 0)
+		{
+			in_file = open(input->next->argv[0], O_RDONLY, 0666);
+			dup2(in_file, STDIN_FILENO);
+		}
+		else
+		{
+			error_msg = ft_strjoin("minishell: ", input->next->argv[0]);
+			perror(error_msg);
+			gc_free_all();
+			exit(EXIT_FAILURE);
+		}
+	}
+}
+
 static void	redirect_output(t_args *input)
 {
-
+	close(STDOUT_FILENO);
+	while (input->next->operator == REDIR_OUTPUT_REPLACE
+		|| input->next->operator == REDIR_OUTPUT_APPEND)
+	{
+		if (input->operator == REDIR_OUTPUT_REPLACE)
+			open(input->next->argv[0], O_WRONLY | O_TRUNC | O_CREAT, 0666);
+		else if (input->operator == REDIR_OUTPUT_APPEND)
+			open(input->next->argv[0], O_WRONLY | O_APPEND | O_CREAT, 0666);
+		input = input->next;
+		close(1);		
+	}
+	if (input->operator == REDIR_OUTPUT_REPLACE)
+			open(input->next->argv[0], O_WRONLY | O_TRUNC | O_CREAT, 0666);
+		else if (input->operator == REDIR_OUTPUT_APPEND)
+			open(input->next->argv[0], O_WRONLY | O_APPEND | O_CREAT, 0666);
 }
 /*	Check for the redirection symbol, or pipe, and execute the correct command.
 	t_args *input: command inputed with the operator.
@@ -59,4 +97,8 @@ void	exec_redirect(t_args *input)
 {
 	if (input->operator == REDIR_INPUT)
 		redirect_input(input);
+	else if (input->operator == REDIR_INPUT_UNTIL)
+		redirect_heredoc(input);
+	else
+		redirect_output(input);
 }
