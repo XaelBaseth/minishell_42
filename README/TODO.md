@@ -50,6 +50,8 @@ Complet, mais ALED!
 
 [\[ChatGPT\] Arrows handling on shell. Useless?](https://chat.openai.com/share/329b8e5a-0361-470d-bd06-d05f8358660c)
 
+[PIPEX] https://github.com/jdecorte-be/42-Pipex
+
 <h2>WorkFlow</h2>
 
 https://github.com/maiadegraaf/minishell

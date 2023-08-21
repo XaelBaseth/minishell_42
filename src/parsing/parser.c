@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parser.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: acharlot <acharlot@student.42.fr>          +#+  +:+       +#+        */
+/*   By: axel <axel@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/17 08:00:57 by acharlot          #+#    #+#             */
-/*   Updated: 2023/08/18 10:34:42 by acharlot         ###   ########.fr       */
+/*   Updated: 2023/08/21 13:45:53 by axel             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -112,23 +112,23 @@ t_args	*parser(char *input)
 	char	**parsed;
 	t_args	*temp;
 	t_args	*head;
-	int		idx[2];
+	int		tracker[2];
 
 	parsed = parse_input(input);
 	free(input);
 	temp = new_lst(get_argc(&parsed[0]));
 	head = temp;
-	idx[0] = 0;
-	while (parsed[idx[0]])
+	tracker[0] = 0;
+	while (parsed[tracker[0]])
 	{
-		idx[1] = 0;
-		while (parsed[idx[0]] && !is_char(OPERATOR, parsed[idx[0]][0]))
-			temp->argv[idx[1]++] = remove_quote(parsed[idx[0]++]);
-		temp->argv[idx[1]] = NULL;
-		if (!parsed[idx[0]])
+		tracker[1] = 0;
+		while (parsed[tracker[0]] && !is_char(OPERATOR, parsed[tracker[0]][0]))
+			temp->argv[tracker[1]++] = remove_quote(parsed[tracker[0]++]);
+		temp->argv[tracker[1]] = NULL;
+		if (!parsed[tracker[0]])
 			break ;
-		temp->operator = get_operator(parsed[idx[0]++]);
-		temp->next = new_lst(get_argc(&parsed[idx[1]]));
+		temp->operator = get_operator(parsed[tracker[0]++]);
+		temp->next = new_lst(get_argc(&parsed[tracker[1]]));
 		temp = temp->next;
 	}
 	temp->next = NULL;

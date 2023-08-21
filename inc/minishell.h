@@ -129,7 +129,7 @@ void		clean_parsed(t_args **args, t_data *data);
 //quotes_handler
 
 bool 		is_inside_quotes(char *input, int index);
-
+int			unclosed_quote(char *str);
 char		*remove_quote(char *parsed);
 
 //parsing_utils

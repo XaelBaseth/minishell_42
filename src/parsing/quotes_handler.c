@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   quotes_handler.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: acharlot <acharlot@student.42.fr>          +#+  +:+       +#+        */
+/*   By: axel <axel@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/25 07:41:55 by acharlot          #+#    #+#             */
-/*   Updated: 2023/08/18 11:14:48 by acharlot         ###   ########.fr       */
+/*   Updated: 2023/08/21 13:45:10 by axel             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,6 +61,31 @@ bool	check_brackets(char *raw_input)
 	if (open_brackets != close_brackets)
 		return (false);
 	return (true);
+}
+
+int	unclosed_quote(char *str)
+{
+	char	last_opened;
+
+	last_opened = 0;
+	while (*str && !last_opened)
+	{
+		if (*str == '\'' || *str == '\"')
+			last_opened = *str;
+		str++;
+	}
+	while (*str && last_opened)
+	{
+		if (*str && *str == last_opened)
+			last_opened = 0;
+		str++;
+	}
+	if (*str)
+		return (unclosed_quote(str));
+	else if (!last_opened)
+		return (0);
+	else
+		return (1);
 }
 
 /*	Return the size of a string ignoring quoted characters.
@@ -122,7 +147,7 @@ char	*remove_quote(char *parsed)
 		quote = '\0';
 	}
 	unquoted_parsed[j] = '\0';
-	gc_free(parsed);
+	free(parsed);
 	return (unquoted_parsed);
 }
 

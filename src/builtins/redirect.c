@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   redirect.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: acharlot <acharlot@student.42.fr>          +#+  +:+       +#+        */
+/*   By: axel <axel@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/15 14:37:22 by axel              #+#    #+#             */
-/*   Updated: 2023/08/18 09:41:46 by acharlot         ###   ########.fr       */
+/*   Updated: 2023/08/21 14:22:32 by axel             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@
  /*	Redirect the input of the command into a file.
 	t_args *input: command that has been inputed.
  */
-void	redirect_input(t_args *input)
+static void	redirect_input(t_args *input)
 {
 	char	*buffer;
 	int		fd[2];
@@ -37,7 +37,7 @@ void	redirect_input(t_args *input)
 	pipe(fd);
 	while (1)
 	{
-		buffer = readline("< ");
+		buffer = readline("> ");
 		if (streq(buffer, input->argv[0]))
 			break ;
 		ft_putendl_fd(buffer, fd[1]);
@@ -46,6 +46,11 @@ void	redirect_input(t_args *input)
 	dup2(fd[0], STDIN_FILENO);
 	close(fd[0]);
 	free(buffer);
+}
+
+static void	redirect_output(t_args *input)
+{
+
 }
 /*	Check for the redirection symbol, or pipe, and execute the correct command.
 	t_args *input: command inputed with the operator.

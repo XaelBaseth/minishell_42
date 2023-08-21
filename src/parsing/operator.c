@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   operator.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: acharlot <acharlot@student.42.fr>          +#+  +:+       +#+        */
+/*   By: axel <axel@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/10 09:15:47 by cpothin           #+#    #+#             */
-/*   Updated: 2023/08/18 08:33:53 by acharlot         ###   ########.fr       */
+/*   Updated: 2023/08/21 13:59:32 by axel             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,7 @@ int	get_token_len(char *input_at_i)
 	}
 	while (input_at_i[i]
 		&& !(input_at_i[i] == 32)
-		&& !is_char(QUOTES, input_at_i[i]))
+		&& !is_char(OPERATOR, input_at_i[i]))
 	{
 		if (is_char(QUOTES, input_at_i[i]))
 		{

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   valid_input.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: acharlot <acharlot@student.42.fr>          +#+  +:+       +#+        */
+/*   By: axel <axel@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/17 08:17:48 by acharlot          #+#    #+#             */
-/*   Updated: 2023/08/18 09:37:36 by acharlot         ###   ########.fr       */
+/*   Updated: 2023/08/21 10:02:36 by axel             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -104,6 +104,11 @@ bool	valid_input(char *input)
 	}
 	if (input[0] == '\0')
 		valid = false;
+	else if (unclosed_quote(input))
+	{
+		ft_putendl_fd("Uncloses quotes.", STDERR_FILENO);
+		valid = false;
+	}
 	else if (invalid_syntax(input) || invalid_syntax2(input)
 		|| invalid_operator(input))
 		valid = false;
