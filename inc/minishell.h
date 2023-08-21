@@ -20,9 +20,18 @@
 /*	CONSTANT	*/
 # define FAILURE -1
 # define SUCCESS 0
+# define OPERATOR "|<>"
+# define REDIRECTS "><"
+# define QUOTES "\"\'"
+
+//ERROR MESSAGE
 # define MALLOC_ERR "Memory Allocation has failed."
 # define PATH_ERR "PATH not found."
 # define EXEC_ERR "An error occured while executing the program."
+# define PIPE_PROMPT "No support for pipe prompt."
+# define SYNTAXT_ERR "Syntax error near unexpected token 'newline'."
+# define UNEXPECTED_TOKEN "Syntax error near unexpected token '"
+
 
 /*	GLOBAL	*/
 extern pid_t	g_pid;
@@ -33,6 +42,17 @@ extern int		g_status;
 
 typedef struct s_env t_env;
 typedef struct s_path t_path;
+typedef struct s_args t_args;
+
+typedef enum	e_operator
+{
+	NONE,
+	REDIR_OUTPUT,
+	REDIR_INPUT,
+	HEREDOC_APPEND,
+	HEREDOC_REPLACE,
+	PIPE,
+}				t_operator;
 
 struct s_path
 {
@@ -49,12 +69,17 @@ struct	s_env
 	bool	exported;
 };
 
+struct s_args
+{
+	char		**argv;
+	int			argc;
+	t_operator operator;
+	t_args		*next;
+};
 
 
 typedef struct	s_data
 {
-	char	*input;
-
 	char	**envp;
 	t_env	*arr_env;
 	int		nb_env;
@@ -62,6 +87,7 @@ typedef struct	s_data
 	char	*path;
 	t_path	*arr_path;
 	int		nb_path;
+	t_args	*args;
 }			t_data;
 
 /*	FUNCTIONS	*/
@@ -69,15 +95,15 @@ typedef struct	s_data
 /*	SHELL	*/
 //env
 
-void    store_env(char **envp, t_data *data);
-void	print_env(t_data *data);
+void    	store_env(char **envp, t_data *data);
+void		print_env(t_data *data);
 
 //echo
-void	do_echo(t_data *data);
+void		do_echo(t_data *data);
 
 //pwd
-void	set_pwd(t_data *data);
-void	get_pwd(t_data *data);
+void		set_pwd(t_data *data);
+void		get_pwd(t_data *data);
 
 //exit
 bool	do_exit(t_data *data);
@@ -85,42 +111,74 @@ bool	do_exit(t_data *data);
 /*	MAIN	*/
 //utils
 
-void	panic(char *str);
-void	free_all(t_data *data);
+void		panic(char *str);
+bool		is_char(const char *str, int c);
+bool		streq(char *str1, char *str2);
 
 //config_sig
 
-void	sigint_handler(int signum);
+void		sigint_handler(int signum);
+
+//init
+
+void	setup_shell(char **envp, t_data *data, t_args **args);
 
 /*	PARSING	*/
-//input
+//parser
 
-bool 	is_inside_quotes(char *input, int index);
-char	*get_input(void);
-char	**get_command(char *input);
-bool	line_is(t_data *data, char *content);
-bool	line_starts_by(t_data *data, char *content);
+t_args		*parser(char *input);
+void		clean_parsed(t_args **args, t_data *data);
+
+//quotes_handler
+
+bool 		is_inside_quotes(char *input, int index);
+int			unclosed_quote(char *str);
+char		*remove_quote(char *parsed);
 
 //parsing_utils
-char	*ft_remove_spaces(char *str);
 
-//path
+char		*ft_remove_spaces(char *str);
+bool		check_brackets(char *raw_input);
+t_args		*new_lst(int argc);
+void		lst_clear(t_args **args);
+char		*get_input(void);
 
-void	store_path(char *path, t_data *data);
-void	print_path(t_data *data);
-char	*get_path(t_data *data);
+//operator
+
+bool		has_operator(char *input);
+int			get_token_len(char *input_at_i);
+t_operator	get_operator(char *operator);
+
+//valid_input
+
+bool		valid_input(char *input);
+
+//valid_operator
+
+bool		check_operator_sequence(char *input, int index);
+bool		check_in_quotes(char *input, int index);
 
 /*	BUILTINS	*/
+//path
+
+void		store_path(char *path, t_data *data);
+void		print_path(t_data *data);
+char		*get_path(t_data *data);
+
 //builtins
 
-bool	builtins(t_data *data);
+bool	builtins(t_args *input, t_data *data);
 
 //exec
 
-void	execute_cmd(t_data *data);
+void		execute_cmd(t_args *input, t_data *data);
 
 //process
 
-void	create_processes(t_data *data);
+void		create_processes(t_args *input, t_data *data);
+
+//redirect
+
+void		exec_redirect(t_args *input);
 
 #endif

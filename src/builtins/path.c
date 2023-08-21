@@ -3,16 +3,18 @@
 /*                                                        :::      ::::::::   */
 /*   path.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cpothin <cpothin@student.42.fr>            +#+  +:+       +#+        */
+/*   By: axel <axel@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/31 10:37:29 by acharlot          #+#    #+#             */
-/*   Updated: 2023/08/15 11:59:01 by cpothin          ###   ########.fr       */
+/*   Updated: 2023/08/21 14:28:10 by axel             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../inc/minishell.h"
 
-/*	Get the PATH variable from the duplicated environment. */
+/*	Get the PATH variable from the duplicated environment. 
+	t_data *data: linked list element for environmnent.
+*/
 char	*get_path(t_data *data)
 {
 	char	*path;
@@ -32,7 +34,10 @@ char	*get_path(t_data *data)
 	return (path);
 }
 
-/*	Split and store the PATH variables into the path structure. */
+/*	Split and store the PATH variables into the path structure. 
+	char *path: almagamation of every path.
+	t_data *data: path element of the linked list data.
+*/
 void	store_path(char *path, t_data *data)
 {
 	int i;
@@ -61,7 +66,9 @@ void	store_path(char *path, t_data *data)
 	gc_free(split_path);
 }
 
-/*	Print out the PATH variables /!\ MEM_LEAKS TO CHECK. */
+/*	Print out the PATH variables.
+	t_data *data: linked list that contains the path array.
+ */
 void	print_path(t_data *data)
 {
 	int	i;
@@ -69,7 +76,7 @@ void	print_path(t_data *data)
 	i = 0;
 	while (data->arr_path[i].path)
 	{
-		ft_printf("The PATH variable is: %s\n",
+		ft_printf("The PATH variables are: %s\n",
 			data->arr_path[i].path);
 		i++;
 	}

@@ -3,50 +3,56 @@
 /*                                                        :::      ::::::::   */
 /*   exec.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: axel <axel@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: acharlot <acharlot@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/09 08:17:00 by acharlot          #+#    #+#             */
-/*   Updated: 2023/08/15 12:17:23 by axel             ###   ########.fr       */
+/*   Updated: 2023/08/18 09:42:25 by acharlot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../inc/minishell.h"
 
 /*	Looks for command to be executed in PATH variables and execute 
-	them. */
-static void	execute_in_path(t_data *data)
+	them. 
+	t_args *input : command inputed.
+	t_data *data : environment in which the command must be executed.
+*/
+static void	execute_in_path(t_args *input, t_data *data)
 {
 	int	i;
 	char *bin_path;
 	char *temp;
-	char **input;
 
 	i = -1;
-	input = get_command(data->input);
 	while (++i < data->nb_path)
 	{
 		temp = ft_strjoin(data->arr_path[i].path, "/");
-		bin_path = ft_strjoin(temp, data->input);
+		bin_path = ft_strjoin(temp, input->argv[0]);
 		if (access(bin_path, F_OK | X_OK) == 0)
 		{
-			execve(bin_path, input, data->envp);
+			execve(bin_path, input->argv, data->envp);
 			perror("execve");
 			panic(EXEC_ERR);
 		}
 	}
-	ft_printf("%s not found in any directories in PATH\n", data->input);
+	ft_printf("%s not found in any directories in PATH\n", data->args->argv[0]);
 }
 
-
 /*	Check if the command inputed is either part of the added built-ins
-	function or part of the PATH functions. */
-void	execute_cmd(t_data *data)
+	function or part of the PATH functions.
+	t_args *input : command inputed.
+	t_data *data : environment in which the command must be executed.
+*/
+void	execute_cmd(t_args *input, t_data *data)
 {
-	if (builtins(data))
-		return ;
-	else
+	if (input->operator == NONE)
 	{
-		execute_in_path(data);
+		if (builtins(input, data))
+			return ;
+		execute_in_path(input, data);
 		return ;
 	}
+	else
+	ft_printf("OK");
+		exec_redirect(input);
 }

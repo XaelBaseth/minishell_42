@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   echo.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cpothin <cpothin@student.42.fr>            +#+  +:+       +#+        */
+/*   By: axel <axel@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/11 09:54:55 by cpothin           #+#    #+#             */
-/*   Updated: 2023/08/15 11:59:01 by cpothin          ###   ########.fr       */
+/*   Updated: 2023/08/21 14:29:13 by axel             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,7 +90,7 @@ void	do_echo(t_data *data)
 	bool	has_parameter;
 
 	i = 4;
-	str = data->input;
+	n_str = data->args->argv[0];
 	has_parameter = false;
 	skip_spaces(str, &i);
 	new_start = i;

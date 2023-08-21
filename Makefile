@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: cpothin <cpothin@student.42.fr>            +#+  +:+       +#+         #
+#    By: axel <axel@student.42.fr>                  +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/07/25 07:42:45 by acharlot          #+#    #+#              #
-#    Updated: 2023/08/15 12:01:25 by cpothin          ###   ########.fr        #
+#    Updated: 2023/08/21 14:28:25 by axel             ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -40,13 +40,13 @@ WHITE		=	\033[0;97m
 
 #Files
 BUILT_DIR	=	builtins/
-BUILT_FILES	=	builtins exec process
+BUILT_FILES	=	builtins exec process redirect path
 PARS_DIR	=	parsing/
-PARS_FILES	=	input path parsing_utils
+PARS_FILES	=	operator parser parsing_utils quotes_handler valid_input valid_operator
 SHELL_DIR	=	shell/
 SHELL_FILES	=	env echo pwd exit
 MAIN_DIR	=	main/
-MAIN_FILES	=	main utils config_sig
+MAIN_FILES	=	main utils config_sig init
 
 
 SRC_BUI_FILE=	$(addprefix $(BUILT_DIR), $(BUILT_FILES))

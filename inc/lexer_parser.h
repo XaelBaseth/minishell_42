@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   lexer_parser.h                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cpothin <cpothin@student.42.fr>            +#+  +:+       +#+        */
+/*   By: acharlot <acharlot@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/02 14:06:30 by cpothin           #+#    #+#             */
-/*   Updated: 2023/08/02 14:59:00 by cpothin          ###   ########.fr       */
+/*   Updated: 2023/08/16 09:46:57 by acharlot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,9 +15,9 @@
 
 // Separators
 # define PIPE '|'
-# define LESSER '<'
-# define GREATER '>'
-# define HEREDOC_GREATER '<<'
-# define HEREDOC_LESSER '>>'
+# define REDIR_INPUT '<'
+# define REDIR_OUTPUT '>'
+# define HEREDOC "<<"
+# define HEREDOC_APPEND ">>"
 
 #endif

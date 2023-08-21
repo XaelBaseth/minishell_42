@@ -3,15 +3,33 @@
 /*                                                        :::      ::::::::   */
 /*   parsing_utils.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: axel <axel@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: acharlot <acharlot@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/09 15:32:28 by cpothin           #+#    #+#             */
-/*   Updated: 2023/08/15 10:42:28 by axel             ###   ########.fr       */
+/*   Updated: 2023/08/18 08:55:04 by acharlot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../inc/minishell.h"
 
+/*	Get the input entered as a command in the minishell. */
+char	*get_input(void)
+{
+	char *raw_input;
+
+	raw_input = readline("\033[32mminishell$\033[0m ");
+	if (!raw_input)
+		return (NULL);
+	if (!check_brackets(raw_input))
+	{
+		printf("Not the same amount of brackets.\n");
+		return (NULL);
+	}
+ 	return (raw_input);
+}
+/*	Remove from the last space from a string.
+	char *str: input from the user.
+*/
 char	*ft_remove_last_spaces(char *str)
 {
 	int	i;
@@ -26,6 +44,9 @@ char	*ft_remove_last_spaces(char *str)
 	return (str);
 }
 
+/*	Deletes the extra space from a string. 
+	char *str: input from the user.
+*/
 char	*ft_remove_spaces(char *str)
 {
 	int	i;
@@ -46,27 +67,36 @@ char	*ft_remove_spaces(char *str)
 	return (str);
 }
 
-bool	line_is(t_data *data, char *content)
+/*	Initialize the t_args linked list.
+	int argc: number of argument in one command.
+*/
+t_args	*new_lst(int argc)
 {
-	if (ft_strncmp(data->input, content, ft_strlen(content) + 1) == 0)
-		return (true);
-	return (false);
+	t_args	*new_node;
+
+	new_node = gc_alloc(sizeof(t_args), "t_args : new_node");
+	new_node->argc = argc;
+	new_node->argv = gc_alloc((argc + 1) * sizeof(char *), "t_args: argv");
+	new_node->operator = NONE;
+	new_node->next = NULL;
+	return (new_node);
 }
-
-bool	line_starts_by(t_data *data, char *content)
+/*	Clear the t_args linked list. 
+	t_args **args: array of arguments entered by the user in a command.
+*/
+void	lst_clear(t_args **args)
 {
-	int	n;
-	int	i;
+	t_args	*temp;
+	t_args	*next_node;
 
-	n = 0;
-	while (content[n])
-		n++;
-	i = 0;
-	while (i < n)
+	if (!args)
+		return ;
+	temp = *args;
+	while (temp != NULL)
 	{
-		if (data->input[i] != content[i])
-			return (false);
-		i++;
+		next_node = temp->next;
+		gc_free(temp);
+		temp = next_node;
 	}
-	return (true);
+	*args = NULL;
 }
