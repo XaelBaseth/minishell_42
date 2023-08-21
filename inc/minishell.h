@@ -74,6 +74,12 @@ typedef struct	s_data
 
 char	**env_copy(t_data *data, char **envp);
 void	re_store_env(t_data *data);
+char	*get_short_var(char *arg);
+
+//env_utils2
+
+char	*new_env_val(t_env *env, char *arg);
+void	free_lst_node(t_env *node);
 
 //env
 

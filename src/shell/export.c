@@ -6,35 +6,40 @@
 /*   By: cpothin <cpothin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/16 15:01:03 by cpothin           #+#    #+#             */
-/*   Updated: 2023/08/19 16:47:47 by cpothin          ###   ########.fr       */
+/*   Updated: 2023/08/21 16:35:04 by cpothin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../inc/minishell.h"
 
+bool	check_arg_value(char *arg)
+{
+	int	i;
+
+	i = 0;
+	while (arg[i])
+	{
+		if (arg[i++] == '=')
+			return (true);
+	}
+	return (false);
+}
+
 void	edit_env_var(t_data *data, char *arg, char *short_var)
 {
 	t_env	*lst;
-	t_env	*next;
-	t_env	*previous;
 
+	if (check_arg_value(arg) == 0)
+		return ;
 	lst = data->lst_env;
 	while (lst)
 	{
-		if (ft_strncmp(lst->key, short_var, ft_strlen(lst->key)) == 0)
+		if (ft_strcmp(lst->key, short_var) == 0)
 		{
-			next = lst->next;
-			gc_free(lst->key);
-			gc_free(lst->val);
-			lst->next = NULL;
-			lst->previous = NULL;
-			gc_free(lst);
-			lst = split_env(arg);
-			previous->next = lst;
-			lst->next = next;
+			lst->has_value = true;
+			lst->val = new_env_val(lst, arg);
 			return ;
 		}
-		previous = lst;
 		lst = lst->next;
 	}
 }
@@ -42,6 +47,7 @@ void	edit_env_var(t_data *data, char *arg, char *short_var)
 void	new_env_var(t_data *data, char *arg)
 {
 	t_env	*lst;
+	
 	lst = data->lst_env;
 	while (lst)
 	{
@@ -60,20 +66,15 @@ void	new_env_var(t_data *data, char *arg)
 void	export_var(t_data *data, char *arg)
 {
 	bool	exists;
-	int		i;
 	t_env	*lst;
 	char	*short_var;
 
 	exists = false;
 	lst = data->lst_env;
-	i = 0;
-	while (arg[i] != '=' && arg[i] != '\0')
-		i++;
-	short_var = (char *)gc_alloc(sizeof(char) * i + 1, "short_env_var");
-	ft_strlcpy(short_var, arg, i + 1);
-	while (lst && i++)
+	short_var = get_short_var(arg);
+	while (lst)
 	{
-		if (ft_strncmp(lst->key, short_var, ft_strlen(lst->key)) == 0)
+		if (ft_strcmp(lst->key, short_var) == 0)
 		{
 			exists = true;
 			break ;

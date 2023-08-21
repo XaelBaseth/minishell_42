@@ -6,7 +6,7 @@
 /*   By: cpothin <cpothin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/17 09:34:08 by cpothin           #+#    #+#             */
-/*   Updated: 2023/08/19 16:49:37 by cpothin          ###   ########.fr       */
+/*   Updated: 2023/08/21 16:58:06 by cpothin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,11 +45,27 @@ char	**env_copy(t_data *data, char **envp)
 	return (new_env);
 }
 
+char	*create_env_from_lst(t_env *lst_env)
+{
+	int		size;
+	char	*env;
+
+	if (lst_env->val)
+		size = ft_strlen(lst_env->key) + ft_strlen(lst_env->val) + 2;
+	else
+		size = ft_strlen(lst_env->key) + 2;
+	env = (char *)gc_alloc(sizeof(char) * size, "new_env_line");
+	if (lst_env->has_value == true)
+		env = ft_strjoin(lst_env->key, ft_strjoin("=", lst_env->val));
+	else
+		env = ft_strdup(lst_env->key);
+	return (env);
+}
+
 void	re_store_env(t_data *data)
 {
 	t_env	*lst_env;
 	int		i;
-	int		size;
 
 	free_env_arr(data);
 	lst_env = data->lst_env;
@@ -64,12 +80,22 @@ void	re_store_env(t_data *data)
 	i = 0;
 	while (lst_env)
 	{
-		// voir pour gerer s'il n'y a pas de var->val / `export cricri` ne fonctionne pas !
-		size = ft_strlen(lst_env->key) + ft_strlen(lst_env->val) + 2;
-		data->envp[i] = (char *)gc_alloc(sizeof(char) * size, "new_env_line");
-		data->envp[i] = ft_strjoin(lst_env->key, ft_strjoin("=", lst_env->val));
+		data->envp[i] = create_env_from_lst(lst_env);
 		i++;
 		lst_env = lst_env->next;
 	}
 	data->envp[i] = NULL;
+}
+
+char	*get_short_var(char *arg)
+{
+	char	*str;
+	int		i;
+
+	i = 0;
+	while (arg[i] != '=' && arg[i] != '\0')
+		i++;
+	str = (char *)gc_alloc(sizeof(char) * i + 1, "short_env_var");
+	ft_strlcpy(str, arg, i + 1);
+	return (str);
 }

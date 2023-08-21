@@ -6,7 +6,7 @@
 /*   By: cpothin <cpothin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/17 09:06:04 by cpothin           #+#    #+#             */
-/*   Updated: 2023/08/19 12:10:58 by cpothin          ###   ########.fr       */
+/*   Updated: 2023/08/21 11:33:18 by cpothin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,5 +65,4 @@ void	do_unset(t_data *data)
 	while (data->args[i])
 		unset_var(data, data->args[i++]);
 	re_store_env(data);
-	// on recree la variable data->envp apres avoir tout unset
 }
