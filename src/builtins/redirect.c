@@ -6,27 +6,14 @@
 /*   By: axel <axel@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/15 14:37:22 by axel              #+#    #+#             */
-/*   Updated: 2023/08/22 10:08:37 by axel             ###   ########.fr       */
+/*   Updated: 2023/08/22 14:43:58 by axel             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../inc/minishell.h"
 
-/*
-< Redirecting Input:
-	The < symbol is used to redirect the input of a command from a file.
-> Redirecting Output:
-	The > symbol is used to redirect the output of a command to a file, 
-	overwriting the file if it already exists.
-<< Here Document:
-	The << symbol followed by a delimiter allows you to input multiple 
-	lines until a line containing the delimiter is seen.
->> Redirecting Output in Append Mode:
-	The >> symbol is used to redirect output to a file in append mode, 
-	meaning it adds the output to the end of the file without overwriting
-	existing content.
-*/
- /*	Redirect the input of the command into a file.
+ /*	Allows to input multiple line lines until a line containing the 
+ 	delimiter is seen via the '<<' input.
 	t_args *input: command that has been inputed.
  */
 static void	redirect_heredoc(t_args *input)
@@ -38,7 +25,7 @@ static void	redirect_heredoc(t_args *input)
 	while (1)
 	{
 		buffer = readline("> ");
-		if (streq(buffer, input->argv[0]))
+		if (streq(buffer, input->next->argv[0]))
 			break ;
 		ft_putendl_fd(buffer, fd[1]);
 	}
@@ -48,6 +35,9 @@ static void	redirect_heredoc(t_args *input)
 	free(buffer);
 }
 
+/*	Redirect the input of a command into the file via the '<' operator.
+	t_args *input: command that has been inputed.
+*/
 static void	redirect_input(t_args *input)
 {
 	int		in_file;
@@ -72,6 +62,10 @@ static void	redirect_input(t_args *input)
 	}
 }
 
+/*	Check the operator used and create or replace a document if '>', or
+	append a document if '>>'.
+	t_args *input: command that has been inputed.
+*/
 static void	redirect_output(t_args *input)
 {
 	close(STDOUT_FILENO);
@@ -90,15 +84,26 @@ static void	redirect_output(t_args *input)
 		else if (input->operator == REDIR_OUTPUT_APPEND)
 			open(input->next->argv[0], O_WRONLY | O_APPEND | O_CREAT, 0666);
 }
+
 /*	Check for the redirection symbol, or pipe, and execute the correct command.
 	t_args *input: command inputed with the operator.
 */
-void	exec_redirect(t_args *input)
+void	exec_redirect(t_args *input, t_data *data)
 {
+	t_args *temp;
+
+	temp = input;
 	if (input->operator == REDIR_INPUT)
 		redirect_input(input);
 	else if (input->operator == REDIR_INPUT_UNTIL)
 		redirect_heredoc(input);
 	else
 		redirect_output(input);
+	temp->operator = NONE;
+	while (input->operator != NONE && input->operator != PIPE)
+		input = input->next;
+	if (input->operator == NONE)
+		execute_cmd(temp, data);
+	else
+		exec_pipe(input, data);
 }

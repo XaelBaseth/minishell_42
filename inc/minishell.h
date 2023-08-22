@@ -34,6 +34,8 @@
 # define PIPE_PROMPT "No support for pipe prompt."
 # define SYNTAXT_ERR "Syntax error near unexpected token 'newline'."
 # define UNEXPECTED_TOKEN "Syntax error near unexpected token '"
+# define PIPE_ERR "pipe() failed."
+# define FORK_ERR "fork() failed."
 
 
 /*	GLOBAL	*/
@@ -174,6 +176,10 @@ void		create_processes(t_args *input, t_data *data);
 
 //redirect
 
-void		exec_redirect(t_args *input);
+void		exec_redirect(t_args *input, t_data *data);
+
+//pipe
+
+void	exec_pipe(t_args *input, t_data *data);
 
 #endif

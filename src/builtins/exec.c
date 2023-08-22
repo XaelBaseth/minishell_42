@@ -6,7 +6,7 @@
 /*   By: axel <axel@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/09 08:17:00 by acharlot          #+#    #+#             */
-/*   Updated: 2023/08/22 10:30:55 by axel             ###   ########.fr       */
+/*   Updated: 2023/08/22 14:05:10 by axel             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,8 +45,9 @@ static void	execute_in_path(t_args *input, t_data *data)
 */
 void	execute_cmd(t_args *input, t_data *data)
 {
-	printf("operator = %d\n", input->operator);
-	if (input->operator == NONE)
+	if (input->operator == PIPE)
+		exec_pipe(input, data);
+	else if (input->operator == NONE)
 	{
 		if (builtins(input, data))
 			return ;
@@ -54,5 +55,5 @@ void	execute_cmd(t_args *input, t_data *data)
 		return ;
 	}
 	else
-		exec_redirect(input);
+		exec_redirect(input, data);
 }

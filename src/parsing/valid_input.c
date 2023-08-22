@@ -6,7 +6,7 @@
 /*   By: axel <axel@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/17 08:17:48 by acharlot          #+#    #+#             */
-/*   Updated: 2023/08/22 11:01:14 by axel             ###   ########.fr       */
+/*   Updated: 2023/08/22 14:52:56 by axel             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,8 +32,8 @@ bool	invalid_operator(char *input)
 	bool	in_quotes;
 
 	in_quotes = false;
-	i = 0;
-	while (has_operator(&input[i]))
+	i = -1;
+	while (has_operator(&input[++i]))
 	{
 		if (is_char(QUOTES, input[i]))
 			in_quotes = !in_quotes;
@@ -45,15 +45,13 @@ bool	invalid_operator(char *input)
 				i += 1;
 			if (input[i] == ' ')
 			{	
-				while (input[i] && input[i] == ' ')
-					i += 1;
+				while (input[i++] && input[i++] == ' ')
 				if (is_char(OPERATOR, input[i]))
 					return (unexpected_token(input[i]));
 			}
 			if (is_char(OPERATOR, input[i]))
 				return (unexpected_token(input[i]));
 		}
-		i += 1;
 	}
 	return (false);
 }
