@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   exec.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: acharlot <acharlot@student.42.fr>          +#+  +:+       +#+        */
+/*   By: axel <axel@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/09 08:17:00 by acharlot          #+#    #+#             */
-/*   Updated: 2023/08/18 09:42:25 by acharlot         ###   ########.fr       */
+/*   Updated: 2023/08/22 10:30:55 by axel             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,6 +45,7 @@ static void	execute_in_path(t_args *input, t_data *data)
 */
 void	execute_cmd(t_args *input, t_data *data)
 {
+	printf("operator = %d\n", input->operator);
 	if (input->operator == NONE)
 	{
 		if (builtins(input, data))
@@ -53,6 +54,5 @@ void	execute_cmd(t_args *input, t_data *data)
 		return ;
 	}
 	else
-	ft_printf("OK");
 		exec_redirect(input);
 }

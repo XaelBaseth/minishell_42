@@ -153,11 +153,6 @@ t_operator	get_operator(char *operator);
 
 bool		valid_input(char *input);
 
-//valid_operator
-
-bool		check_operator_sequence(char *input, int index);
-bool		check_in_quotes(char *input, int index);
-
 /*	BUILTINS	*/
 //path
 
@@ -167,7 +162,7 @@ char		*get_path(t_data *data);
 
 //builtins
 
-bool	builtins(t_args *input, t_data *data);
+bool		builtins(t_args *input, t_data *data);
 
 //exec
 

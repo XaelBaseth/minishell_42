@@ -6,7 +6,7 @@
 /*   By: axel <axel@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/10 09:15:47 by cpothin           #+#    #+#             */
-/*   Updated: 2023/08/21 14:51:38 by axel             ###   ########.fr       */
+/*   Updated: 2023/08/22 11:18:19 by axel             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,7 +69,7 @@ t_operator	get_operator(char *operator)
 {
 	t_operator	op;
 
-	if (operator)
+	if (!operator)
 		op = NONE;
 	else if (streq(operator, "|"))
 		op = PIPE;
