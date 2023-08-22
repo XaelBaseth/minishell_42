@@ -6,7 +6,7 @@
 /*   By: cpothin <cpothin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/16 15:01:03 by cpothin           #+#    #+#             */
-/*   Updated: 2023/08/21 16:35:04 by cpothin          ###   ########.fr       */
+/*   Updated: 2023/08/22 15:14:17 by cpothin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,9 +60,6 @@ void	new_env_var(t_data *data, char *arg)
 	}
 }
 
-// export cricri		->		cricri
-// export cricri=42		->		cricri=42
-// export cricri		->		cricri=42
 void	export_var(t_data *data, char *arg)
 {
 	bool	exists;
@@ -93,6 +90,8 @@ void	do_export(t_data *data)
 	int	i;
 
 	i = 1;
+	if (data->argc == 1)
+		return (single_export(data));
 	while (data->args[i])
 		export_var(data, data->args[i++]);
 	re_store_env(data);

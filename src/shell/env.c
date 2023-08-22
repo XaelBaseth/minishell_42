@@ -6,7 +6,7 @@
 /*   By: cpothin <cpothin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/27 11:01:28 by cpothin           #+#    #+#             */
-/*   Updated: 2023/08/21 17:07:43 by cpothin          ###   ########.fr       */
+/*   Updated: 2023/08/22 17:26:48 by cpothin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,8 +20,6 @@ bool	char_is_equal(char c)
 		return (false);
 }
 
-/*	Split the environment variables through a 'key
-	and value' variable setup in the t_env structure. */
 t_env	*split_env(char *envp)
 {
 	t_env	*new_var;
@@ -50,8 +48,6 @@ t_env	*split_env(char *envp)
 	return (new_var);
 }
 
-/*	Duplicates and stores the environment variables through a 'key
-	and value' variable setup in the t_env structure. */
 void	store_env(char **envp, t_data *data)
 {
 	int	i;
@@ -82,16 +78,19 @@ void	store_env(char **envp, t_data *data)
 /*	Print out a copy of the ENV data cloned into envp. */
 void	print_env(t_data *data)
 {
-	int	i = 0;
+	t_env	*lst;
 
 	if (data->args[1])
 	{
 		ft_printf("env: %s: No arguments are authorized\n", data->args[1]);
 		return ;
 	}
-	while (data->envp[i])
+	lst = data->lst_env;
+	while (lst)
 	{
-		ft_printf("%s\n", data->envp[i++]);
+		if (lst->has_value)
+			ft_printf("%s=%s\n", lst->key, lst->val);
+		lst = lst->next;
 	}
 }
 

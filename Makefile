@@ -6,7 +6,7 @@
 #    By: cpothin <cpothin@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/07/25 07:42:45 by acharlot          #+#    #+#              #
-#    Updated: 2023/08/21 15:41:08 by cpothin          ###   ########.fr        #
+#    Updated: 2023/08/22 15:14:33 by cpothin          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -43,7 +43,7 @@ BUILT_FILES	=	builtins exec process
 PARS_DIR	=	parsing/
 PARS_FILES	=	input path parsing_utils
 SHELL_DIR	=	shell/
-SHELL_FILES	=	env echo pwd exit cd unset export
+SHELL_FILES	=	env echo pwd exit cd unset export export_single
 MAIN_DIR	=	main/
 MAIN_FILES	=	main utils config_sig env_utils env_utils2
 

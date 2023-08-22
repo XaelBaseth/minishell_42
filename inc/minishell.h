@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   minishell.h                                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: cpothin <cpothin@student.42.fr>            +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/08/22 15:50:31 by cpothin           #+#    #+#             */
+/*   Updated: 2023/08/22 15:50:34 by cpothin          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #ifndef MINISHELL_H
 # define MINISHELL_H
 
@@ -81,9 +93,16 @@ char	*get_short_var(char *arg);
 char	*new_env_val(t_env *env, char *arg);
 void	free_lst_node(t_env *node);
 
+//export_single
+/*Prints the environment variables by ascii order.*/
+void	single_export(t_data *data);
+
 //env
 
+/*	Duplicates and stores the environment variables through a 'key
+	and value' variable setup in the t_env structure. */
 void    store_env(char **envp, t_data *data);
+/*Splits a char * into a t_env node (node->key, node->val).*/
 t_env	*split_env(char *envp);
 /*Prints the environment variables.*/
 void	print_env(t_data *data);
