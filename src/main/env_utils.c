@@ -6,7 +6,7 @@
 /*   By: cpothin <cpothin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/17 09:34:08 by cpothin           #+#    #+#             */
-/*   Updated: 2023/08/21 16:58:06 by cpothin          ###   ########.fr       */
+/*   Updated: 2023/08/23 15:50:20 by cpothin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,8 @@ char	**env_copy(t_data *data, char **envp)
 	i = 0;
 	while (envp[i])
 	{
-		new_env[i] = (char *)gc_alloc(sizeof(char) * ft_strlen(envp[i]) + 1, "new_env_line");
+		new_env[i] = (char *)gc_alloc(sizeof(char)
+				* ft_strlen(envp[i]) + 1, "new_env_line");
 		ft_strlcpy(new_env[i], envp[i], ft_strlen(envp[i]) + 1);
 		i++;
 	}

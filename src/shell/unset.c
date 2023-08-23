@@ -6,20 +6,20 @@
 /*   By: cpothin <cpothin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/17 09:06:04 by cpothin           #+#    #+#             */
-/*   Updated: 2023/08/23 15:44:39 by cpothin          ###   ########.fr       */
+/*   Updated: 2023/08/23 15:47:18 by cpothin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../inc/minishell.h"
 
-void	free_node(t_env *node)
+static void	free_node(t_env *node)
 {
 	gc_free(node->key);
 	gc_free(node->val);
 	gc_free(node);
 }
 
-void	delete_first_lst_env(t_data *data, t_env *tmp)
+static void	delete_first_lst_env(t_data *data, t_env *tmp)
 {
 	if (tmp->next)
 		data->lst_env = data->lst_env->next;
@@ -27,7 +27,7 @@ void	delete_first_lst_env(t_data *data, t_env *tmp)
 		data->lst_env = NULL;
 }
 
-void	unset_var(t_data *data, char *arg)
+static void	unset_var(t_data *data, char *arg)
 {
 	t_env	*tmp;
 	t_env	*previous;
