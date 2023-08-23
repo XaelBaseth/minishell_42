@@ -6,7 +6,7 @@
 /*   By: cpothin <cpothin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/17 09:06:04 by cpothin           #+#    #+#             */
-/*   Updated: 2023/08/21 11:33:18 by cpothin          ###   ########.fr       */
+/*   Updated: 2023/08/23 15:44:39 by cpothin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,30 +19,29 @@ void	free_node(t_env *node)
 	gc_free(node);
 }
 
+void	delete_first_lst_env(t_data *data, t_env *tmp)
+{
+	if (tmp->next)
+		data->lst_env = data->lst_env->next;
+	else
+		data->lst_env = NULL;
+}
+
 void	unset_var(t_data *data, char *arg)
 {
-	// on itere dans a liste chainee
-	// si on trouve la valeur
-	// on la supprime
-	// sinon, on ne fait rien (pas de message, que ca fonctionne ou pas)
 	t_env	*tmp;
-	t_env	*next;
 	t_env	*previous;
 	int		i;
 
 	tmp = data->lst_env;
-	next = data->lst_env;
-	i = 0;
+	i = -1;
 	while (tmp)
 	{
-		if (ft_strncmp(tmp->key, arg, ft_strlen(arg)) == 0)
+		if (++i > -1 && ft_strcmp(tmp->key, arg) == 0)
 		{
 			if (i == 0)
 			{
-				if (tmp->next)
-					data->lst_env = data->lst_env->next;
-				else
-					data->lst_env = NULL;
+				delete_first_lst_env(data, tmp);
 				return ;
 			}
 			previous->next = tmp->next;
@@ -50,14 +49,12 @@ void	unset_var(t_data *data, char *arg)
 			data->nb_env--;
 			return ;
 		}
-		i++;
 		previous = tmp;
 		tmp = tmp->next;
 	}
-	(void)next;
 }
 
-void	do_unset(t_data *data) 
+void	do_unset(t_data *data)
 {
 	int	i;
 

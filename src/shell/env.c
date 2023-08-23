@@ -6,7 +6,7 @@
 /*   By: cpothin <cpothin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/27 11:01:28 by cpothin           #+#    #+#             */
-/*   Updated: 2023/08/22 17:26:48 by cpothin          ###   ########.fr       */
+/*   Updated: 2023/08/23 15:28:57 by cpothin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,7 @@ t_env	*split_env(char *envp)
 
 void	store_env(char **envp, t_data *data)
 {
-	int	i;
+	int		i;
 	t_env	*head;
 
 	i = 0;
@@ -93,26 +93,3 @@ void	print_env(t_data *data)
 		lst = lst->next;
 	}
 }
-
-// void	update_env(t_data *data)
-// {
-// 	t_env	*head;
-// 	char	**new_env;
-// 	int		i;
-
-// 	i = 0;
-// 	head = data->arr_env;
-// 	while (head->next) // ajouter && i++ pour economiser des lignes
-// 	{
-// 		head = head->next;
-// 		i++;
-// 	}
-// 	new_env = (char **)gc_alloc(sizeof(char *) * i + 1, );
-// 	data->nb_env = i;
-// 	head = data->arr_env;
-// 	i = -1;
-// 	while (++i < data->nb_env)
-// 	{
-		
-// 	}
-// }

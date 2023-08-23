@@ -6,7 +6,7 @@
 /*   By: cpothin <cpothin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/25 07:42:03 by acharlot          #+#    #+#             */
-/*   Updated: 2023/08/19 12:06:06 by cpothin          ###   ########.fr       */
+/*   Updated: 2023/08/23 15:21:17 by cpothin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,6 @@ int main(int argc, char **argv, char **envp)
 	store_env(envp, &data);
 	//print_env(&data);
 	path = get_path(&data);
-	set_pwd(&data);
 	store_path(path, &data);
 	//print_path(&data);
 	//print_addr(&data);

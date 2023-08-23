@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   exec.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: axel <axel@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: cpothin <cpothin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/09 08:17:00 by acharlot          #+#    #+#             */
-/*   Updated: 2023/08/15 12:17:23 by axel             ###   ########.fr       */
+/*   Updated: 2023/08/23 15:23:40 by cpothin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,10 +16,10 @@
 	them. */
 static void	execute_in_path(t_data *data)
 {
-	int	i;
-	char *bin_path;
-	char *temp;
-	char **input;
+	int		i;
+	char	*bin_path;
+	char	*temp;
+	char	**input;
 
 	i = -1;
 	input = get_command(data->input);
@@ -36,7 +36,6 @@ static void	execute_in_path(t_data *data)
 	}
 	ft_printf("%s not found in any directories in PATH\n", data->input);
 }
-
 
 /*	Check if the command inputed is either part of the added built-ins
 	function or part of the PATH functions. */

@@ -6,84 +6,98 @@
 /*   By: cpothin <cpothin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/16 10:16:52 by cpothin           #+#    #+#             */
-/*   Updated: 2023/08/22 16:57:13 by cpothin          ###   ########.fr       */
+/*   Updated: 2023/08/23 15:19:43 by cpothin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../inc/minishell.h"
 
-void	change_pwd(t_data *data)
+char	*get_env(t_data *data, char *str)
 {
+	t_env	*lst;
+
+	lst = data->lst_env;
+	while (lst)
+	{
+		if (ft_strcmp(lst->key, str) == 0)
+			return (lst->val);
+		lst = lst->next;
+	}
+	return (NULL);
+}
+
+static bool	check_directory(t_data *data, const char *directory_path)
+{
+	struct stat	st;
+
+	if (data->argc > 2)
+	{
+		ft_printf("minishell: cd: too many arguments\n");
+		return (false);
+	}
+	if (stat(directory_path, &st) == 0)
+	{
+		if (S_ISDIR(st.st_mode))
+			return (true);
+		else
+		{
+			ft_printf("minishell: cd: %s: Not a directory\n", data->args[1]);
+			return (false);
+		}
+	}
+	ft_printf("minishell: cd: %s: No such file or directory\n", data->args[1]);
+	return (false);
+}
+
+static void	change_dir(t_data *data, const char *new_path, char *old_path)
+{
+	char		cur_path[PATH_MAX];
+
+	chdir(new_path);
+	export_var(data, ft_strjoin("OLDPWD=", old_path));
+	getcwd(cur_path, PATH_MAX);
+	export_var(data, ft_strjoin("PWD=", cur_path));
+}
+
+static bool	check_argument(t_data *data, char *arg)
+{
+	bool	arg_ok;
+
+	arg_ok = true;
+	if (ft_strcmp(arg, "-") == 0)
+	{
+		change_dir(data, get_env(data, "OLDPWD"), get_env(data, "PWD"));
+		ft_printf("%s\n", get_env(data, "PWD"));
+	}
+	else
+		arg_ok = false;
 	(void)data;
+	return (arg_ok);
 }
 
-void	update_old_pwd(t_data *data, char *old_pwd)
-{
-	ft_strlcpy(data->old_path, old_pwd, ft_strlen(old_pwd));
-}
-
+/* `cd ""` ne doit rien faire, avec le parsing qui passe les "" */
 void	do_cd(t_data *data)
 {
-	(void)data;
-	/*
-		cd [directory]: Changes the current working directory to the specified directory.
-			If no directory is provided, it changes to the user's home directory.
-			Example:	cd /path/to/directory or simply cd to go to the home directory.
-						cd Desktop goes to the child Desktop directory if it exists.
-						If the directory doesn't exist, prints:
-							bash: cd: Desktop: No such file or directory
+	char		cur_path[PATH_MAX];
+	const char	*directory_path;
 
-		cd -: Switches between the current directory and the previous directory you were in.
-			This is handy for toggling between two directories.
-			Example: cd - switches back to the previous directory.
-
-		cd ~ or cd ~username: Changes the current directory to the home directory of the currently
-			logged-in user or the specified username.
-			Example: cd ~john would go to the home directory of the user "john." (/home/cpothin)
-
-		cd ..: Moves up one directory level (to the parent directory).
-			Example: If you are in /home/user/documents, cd .. would take you to /home/user.
-			Do nothing if already on the root directory.
-
-		cd .: Stays in the current directory. This is mainly used to represent the current directory explicitly.
-			Example: cd . does nothing and keeps you in the same directory. BUT the OLD_PWD is still exported
-
-		cd /: Changes the current directory to the root directory.
-			Example: cd / takes you to the root directory.
-
-		
-		OLD_PWD=/ exported at the start of the program. Sets it to the root directory.
-		On directory change, export the current directory on the OLD_PWD, do the stuff,
-		then export the new directory on the PWD.
-
-		if it's absolute,
-			if the folder exists
-			update the path
-
-		if it's relative, 
-			join the current path to the argument (slash detection or in the parsing?)
-			check if the folder exists 
-	*/
-	// char	temp[PATH_MAX];
-
-	// getcwd(temp, PATH_MAX);
-	// data->old_path = from;
-	// if (data->args[1] == NULL || strncmp(data->args[1], "~", 1) == 0)
-	// {
-	// 	update_old_pwd(&temp[0], data);
-	// 	chdir(getenv("HOME"));
-	// 	change_pwd(data);
-	// 	return ;
-	// }
-	// if (streq(data->args[1], "-"))
-	// {
-	// 	do_cd(data, data->old_path);
-	// 	// cd to old pwd
-	// 	return ;
-	// }
-	// if (chdir(data->args[1]) == SUCCESS)
-	// {
-	// 	update_old_pwd(&temp[0], data);
-	// 	change_pwd(data);
-	// }
+	getcwd(cur_path, PATH_MAX);
+	if (data->argc == 1 || ft_strcmp(data->args[1], "~") == 0)
+	{
+		change_dir(data, getenv("HOME"), cur_path);
+		return ;
+	}
+	if (check_argument(data, data->args[1]) == true)
+		return ;
+	if (data->args[1][0] == '/')
+	{
+		if (check_directory(data, data->args[1]) == false)
+			return ;
+		change_dir(data, data->args[1], cur_path);
+		return ;
+	}
+	directory_path = ft_strjoin(cur_path, ft_strjoin("/", data->args[1]));
+	if (check_directory(data, directory_path) == false)
+		return ;
+	change_dir(data, directory_path, cur_path);
 }

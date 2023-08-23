@@ -6,7 +6,7 @@
 /*   By: cpothin <cpothin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/16 15:01:03 by cpothin           #+#    #+#             */
-/*   Updated: 2023/08/22 15:14:17 by cpothin          ###   ########.fr       */
+/*   Updated: 2023/08/23 15:29:11 by cpothin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,7 @@ void	edit_env_var(t_data *data, char *arg, char *short_var)
 void	new_env_var(t_data *data, char *arg)
 {
 	t_env	*lst;
-	
+
 	lst = data->lst_env;
 	while (lst)
 	{

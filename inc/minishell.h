@@ -6,7 +6,7 @@
 /*   By: cpothin <cpothin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/22 15:50:31 by cpothin           #+#    #+#             */
-/*   Updated: 2023/08/22 15:50:34 by cpothin          ###   ########.fr       */
+/*   Updated: 2023/08/23 15:21:30 by cpothin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,9 +21,10 @@
 
 # include <readline/readline.h>
 # include <readline/history.h>
+# include <sys/wait.h>
+# include <sys/stat.h>
 # include <stdlib.h>
 # include <string.h>
-# include <sys/wait.h>
 # include <unistd.h>
 # include <stdbool.h>
 # include <signal.h>
@@ -71,7 +72,6 @@ typedef struct	s_data
 	char	**envp;
 	t_env	*lst_env;
 	int		nb_env;
-	char	*pwd;
 	char	*path;
 	char	*old_path;
 	t_path	*arr_path;
@@ -112,7 +112,6 @@ void	print_env(t_data *data);
 void	do_echo(t_data *data);
 
 //pwd
-void	set_pwd(t_data *data);
 void	get_pwd(t_data *data);
 
 //exit
@@ -122,6 +121,7 @@ bool	do_exit(t_data *data);
 //cd
 
 void	do_cd(t_data *data);
+char	*get_env(t_data *data, char *str);
 
 //unset
 /*Unsets the specified environment variables.
@@ -132,6 +132,7 @@ void	do_unset(t_data *data);
 //export
 
 void	do_export(t_data *data);
+void	export_var(t_data *data, char *arg);
 
 /*	MAIN	*/
 //utils
