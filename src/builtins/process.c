@@ -6,11 +6,12 @@
 /*   By: axel <axel@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/14 08:08:31 by acharlot          #+#    #+#             */
-/*   Updated: 2023/08/22 10:05:47 by axel             ###   ########.fr       */
+/*   Updated: 2023/08/28 14:55:20 by axel             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../inc/minishell.h"
+
 
 /*	Create the processes where to execute the command inputed.
 	t_args *input : command inputed.
@@ -20,6 +21,9 @@ void	create_processes(t_args *input, t_data *data)
 {
 	__pid_t	child_pid;
 	int	stat_loc;
+
+	signal(SIGQUIT, sigquit_handler);
+	g_signal.in_cmd = 1;
 	child_pid = fork();
 	if (child_pid < 0)
 		panic("Fork failed.");
@@ -27,4 +31,5 @@ void	create_processes(t_args *input, t_data *data)
  		execute_cmd(input, data);
 	else
 		waitpid(child_pid, &stat_loc, WUNTRACED);
+	g_signal.in_cmd = 0;
 }

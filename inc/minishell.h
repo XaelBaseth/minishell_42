@@ -37,17 +37,11 @@
 # define PIPE_ERR "pipe() failed."
 # define FORK_ERR "fork() failed."
 
-
-/*	GLOBAL	*/
-extern pid_t	g_pid;
-extern int		g_status;
-
-
 /*	STRUCTURES	*/
-
 typedef struct s_env t_env;
 typedef struct s_path t_path;
 typedef struct s_args t_args;
+typedef struct s_signal t_signal;
 
 typedef enum	e_operator
 {
@@ -82,7 +76,6 @@ struct s_args
 	t_args		*next;
 };
 
-
 typedef struct	s_data
 {
 	char	**envp;
@@ -94,6 +87,17 @@ typedef struct	s_data
 	int		nb_path;
 	t_args	*args;
 }			t_data;
+
+struct s_signal
+{
+	int	error_num;
+	int	stop_heredoc;
+	int	in_cmd;
+	int	in_heredoc;
+};
+
+/*	GLOBAL	*/
+extern t_signal	g_signal;
 
 /*	FUNCTIONS	*/
 
@@ -119,11 +123,12 @@ bool		streq(char *str1, char *str2);
 
 //config_sig
 
-void		sigint_handler(int signum);
+void		sigint_handler(int sig);
+void		sigquit_handler(int sig);
 
 //init
 
-void	setup_shell(char **envp, t_data *data, t_args **args);
+void		setup_shell(char **envp, t_data *data, t_args **args);
 
 /*	PARSING	*/
 //parser
@@ -180,6 +185,6 @@ void		exec_redirect(t_args *input, t_data *data);
 
 //pipe
 
-void	exec_pipe(t_args *input, t_data *data);
+void		exec_pipe(t_args *input, t_data *data);
 
 #endif
