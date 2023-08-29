@@ -6,7 +6,7 @@
 /*   By: axel <axel@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/17 08:00:57 by acharlot          #+#    #+#             */
-/*   Updated: 2023/08/22 11:18:09 by axel             ###   ########.fr       */
+/*   Updated: 2023/08/29 10:54:50 by axel             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -132,6 +132,6 @@ t_args	*parser(char *input)
 		temp = temp->next;
 	}
 	temp->next = NULL;
-	free(parsed);
+	gc_free(parsed);
 	return (head);
 }

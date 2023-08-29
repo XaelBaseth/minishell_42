@@ -6,7 +6,7 @@
 /*   By: axel <axel@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/17 08:17:48 by acharlot          #+#    #+#             */
-/*   Updated: 2023/08/22 14:52:56 by axel             ###   ########.fr       */
+/*   Updated: 2023/08/29 11:06:25 by axel             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -116,7 +116,7 @@ bool	valid_input(char *input)
 	if (input == NULL)
 	{
 		free(input);
-		panic("Enter arguments.");
+		exit(EXIT_SUCCESS);
 	}
 	if (input[0] == '\0')
 		valid = false;

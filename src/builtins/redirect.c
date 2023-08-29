@@ -6,7 +6,7 @@
 /*   By: axel <axel@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/15 14:37:22 by axel              #+#    #+#             */
-/*   Updated: 2023/08/22 14:43:58 by axel             ###   ########.fr       */
+/*   Updated: 2023/08/29 10:49:44 by axel             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,9 +22,11 @@ static void	redirect_heredoc(t_args *input)
 	int		fd[2];
 
 	pipe(fd);
-	while (1)
+	while (1 && !g_signal.stop_heredoc)
 	{
 		buffer = readline("> ");
+		g_signal.stop_heredoc = 0;
+		g_signal.in_heredoc = 1;
 		if (streq(buffer, input->next->argv[0]))
 			break ;
 		ft_putendl_fd(buffer, fd[1]);
@@ -32,6 +34,7 @@ static void	redirect_heredoc(t_args *input)
 	close(fd[1]);
 	dup2(fd[0], STDIN_FILENO);
 	close(fd[0]);
+	g_signal.in_heredoc = 0;
 	free(buffer);
 }
 

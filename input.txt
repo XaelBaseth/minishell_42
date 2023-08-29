@@ -1,7 +1,1 @@
-This is just a test
-L
-O
-l
-eof
-
-GERER LES ESPACES DANS LES QUOTES /!\
+11

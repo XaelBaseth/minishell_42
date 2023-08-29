@@ -6,7 +6,7 @@
 /*   By: axel <axel@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/10 09:15:47 by cpothin           #+#    #+#             */
-/*   Updated: 2023/08/22 14:53:35 by axel             ###   ########.fr       */
+/*   Updated: 2023/08/29 11:06:31 by axel             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,6 +83,6 @@ t_operator	get_operator(char *operator)
 		op = REDIR_INPUT;
 	else
 		op = NONE;
-	free(operator);
+	gc_free(operator);
 	return (op);
 }

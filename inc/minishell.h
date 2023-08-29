@@ -90,7 +90,6 @@ typedef struct	s_data
 
 struct s_signal
 {
-	int	error_num;
 	int	stop_heredoc;
 	int	in_cmd;
 	int	in_heredoc;

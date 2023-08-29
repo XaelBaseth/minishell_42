@@ -6,7 +6,7 @@
 /*   By: axel <axel@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/14 08:08:31 by acharlot          #+#    #+#             */
-/*   Updated: 2023/08/28 14:55:20 by axel             ###   ########.fr       */
+/*   Updated: 2023/08/29 10:53:16 by axel             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ void	create_processes(t_args *input, t_data *data)
 	__pid_t	child_pid;
 	int	stat_loc;
 
-	signal(SIGQUIT, sigquit_handler);
+	//signal(SIGQUIT, sigquit_handler);
 	g_signal.in_cmd = 1;
 	child_pid = fork();
 	if (child_pid < 0)
