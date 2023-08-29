@@ -6,7 +6,7 @@
 /*   By: cpothin <cpothin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/09 08:17:00 by acharlot          #+#    #+#             */
-/*   Updated: 2023/08/23 15:23:40 by cpothin          ###   ########.fr       */
+/*   Updated: 2023/08/29 09:06:32 by cpothin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,11 +41,12 @@ static void	execute_in_path(t_data *data)
 	function or part of the PATH functions. */
 void	execute_cmd(t_data *data)
 {
-	if (builtins(data))
-		return ;
-	else
-	{
-		execute_in_path(data);
-		return ;
-	}
+	// if (builtins(data))
+	// 	return ;
+	// else
+	// {
+	check_if_binary(data, data->args[0]);
+	execute_in_path(data);
+	// return ;
+	// }
 }

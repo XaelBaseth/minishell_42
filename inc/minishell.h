@@ -6,7 +6,7 @@
 /*   By: cpothin <cpothin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/22 15:50:31 by cpothin           #+#    #+#             */
-/*   Updated: 2023/08/23 15:21:30 by cpothin          ###   ########.fr       */
+/*   Updated: 2023/08/29 09:00:38 by cpothin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -176,5 +176,9 @@ void	execute_cmd(t_data *data);
 //process
 
 void	create_processes(t_data *data);
+
+//binaries
+bool	check_if_binary(t_data *data, char *arg);
+
 
 #endif
