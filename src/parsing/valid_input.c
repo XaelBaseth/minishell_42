@@ -6,7 +6,7 @@
 /*   By: axel <axel@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/17 08:17:48 by acharlot          #+#    #+#             */
-/*   Updated: 2023/08/21 10:02:36 by axel             ###   ########.fr       */
+/*   Updated: 2023/08/29 11:06:25 by axel             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,14 +28,30 @@ bool	unexpected_token(char token)
 */
 bool	invalid_operator(char *input)
 {
-	int	i;
+	int		i;
+	bool	in_quotes;
 
-	i = 0;
-	while (has_operator(&input[i]))
+	in_quotes = false;
+	i = -1;
+	while (has_operator(&input[++i]))
 	{
-		if (check_operator_sequence(input, i))
-			return (true);
-		i++;
+		if (is_char(QUOTES, input[i]))
+			in_quotes = !in_quotes;
+		if (is_char(OPERATOR, input[i] && !in_quotes))
+		{
+			if (input[i] == input[i + 1])
+				i += 2;
+			else
+				i += 1;
+			if (input[i] == ' ')
+			{	
+				while (input[i++] && input[i++] == ' ')
+				if (is_char(OPERATOR, input[i]))
+					return (unexpected_token(input[i]));
+			}
+			if (is_char(OPERATOR, input[i]))
+				return (unexpected_token(input[i]));
+		}
 	}
 	return (false);
 }
@@ -100,7 +116,7 @@ bool	valid_input(char *input)
 	if (input == NULL)
 	{
 		free(input);
-		panic("Enter arguments.");
+		exit(EXIT_SUCCESS);
 	}
 	if (input[0] == '\0')
 		valid = false;
@@ -111,7 +127,9 @@ bool	valid_input(char *input)
 	}
 	else if (invalid_syntax(input) || invalid_syntax2(input)
 		|| invalid_operator(input))
+	{
 		valid = false;
+	}
 	if (!valid)
 		free(input);
 	return (valid);

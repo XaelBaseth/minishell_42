@@ -6,7 +6,7 @@
 /*   By: axel <axel@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/10 09:15:47 by cpothin           #+#    #+#             */
-/*   Updated: 2023/08/21 13:59:32 by axel             ###   ########.fr       */
+/*   Updated: 2023/08/29 11:06:31 by axel             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,20 +69,20 @@ t_operator	get_operator(char *operator)
 {
 	t_operator	op;
 
-	if (operator)
+	if (!operator)
 		op = NONE;
 	else if (streq(operator, "|"))
 		op = PIPE;
 	else if (streq(operator, ">>"))
-		op = HEREDOC_APPEND;
+		op = REDIR_OUTPUT_APPEND;
 	else if (streq(operator, ">"))
-		op = REDIR_OUTPUT;
+		op = REDIR_OUTPUT_REPLACE;
 	else if (streq(operator, "<<"))
-		op = HEREDOC_REPLACE;
+		op = REDIR_INPUT_UNTIL;
 	else if (streq(operator, "<"))
 		op = REDIR_INPUT;
 	else
 		op = NONE;
-	free(operator);
+	gc_free(operator);
 	return (op);
 }

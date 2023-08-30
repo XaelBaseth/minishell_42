@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: axel <axel@student.42.fr>                  +#+  +:+       +#+         #
+#    By: acharlot <acharlot@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/07/25 07:42:45 by acharlot          #+#    #+#              #
-#    Updated: 2023/08/21 14:28:25 by axel             ###   ########.fr        #
+#    Updated: 2023/08/30 08:26:45 by acharlot         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -40,9 +40,9 @@ WHITE		=	\033[0;97m
 
 #Files
 BUILT_DIR	=	builtins/
-BUILT_FILES	=	builtins exec process redirect path
+BUILT_FILES	=	builtins exec process redirect path pipe
 PARS_DIR	=	parsing/
-PARS_FILES	=	operator parser parsing_utils quotes_handler valid_input valid_operator
+PARS_FILES	=	operator parser parsing_utils quotes_handler valid_input
 SHELL_DIR	=	shell/
 SHELL_FILES	=	env echo pwd exit
 MAIN_DIR	=	main/
@@ -80,6 +80,7 @@ echo_message:
 $(NAME):		$(OBJ) $(OBJF)
 					@make -C $(LIBFT)
 					@cp libft/libft.a .
+					@$(RM) libft/libft.a
 					@$(CC) $(CFLAGS) $(OBJ) $(HEADER) libft.a -o $(NAME) $(READLINE)
 					@$(ECHO) "$(YELLOW)[MINISHELL]:\t$(ORANGE)[==========]\t$(GREEN) => Success!$(DEF_COLOR)\n"
 
@@ -98,6 +99,7 @@ $(OBJF):
 clean:
 					@$(RM) $(OBJ_DIR)
 					@$(RM) $(OBJF)
+					@$(RM) libft/obj
 					@$(ECHO) "$(BLUE)[MINISHELL]:\tobject files$(DEF_COLOR)\t$(GREEN) => Cleaned!$(DEF_COLOR)\n"
 
 fclean:			clean

@@ -6,7 +6,7 @@
 /*   By: axel <axel@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/25 07:41:55 by acharlot          #+#    #+#             */
-/*   Updated: 2023/08/21 13:45:10 by axel             ###   ########.fr       */
+/*   Updated: 2023/08/29 11:06:35 by axel             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -147,7 +147,7 @@ char	*remove_quote(char *parsed)
 		quote = '\0';
 	}
 	unquoted_parsed[j] = '\0';
-	free(parsed);
+	gc_free(parsed);
 	return (unquoted_parsed);
 }
 

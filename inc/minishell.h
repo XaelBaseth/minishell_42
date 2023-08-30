@@ -6,6 +6,7 @@
 # include "../libft/inc/libft.h"
 # include "../libft/inc/get_next_line.h"
 # include "../libft/inc/ft_gc_alloc.h"
+# include "parser.h"
 
 # include <readline/readline.h>
 # include <readline/history.h>
@@ -15,7 +16,9 @@
 # include <unistd.h>
 # include <stdbool.h>
 # include <signal.h>
-# include "parser.h"
+# include <sys/types.h>
+# include <sys/stat.h>
+# include <fcntl.h>
 
 /*	CONSTANT	*/
 # define FAILURE -1
@@ -31,26 +34,22 @@
 # define PIPE_PROMPT "No support for pipe prompt."
 # define SYNTAXT_ERR "Syntax error near unexpected token 'newline'."
 # define UNEXPECTED_TOKEN "Syntax error near unexpected token '"
-
-
-/*	GLOBAL	*/
-extern pid_t	g_pid;
-extern int		g_status;
-
+# define PIPE_ERR "pipe() failed."
+# define FORK_ERR "fork() failed."
 
 /*	STRUCTURES	*/
-
 typedef struct s_env t_env;
 typedef struct s_path t_path;
 typedef struct s_args t_args;
+typedef struct s_signal t_signal;
 
 typedef enum	e_operator
 {
 	NONE,
-	REDIR_OUTPUT,
+	REDIR_OUTPUT_REPLACE,
+	REDIR_OUTPUT_APPEND,
 	REDIR_INPUT,
-	HEREDOC_APPEND,
-	HEREDOC_REPLACE,
+	REDIR_INPUT_UNTIL,
 	PIPE,
 }				t_operator;
 
@@ -77,7 +76,6 @@ struct s_args
 	t_args		*next;
 };
 
-
 typedef struct	s_data
 {
 	char	**envp;
@@ -89,6 +87,16 @@ typedef struct	s_data
 	int		nb_path;
 	t_args	*args;
 }			t_data;
+
+struct s_signal
+{
+	int	stop_heredoc;
+	int	in_cmd;
+	int	in_heredoc;
+};
+
+/*	GLOBAL	*/
+extern t_signal	g_signal;
 
 /*	FUNCTIONS	*/
 
@@ -117,11 +125,12 @@ bool		streq(char *str1, char *str2);
 
 //config_sig
 
-void		sigint_handler(int signum);
+void		sigint_handler(int sig);
+void		sigquit_handler(int sig);
 
 //init
 
-void	setup_shell(char **envp, t_data *data, t_args **args);
+void		setup_shell(char **envp, t_data *data, t_args **args);
 
 /*	PARSING	*/
 //parser
@@ -153,11 +162,6 @@ t_operator	get_operator(char *operator);
 
 bool		valid_input(char *input);
 
-//valid_operator
-
-bool		check_operator_sequence(char *input, int index);
-bool		check_in_quotes(char *input, int index);
-
 /*	BUILTINS	*/
 //path
 
@@ -167,7 +171,7 @@ char		*get_path(t_data *data);
 
 //builtins
 
-bool	builtins(t_args *input, t_data *data);
+bool		builtins(t_args *input, t_data *data);
 
 //exec
 
@@ -179,6 +183,10 @@ void		create_processes(t_args *input, t_data *data);
 
 //redirect
 
-void		exec_redirect(t_args *input);
+void		exec_redirect(t_args *input, t_data *data);
+
+//pipe
+
+void		exec_pipe(t_args *input, t_data *data);
 
 #endif
