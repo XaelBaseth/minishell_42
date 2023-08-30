@@ -6,7 +6,7 @@
 /*   By: cpothin <cpothin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/14 10:25:44 by acharlot          #+#    #+#             */
-/*   Updated: 2023/08/11 11:49:57 by cpothin          ###   ########.fr       */
+/*   Updated: 2023/08/15 17:06:21 by cpothin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@
 */
 #include "../../inc/libft.h"
 
-static int	count_words(const char *str, char c)
+int	count_words(const char *str, char c)
 {
 	int	i;
 	int	counter;

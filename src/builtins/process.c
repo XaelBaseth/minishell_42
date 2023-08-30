@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   process.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: axel <axel@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: acharlot <acharlot@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/14 08:08:31 by acharlot          #+#    #+#             */
-/*   Updated: 2023/08/29 10:53:16 by axel             ###   ########.fr       */
+/*   Updated: 2023/08/30 08:33:10 by acharlot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,6 @@
 */
 void	create_processes(t_args *input, t_data *data)
 {
-	__pid_t	child_pid;
 	int	stat_loc;
 
 	//signal(SIGQUIT, sigquit_handler);
@@ -33,3 +32,4 @@ void	create_processes(t_args *input, t_data *data)
 		waitpid(child_pid, &stat_loc, WUNTRACED);
 	g_signal.in_cmd = 0;
 }
+

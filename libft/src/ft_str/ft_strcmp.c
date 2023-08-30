@@ -1,23 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   pwd.c                                              :+:      :+:    :+:   */
+/*   ft_strcmp.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: acharlot <acharlot@student.42.fr>          +#+  +:+       +#+        */
+/*   By: cpothin <cpothin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/08/11 10:58:31 by cpothin           #+#    #+#             */
-/*   Updated: 2023/08/30 08:33:22 by acharlot         ###   ########.fr       */
+/*   Created: 2023/08/21 14:52:05 by cpothin           #+#    #+#             */
+/*   Updated: 2023/08/21 14:52:41 by cpothin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../inc/minishell.h"
+#include "../../inc/libft.h"
 
-void	get_pwd(t_data *data)
+int	ft_strcmp(char *s1, char *s2)
 {
-	if (data->args[1])
-	{
-		ft_printf("pwd: too many arguments\n");
-		return ;
-	}
-	ft_printf("%s\n", get_env(data, "PWD"));
+	int i;
+
+	i = 0;
+	while (s1[i] == s2[i] && s1[i] != '\0' && s2[i] != '\0')
+		i++;
+	return (s1[i] - s2[i]);
 }

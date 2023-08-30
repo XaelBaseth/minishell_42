@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   minishell.h                                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: acharlot <acharlot@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/08/22 15:50:31 by cpothin           #+#    #+#             */
+/*   Updated: 2023/08/30 08:38:58 by acharlot         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #ifndef MINISHELL_H
 # define MINISHELL_H
 
@@ -10,15 +22,17 @@
 
 # include <readline/readline.h>
 # include <readline/history.h>
+# include <sys/wait.h>
+# include <sys/stat.h>
 # include <stdlib.h>
 # include <string.h>
-# include <sys/wait.h>
 # include <unistd.h>
 # include <stdbool.h>
 # include <signal.h>
 # include <sys/types.h>
 # include <sys/stat.h>
 # include <fcntl.h>
+# include <limits.h>
 
 /*	CONSTANT	*/
 # define FAILURE -1
@@ -31,6 +45,8 @@
 # define MALLOC_ERR "Memory Allocation has failed."
 # define PATH_ERR "PATH not found."
 # define EXEC_ERR "An error occured while executing the program."
+
+# define PATH_MAX 4096
 # define PIPE_PROMPT "No support for pipe prompt."
 # define SYNTAXT_ERR "Syntax error near unexpected token 'newline'."
 # define UNEXPECTED_TOKEN "Syntax error near unexpected token '"
@@ -65,7 +81,7 @@ struct	s_env
 	char	*val;
 	t_env	*previous;
 	t_env	*next;
-	bool	exported;
+	bool	has_value;
 };
 
 struct s_args
@@ -79,10 +95,10 @@ struct s_args
 typedef struct	s_data
 {
 	char	**envp;
-	t_env	*arr_env;
+	t_env	*lst_env;
 	int		nb_env;
-	char	*pwd;
 	char	*path;
+	char	*old_path;
 	t_path	*arr_path;
 	int		nb_path;
 	t_args	*args;
@@ -101,12 +117,34 @@ extern t_signal	g_signal;
 /*	FUNCTIONS	*/
 
 /*	SHELL	*/
+
+//env_utils
+
+char	**env_copy(t_data *data, char **envp);
+void	re_store_env(t_data *data);
+char	*get_short_var(char *arg);
+
+//env_utils2
+
+char	*new_env_val(t_env *env, char *arg);
+void	free_lst_node(t_env *node);
+
+//export_single
+/*Prints the environment variables by ascii order.*/
+void	single_export(t_data *data);
+
 //env
 
+/*	Duplicates and stores the environment variables through a 'key
+	and value' variable setup in the t_env structure. */
 void    	store_env(char **envp, t_data *data);
+/*Splits a char * into a t_env node (node->key, node->val).*/
+t_env	*split_env(char *envp);
+/*Prints the environment variables.*/
 void		print_env(t_data *data);
 
 //echo
+/*Does the echo command*/
 void		do_echo(t_data *data);
 
 //pwd
@@ -114,7 +152,24 @@ void		set_pwd(t_data *data);
 void		get_pwd(t_data *data);
 
 //exit
+/*Builtin: exits the current process and SHOULD return an exit status.*/
 bool	do_exit(t_data *data);
+
+//cd
+
+void	do_cd(t_data *data);
+char	*get_env(t_data *data, char *str);
+
+//unset
+/*Unsets the specified environment variables.
+If they exist, they are removed.
+If they don't, nothing happens.*/
+void	do_unset(t_data *data);
+
+//export
+
+void	do_export(t_data *data);
+void	export_var(t_data *data, char *arg);
 
 /*	MAIN	*/
 //utils
@@ -122,6 +177,8 @@ bool	do_exit(t_data *data);
 void		panic(char *str);
 bool		is_char(const char *str, int c);
 bool		streq(char *str1, char *str2);
+bool	is_int(char *str);
+char	*ft_strdup_range(const char *s, size_t from, size_t to);
 
 //config_sig
 
@@ -188,5 +245,9 @@ void		exec_redirect(t_args *input, t_data *data);
 //pipe
 
 void		exec_pipe(t_args *input, t_data *data);
+
+//binaries
+bool	check_if_binary(t_data *data, char *arg);
+
 
 #endif

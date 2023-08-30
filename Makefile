@@ -6,10 +6,9 @@
 #    By: acharlot <acharlot@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/07/25 07:42:45 by acharlot          #+#    #+#              #
-#    Updated: 2023/08/30 08:26:45 by acharlot         ###   ########.fr        #
+#    Updated: 2023/08/30 08:39:25 by acharlot         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
-
 
 #Variable
 MAKEFLAGS	+= --silent
@@ -40,13 +39,13 @@ WHITE		=	\033[0;97m
 
 #Files
 BUILT_DIR	=	builtins/
-BUILT_FILES	=	builtins exec process redirect path pipe
+BUILT_FILES	=	builtins exec process redirect path pipe binaries
 PARS_DIR	=	parsing/
 PARS_FILES	=	operator parser parsing_utils quotes_handler valid_input
 SHELL_DIR	=	shell/
-SHELL_FILES	=	env echo pwd exit
+SHELL_FILES	=	env echo pwd exit cd unset export export_single
 MAIN_DIR	=	main/
-MAIN_FILES	=	main utils config_sig init
+MAIN_FILES	=	main utils config_sig init env_utils env_utils2
 
 
 SRC_BUI_FILE=	$(addprefix $(BUILT_DIR), $(BUILT_FILES))
@@ -107,6 +106,7 @@ fclean:			clean
 					@$(RM) libft.a
 					@make fclean -C $(LIBFT)
 					@$(ECHO) "$(CYAN)[MINISHELL]:\texec. files$(DEF_COLOR)\t$(GREEN) => Cleaned!$(DEF_COLOR)\n"
+					
 re:				fclean all
 					@$(ECHO) "\n$(GREEN)###\tCleaned and rebuilt everything for [MINISHELL]!\t###$(DEF_COLOR)\n"
 
