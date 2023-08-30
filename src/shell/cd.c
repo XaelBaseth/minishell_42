@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cd.c                                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cpothin <cpothin@student.42.fr>            +#+  +:+       +#+        */
+/*   By: acharlot <acharlot@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/16 10:16:52 by cpothin           #+#    #+#             */
-/*   Updated: 2023/08/23 15:19:43 by cpothin          ###   ########.fr       */
+/*   Updated: 2023/08/30 08:56:30 by acharlot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ static bool	check_directory(t_data *data, const char *directory_path)
 {
 	struct stat	st;
 
-	if (data->argc > 2)
+	if (data->args->argc > 2)
 	{
 		ft_printf("minishell: cd: too many arguments\n");
 		return (false);
@@ -41,11 +41,11 @@ static bool	check_directory(t_data *data, const char *directory_path)
 			return (true);
 		else
 		{
-			ft_printf("minishell: cd: %s: Not a directory\n", data->args[1]);
+			ft_printf("minishell: cd: %s: Not a directory\n", data->args->argv[1]);
 			return (false);
 		}
 	}
-	ft_printf("minishell: cd: %s: No such file or directory\n", data->args[1]);
+	ft_printf("minishell: cd: %s: No such file or directory\n", data->args->argv[1]);
 	return (false);
 }
 
@@ -82,21 +82,21 @@ void	do_cd(t_data *data)
 	const char	*directory_path;
 
 	getcwd(cur_path, PATH_MAX);
-	if (data->argc == 1 || ft_strcmp(data->args[1], "~") == 0)
+	if (data->args->argc == 1 || ft_strcmp(data->args->argv[1], "~") == 0)
 	{
 		change_dir(data, getenv("HOME"), cur_path);
 		return ;
 	}
-	if (check_argument(data, data->args[1]) == true)
+	if (check_argument(data, data->args->argv[1]) == true)
 		return ;
-	if (data->args[1][0] == '/')
+	if (data->args->argv[1][0] == '/')
 	{
-		if (check_directory(data, data->args[1]) == false)
+		if (check_directory(data, data->args->argv[1]) == false)
 			return ;
-		change_dir(data, data->args[1], cur_path);
+		change_dir(data, data->args->argv[1], cur_path);
 		return ;
 	}
-	directory_path = ft_strjoin(cur_path, ft_strjoin("/", data->args[1]));
+	directory_path = ft_strjoin(cur_path, ft_strjoin("/", data->args->argv[1]));
 	if (check_directory(data, directory_path) == false)
 		return ;
 	change_dir(data, directory_path, cur_path);

@@ -6,7 +6,7 @@
 /*   By: acharlot <acharlot@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/11 09:54:55 by cpothin           #+#    #+#             */
-/*   Updated: 2023/08/30 08:31:07 by acharlot         ###   ########.fr       */
+/*   Updated: 2023/08/30 08:52:15 by acharlot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,13 +36,13 @@ void	do_echo(t_data *data)
 
 	i = 1;
 	has_parameter = false;
-	while (data->args[i + 1] && is_parameter(data->args[i]))
+	while (data->args->argv[i + 1] && is_parameter(data->args->argv[i]))
 		i++;
 	if (i > 1)
 		has_parameter = true;
-	while (data->args[i + 1])
-		ft_printf("%s ", data->args[i++]);
-	ft_printf("%s", data->args[i]);
+	while (data->args->argv[i + 1])
+		ft_printf("%s ", data->args->argv[i++]);
+	ft_printf("%s", data->args->argv[i]);
 	if (!has_parameter)
 		ft_printf("\n");
 }

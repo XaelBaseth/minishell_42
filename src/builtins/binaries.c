@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   binaries.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cpothin <cpothin@student.42.fr>            +#+  +:+       +#+        */
+/*   By: acharlot <acharlot@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/29 09:00:12 by cpothin           #+#    #+#             */
-/*   Updated: 2023/08/29 09:32:34 by cpothin          ###   ########.fr       */
+/*   Updated: 2023/08/30 08:49:56 by acharlot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,10 +15,10 @@
 
 void	execute_binary(t_data *data, char *arg)
 {
-	char	*full_path;
+	/*char	*full_path;
 	char	**input;
 
-	input = get_command(data->input);
+	input = get_command(data->args->);
 	full_path = ft_strdup(get_env(data, "PWD"));
 	full_path = ft_strjoin(full_path, "/");
 	full_path = ft_strjoin(full_path, arg);
@@ -27,7 +27,9 @@ void	execute_binary(t_data *data, char *arg)
 		execve(full_path, input, data->envp);
 		perror("execve");
 		panic(EXEC_ERR);
-	}
+	}*/
+	(void)data;
+	(void)arg;
 }
 
 bool	check_if_binary(t_data *data, char *arg)

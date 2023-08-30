@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: axel <axel@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: acharlot <acharlot@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/18 10:48:07 by acharlot          #+#    #+#             */
-/*   Updated: 2023/08/29 11:06:44 by axel             ###   ########.fr       */
+/*   Updated: 2023/08/30 08:59:47 by acharlot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,7 @@ void	init_data(t_data *data)
 	signal(SIGINT, sigint_handler);
 	signal(SIGQUIT, SIG_IGN);
 	data->path = NULL;
+	data->lst_env = NULL;
 }
 
 /*	Setup all the variable used for shell.
@@ -44,7 +45,7 @@ void	setup_shell(char **envp, t_data *data, t_args **args)
 	init_data(data);
 	store_env(envp, data);
 	path = get_path(data);
-	set_pwd(data);
+	// set_pwd(data);
 	store_path(path, data);
 	*args = NULL;
 }

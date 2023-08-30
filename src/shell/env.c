@@ -6,7 +6,7 @@
 /*   By: acharlot <acharlot@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/27 11:01:28 by cpothin           #+#    #+#             */
-/*   Updated: 2023/08/30 08:33:27 by acharlot         ###   ########.fr       */
+/*   Updated: 2023/08/30 08:52:17 by acharlot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,7 +80,7 @@ void	print_env(t_data *data)
 {
 	t_env	*lst;
 
-	if (data->args[1])
+	if (data->args->argv[1])
 	{
 		ft_printf("env: %s: No arguments are authorized\n", data->args[1]);
 		return ;

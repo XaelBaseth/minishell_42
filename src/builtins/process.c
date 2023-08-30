@@ -6,7 +6,7 @@
 /*   By: acharlot <acharlot@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/14 08:08:31 by acharlot          #+#    #+#             */
-/*   Updated: 2023/08/30 08:33:10 by acharlot         ###   ########.fr       */
+/*   Updated: 2023/08/30 08:48:11 by acharlot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,7 @@
 void	create_processes(t_args *input, t_data *data)
 {
 	int	stat_loc;
+	pid_t	child_pid;
 
 	//signal(SIGQUIT, sigquit_handler);
 	g_signal.in_cmd = 1;
