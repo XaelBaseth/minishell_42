@@ -6,7 +6,7 @@
 /*   By: acharlot <acharlot@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/25 09:05:51 by acharlot          #+#    #+#             */
-/*   Updated: 2023/07/25 08:12:57 by acharlot         ###   ########.fr       */
+/*   Updated: 2023/08/30 09:28:12 by acharlot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ char	*ft_free(char *stash, char *buf)
 {
 	char	*temp;
 
-	temp = ft_strjoin_bis(stash, buf);
+	temp = ft_strjoin(stash, buf);
 	free(stash);
 	return (temp);
 }
@@ -27,8 +27,8 @@ char	*read_file(int fd, char *stash)
 	int		rd;
 
 	if (!stash)
-		stash = ft_calloc_bis(1, 1);
-	buf = ft_calloc_bis(BUFFER_SIZE + 1, sizeof(char));
+		stash = ft_calloc(1, 1);
+	buf = ft_calloc(BUFFER_SIZE + 1, sizeof(char));
 	rd = 1;
 	while (rd > 0)
 	{
@@ -40,7 +40,7 @@ char	*read_file(int fd, char *stash)
 		}
 		buf[rd] = 0;
 		stash = ft_free(stash, buf);
-		if (ft_strchr_bis(buf, '\n'))
+		if (ft_strchr(buf, '\n'))
 			break ;
 	}
 	free(buf);
@@ -57,7 +57,7 @@ char	*ft_line(char *stash)
 		return (NULL);
 	while (stash[i] && stash[i] != '\n')
 		i++;
-	line = ft_calloc_bis(i + 2, sizeof(char));
+	line = ft_calloc(i + 2, sizeof(char));
 	i = 0;
 	while (stash[i] && stash[i] != '\n')
 	{
@@ -86,7 +86,7 @@ char	*ft_clear(char *stash)
 		free(stash);
 		return (NULL);
 	}
-	line = ft_calloc_bis((ft_strlen_bis(stash) - i + 1), sizeof(char));
+	line = ft_calloc((ft_strlen(stash) - i + 1), sizeof(char));
 	i++;
 	j = 0;
 	while (stash[i])

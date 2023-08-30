@@ -6,7 +6,7 @@
 /*   By: acharlot <acharlot@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/22 15:50:31 by cpothin           #+#    #+#             */
-/*   Updated: 2023/08/30 08:38:58 by acharlot         ###   ########.fr       */
+/*   Updated: 2023/08/30 09:28:27 by acharlot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -120,18 +120,18 @@ extern t_signal	g_signal;
 
 //env_utils
 
-char	**env_copy(t_data *data, char **envp);
-void	re_store_env(t_data *data);
-char	*get_short_var(char *arg);
+char		**env_copy(t_data *data, char **envp);
+void		re_store_env(t_data *data);
+char		*get_short_var(char *arg);
 
 //env_utils2
 
-char	*new_env_val(t_env *env, char *arg);
-void	free_lst_node(t_env *node);
+char		*new_env_val(t_env *env, char *arg);
+void		free_lst_node(t_env *node);
 
 //export_single
 /*Prints the environment variables by ascii order.*/
-void	single_export(t_data *data);
+void		single_export(t_data *data);
 
 //env
 
@@ -139,7 +139,7 @@ void	single_export(t_data *data);
 	and value' variable setup in the t_env structure. */
 void    	store_env(char **envp, t_data *data);
 /*Splits a char * into a t_env node (node->key, node->val).*/
-t_env	*split_env(char *envp);
+t_env		*split_env(char *envp);
 /*Prints the environment variables.*/
 void		print_env(t_data *data);
 
@@ -153,23 +153,23 @@ void		get_pwd(t_data *data);
 
 //exit
 /*Builtin: exits the current process and SHOULD return an exit status.*/
-bool	do_exit(t_data *data);
+bool		do_exit(t_data *data);
 
 //cd
 
-void	do_cd(t_data *data);
-char	*get_env(t_data *data, char *str);
+void		do_cd(t_data *data);
+char		*get_env(t_data *data, char *str);
 
 //unset
 /*Unsets the specified environment variables.
 If they exist, they are removed.
 If they don't, nothing happens.*/
-void	do_unset(t_data *data);
+void		do_unset(t_data *data);
 
 //export
 
-void	do_export(t_data *data);
-void	export_var(t_data *data, char *arg);
+void		do_export(t_data *data);
+void		export_var(t_data *data, char *arg);
 
 /*	MAIN	*/
 //utils
@@ -177,8 +177,8 @@ void	export_var(t_data *data, char *arg);
 void		panic(char *str);
 bool		is_char(const char *str, int c);
 bool		streq(char *str1, char *str2);
-bool	is_int(char *str);
-char	*ft_strdup_range(const char *s, size_t from, size_t to);
+bool		is_int(char *str);
+char		*ft_strdup_range(const char *s, size_t from, size_t to);
 
 //config_sig
 

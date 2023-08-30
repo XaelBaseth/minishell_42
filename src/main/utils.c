@@ -6,7 +6,7 @@
 /*   By: acharlot <acharlot@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/27 08:38:49 by acharlot          #+#    #+#             */
-/*   Updated: 2023/08/30 08:41:42 by acharlot         ###   ########.fr       */
+/*   Updated: 2023/08/30 09:32:56 by acharlot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,7 @@ void	panic(char *str)
 	ft_printf("\033[31mError!\n%s\n\033[0m", str);
 	exit(EXIT_FAILURE);
 }
+
 /*	Free the matrix used for the args linked list.
 	char **matrix: pointer to a string array.
 */
