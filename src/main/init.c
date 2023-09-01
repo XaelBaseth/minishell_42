@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: acharlot <acharlot@student.42.fr>          +#+  +:+       +#+        */
+/*   By: axel <axel@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/18 10:48:07 by acharlot          #+#    #+#             */
-/*   Updated: 2023/08/30 08:59:47 by acharlot         ###   ########.fr       */
+/*   Updated: 2023/09/01 11:18:15 by axel             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,9 +24,7 @@ int	event(void)
 void	init_data(t_data *data)
 {
 	rl_event_hook = event;
-	g_signal.stop_heredoc = 0;
-	g_signal.in_cmd = 0;
-	g_signal.in_heredoc = 0;
+	g_signal = 0;
 	signal(SIGINT, sigint_handler);
 	signal(SIGQUIT, SIG_IGN);
 	data->path = NULL;

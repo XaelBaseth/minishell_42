@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: acharlot <acharlot@student.42.fr>          +#+  +:+       +#+        */
+/*   By: axel <axel@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/22 15:50:31 by cpothin           #+#    #+#             */
-/*   Updated: 2023/08/30 09:28:27 by acharlot         ###   ########.fr       */
+/*   Updated: 2023/09/01 11:09:41 by axel             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,19 +45,19 @@
 # define MALLOC_ERR "Memory Allocation has failed."
 # define PATH_ERR "PATH not found."
 # define EXEC_ERR "An error occured while executing the program."
+# define PIPE_ERR "pipe() failed."
+# define FORK_ERR "fork() failed."
+# define SYNTAXT_ERR "Syntax error near unexpected token 'newline'."
+# define HEREDOC_ERR " Syntax error: here-document delimited by end-of-file."
 
 # define PATH_MAX 4096
 # define PIPE_PROMPT "No support for pipe prompt."
-# define SYNTAXT_ERR "Syntax error near unexpected token 'newline'."
 # define UNEXPECTED_TOKEN "Syntax error near unexpected token '"
-# define PIPE_ERR "pipe() failed."
-# define FORK_ERR "fork() failed."
 
 /*	STRUCTURES	*/
 typedef struct s_env t_env;
 typedef struct s_path t_path;
 typedef struct s_args t_args;
-typedef struct s_signal t_signal;
 
 typedef enum	e_operator
 {
@@ -104,15 +104,8 @@ typedef struct	s_data
 	t_args	*args;
 }			t_data;
 
-struct s_signal
-{
-	int	stop_heredoc;
-	int	in_cmd;
-	int	in_heredoc;
-};
-
 /*	GLOBAL	*/
-extern t_signal	g_signal;
+extern int g_signal;
 
 /*	FUNCTIONS	*/
 
@@ -233,6 +226,7 @@ bool		builtins(t_args *input, t_data *data);
 //exec
 
 void		execute_cmd(t_args *input, t_data *data);
+void		exec_executable(t_args *input, t_data *data);
 
 //process
 
@@ -247,6 +241,7 @@ void		exec_redirect(t_args *input, t_data *data);
 void		exec_pipe(t_args *input, t_data *data);
 
 //binaries
+
 bool	check_if_binary(t_data *data, char *arg);
 
 
