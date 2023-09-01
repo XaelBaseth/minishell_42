@@ -6,7 +6,7 @@
 /*   By: axel <axel@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/31 12:03:38 by acharlot          #+#    #+#             */
-/*   Updated: 2023/09/01 11:21:56 by axel             ###   ########.fr       */
+/*   Updated: 2023/09/01 13:15:16 by axel             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,8 @@ int	g_signal;
 */
 void	sigint_handler(int sig)
 {
+	if (!g_signal)
+		ft_putstr_fd("\n", STDERR_FILENO);
 	if (g_signal)
 	{
 		g_signal = 1;

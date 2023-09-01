@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: acharlot <acharlot@student.42.fr>          +#+  +:+       +#+         #
+#    By: axel <axel@student.42.fr>                  +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/07/25 07:42:45 by acharlot          #+#    #+#              #
-#    Updated: 2023/08/30 08:39:25 by acharlot         ###   ########.fr        #
+#    Updated: 2023/09/01 13:14:38 by axel             ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -43,9 +43,10 @@ BUILT_FILES	=	builtins exec process redirect path pipe binaries
 PARS_DIR	=	parsing/
 PARS_FILES	=	operator parser parsing_utils quotes_handler valid_input
 SHELL_DIR	=	shell/
-SHELL_FILES	=	env echo pwd exit cd unset export export_single
+SHELL_FILES	=	env echo pwd exit cd unset export export_single \
+				env_utils env_utils2
 MAIN_DIR	=	main/
-MAIN_FILES	=	main utils config_sig init env_utils env_utils2
+MAIN_FILES	=	main utils config_sig init 
 
 
 SRC_BUI_FILE=	$(addprefix $(BUILT_DIR), $(BUILT_FILES))

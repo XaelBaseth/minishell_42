@@ -6,7 +6,7 @@
 /*   By: axel <axel@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/15 14:37:22 by axel              #+#    #+#             */
-/*   Updated: 2023/09/01 11:10:19 by axel             ###   ########.fr       */
+/*   Updated: 2023/09/01 13:44:27 by axel             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ static void	redirect_heredoc(t_args *input)
 	pipe(fd);
 	while (1 && !g_signal)
 	{
-		buffer = readline("> ");
+		buffer = readline("\033[32m$> \033[0m");
 		if (!buffer)
 		{
 			ft_putendl_fd("Error in heredoc.\n", fd[1]);
@@ -36,7 +36,7 @@ static void	redirect_heredoc(t_args *input)
 			break ;
 		}
 		ft_putendl_fd(buffer, fd[1]);
-		free(buffer);
+		
 	}
 	close(fd[1]);
 	dup2(fd[0], STDIN_FILENO);
@@ -100,7 +100,6 @@ static void	redirect_output(t_args *input)
 void	exec_redirect(t_args *input, t_data *data)
 {
 	t_args *temp;
-	(void)data;
 
 	temp = input;
 	if (input->operator == REDIR_INPUT)
@@ -112,4 +111,8 @@ void	exec_redirect(t_args *input, t_data *data)
 	temp->operator = NONE;
 	while (input->operator != NONE && input->operator != PIPE)
 		input = input->next;
+	if (input->operator == NONE)
+		execute_cmd(temp, data);
+	else
+		exec_pipe(input, data);
 }

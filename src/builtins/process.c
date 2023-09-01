@@ -6,13 +6,13 @@
 /*   By: axel <axel@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/14 08:08:31 by acharlot          #+#    #+#             */
-/*   Updated: 2023/09/01 11:09:44 by axel             ###   ########.fr       */
+/*   Updated: 2023/09/01 13:28:21 by axel             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../inc/minishell.h"
 
-/*	Returns the number of arguments in the input.
+/*	Returns the number of arguments separated by operator in the input.
 	t_args *input: command inputed.
 */
 static int	lstsize(t_args *input)

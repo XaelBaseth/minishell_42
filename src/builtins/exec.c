@@ -6,7 +6,7 @@
 /*   By: axel <axel@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/09 08:17:00 by acharlot          #+#    #+#             */
-/*   Updated: 2023/09/01 11:09:47 by axel             ###   ########.fr       */
+/*   Updated: 2023/09/01 13:41:11 by axel             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,7 @@ static void	execute_in_path(t_args *input, t_data *data)
 	}
 	ft_printf("%s not found in any directories in PATH\n", data->args->argv[0]);
 }
+
 /*	Check if the command inputed is either part of the added built-ins
 	function or part of the PATH functions.
 	t_args *input : command inputed.
