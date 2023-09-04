@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: acharlot <acharlot@student.42.fr>          +#+  +:+       +#+        */
+/*   By: axel <axel@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/27 08:38:49 by acharlot          #+#    #+#             */
-/*   Updated: 2023/08/30 09:32:56 by acharlot         ###   ########.fr       */
+/*   Updated: 2023/09/04 14:50:19 by axel             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,46 +40,6 @@ void	free_matrix(char **matrix)
 	}
 	gc_free(matrix);
 	matrix = NULL;
-}
-
-/*	Check if a string is equal to a character by comparing their ASCII number.
-	const char *str: string to which we compare the ASCII number.
-	int c: ASCII number of a character.
- */
-bool	is_char(const char *str, int c)
-{
-	int	i;
-
-	if (!str)
-		return (NULL);
-	i = 0;
-	while (str[i])
-	{
-		if (str[i] == c)
-			return (true);
-		i++;
-	}
-	return (false);
-}
-
-/*	Compare two string to see wether they are the same or not.
-	char *str1: first string to compare.
-	char *str2: second string to compare.
-*/
-bool	streq(char *str1, char *str2)
-{
-	int	i;
-
-	if ((str1 && !str2) || (!str1 && str2))
-		return (false);
-	i = 0;
-	while (str1[i] || str2[i])
-	{
-		if (str1[i] != str2[i])
-			return (false);
-		i += 1;
-	}
-	return (true);
 }
 
 bool	is_numeric(char *str)

@@ -6,7 +6,7 @@
 #    By: axel <axel@student.42.fr>                  +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/07/25 07:42:45 by acharlot          #+#    #+#              #
-#    Updated: 2023/09/01 13:14:38 by axel             ###   ########.fr        #
+#    Updated: 2023/09/04 14:50:08 by axel             ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -41,12 +41,12 @@ WHITE		=	\033[0;97m
 BUILT_DIR	=	builtins/
 BUILT_FILES	=	builtins exec process redirect path pipe binaries
 PARS_DIR	=	parsing/
-PARS_FILES	=	operator parser parsing_utils quotes_handler valid_input
+PARS_FILES	=	operator parser parsing_utils quotes_handler valid_input 
 SHELL_DIR	=	shell/
 SHELL_FILES	=	env echo pwd exit cd unset export export_single \
 				env_utils env_utils2
 MAIN_DIR	=	main/
-MAIN_FILES	=	main utils config_sig init 
+MAIN_FILES	=	main utils config_sig init utils2
 
 
 SRC_BUI_FILE=	$(addprefix $(BUILT_DIR), $(BUILT_FILES))

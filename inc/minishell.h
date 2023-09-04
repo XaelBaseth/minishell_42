@@ -6,7 +6,7 @@
 /*   By: axel <axel@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/22 15:50:31 by cpothin           #+#    #+#             */
-/*   Updated: 2023/09/01 11:09:41 by axel             ###   ########.fr       */
+/*   Updated: 2023/09/04 14:45:05 by axel             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -190,17 +190,18 @@ void		clean_parsed(t_args **args, t_data *data);
 
 //quotes_handler
 
+
 bool 		is_inside_quotes(char *input, int index);
 int			unclosed_quote(char *str);
 char		*remove_quote(char *parsed);
 
 //parsing_utils
 
-char		*ft_remove_spaces(char *str);
 bool		check_brackets(char *raw_input);
+char		*get_input(void);
+bool		is_space(char c);
 t_args		*new_lst(int argc);
 void		lst_clear(t_args **args);
-char		*get_input(void);
 
 //operator
 
@@ -211,6 +212,7 @@ t_operator	get_operator(char *operator);
 //valid_input
 
 bool		valid_input(char *input);
+
 
 /*	BUILTINS	*/
 //path

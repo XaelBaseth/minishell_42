@@ -6,7 +6,7 @@
 /*   By: axel <axel@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/17 08:17:48 by acharlot          #+#    #+#             */
-/*   Updated: 2023/08/29 11:06:25 by axel             ###   ########.fr       */
+/*   Updated: 2023/09/04 14:39:18 by axel             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,7 @@ bool	invalid_operator(char *input)
 				i += 1;
 			if (input[i] == ' ')
 			{	
-				while (input[i++] && input[i++] == ' ')
+				while (input[++i] && input[++i] == ' ')
 				if (is_char(OPERATOR, input[i]))
 					return (unexpected_token(input[i]));
 			}

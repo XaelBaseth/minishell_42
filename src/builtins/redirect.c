@@ -6,7 +6,7 @@
 /*   By: axel <axel@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/15 14:37:22 by axel              #+#    #+#             */
-/*   Updated: 2023/09/04 10:20:14 by axel             ###   ########.fr       */
+/*   Updated: 2023/09/04 14:37:47 by axel             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,6 @@ static void	redirect_heredoc(t_args *input)
 static void	redirect_input(t_args *input)
 {
 	int		in_file;
-	char	*error_msg;
 
 	if (input->next->argv[0])
 	{
@@ -61,12 +60,7 @@ static void	redirect_input(t_args *input)
 			dup2(in_file, STDIN_FILENO);
 		}
 		else
-		{
-			error_msg = ft_strjoin("minishell: ", input->next->argv[0]);
-			perror(error_msg);
-			gc_free_all();
-			exit(EXIT_FAILURE);
-		}
+			panic("An error occured.");
 	}
 }
 

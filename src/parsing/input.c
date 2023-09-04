@@ -3,26 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   input.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: acharlot <acharlot@student.42.fr>          +#+  +:+       +#+        */
+/*   By: axel <axel@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/25 07:41:55 by acharlot          #+#    #+#             */
-/*   Updated: 2023/08/30 09:32:54 by acharlot         ###   ########.fr       */
+/*   Updated: 2023/09/04 14:43:17 by axel             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../inc/minishell.h"
-
-//static char	validate_input(char *raw_input)
-//{
-//	Pass it throught the parser & lexer
-//	That means : 	- get length of args
-//					- get number of args
-//					- get rid of whitespace (space or tabs)
-//					- get operator and applies it.
-//	GLHF :)
-//}
-
-// ne prend pas encore en compte si les parentheses sont dans des guillemets...
 
 /*	checks if the character at index is inside quotes so we can ignore
 	the meta-characters except $ */
@@ -79,60 +67,4 @@ bool	check_brackets(char *raw_input)
 	return (true);
 }
 
-/*	Returns the input of the user after validating it. */
-/*
-	Reproduire ce comportement ? :
-
-	➜  minishell git:(parsing) ✗ ( (
-	subsh subsh> (
-	subsh subsh subsh> (
-	subsh subsh subsh subsh> (
-	subsh subsh subsh subsh subsh> "
-	subsh subsh subsh subsh subsh dquote> 
-
-	➜  minishell git:(parsing) ✗ (
-	echo "coucou" 
-	)  
-	coucou
-	➜  minishell git:(parsing) ✗ 
-
-	Chaque ligne est un \n.
-*/
-
-char	*get_input(void)
-{
-	char	*raw_input;
-
-	raw_input = readline("\033[32mminishell$\033[0m ");
-	if (!raw_input)
-		return (NULL);
-	if (!check_brackets(raw_input))
-	{
-		printf("Not the same amount of brackets.\n");
-		return (NULL);
-	}
- 	return (raw_input);
-}
-
-char	**get_command(char *input)
-{
-	char **command;	
-	char *separator = " ";
-	char *parsed;
-	int index = 0;
-
-	command = gc_alloc(64 * sizeof(char *), "command");
-	if (!command)
-		panic(MALLOC_ERR);
-	input = ft_remove_spaces(input);
-	parsed = strtok(input, separator); // strtok not allowed!
-	while (parsed != NULL)
-	{
-		command[index] = parsed;
-		index++;
-		parsed = strtok(NULL, separator);
-	}
-	command[index] = NULL;
-	return (command);
-}
 
