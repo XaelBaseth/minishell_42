@@ -6,7 +6,7 @@
 /*   By: axel <axel@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/15 14:37:22 by axel              #+#    #+#             */
-/*   Updated: 2023/08/29 10:49:44 by axel             ###   ########.fr       */
+/*   Updated: 2023/09/04 10:20:14 by axel             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,20 +22,25 @@ static void	redirect_heredoc(t_args *input)
 	int		fd[2];
 
 	pipe(fd);
-	while (1 && !g_signal.stop_heredoc)
+	while (1 && !g_signal)
 	{
-		buffer = readline("> ");
-		g_signal.stop_heredoc = 0;
-		g_signal.in_heredoc = 1;
+		buffer = readline("\033[32m$> \033[0m");
+		if (!buffer)
+		{
+			ft_putendl_fd("Error in heredoc.\n", fd[1]);
+			exit(EXIT_FAILURE);
+		}
 		if (streq(buffer, input->next->argv[0]))
+		{
+			free(buffer);
 			break ;
+		}
 		ft_putendl_fd(buffer, fd[1]);
 	}
 	close(fd[1]);
 	dup2(fd[0], STDIN_FILENO);
 	close(fd[0]);
-	g_signal.in_heredoc = 0;
-	free(buffer);
+	g_signal = 0;
 }
 
 /*	Redirect the input of a command into the file via the '<' operator.
@@ -80,12 +85,12 @@ static void	redirect_output(t_args *input)
 		else if (input->operator == REDIR_OUTPUT_APPEND)
 			open(input->next->argv[0], O_WRONLY | O_APPEND | O_CREAT, 0666);
 		input = input->next;
-		close(1);		
+		close(1);
 	}
 	if (input->operator == REDIR_OUTPUT_REPLACE)
-			open(input->next->argv[0], O_WRONLY | O_TRUNC | O_CREAT, 0666);
-		else if (input->operator == REDIR_OUTPUT_APPEND)
-			open(input->next->argv[0], O_WRONLY | O_APPEND | O_CREAT, 0666);
+		open(input->next->argv[0], O_WRONLY | O_TRUNC | O_CREAT, 0666);
+	else if (input->operator == REDIR_OUTPUT_APPEND)
+		open(input->next->argv[0], O_WRONLY | O_APPEND | O_CREAT, 0666);
 }
 
 /*	Check for the redirection symbol, or pipe, and execute the correct command.
