@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   exec.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: acharlot <acharlot@student.42.fr>          +#+  +:+       +#+        */
+/*   By: cpothin <cpothin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/09 08:17:00 by acharlot          #+#    #+#             */
-/*   Updated: 2023/08/30 08:37:43 by acharlot         ###   ########.fr       */
+/*   Updated: 2023/08/30 10:03:01 by cpothin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,8 +49,6 @@ void	execute_cmd(t_args *input, t_data *data)
 		exec_pipe(input, data);
 	else if (input->operator == NONE)
 	{
-		if (builtins(input, data))
-			return ;
 		execute_in_path(input, data);
 		return ;
 	}

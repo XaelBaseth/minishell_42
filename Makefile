@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: acharlot <acharlot@student.42.fr>          +#+  +:+       +#+         #
+#    By: cpothin <cpothin@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/07/25 07:42:45 by acharlot          #+#    #+#              #
-#    Updated: 2023/08/30 08:39:25 by acharlot         ###   ########.fr        #
+#    Updated: 2023/09/04 09:20:00 by cpothin          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -19,7 +19,7 @@ HEADER		=	-I inc
 SRC_DIR 	=	src/
 OBJ_DIR 	=	obj/
 CC			=	gcc
-CFLAGS		=	-Wall -Wextra -Werror -fsanitize=address -g3
+CFLAGS		=	-Wall -Wextra -Werror -g3
 READLINE	=	-lreadline
 LIBFT		=	libft/
 RM			=	rm -rf
@@ -44,6 +44,8 @@ PARS_DIR	=	parsing/
 PARS_FILES	=	operator parser parsing_utils quotes_handler valid_input
 SHELL_DIR	=	shell/
 SHELL_FILES	=	env echo pwd exit cd unset export export_single
+EXPAND_DIR	=	expand/
+EXPAND_FILES=	expand expand_utils
 MAIN_DIR	=	main/
 MAIN_FILES	=	main utils config_sig init env_utils env_utils2
 
@@ -51,6 +53,7 @@ MAIN_FILES	=	main utils config_sig init env_utils env_utils2
 SRC_BUI_FILE=	$(addprefix $(BUILT_DIR), $(BUILT_FILES))
 SRC_PAR_FILE=	$(addprefix $(PARS_DIR), $(PARS_FILES))
 SRC_SHE_FILE=	$(addprefix $(SHELL_DIR), $(SHELL_FILES))
+SRC_EXP_FILE=	$(addprefix $(EXPAND_DIR), $(EXPAND_FILES))
 SRC_MAI_FILE=	$(addprefix $(MAIN_DIR), $(MAIN_FILES))
 
 
@@ -63,12 +66,15 @@ POBJ		=	$(addprefix $(OBJ_DIR), $(addsuffix .o, $(SRC_PAR_FILE)))
 SSRC		=	$(addprefix $(SRC_DIR), $(addsuffix .c, $(SRC_SHE_FILE)))
 SOBJ		=	$(addprefix $(OBJ_DIR), $(addsuffix .o, $(SRC_SHE_FILE)))
 
+ESRC		=	$(addprefix $(SRC_DIR), $(addsuffix .c, $(SRC_EXP_FILE)))
+EOBJ		=	$(addprefix $(OBJ_DIR), $(addsuffix .o, $(SRC_EXP_FILE)))
+
 MSRC		=	$(addprefix $(SRC_DIR), $(addsuffix .c, $(SRC_MAI_FILE)))
 MOBJ		=	$(addprefix $(OBJ_DIR), $(addsuffix .o, $(SRC_MAI_FILE)))
 
 OBJF		=	.cache_exists
 
-OBJ 		=	$(BOBJ) $(POBJ) $(SOBJ) $(MOBJ)
+OBJ 		=	$(BOBJ) $(POBJ) $(SOBJ) $(EOBJ) $(MOBJ)
 
 #Rules
 all:			echo_message $(NAME)
@@ -92,6 +98,7 @@ $(OBJF):
 					@mkdir -p $(OBJ_DIR)$(BUILT_DIR)
 					@mkdir -p $(OBJ_DIR)$(PARS_DIR)
 					@mkdir -p $(OBJ_DIR)$(SHELL_DIR)
+					@mkdir -p $(OBJ_DIR)$(EXPAND_DIR)
 					@mkdir -p $(OBJ_DIR)$(MAIN_DIR)
 					@touch $(OBJF)
 

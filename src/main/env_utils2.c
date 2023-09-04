@@ -6,7 +6,7 @@
 /*   By: cpothin <cpothin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/21 15:40:37 by cpothin           #+#    #+#             */
-/*   Updated: 2023/08/23 15:50:44 by cpothin          ###   ########.fr       */
+/*   Updated: 2023/09/04 09:19:22 by cpothin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,4 +38,18 @@ char	*new_env_val(t_env *env, char *arg)
 		i++;
 	new_val = ft_strdup_range(arg, start + 1, i);
 	return (new_val);
+}
+
+char	*get_env_value(t_env *lst, char *var_name)
+{
+	t_env	*temp;
+
+	temp = lst;
+	while (temp != NULL)
+	{
+		if (ft_strcmp(var_name, temp->key) == 0)
+			return (temp->val);
+		temp = temp->next;
+	}
+	return (NULL);
 }

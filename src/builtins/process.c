@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   process.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: acharlot <acharlot@student.42.fr>          +#+  +:+       +#+        */
+/*   By: cpothin <cpothin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/14 08:08:31 by acharlot          #+#    #+#             */
-/*   Updated: 2023/08/30 08:48:11 by acharlot         ###   ########.fr       */
+/*   Updated: 2023/09/02 16:13:23 by cpothin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,8 @@ void	create_processes(t_args *input, t_data *data)
 
 	//signal(SIGQUIT, sigquit_handler);
 	g_signal.in_cmd = 1;
+	if (builtins(input, data))
+		return ;
 	child_pid = fork();
 	if (child_pid < 0)
 		panic("Fork failed.");
@@ -33,4 +35,3 @@ void	create_processes(t_args *input, t_data *data)
 		waitpid(child_pid, &stat_loc, WUNTRACED);
 	g_signal.in_cmd = 0;
 }
-

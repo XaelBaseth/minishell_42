@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   echo.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: acharlot <acharlot@student.42.fr>          +#+  +:+       +#+        */
+/*   By: cpothin <cpothin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/11 09:54:55 by cpothin           #+#    #+#             */
-/*   Updated: 2023/08/30 08:52:15 by acharlot         ###   ########.fr       */
+/*   Updated: 2023/09/01 13:34:54 by cpothin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../inc/minishell.h"
 
-bool	is_parameter(char *str)
+static bool	is_parameter(char *str)
 {
 	int	i;
 
@@ -21,7 +21,7 @@ bool	is_parameter(char *str)
 	{
 		while (str[i])
 		{
-			if (str[i] != 'n')
+			if (str[i++] != 'n')
 				return (false);
 		}
 		return (true);

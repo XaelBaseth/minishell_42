@@ -3,14 +3,15 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: acharlot <acharlot@student.42.fr>          +#+  +:+       +#+        */
+/*   By: cpothin <cpothin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/25 07:42:03 by acharlot          #+#    #+#             */
-/*   Updated: 2023/08/30 08:37:04 by acharlot         ###   ########.fr       */
+/*   Updated: 2023/09/04 11:05:21 by cpothin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../inc/minishell.h"
+int	exit_code = 0;
 
 int main(int argc, char **argv, char **envp)
 {
@@ -27,6 +28,7 @@ int main(int argc, char **argv, char **envp)
 		if (!valid_input(input))
 			continue ;
 		add_history(input);
+		input = expand(&data, input);
 		if (!input[0])
 		{
 			free(input);
@@ -40,4 +42,3 @@ int main(int argc, char **argv, char **envp)
 	gc_free_all();
 	return (EXIT_SUCCESS);
 }
-

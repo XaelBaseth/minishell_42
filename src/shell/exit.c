@@ -3,17 +3,17 @@
 /*                                                        :::      ::::::::   */
 /*   exit.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: acharlot <acharlot@student.42.fr>          +#+  +:+       +#+        */
+/*   By: cpothin <cpothin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/12 16:46:50 by cpothin           #+#    #+#             */
-/*   Updated: 2023/08/30 08:55:08 by acharlot         ###   ########.fr       */
+/*   Updated: 2023/09/01 13:39:10 by cpothin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../inc/minishell.h"
 
 /*
-	checks first the amount of arguments.
+	Checks first the amount of arguments.
 	
 	- if there are multiple arguments and the first is correct, 
 	the shell doesn't exit and shows "bash: exit: too many arguments"

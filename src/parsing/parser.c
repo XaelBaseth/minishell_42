@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parser.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: axel <axel@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: cpothin <cpothin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/17 08:00:57 by acharlot          #+#    #+#             */
-/*   Updated: 2023/08/29 10:54:50 by axel             ###   ########.fr       */
+/*   Updated: 2023/09/04 10:13:16 by cpothin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -115,7 +115,6 @@ t_args	*parser(char *input)
 	int		tracker[2];
 
 	parsed = parse_input(input);
-	free(input);
 	temp = new_lst(get_argc(&parsed[0]));
 	head = temp;
 	tracker[0] = 0;

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cd.c                                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: acharlot <acharlot@student.42.fr>          +#+  +:+       +#+        */
+/*   By: cpothin <cpothin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/16 10:16:52 by cpothin           #+#    #+#             */
-/*   Updated: 2023/08/30 08:56:30 by acharlot         ###   ########.fr       */
+/*   Updated: 2023/08/31 16:38:45 by cpothin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,7 +75,6 @@ static bool	check_argument(t_data *data, char *arg)
 	return (arg_ok);
 }
 
-/* `cd ""` ne doit rien faire, avec le parsing qui passe les "" */
 void	do_cd(t_data *data)
 {
 	char		cur_path[PATH_MAX];
