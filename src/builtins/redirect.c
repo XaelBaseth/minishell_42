@@ -6,7 +6,7 @@
 /*   By: axel <axel@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/15 14:37:22 by axel              #+#    #+#             */
-/*   Updated: 2023/09/01 13:44:27 by axel             ###   ########.fr       */
+/*   Updated: 2023/09/04 10:20:14 by axel             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,6 @@ static void	redirect_heredoc(t_args *input)
 			break ;
 		}
 		ft_putendl_fd(buffer, fd[1]);
-		
 	}
 	close(fd[1]);
 	dup2(fd[0], STDIN_FILENO);
