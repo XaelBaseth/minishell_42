@@ -6,12 +6,12 @@
 /*   By: cpothin <cpothin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/02 15:44:19 by cpothin           #+#    #+#             */
-/*   Updated: 2023/09/04 11:03:14 by cpothin          ###   ########.fr       */
+/*   Updated: 2023/09/04 13:51:12 by cpothin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../inc/minishell.h"
-extern int	exit_code;
+extern int	g_signal;
 
 char	*signal_to_str(int nbr)
 {
@@ -34,7 +34,7 @@ static int		exit_status_size(void)
 	char	*exit_status;
 	int		size;
 
-	exit_status = signal_to_str(exit_code);
+	exit_status = signal_to_str(g_signal);
 	size = ft_strlen(exit_status);
 	gc_free(exit_status);
 	return (size);

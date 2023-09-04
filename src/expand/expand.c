@@ -6,12 +6,12 @@
 /*   By: cpothin <cpothin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/31 09:42:37 by cpothin           #+#    #+#             */
-/*   Updated: 2023/09/04 11:02:59 by cpothin          ###   ########.fr       */
+/*   Updated: 2023/09/04 13:51:04 by cpothin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../inc/minishell.h"
-extern int	exit_code;
+extern int	g_signal;
 
 static int	expand_exit_status(char *expanded_input_at_i, int *i)
 {
@@ -19,7 +19,7 @@ static int	expand_exit_status(char *expanded_input_at_i, int *i)
 	int		j;
 
 	*i += 2;
-	exit_status = signal_to_str(exit_code);
+	exit_status = signal_to_str(g_signal);
 	j = 0;
 	while (exit_status[j])
 	{

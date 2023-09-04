@@ -6,7 +6,7 @@
 /*   By: cpothin <cpothin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/22 15:50:31 by cpothin           #+#    #+#             */
-/*   Updated: 2023/09/04 11:14:28 by cpothin          ###   ########.fr       */
+/*   Updated: 2023/09/04 15:46:50 by cpothin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,7 @@
 
 /*	CONSTANT	*/
 # define FAILURE -1
+# define ERROR 1
 # define SUCCESS 0
 # define OPERATOR "|<>"
 # define REDIRECTS "><"
@@ -116,9 +117,6 @@ extern int g_signal;
 char		**env_copy(t_data *data, char **envp);
 void		re_store_env(t_data *data);
 char		*get_short_var(char *arg);
-char		**env_copy(t_data *data, char **envp);
-void		re_store_env(t_data *data);
-char		*get_short_var(char *arg);
 
 //env_utils2
 
@@ -128,8 +126,7 @@ char		*get_env_value(t_env *lst, char *var_name);
 
 //export_single
 /*Prints the environment variables by ascii order.*/
-void		single_export(t_data *data);
-void		single_export(t_data *data);
+int			single_export(t_data *data);
 
 //env
 
@@ -138,26 +135,24 @@ void		single_export(t_data *data);
 void    	store_env(char **envp, t_data *data);
 /*Splits a char * into a t_env node (node->key, node->val).*/
 t_env		*split_env(char *envp);
-t_env		*split_env(char *envp);
 /*Prints the environment variables.*/
-void		print_env(t_data *data);
+int			print_env(t_data *data);
 
 //echo
 /*Does the echo command*/
-void		do_echo(t_data *data);
+int			do_echo(t_data *data);
 
 //pwd
 void		set_pwd(t_data *data);
-void		get_pwd(t_data *data);
+int			get_pwd(t_data *data);
 
 //exit
 /*Builtin: exits the current process and SHOULD return an exit status.*/
-bool		do_exit(t_data *data);
-bool		do_exit(t_data *data);
+int			do_exit(t_data *data);
 
 //cd
 
-void		do_cd(t_data *data);
+int			do_cd(t_data *data);
 /*Takes the `env name` and returns its value.*/
 char		*get_env(t_data *data, char *str);
 
@@ -165,14 +160,11 @@ char		*get_env(t_data *data, char *str);
 /*Unsets the specified environment variables.
 If they exist, they are removed.
 If they don't, nothing happens.*/
-void		do_unset(t_data *data);
-void		do_unset(t_data *data);
+int			do_unset(t_data *data);
 
 //export
 
-void		do_export(t_data *data);
-void		export_var(t_data *data, char *arg);
-void		do_export(t_data *data);
+int			do_export(t_data *data);
 void		export_var(t_data *data, char *arg);
 
 /*	MAIN	*/
@@ -181,8 +173,6 @@ void		export_var(t_data *data, char *arg);
 void		panic(char *str);
 bool		is_char(const char *str, int c);
 bool		streq(char *str1, char *str2);
-bool		is_int(char *str);
-char		*ft_strdup_range(const char *s, size_t from, size_t to);
 bool		is_int(char *str);
 char		*ft_strdup_range(const char *s, size_t from, size_t to);
 
@@ -235,6 +225,7 @@ char		*get_path(t_data *data);
 //builtins
 
 bool		builtins(t_args *input, t_data *data);
+int			set_g_status(int status);
 
 //exec
 

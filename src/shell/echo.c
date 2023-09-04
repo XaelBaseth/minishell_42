@@ -6,7 +6,7 @@
 /*   By: cpothin <cpothin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/11 09:54:55 by cpothin           #+#    #+#             */
-/*   Updated: 2023/09/01 13:34:54 by cpothin          ###   ########.fr       */
+/*   Updated: 2023/09/04 14:07:04 by cpothin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ static bool	is_parameter(char *str)
 	return (false);
 }
 
-void	do_echo(t_data *data)
+int	do_echo(t_data *data)
 {
 	int		i;
 	bool	has_parameter;
@@ -45,4 +45,5 @@ void	do_echo(t_data *data)
 	ft_printf("%s", data->args->argv[i]);
 	if (!has_parameter)
 		ft_printf("\n");
+	return (set_g_status(SUCCESS));
 }

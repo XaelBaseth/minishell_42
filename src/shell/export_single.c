@@ -6,7 +6,7 @@
 /*   By: cpothin <cpothin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/22 15:13:55 by cpothin           #+#    #+#             */
-/*   Updated: 2023/08/22 15:14:49 by cpothin          ###   ########.fr       */
+/*   Updated: 2023/09/04 14:24:55 by cpothin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,7 @@ t_env	*find_next_min_value(t_data *data, t_env *cur_lst)
 	return (min_lst);
 }
 
-void	single_export(t_data *data)
+int		single_export(t_data *data)
 {
 	t_env	*last_value;
 
@@ -63,4 +63,5 @@ void	single_export(t_data *data)
 		ft_printf("declare -x %s=\"%s\"\n", last_value->key, last_value->val);
 		last_value = find_next_min_value(data, last_value);
 	}
+	return (SUCCESS);
 }

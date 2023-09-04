@@ -6,7 +6,7 @@
 /*   By: cpothin <cpothin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/16 10:16:52 by cpothin           #+#    #+#             */
-/*   Updated: 2023/08/31 16:38:45 by cpothin          ###   ########.fr       */
+/*   Updated: 2023/09/04 14:08:29 by cpothin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,7 +75,7 @@ static bool	check_argument(t_data *data, char *arg)
 	return (arg_ok);
 }
 
-void	do_cd(t_data *data)
+int	do_cd(t_data *data)
 {
 	char		cur_path[PATH_MAX];
 	const char	*directory_path;
@@ -84,19 +84,20 @@ void	do_cd(t_data *data)
 	if (data->args->argc == 1 || ft_strcmp(data->args->argv[1], "~") == 0)
 	{
 		change_dir(data, getenv("HOME"), cur_path);
-		return ;
+		return (set_g_status(SUCCESS));
 	}
 	if (check_argument(data, data->args->argv[1]) == true)
-		return ;
+		return (set_g_status(ERROR));
 	if (data->args->argv[1][0] == '/')
 	{
 		if (check_directory(data, data->args->argv[1]) == false)
-			return ;
+			return (set_g_status(ERROR));
 		change_dir(data, data->args->argv[1], cur_path);
-		return ;
+		return (set_g_status(SUCCESS));
 	}
 	directory_path = ft_strjoin(cur_path, ft_strjoin("/", data->args->argv[1]));
 	if (check_directory(data, directory_path) == false)
-		return ;
+		return (set_g_status(ERROR));
 	change_dir(data, directory_path, cur_path);
+	return (set_g_status(SUCCESS));
 }

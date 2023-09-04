@@ -6,7 +6,7 @@
 /*   By: cpothin <cpothin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/27 11:01:28 by cpothin           #+#    #+#             */
-/*   Updated: 2023/09/04 11:15:53 by cpothin          ###   ########.fr       */
+/*   Updated: 2023/09/04 14:07:16 by cpothin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,14 +76,14 @@ void	store_env(char **envp, t_data *data)
 }
 
 /*	Print out a copy of the ENV data cloned into envp. */
-void	print_env(t_data *data)
+int	print_env(t_data *data)
 {
 	t_env	*lst;
 
 	if (data->args->argv[1])
 	{
 		ft_printf("env: %s: No arguments are authorized\n", data->args[1]);
-		return ;
+		return (set_g_status(ERROR));
 	}
 	lst = data->lst_env;
 	while (lst)
@@ -92,4 +92,5 @@ void	print_env(t_data *data)
 			ft_printf("%s=%s\n", lst->key, lst->val);
 		lst = lst->next;
 	}
+	return (set_g_status(SUCCESS));
 }

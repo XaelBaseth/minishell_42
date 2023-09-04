@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   unset.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: acharlot <acharlot@student.42.fr>          +#+  +:+       +#+        */
+/*   By: cpothin <cpothin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/17 09:06:04 by cpothin           #+#    #+#             */
-/*   Updated: 2023/08/30 08:53:34 by acharlot         ###   ########.fr       */
+/*   Updated: 2023/09/04 14:39:50 by cpothin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,7 @@ static void	unset_var(t_data *data, char *arg)
 	}
 }
 
-void	do_unset(t_data *data)
+int		do_unset(t_data *data)
 {
 	int	i;
 
@@ -62,4 +62,5 @@ void	do_unset(t_data *data)
 	while (data->args->argv[i])
 		unset_var(data, data->args->argv[i++]);
 	re_store_env(data);
+	return (set_g_status(SUCCESS));
 }

@@ -6,11 +6,18 @@
 /*   By: cpothin <cpothin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/25 07:41:52 by acharlot          #+#    #+#             */
-/*   Updated: 2023/08/31 16:47:03 by cpothin          ###   ########.fr       */
+/*   Updated: 2023/09/04 14:11:20 by cpothin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../inc/minishell.h"
+extern int	g_signal;
+
+int		set_g_status(int status)
+{
+	g_signal = status;
+	return (0);
+}
 
 /*	Handles the builtins commands that you cannot in the path.
 	t_args *input : command inputed.
@@ -25,7 +32,7 @@ bool	builtins(t_args *input, t_data *data)
 	else if (ft_strcmp(input->argv[0], "pwd") == 0)
 		get_pwd(data);
 	else if (ft_strcmp(input->argv[0], "exit") == 0)
-		return (do_exit(data));
+		do_exit(data);
 	else if (ft_strcmp(input->argv[0], "cd") == 0)
 		do_cd(data);
 	else if (ft_strcmp(input->argv[0], "unset") == 0)

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   export.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: acharlot <acharlot@student.42.fr>          +#+  +:+       +#+        */
+/*   By: cpothin <cpothin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/16 15:01:03 by cpothin           #+#    #+#             */
-/*   Updated: 2023/08/30 08:53:10 by acharlot         ###   ########.fr       */
+/*   Updated: 2023/09/04 14:26:05 by cpothin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,14 +85,15 @@ void	export_var(t_data *data, char *arg)
 	gc_free(short_var);
 }
 
-void	do_export(t_data *data)
+int		do_export(t_data *data)
 {
 	int	i;
 
 	i = 1;
 	if (data->args->argc == 1)
-		return (single_export(data));
+		return (set_g_status(single_export(data)));
 	while (data->args->argv[i])
 		export_var(data, data->args->argv[i++]);
 	re_store_env(data);
+	return (set_g_status(SUCCESS));
 }
