@@ -6,7 +6,7 @@
 /*   By: cpothin <cpothin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/22 15:50:31 by cpothin           #+#    #+#             */
-/*   Updated: 2023/09/04 11:03:47 by cpothin          ###   ########.fr       */
+/*   Updated: 2023/09/04 11:14:28 by cpothin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,19 +45,19 @@
 # define MALLOC_ERR "Memory Allocation has failed."
 # define PATH_ERR "PATH not found."
 # define EXEC_ERR "An error occured while executing the program."
+# define PIPE_ERR "pipe() failed."
+# define FORK_ERR "fork() failed."
+# define SYNTAXT_ERR "Syntax error near unexpected token 'newline'."
+# define HEREDOC_ERR " Syntax error: here-document delimited by end-of-file."
 
 # define PATH_MAX 4096
 # define PIPE_PROMPT "No support for pipe prompt."
-# define SYNTAXT_ERR "Syntax error near unexpected token 'newline'."
 # define UNEXPECTED_TOKEN "Syntax error near unexpected token '"
-# define PIPE_ERR "pipe() failed."
-# define FORK_ERR "fork() failed."
 
 /*	STRUCTURES	*/
 typedef struct s_env t_env;
 typedef struct s_path t_path;
 typedef struct s_args t_args;
-typedef struct s_signal t_signal;
 
 typedef enum	e_operator
 {
@@ -104,15 +104,8 @@ typedef struct	s_data
 	t_args	*args;
 }			t_data;
 
-struct s_signal
-{
-	int	stop_heredoc;
-	int	in_cmd;
-	int	in_heredoc;
-};
-
 /*	GLOBAL	*/
-extern t_signal	g_signal;
+extern int g_signal;
 
 /*	FUNCTIONS	*/
 
@@ -120,6 +113,9 @@ extern t_signal	g_signal;
 
 //env_utils
 
+char		**env_copy(t_data *data, char **envp);
+void		re_store_env(t_data *data);
+char		*get_short_var(char *arg);
 char		**env_copy(t_data *data, char **envp);
 void		re_store_env(t_data *data);
 char		*get_short_var(char *arg);
@@ -133,6 +129,7 @@ char		*get_env_value(t_env *lst, char *var_name);
 //export_single
 /*Prints the environment variables by ascii order.*/
 void		single_export(t_data *data);
+void		single_export(t_data *data);
 
 //env
 
@@ -140,6 +137,7 @@ void		single_export(t_data *data);
 	and value' variable setup in the t_env structure. */
 void    	store_env(char **envp, t_data *data);
 /*Splits a char * into a t_env node (node->key, node->val).*/
+t_env		*split_env(char *envp);
 t_env		*split_env(char *envp);
 /*Prints the environment variables.*/
 void		print_env(t_data *data);
@@ -155,6 +153,7 @@ void		get_pwd(t_data *data);
 //exit
 /*Builtin: exits the current process and SHOULD return an exit status.*/
 bool		do_exit(t_data *data);
+bool		do_exit(t_data *data);
 
 //cd
 
@@ -167,9 +166,12 @@ char		*get_env(t_data *data, char *str);
 If they exist, they are removed.
 If they don't, nothing happens.*/
 void		do_unset(t_data *data);
+void		do_unset(t_data *data);
 
 //export
 
+void		do_export(t_data *data);
+void		export_var(t_data *data, char *arg);
 void		do_export(t_data *data);
 void		export_var(t_data *data, char *arg);
 
@@ -179,6 +181,8 @@ void		export_var(t_data *data, char *arg);
 void		panic(char *str);
 bool		is_char(const char *str, int c);
 bool		streq(char *str1, char *str2);
+bool		is_int(char *str);
+char		*ft_strdup_range(const char *s, size_t from, size_t to);
 bool		is_int(char *str);
 char		*ft_strdup_range(const char *s, size_t from, size_t to);
 
@@ -235,6 +239,7 @@ bool		builtins(t_args *input, t_data *data);
 //exec
 
 void		execute_cmd(t_args *input, t_data *data);
+void		exec_executable(t_args *input, t_data *data);
 
 //process
 

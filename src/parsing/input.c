@@ -6,7 +6,7 @@
 /*   By: acharlot <acharlot@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/25 07:41:55 by acharlot          #+#    #+#             */
-/*   Updated: 2023/08/30 08:33:57 by acharlot         ###   ########.fr       */
+/*   Updated: 2023/08/30 09:32:54 by acharlot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,10 +40,8 @@ bool 	is_inside_quotes(char *input, int index)
 		if (!first_quote && (input[i] == '\'' || input[i] == '"'))
 		{
 			first_quote = input[i];
-			ft_printf("quote: %c\n", first_quote);
 			if (i == index)
 			{
-				ft_printf("\nNOOB\n");
 				return (false);
 			}
 		}
@@ -54,7 +52,6 @@ bool 	is_inside_quotes(char *input, int index)
 				first_quote = 0;
 		}
 	}
-	ft_printf("  %d\n", quotes);
 	if (quotes % 2 == 1)
 		return (true);
 	return (false);
