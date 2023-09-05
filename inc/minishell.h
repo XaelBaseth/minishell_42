@@ -6,7 +6,7 @@
 /*   By: axel <axel@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/22 15:50:31 by cpothin           #+#    #+#             */
-/*   Updated: 2023/09/04 14:45:05 by axel             ###   ########.fr       */
+/*   Updated: 2023/09/05 09:57:25 by axel             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -154,9 +154,7 @@ void		do_cd(t_data *data);
 char		*get_env(t_data *data, char *str);
 
 //unset
-/*Unsets the specified environment variables.
-If they exist, they are removed.
-If they don't, nothing happens.*/
+
 void		do_unset(t_data *data);
 
 //export
@@ -172,6 +170,7 @@ bool		is_char(const char *str, int c);
 bool		streq(char *str1, char *str2);
 bool		is_int(char *str);
 char		*ft_strdup_range(const char *s, size_t from, size_t to);
+char		*trim(char *str1, char const *set);
 
 //config_sig
 

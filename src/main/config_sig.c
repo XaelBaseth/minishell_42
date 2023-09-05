@@ -6,7 +6,7 @@
 /*   By: axel <axel@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/31 12:03:38 by acharlot          #+#    #+#             */
-/*   Updated: 2023/09/01 13:15:16 by axel             ###   ########.fr       */
+/*   Updated: 2023/09/05 09:49:41 by axel             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,7 @@ void	sigint_handler(int sig)
 */
 void	sigquit_handler(int sig)
 {
-	ft_putstr_fd("Quit:", STDERR_FILENO);
+	ft_putstr_fd("Quit: ", STDERR_FILENO);
 	ft_putnbr_fd(sig, STDERR_FILENO);
 	ft_putchar_fd('\n', STDERR_FILENO);
 }

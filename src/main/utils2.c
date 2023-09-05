@@ -6,7 +6,7 @@
 /*   By: axel <axel@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/04 14:48:44 by axel              #+#    #+#             */
-/*   Updated: 2023/09/04 14:49:23 by axel             ###   ########.fr       */
+/*   Updated: 2023/09/05 09:35:21 by axel             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,4 +50,26 @@ bool	streq(char *str1, char *str2)
 		i += 1;
 	}
 	return (true);
+}
+
+char	*trim(char *str1, char const *set)
+{
+	size_t	beg;
+	size_t	end;
+	char	*trimmed_str;
+
+	if (!str1 || !set)
+		return (NULL);
+	beg = 0;
+	while (str1[beg] != '\0' && ft_strchr(set, str1[beg]) != NULL)
+		beg += 1;
+	end = ft_strlen(str1 + beg);
+	while (end > beg && ft_strchr(set, str1[(beg + end) - 1]) != NULL)
+		end -= 1;
+	trimmed_str = malloc((end + 1) * sizeof(char));
+	if (!trimmed_str)
+		return (NULL);
+	ft_strncpy(trimmed_str, (str1 + beg), end);
+	free(str1);
+	return (trimmed_str);
 }

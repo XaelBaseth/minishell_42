@@ -6,7 +6,7 @@
 /*   By: axel <axel@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/17 08:17:48 by acharlot          #+#    #+#             */
-/*   Updated: 2023/09/04 14:39:18 by axel             ###   ########.fr       */
+/*   Updated: 2023/09/05 09:59:09 by axel             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ bool	invalid_operator(char *input)
 {
 	int		i;
 	bool	in_quotes;
-
+	
 	in_quotes = false;
 	i = -1;
 	while (has_operator(&input[++i]))

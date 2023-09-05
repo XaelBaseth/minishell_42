@@ -6,7 +6,7 @@
 /*   By: axel <axel@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/09 15:32:28 by cpothin           #+#    #+#             */
-/*   Updated: 2023/09/04 14:50:00 by axel             ###   ########.fr       */
+/*   Updated: 2023/09/05 09:58:28 by axel             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@
 char	*get_input(void)
 {
 	char	*raw_input;
+	char 	*input;
 
 	raw_input = readline("\033[32mminishell$\033[0m ");
 	if (!raw_input)
@@ -25,7 +26,8 @@ char	*get_input(void)
 		printf("Not the same amount of brackets.\n");
 		return (NULL);
 	}
- 	return (raw_input);
+	input = trim(raw_input, " \t");
+ 	return (input);
 }
 
 /*	Check if the character c is a space or a formatting character.
