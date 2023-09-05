@@ -6,7 +6,7 @@
 /*   By: axel <axel@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/17 08:17:48 by acharlot          #+#    #+#             */
-/*   Updated: 2023/09/05 09:59:09 by axel             ###   ########.fr       */
+/*   Updated: 2023/09/05 11:09:41 by axel             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -131,6 +131,6 @@ bool	valid_input(char *input)
 		valid = false;
 	}
 	if (!valid)
-		free(input);
+		gc_free(input);
 	return (valid);
 }

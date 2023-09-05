@@ -6,7 +6,7 @@
 /*   By: axel <axel@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/25 07:42:03 by acharlot          #+#    #+#             */
-/*   Updated: 2023/09/05 09:15:35 by axel             ###   ########.fr       */
+/*   Updated: 2023/09/05 11:00:43 by axel             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ int main(int argc, char **argv, char **envp)
 	{
 		input = get_input();
 		if (!input)
-			continue;
+			continue ;
 		if (!valid_input(input))
 			continue ;
 		add_history(input);

@@ -6,7 +6,7 @@
 /*   By: axel <axel@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/04 14:48:44 by axel              #+#    #+#             */
-/*   Updated: 2023/09/05 09:35:21 by axel             ###   ########.fr       */
+/*   Updated: 2023/09/05 11:10:02 by axel             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,7 +66,7 @@ char	*trim(char *str1, char const *set)
 	end = ft_strlen(str1 + beg);
 	while (end > beg && ft_strchr(set, str1[(beg + end) - 1]) != NULL)
 		end -= 1;
-	trimmed_str = malloc((end + 1) * sizeof(char));
+	trimmed_str = gc_alloc((end + 1) * sizeof(char), "trimmed string");
 	if (!trimmed_str)
 		return (NULL);
 	ft_strncpy(trimmed_str, (str1 + beg), end);

@@ -6,7 +6,7 @@
 /*   By: axel <axel@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/22 15:50:31 by cpothin           #+#    #+#             */
-/*   Updated: 2023/09/05 09:57:25 by axel             ###   ########.fr       */
+/*   Updated: 2023/09/05 11:03:42 by axel             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -154,7 +154,9 @@ void		do_cd(t_data *data);
 char		*get_env(t_data *data, char *str);
 
 //unset
-
+/*Unsets the specified environment variables.
+If they exist, they are removed.
+If they don't, nothing happens.*/
 void		do_unset(t_data *data);
 
 //export
