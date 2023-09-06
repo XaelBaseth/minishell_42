@@ -6,7 +6,7 @@
 /*   By: axel <axel@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/22 15:50:31 by cpothin           #+#    #+#             */
-/*   Updated: 2023/09/05 11:03:42 by axel             ###   ########.fr       */
+/*   Updated: 2023/09/06 09:38:11 by axel             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,7 @@
 
 /*	CONSTANT	*/
 # define FAILURE -1
+# define ERROR 1
 # define SUCCESS 0
 # define OPERATOR "|<>"
 # define REDIRECTS "><"
@@ -121,10 +122,11 @@ char		*get_short_var(char *arg);
 
 char		*new_env_val(t_env *env, char *arg);
 void		free_lst_node(t_env *node);
+char		*get_env_value(t_env *lst, char *var_name);
 
 //export_single
 /*Prints the environment variables by ascii order.*/
-void		single_export(t_data *data);
+int			single_export(t_data *data);
 
 //env
 
@@ -134,34 +136,35 @@ void    	store_env(char **envp, t_data *data);
 /*Splits a char * into a t_env node (node->key, node->val).*/
 t_env		*split_env(char *envp);
 /*Prints the environment variables.*/
-void		print_env(t_data *data);
+int			print_env(t_data *data);
 
 //echo
 /*Does the echo command*/
-void		do_echo(t_data *data);
+int			do_echo(t_data *data);
 
 //pwd
 void		set_pwd(t_data *data);
-void		get_pwd(t_data *data);
+int			get_pwd(t_data *data);
 
 //exit
 /*Builtin: exits the current process and SHOULD return an exit status.*/
-bool		do_exit(t_data *data);
+int			do_exit(t_data *data);
 
 //cd
 
-void		do_cd(t_data *data);
+int			do_cd(t_data *data);
+/*Takes the `env name` and returns its value.*/
 char		*get_env(t_data *data, char *str);
 
 //unset
 /*Unsets the specified environment variables.
 If they exist, they are removed.
 If they don't, nothing happens.*/
-void		do_unset(t_data *data);
+int			do_unset(t_data *data);
 
 //export
 
-void		do_export(t_data *data);
+int			do_export(t_data *data);
 void		export_var(t_data *data, char *arg);
 
 /*	MAIN	*/
@@ -225,6 +228,7 @@ char		*get_path(t_data *data);
 //builtins
 
 bool		builtins(t_args *input, t_data *data);
+int			set_g_status(int status);
 
 //exec
 
@@ -244,8 +248,17 @@ void		exec_redirect(t_args *input, t_data *data);
 void		exec_pipe(t_args *input, t_data *data);
 
 //binaries
+bool		check_if_binary(t_data *data, char *arg);
 
-bool	check_if_binary(t_data *data, char *arg);
+// EXPAND
+
+//expand
+char		*expand(t_data *data, char *input);
+
+//expand_utils
+char		*signal_to_str(int nbr);
+void		init_vars(int *i, int *size, bool *quotes, bool *dquotes);
+int			get_new_length(t_data *data, char *input);
 
 
 #endif

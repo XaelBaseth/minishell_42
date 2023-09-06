@@ -6,7 +6,7 @@
 /*   By: axel <axel@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/17 08:00:57 by acharlot          #+#    #+#             */
-/*   Updated: 2023/09/05 10:57:49 by axel             ###   ########.fr       */
+/*   Updated: 2023/09/06 09:41:28 by axel             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,8 +60,8 @@ int	get_nb_input(char *input)
 }
 
 /*	Free the linked list of arguments. 
-	t_args **args: pointer to array of command entered by the user.
-	t_data *data: linked list of enviromnent in which there are the
+	@param t_args `**args`	: pointer to array of command entered by the user.
+	@param t_data `*data`	: linked list of enviromnent in which there are the
 	arguments.
 */
 void	clean_parsed(t_args **args, t_data *data)
@@ -73,7 +73,7 @@ void	clean_parsed(t_args **args, t_data *data)
 
 /*	Transform the input of the user into an array of command that can be
 	understood by the minishell.
-	char *input: command entered by the user.	
+	@param char `*input` : command entered by the user.	
 */
 char	**parse_input(char *input)
 {
@@ -105,7 +105,7 @@ char	**parse_input(char *input)
 }
 
 /*	Take the command of the user and return a trimed string.
-	char *input: command entered by the user.
+	@param char `*input` : command entered by the user.
 */
 t_args	*parser(char *input)
 {

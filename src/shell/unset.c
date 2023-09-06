@@ -6,7 +6,7 @@
 /*   By: axel <axel@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/17 09:06:04 by cpothin           #+#    #+#             */
-/*   Updated: 2023/09/05 09:48:16 by axel             ###   ########.fr       */
+/*   Updated: 2023/09/06 09:43:30 by axel             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,4 +66,5 @@ void	do_unset(t_data *data)
 	while (data->args->argv[i])
 		unset_var(data, data->args->argv[i++]);
 	re_store_env(data);
+	return (set_g_status(SUCCESS));
 }

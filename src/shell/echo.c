@@ -6,13 +6,13 @@
 /*   By: axel <axel@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/11 09:54:55 by cpothin           #+#    #+#             */
-/*   Updated: 2023/09/04 13:16:57 by axel             ###   ########.fr       */
+/*   Updated: 2023/09/06 09:42:35 by axel             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../inc/minishell.h"
 
-bool	is_parameter(char *str)
+static bool	is_parameter(char *str)
 {
 	int	i;
 
@@ -21,7 +21,7 @@ bool	is_parameter(char *str)
 	{
 		while (str[i])
 		{
-			if (str[i] != 'n')
+			if (str[i++] != 'n')
 				return (false);
 		}
 		return (true);
@@ -29,7 +29,7 @@ bool	is_parameter(char *str)
 	return (false);
 }
 
-void	do_echo(t_data *data)
+int	do_echo(t_data *data)
 {
 	int		i;
 	bool	has_parameter;
@@ -45,4 +45,5 @@ void	do_echo(t_data *data)
 	ft_printf("%s", data->args->argv[i]);
 	if (!has_parameter)
 		ft_printf("\n");
+	return (set_g_status(SUCCESS));
 }

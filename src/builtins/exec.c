@@ -3,14 +3,15 @@
 /*                                                        :::      ::::::::   */
 /*   exec.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: axel <axel@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: cpothin <cpothin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/09 08:17:00 by acharlot          #+#    #+#             */
-/*   Updated: 2023/09/01 13:41:11 by axel             ###   ########.fr       */
+/*   Updated: 2023/09/04 17:08:49 by cpothin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../inc/minishell.h"
+extern int	g_signal;
 
 /*	Looks for command to be executed in PATH variables and execute 
 	them. 
@@ -48,6 +49,7 @@ void	exec_executable(t_args *input, t_data *data)
 	if (builtins(input, data))
 		return ;
 	execute_in_path(input, data);
+	exit(g_signal);
 }
 
 /*	Redirect towards the correct executor.
@@ -62,5 +64,5 @@ void	execute_cmd(t_args *input, t_data *data)
 		exec_executable(input, data);
 	else
 		exec_redirect(input, data);
-	exit(EXIT_SUCCESS);
+	exit(g_signal);
 }

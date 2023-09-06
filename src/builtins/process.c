@@ -6,7 +6,7 @@
 /*   By: axel <axel@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/14 08:08:31 by acharlot          #+#    #+#             */
-/*   Updated: 2023/09/05 10:42:30 by axel             ###   ########.fr       */
+/*   Updated: 2023/09/06 09:39:21 by axel             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,4 +51,3 @@ void	create_processes(t_args *input, t_data *data)
 		execute_cmd(input, data);
 	waitpid(-1, &temp_status, 0);
 }
-
