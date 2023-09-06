@@ -6,7 +6,7 @@
 /*   By: cpothin <cpothin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/27 12:26:08 by acharlot          #+#    #+#             */
-/*   Updated: 2023/08/15 11:46:10 by cpothin          ###   ########.fr       */
+/*   Updated: 2023/09/05 09:12:17 by cpothin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,15 +27,9 @@ int	ft_printstr(char *str)
 
 	i = 0;
 	if (!str)
-	{
-		write(1, "(null)", 6);
 		return (6);
-	}
 	while (str[i])
-	{
-		write(1, &str[i], 1);
-		i++;
-	}
+		write(1, &str[i++], 1);
 	return (i);
 }
 

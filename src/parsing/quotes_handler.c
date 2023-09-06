@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   quotes_handler.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: axel <axel@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: cpothin <cpothin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/25 07:41:55 by acharlot          #+#    #+#             */
-/*   Updated: 2023/08/29 11:06:35 by axel             ###   ########.fr       */
+/*   Updated: 2023/09/05 09:06:49 by cpothin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,7 +70,7 @@ int	unclosed_quote(char *str)
 	last_opened = 0;
 	while (*str && !last_opened)
 	{
-		if (*str == '\'' || *str == '\"')
+		if ((*str == '\'' || *str == '\"'))
 			last_opened = *str;
 		str++;
 	}
