@@ -6,14 +6,15 @@
 /*   By: cpothin <cpothin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/14 08:08:31 by acharlot          #+#    #+#             */
-/*   Updated: 2023/09/04 11:15:31 by cpothin          ###   ########.fr       */
+/*   Updated: 2023/09/05 14:42:23 by cpothin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../inc/minishell.h"
+extern int	g_signal;
 
 /*	Returns the number of arguments separated by operator in the input.
-	t_args *input: command inputed.
+	@param t_args `*input` : command inputed.
 */
 static int	lstsize(t_args *input)
 {
@@ -32,8 +33,8 @@ static int	lstsize(t_args *input)
 
 
 /*	Create the processes where to execute the command inputed.
-	t_args *input : command inputed.
-	t_data *data : environment in which the command must be executed.
+	@param t_args `*input` : command inputed.
+	@param t_data `*data` : environment in which the command must be executed.
 */
 void	create_processes(t_args *input, t_data *data)
 {
@@ -50,4 +51,6 @@ void	create_processes(t_args *input, t_data *data)
 	else if (fork() == 0)
 		execute_cmd(input, data);
 	waitpid(-1, &temp_status, 0);
+	if (!WTERMSIG(temp_status))
+		g_signal = temp_status >> 8;
 }

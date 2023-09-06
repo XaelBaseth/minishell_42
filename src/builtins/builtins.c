@@ -6,25 +6,32 @@
 /*   By: cpothin <cpothin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/25 07:41:52 by acharlot          #+#    #+#             */
-/*   Updated: 2023/09/04 14:11:20 by cpothin          ###   ########.fr       */
+/*   Updated: 2023/09/06 08:55:15 by cpothin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../inc/minishell.h"
 extern int	g_signal;
 
+/*
+	Sets the value of the global int used for the signal.
+	@param int `status`
+	@returns `int` - the signal
+*/
 int		set_g_status(int status)
 {
 	g_signal = status;
-	return (0);
+	return (g_signal);
 }
 
 /*	Handles the builtins commands that you cannot in the path.
-	t_args *input : command inputed.
-	t_data *data : environment in which the command must be executed.
+	@param t_args `*input` : command inputed.
+	@param t_data `*data` : environment in which the command must be executed.
  */
 bool	builtins(t_args *input, t_data *data)
 {
+	if (!input->argv[0])
+		return (true);
 	if (ft_strcmp(input->argv[0], "env") == 0)
 		print_env(data);
 	else if (ft_strcmp(input->argv[0], "echo") == 0)

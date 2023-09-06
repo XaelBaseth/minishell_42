@@ -6,7 +6,7 @@
 /*   By: cpothin <cpothin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/31 09:42:37 by cpothin           #+#    #+#             */
-/*   Updated: 2023/09/04 13:51:04 by cpothin          ###   ########.fr       */
+/*   Updated: 2023/09/05 14:43:01 by cpothin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@ static int	expand_variable(t_data *data, char *new_input, char *input,
 	j = 0;
 	k = 0;
 	*i += 1;
-	if (!input[*i] || input[*i] == ' ' || input[*i] == '\"')
+	if (!input[*i] || input[*i] == ' ')
 	{
 		new_input[0] = '$';
 		return (1);

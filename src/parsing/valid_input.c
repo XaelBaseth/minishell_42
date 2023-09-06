@@ -3,17 +3,17 @@
 /*                                                        :::      ::::::::   */
 /*   valid_input.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: axel <axel@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: cpothin <cpothin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/17 08:17:48 by acharlot          #+#    #+#             */
-/*   Updated: 2023/08/29 11:06:25 by axel             ###   ########.fr       */
+/*   Updated: 2023/09/05 09:01:58 by cpothin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../inc/minishell.h"
 
 /*	Prints out an error message if a character is unrecognized.
-	char token: character that is not recognized.
+	@param char `token` : character that is not recognized.
 */
 bool	unexpected_token(char token)
 {
@@ -24,7 +24,7 @@ bool	unexpected_token(char token)
 }
 
 /*	Check if the operator (or combination of operator) is correct.
-	char *input: command entered by the user.
+	@param char `*input` : command entered by the user.
 */
 bool	invalid_operator(char *input)
 {
@@ -57,7 +57,7 @@ bool	invalid_operator(char *input)
 }
 
 /*	Continuation of the checking for the validation of the inputed string.
-	char *input: command entered by the user.
+	@param char `*input` : command entered by the user.
 */
 bool	invalid_syntax2(char *input)
 {
@@ -85,7 +85,7 @@ bool	invalid_syntax2(char *input)
 }
 
 /*	Start of the checking for the validation of the inputed string. 
-	char *input: command entered by the user.
+	@param char `*input` : command entered by the user.
 */
 bool	invalid_syntax(char *input)
 {
@@ -106,7 +106,7 @@ bool	invalid_syntax(char *input)
 }
 
 /*	Check if the input is valid or not.
-	char *input: command entered by the user.
+	@param char `*input` : command entered by the user.
 */
 bool	valid_input(char *input)
 {

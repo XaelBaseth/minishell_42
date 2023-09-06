@@ -3,50 +3,65 @@
 /*                                                        :::      ::::::::   */
 /*   binaries.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: acharlot <acharlot@student.42.fr>          +#+  +:+       +#+        */
+/*   By: cpothin <cpothin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/29 09:00:12 by cpothin           #+#    #+#             */
-/*   Updated: 2023/08/30 08:49:56 by acharlot         ###   ########.fr       */
+/*   Updated: 2023/09/06 09:14:15 by cpothin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 
 #include "../../inc/minishell.h"
 
-void	execute_binary(t_data *data, char *arg)
+void	execute_binary(t_data *data, char *arg, char *prefix)
 {
-	/*char	*full_path;
-	char	**input;
+	char	*full_path;
 
-	input = get_command(data->args->);
-	full_path = ft_strdup(get_env(data, "PWD"));
+	if (prefix)
+		full_path = ft_strdup(prefix);
+	else
+		full_path = ft_strdup(get_env(data, "PWD"));
 	full_path = ft_strjoin(full_path, "/");
 	full_path = ft_strjoin(full_path, arg);
 	if (access(full_path, F_OK | X_OK) == 0)
 	{
-		execve(full_path, input, data->envp);
+		execve(full_path, data->args->argv, data->envp);
 		perror("execve");
 		panic(EXEC_ERR);
-	}*/
+	}
 	(void)data;
 	(void)arg;
 }
-
+/*
+	Checks if the command is a binary and tries to execute it.
+	@param char `*arg` : the argument to check.
+	@returns `true` if the binary exists and starts with no error,
+	`false` if not.
+*/
 bool	check_if_binary(t_data *data, char *arg)
 {
 	char	*bin_name;
 	int		i;
 	
-	(void)data;
-	if (arg[0] == '.' && arg[1] == '/' && arg[2])
+	if (arg[0] == '/'  && arg[1])
+	{
+		execute_binary(data, arg, "/");
+		return (true);
+	}
+	else if (arg[0] == '.' && arg[1] == '/' && arg[2])
 	{
 		i = 1;
-		while (arg[i] == '/')
-			i++;
 		bin_name = ft_strdup_range(arg, i, ft_strlen(arg));
-		execute_binary(data, bin_name);
+		execute_binary(data, bin_name, get_env(data, "PWD"));
 		return (true);
-		// it's a binary!!!
+	}
+	else if (arg[0] != '/' && arg[1])
+	{
+		bin_name = ft_strjoin(ft_strjoin(get_env(data, "PWD"), "/"), arg);
+		if (access(bin_name, F_OK | X_OK) != 0)
+			return (false);
+		execute_binary(data, arg, get_env(data, "PWD"));
+		return (true);
 	}
 	return (false);
 }
