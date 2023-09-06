@@ -6,7 +6,7 @@
 /*   By: axel <axel@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/04 14:48:44 by axel              #+#    #+#             */
-/*   Updated: 2023/09/05 11:10:02 by axel             ###   ########.fr       */
+/*   Updated: 2023/09/06 10:56:20 by axel             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,6 +52,11 @@ bool	streq(char *str1, char *str2)
 	return (true);
 }
 
+/*	Returns a string without the character at the beginning or at the end
+	of the command
+	char *str1 : basic string to be trimmed.
+	char const *set : set of character that are trimmed.
+*/
 char	*trim(char *str1, char const *set)
 {
 	size_t	beg;

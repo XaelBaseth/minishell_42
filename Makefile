@@ -6,7 +6,7 @@
 #    By: axel <axel@student.42.fr>                  +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/07/25 07:42:45 by acharlot          #+#    #+#              #
-#    Updated: 2023/09/06 09:40:24 by axel             ###   ########.fr        #
+#    Updated: 2023/09/06 15:26:09 by axel             ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -19,7 +19,7 @@ HEADER		=	-I inc
 SRC_DIR 	=	src/
 OBJ_DIR 	=	obj/
 CC			=	gcc
-CFLAGS		=	-Wall -Wextra -Werror -g3
+CFLAGS		=	-Wall -Wextra -Werror -fsanitize=address -g3
 READLINE	=	-lreadline
 LIBFT		=	libft/
 RM			=	rm -rf

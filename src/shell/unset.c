@@ -6,7 +6,7 @@
 /*   By: axel <axel@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/17 09:06:04 by cpothin           #+#    #+#             */
-/*   Updated: 2023/09/06 09:43:30 by axel             ###   ########.fr       */
+/*   Updated: 2023/09/06 09:55:15 by axel             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,7 +58,7 @@ static void	unset_var(t_data *data, char *arg)
 /*Unsets the specified environment variables.
 If they exist, they are removed.
 If they don't, nothing happens.*/
-void	do_unset(t_data *data)
+int	do_unset(t_data *data)
 {
 	int	i;
 

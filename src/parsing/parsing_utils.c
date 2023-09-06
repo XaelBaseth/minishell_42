@@ -6,7 +6,7 @@
 /*   By: axel <axel@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/09 15:32:28 by cpothin           #+#    #+#             */
-/*   Updated: 2023/09/05 10:53:33 by axel             ###   ########.fr       */
+/*   Updated: 2023/09/06 15:35:03 by axel             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,11 +20,11 @@ char	*get_input(void)
 
 	raw_input = readline("\033[32mminishell$\033[0m ");
 	if (!raw_input)
-		return (NULL);
+		exit (EXIT_SUCCESS);
 	if (!check_brackets(raw_input))
 	{
 		printf("Not the same amount of brackets.\n");
-		return (NULL);
+		exit (EXIT_FAILURE);
 	}
 	input = trim(raw_input, " \t");
  	return (input);
