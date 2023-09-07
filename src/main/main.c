@@ -6,7 +6,7 @@
 /*   By: cpothin <cpothin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/25 07:42:03 by acharlot          #+#    #+#             */
-/*   Updated: 2023/09/07 16:51:26 by cpothin          ###   ########.fr       */
+/*   Updated: 2023/09/07 17:07:03 by cpothin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,7 @@ int main(int argc, char **argv, char **envp)
 			continue ;
 		}
 		args = parser(input);
-		// print_args(args);
+		argc_post_parsing(args);
 		data.args = args;
 		create_processes(args, &data);
 		clean_parsed(&args, &data);
