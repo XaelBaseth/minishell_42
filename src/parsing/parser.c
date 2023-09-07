@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parser.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: axel <axel@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: cpothin <cpothin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/17 08:00:57 by acharlot          #+#    #+#             */
-/*   Updated: 2023/09/06 09:41:28 by axel             ###   ########.fr       */
+/*   Updated: 2023/09/07 17:47:48 by cpothin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,10 +64,10 @@ int	get_nb_input(char *input)
 	@param t_data `*data`	: linked list of enviromnent in which there are the
 	arguments.
 */
-void	clean_parsed(t_args **args, t_data *data)
+void	clean_parsed(t_args *args, t_data *data)
 {
-	lst_clear(args);
-	*args = NULL;
+	lst_clear(&args);
+	args = NULL;
 	data->args = NULL;
 }
 

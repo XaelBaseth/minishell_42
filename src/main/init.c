@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: axel <axel@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: cpothin <cpothin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/18 10:48:07 by acharlot          #+#    #+#             */
-/*   Updated: 2023/09/06 10:54:38 by axel             ###   ########.fr       */
+/*   Updated: 2023/09/07 17:43:39 by cpothin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ void	init_data(t_data *data)
 	t_data *data: linked list of data.
 	t_args **args: linked list of args.
 */
-void	setup_shell(char **envp, t_data *data, t_args **args)
+void	setup_shell(char **envp, t_data *data)
 {
 	char *path;
 
@@ -45,5 +45,4 @@ void	setup_shell(char **envp, t_data *data, t_args **args)
 	store_env(envp, data);
 	path = get_path(data);
 	store_path(path, data);
-	*args = NULL;
 }
