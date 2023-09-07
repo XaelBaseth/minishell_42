@@ -3,68 +3,42 @@
 /*                                                        :::      ::::::::   */
 /*   parsing_utils.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: acharlot <acharlot@student.42.fr>          +#+  +:+       +#+        */
+/*   By: axel <axel@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/09 15:32:28 by cpothin           #+#    #+#             */
-/*   Updated: 2023/08/18 08:55:04 by acharlot         ###   ########.fr       */
+/*   Updated: 2023/09/06 15:35:03 by axel             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../inc/minishell.h"
 
-/*	Get the input entered as a command in the minishell. */
+/*	Returns the input of the user after validating it. */
 char	*get_input(void)
 {
-	char *raw_input;
+	char	*raw_input;
+	char 	*input;
 
 	raw_input = readline("\033[32mminishell$\033[0m ");
 	if (!raw_input)
-		return (NULL);
+		exit (EXIT_SUCCESS);
 	if (!check_brackets(raw_input))
 	{
 		printf("Not the same amount of brackets.\n");
-		return (NULL);
+		exit (EXIT_FAILURE);
 	}
- 	return (raw_input);
-}
-/*	Remove from the last space from a string.
-	char *str: input from the user.
-*/
-char	*ft_remove_last_spaces(char *str)
-{
-	int	i;
-
-	i = 0;
-	while (str[i])
-		i++;
-	i--;
-	while (str[i] == ' ')
-		i--;
-	str[i + 1] = 0;
-	return (str);
+	input = trim(raw_input, " \t");
+ 	return (input);
 }
 
-/*	Deletes the extra space from a string. 
-	char *str: input from the user.
+/*	Check if the character c is a space or a formatting character.
+	char c: character that is checked.
 */
-char	*ft_remove_spaces(char *str)
+bool	is_space(char c)
 {
-	int	i;
-	int	start;
-
-
-	i = 0;
-	while (str[i] == ' ')
-		i++;
-	start = i;
-	while (str[i])
-	{
-		str[i - start] = str[i];
-		i++;
-	}
-	str[i - start] = 0;
-	str = ft_remove_last_spaces(str);
-	return (str);
+	if (c == '\t' || c == '\n' || c == '\v'
+		|| c == '\f' || c == '\r' || c == ' ')
+		return (true);
+	return (false);
 }
 
 /*	Initialize the t_args linked list.

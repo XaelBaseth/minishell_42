@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cpothin <cpothin@student.42.fr>            +#+  +:+       +#+        */
+/*   By: axel <axel@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/25 07:42:03 by acharlot          #+#    #+#             */
-/*   Updated: 2023/09/05 17:07:23 by cpothin          ###   ########.fr       */
+/*   Updated: 2023/09/06 09:50:17 by axel             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,8 @@ int main(int argc, char **argv, char **envp)
 	while (1)
 	{
 		input = get_input();
+		if (!input)
+			continue ;
 		if (!valid_input(input))
 			continue ;
 		add_history(input);

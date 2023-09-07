@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cpothin <cpothin@student.42.fr>            +#+  +:+       +#+        */
+/*   By: axel <axel@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/22 15:50:31 by cpothin           #+#    #+#             */
-/*   Updated: 2023/09/06 09:18:35 by cpothin          ###   ########.fr       */
+/*   Updated: 2023/09/06 10:55:12 by axel             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -161,6 +161,7 @@ If they exist, they are removed.
 If they don't, nothing happens.*/
 int			do_unset(t_data *data);
 
+
 //export
 
 int			do_export(t_data *data);
@@ -174,6 +175,7 @@ bool		is_char(const char *str, int c);
 bool		streq(char *str1, char *str2);
 bool		is_int(char *str);
 char		*ft_strdup_range(const char *s, size_t from, size_t to);
+char		*trim(char *str1, char const *set);
 
 //config_sig
 
@@ -192,17 +194,18 @@ void		clean_parsed(t_args **args, t_data *data);
 
 //quotes_handler
 
+
 bool 		is_inside_quotes(char *input, int index);
 int			unclosed_quote(char *str);
 char		*remove_quote(char *parsed);
 
 //parsing_utils
 
-char		*ft_remove_spaces(char *str);
 bool		check_brackets(char *raw_input);
+char		*get_input(void);
+bool		is_space(char c);
 t_args		*new_lst(int argc);
 void		lst_clear(t_args **args);
-char		*get_input(void);
 
 //operator
 
@@ -213,6 +216,7 @@ t_operator	get_operator(char *operator);
 //valid_input
 
 bool		valid_input(char *input);
+
 
 /*	BUILTINS	*/
 //path

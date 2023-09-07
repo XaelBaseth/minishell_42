@@ -6,7 +6,7 @@
 #    By: cpothin <cpothin@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/07/25 07:42:45 by acharlot          #+#    #+#              #
-#    Updated: 2023/09/06 16:11:53 by cpothin          ###   ########.fr        #
+#    Updated: 2023/09/07 09:09:06 by cpothin          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -19,7 +19,7 @@ HEADER		=	-I inc
 SRC_DIR 	=	src/
 OBJ_DIR 	=	obj/
 CC			=	gcc
-CFLAGS		=	-Wall -Wextra -Werror -g3
+CFLAGS		=	-Wall -Wextra -Werror -fsanitize=address -g3
 READLINE	=	-lreadline
 LIBFT		=	libft/
 RM			=	rm -rf
@@ -41,14 +41,14 @@ WHITE		=	\033[0;97m
 BUILT_DIR	=	builtins/
 BUILT_FILES	=	builtins exec process redirect path pipe binaries
 PARS_DIR	=	parsing/
-PARS_FILES	=	operator parser parsing_utils quotes_handler valid_input
+PARS_FILES	=	operator parser parsing_utils quotes_handler valid_input 
 SHELL_DIR	=	shell/
 SHELL_FILES	=	env echo pwd exit cd unset export export_single \
 				env_utils env_utils2
 EXPAND_DIR	=	expand/
 EXPAND_FILES=	expand expand_utils
 MAIN_DIR	=	main/
-MAIN_FILES	=	main utils config_sig init 
+MAIN_FILES	=	main utils config_sig init utils2
 
 
 SRC_BUI_FILE=	$(addprefix $(BUILT_DIR), $(BUILT_FILES))

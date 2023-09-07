@@ -6,7 +6,7 @@
 /*   By: axel <axel@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/31 12:03:38 by acharlot          #+#    #+#             */
-/*   Updated: 2023/09/01 13:15:16 by axel             ###   ########.fr       */
+/*   Updated: 2023/09/06 15:27:01 by axel             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 int	g_signal;
 
-/*	This is called when the SIGINT (INTERRUPT) signal is received.
+/*	This is called when the SIGINT (INTERRUPT or CTRL + C) signal is received.
 	We check if we are in a heredoc and if so, create a new line
 	inside it without exiting the heredoc input. Else, we simply
 	clear the input and display a new line.
@@ -41,7 +41,7 @@ void	sigint_handler(int sig)
 	(void) sig;
 }
 
-/*	This is called when the SIGQUIT (QUIT) signal is received.
+/*	This is called when the SIGQUIT (QUIT or CTRL + \) signal is received.
 	
 	int sig: signal handler need a specific signature in order to
 	be used as signal handler, it ensure compatibility with the

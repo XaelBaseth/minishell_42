@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   unset.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cpothin <cpothin@student.42.fr>            +#+  +:+       +#+        */
+/*   By: axel <axel@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/17 09:06:04 by cpothin           #+#    #+#             */
-/*   Updated: 2023/09/04 14:39:50 by cpothin          ###   ########.fr       */
+/*   Updated: 2023/09/06 09:55:15 by axel             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,11 @@ static void	unset_var(t_data *data, char *arg)
 	}
 }
 
-int		do_unset(t_data *data)
+
+/*Unsets the specified environment variables.
+If they exist, they are removed.
+If they don't, nothing happens.*/
+int	do_unset(t_data *data)
 {
 	int	i;
 

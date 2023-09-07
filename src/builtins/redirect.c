@@ -6,7 +6,7 @@
 /*   By: axel <axel@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/15 14:37:22 by axel              #+#    #+#             */
-/*   Updated: 2023/09/04 10:20:14 by axel             ###   ########.fr       */
+/*   Updated: 2023/09/06 16:05:10 by axel             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,25 +22,22 @@ static void	redirect_heredoc(t_args *input)
 	int		fd[2];
 
 	pipe(fd);
-	while (1 && !g_signal)
+	while (1)
 	{
 		buffer = readline("\033[32m$> \033[0m");
 		if (!buffer)
-		{
-			ft_putendl_fd("Error in heredoc.\n", fd[1]);
 			exit(EXIT_FAILURE);
-		}
 		if (streq(buffer, input->next->argv[0]))
 		{
 			free(buffer);
 			break ;
 		}
 		ft_putendl_fd(buffer, fd[1]);
+		free(buffer);
 	}
 	close(fd[1]);
 	dup2(fd[0], STDIN_FILENO);
 	close(fd[0]);
-	g_signal = 0;
 }
 
 /*	Redirect the input of a command into the file via the '<' operator.

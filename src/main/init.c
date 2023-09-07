@@ -6,7 +6,7 @@
 /*   By: axel <axel@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/18 10:48:07 by acharlot          #+#    #+#             */
-/*   Updated: 2023/09/01 11:22:43 by axel             ###   ########.fr       */
+/*   Updated: 2023/09/06 10:54:38 by axel             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,7 @@ void	init_data(t_data *data)
 	rl_event_hook = event;
 	g_signal = 0;
 	signal(SIGINT, sigint_handler);
+	signal(SIGQUIT, sigquit_handler);
 	signal(SIGQUIT, SIG_IGN);
 	data->path = NULL;
 	data->lst_env = NULL;
@@ -43,7 +44,6 @@ void	setup_shell(char **envp, t_data *data, t_args **args)
 	init_data(data);
 	store_env(envp, data);
 	path = get_path(data);
-	// set_pwd(data);
 	store_path(path, data);
 	*args = NULL;
 }

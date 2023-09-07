@@ -6,7 +6,7 @@
 /*   By: cpothin <cpothin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/17 08:17:48 by acharlot          #+#    #+#             */
-/*   Updated: 2023/09/06 16:15:26 by cpothin          ###   ########.fr       */
+/*   Updated: 2023/09/07 09:08:44 by cpothin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ bool	invalid_operator(char *input)
 {
 	int		i;
 	bool	in_quotes;
-
+	
 	in_quotes = false;
 	i = -1;
 	while (has_operator(&input[++i]))
@@ -44,7 +44,7 @@ bool	invalid_operator(char *input)
 			i++;
 			if (input[i] == ' ')
 			{	
-				while (input[i++] && input[i++] == ' ')
+				while (input[++i] && input[++i] == ' ')
 				if (is_char(OPERATOR, input[i]))
 					return (unexpected_token(input[i]));
 			}
@@ -130,6 +130,6 @@ bool	valid_input(char *input)
 		valid = false;
 	}
 	if (!valid)
-		free(input);
+		gc_free(input);
 	return (valid);
 }

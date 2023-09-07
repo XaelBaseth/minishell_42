@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   exec.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cpothin <cpothin@student.42.fr>            +#+  +:+       +#+        */
+/*   By: axel <axel@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/09 08:17:00 by acharlot          #+#    #+#             */
-/*   Updated: 2023/09/05 18:05:33 by cpothin          ###   ########.fr       */
+/*   Updated: 2023/09/06 10:54:59 by axel             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,6 +61,7 @@ void	exec_executable(t_args *input, t_data *data)
 */
 void	execute_cmd(t_args *input, t_data *data)
 {
+	signal(SIGINT, sigint_handler);
 	if (input->operator == PIPE)
 		exec_pipe(input, data);
 	else if (input->operator == NONE)

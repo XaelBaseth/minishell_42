@@ -1,25 +1,37 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strcmp.c                                        :+:      :+:    :+:   */
+/*   ft_strncpy.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: axel <axel@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/08/21 14:52:05 by cpothin           #+#    #+#             */
-/*   Updated: 2023/09/04 14:58:37 by axel             ###   ########.fr       */
+/*   Created: 2023/09/05 09:22:56 by axel              #+#    #+#             */
+/*   Updated: 2023/09/05 09:26:52 by axel             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+/*
+	LIBRARY: string.h
+
+	SYNOPSIS: 	Fills in a string with a copy of another string.
+*/
 #include "../../inc/libft.h"
 
-int	ft_strcmp(char *s1, char *s2)
+char *ft_strncpy(char *dest, const char *src, size_t n)
 {
-	int i;
+	size_t i;
 
 	i = 0;
-	if ((s1 && !s2) || (!s1 && s2))
-		return (0);
-	while (s1[i] == s2[i] && s1[i] != '\0' && s2[i] != '\0')
+	while (src[i] && i < n)
+	{
+		dest[i] = src[i];
 		i++;
-	return (s1[i] - s2[i]);
+	}
+	if (src[i] && i < n)
+	{
+		while (i < n)
+			dest[i++] = '\0';
+	}
+	dest[i] = '\0';
+	return (dest);
 }

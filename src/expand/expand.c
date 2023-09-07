@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   expand.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cpothin <cpothin@student.42.fr>            +#+  +:+       +#+        */
+/*   By: axel <axel@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/31 09:42:37 by cpothin           #+#    #+#             */
-/*   Updated: 2023/09/05 14:43:01 by cpothin          ###   ########.fr       */
+/*   Updated: 2023/09/06 15:37:51 by axel             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,6 +85,6 @@ char	*expand(t_data *data, char *input)
 			expanded_input[j++] = input[i++];
 	}
 	expanded_input[j] = '\0';
-	free(input);
+	gc_free(input);
 	return (expanded_input);
 }
