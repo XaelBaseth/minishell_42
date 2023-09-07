@@ -6,7 +6,7 @@
 /*   By: cpothin <cpothin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/02 15:44:19 by cpothin           #+#    #+#             */
-/*   Updated: 2023/09/07 10:46:04 by cpothin          ###   ########.fr       */
+/*   Updated: 2023/09/07 10:54:50 by cpothin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,7 +81,8 @@ int	get_new_length(t_data *data, char *input)
 			in_dquotes = !in_dquotes;
 		if (input[i] == '\'' && !in_dquotes)
 			in_quotes = !in_quotes;
-		if ((input[i] == '$' && input[i + 1] == '?') && !in_quotes && !in_dquotes)
+		if ((input[i] == '$' && input[i + 1] == '?')
+			&& !in_quotes && !in_dquotes)
 		{
 			size += exit_status_size() - 1;
 			i += 1;
