@@ -6,7 +6,7 @@
 /*   By: cpothin <cpothin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/16 15:01:03 by cpothin           #+#    #+#             */
-/*   Updated: 2023/09/04 14:26:05 by cpothin          ###   ########.fr       */
+/*   Updated: 2023/09/07 09:37:15 by cpothin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,7 +93,17 @@ int		do_export(t_data *data)
 	if (data->args->argc == 1)
 		return (set_g_status(single_export(data)));
 	while (data->args->argv[i])
-		export_var(data, data->args->argv[i++]);
+	{
+		if (ft_isalpha(data->args->argv[i][0]))
+			export_var(data, data->args->argv[i]);
+		else
+		{
+			ft_printf("minishell: export: %s: \
+not a valid identifier\n", data->args->argv[i]);
+			return (set_g_status(ERROR));
+		}
+		i++;
+	}
 	re_store_env(data);
 	return (set_g_status(SUCCESS));
 }
