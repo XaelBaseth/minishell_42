@@ -1,3 +1,0 @@
-[32mminishell$[0m rm -f ls
-[32mminishell$[0m cat > ls < ls
-[32mminishell$[0m [K[32mminishell$[0m 

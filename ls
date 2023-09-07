@@ -1,2 +1,0 @@
-rm -f ls
-exit
