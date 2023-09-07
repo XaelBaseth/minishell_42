@@ -6,7 +6,7 @@
 /*   By: cpothin <cpothin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/17 08:17:48 by acharlot          #+#    #+#             */
-/*   Updated: 2023/09/05 09:01:58 by cpothin          ###   ########.fr       */
+/*   Updated: 2023/09/06 16:15:26 by cpothin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,9 +40,8 @@ bool	invalid_operator(char *input)
 		if (is_char(OPERATOR, input[i] && !in_quotes))
 		{
 			if (input[i] == input[i + 1])
-				i += 2;
-			else
-				i += 1;
+				i++;
+			i++;
 			if (input[i] == ' ')
 			{	
 				while (input[i++] && input[i++] == ' ')

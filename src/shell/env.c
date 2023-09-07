@@ -6,7 +6,7 @@
 /*   By: cpothin <cpothin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/27 11:01:28 by cpothin           #+#    #+#             */
-/*   Updated: 2023/09/04 14:07:16 by cpothin          ###   ########.fr       */
+/*   Updated: 2023/09/06 10:42:55 by cpothin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,7 +75,7 @@ void	store_env(char **envp, t_data *data)
 	data->lst_env = head;
 }
 
-/*	Print out a copy of the ENV data cloned into envp. */
+/*	Prints out a copy of the ENV data cloned into envp. */
 int	print_env(t_data *data)
 {
 	t_env	*lst;
