@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   echo.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: axel <axel@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: cpothin <cpothin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/11 09:54:55 by cpothin           #+#    #+#             */
-/*   Updated: 2023/09/06 09:50:33 by axel             ###   ########.fr       */
+/*   Updated: 2023/09/07 10:28:37 by cpothin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,11 +36,11 @@ int	do_echo(t_data *data)
 
 	i = 1;
 	has_parameter = false;
-	while (data->args->argv[i + 1] && is_parameter(data->args->argv[i]))
+	while (data->args->argv[i] && is_parameter(data->args->argv[i]))
 		i++;
 	if (i > 1)
 		has_parameter = true;
-	while (data->args->argv[i + 1])
+	while (i < data->args->argc && data->args->argv[i + 1])
 		ft_printf("%s ", data->args->argv[i++]);
 	ft_printf("%s", data->args->argv[i]);
 	if (!has_parameter)
