@@ -6,7 +6,7 @@
 /*   By: axel <axel@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/15 14:37:22 by axel              #+#    #+#             */
-/*   Updated: 2023/09/06 16:05:10 by axel             ###   ########.fr       */
+/*   Updated: 2023/09/07 13:24:22 by axel             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
  /*	Allows to input multiple line lines until a line containing the 
  	delimiter is seen via the '<<' input.
-	t_args *input: command that has been inputed.
+	@param t_args *input: command that has been inputed.
  */
 static void	redirect_heredoc(t_args *input)
 {
@@ -41,7 +41,7 @@ static void	redirect_heredoc(t_args *input)
 }
 
 /*	Redirect the input of a command into the file via the '<' operator.
-	t_args *input: command that has been inputed.
+	@param t_args *input: command that has been inputed.
 */
 static void	redirect_input(t_args *input)
 {
@@ -69,7 +69,7 @@ static void	redirect_input(t_args *input)
 
 /*	Check the operator used and create or replace a document if '>', or
 	append a document if '>>'.
-	t_args *input: command that has been inputed.
+	@param t_args *input: command that has been inputed.
 */
 static void	redirect_output(t_args *input)
 {
@@ -91,12 +91,13 @@ static void	redirect_output(t_args *input)
 }
 
 /*	Check for the redirection symbol, or pipe, and execute the correct command.
-	t_args *input: command inputed with the operator.
+	@param t_args *input: command inputed with the operator.
+	@param t_data *data : environment in which the command is executed.
 */
 void	exec_redirect(t_args *input, t_data *data)
 {
 	t_args *temp;
-
+	
 	temp = input;
 	if (input->operator == REDIR_INPUT)
 		redirect_input(input);
@@ -106,7 +107,7 @@ void	exec_redirect(t_args *input, t_data *data)
 		redirect_output(input);
 	temp->operator = NONE;
 	while (input->operator != NONE && input->operator != PIPE)
-		input = input->next;
+		input = input->next;	
 	if (input->operator == NONE)
 		execute_cmd(temp, data);
 	else

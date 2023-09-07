@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_itoa.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cpothin <cpothin@student.42.fr>            +#+  +:+       +#+        */
+/*   By: axel <axel@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/14 10:56:24 by acharlot          #+#    #+#             */
-/*   Updated: 2023/08/11 11:50:07 by cpothin          ###   ########.fr       */
+/*   Updated: 2023/09/07 09:48:43 by axel             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@ char	*ft_itoa(int n)
 	size_t			len;
 
 	len = ft_number_size(n);
-	str = (char *)malloc(sizeof(char) * (len + 1));
+	str = (char *)gc_alloc(sizeof(char) * (len + 1), "ft_itoa");
 	if (str == NULL)
 		return (NULL);
 	if (n < 0)
