@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: axel <axel@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: cpothin <cpothin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/22 15:50:31 by cpothin           #+#    #+#             */
-/*   Updated: 2023/09/06 10:55:12 by axel             ###   ########.fr       */
+/*   Updated: 2023/09/07 17:04:28 by cpothin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -198,10 +198,11 @@ void		clean_parsed(t_args **args, t_data *data);
 bool 		is_inside_quotes(char *input, int index);
 int			unclosed_quote(char *str);
 char		*remove_quote(char *parsed);
+bool		check_brackets(char *raw_input);
 
 //parsing_utils
 
-bool		check_brackets(char *raw_input);
+void		argc_post_parsing(t_args *args);
 char		*get_input(void);
 bool		is_space(char c);
 t_args		*new_lst(int argc);

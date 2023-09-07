@@ -6,19 +6,23 @@
 /*   By: cpothin <cpothin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/09 15:32:28 by cpothin           #+#    #+#             */
-/*   Updated: 2023/09/07 17:02:13 by cpothin          ###   ########.fr       */
+/*   Updated: 2023/09/07 17:03:45 by cpothin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../inc/minishell.h"
 
-// void	argc_post_parsing(t_args *args)
-// {
-// 	t_args *tmp;
+void	argc_post_parsing(t_args *args)
+{
+	t_args *tmp;
 
-// 	tmp = args;
-
-// }
+	tmp = args;
+	while (tmp->next)
+	{
+		tmp->argc -= tmp->next->argc;
+		tmp = tmp->next;
+	}
+}
 
 /*	Returns the input of the user after validating it. */
 char	*get_input(void)
