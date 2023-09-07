@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   binaries.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cpothin <cpothin@student.42.fr>            +#+  +:+       +#+        */
+/*   By: axel <axel@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/29 09:00:12 by cpothin           #+#    #+#             */
-/*   Updated: 2023/09/06 09:14:15 by cpothin          ###   ########.fr       */
+/*   Updated: 2023/09/07 13:42:20 by axel             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,7 +58,7 @@ bool	check_if_binary(t_data *data, char *arg)
 	else if (arg[0] != '/' && arg[1])
 	{
 		bin_name = ft_strjoin(ft_strjoin(get_env(data, "PWD"), "/"), arg);
-		if (access(bin_name, F_OK | X_OK) != 0)
+		if (!bin_name || access(bin_name, F_OK | X_OK) != 0)
 			return (false);
 		execute_binary(data, arg, get_env(data, "PWD"));
 		return (true);
