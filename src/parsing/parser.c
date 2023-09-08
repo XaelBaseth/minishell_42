@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parser.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cpothin <cpothin@student.42.fr>            +#+  +:+       +#+        */
+/*   By: axel <axel@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/17 08:00:57 by acharlot          #+#    #+#             */
-/*   Updated: 2023/09/07 17:47:48 by cpothin          ###   ########.fr       */
+/*   Updated: 2023/09/08 09:39:54 by axel             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 /*	Returns the number of argument passed in the matrix given in the
 	parameter. 
-	char **parsed: pointer toward an array of arguments passed as the user
+	@param char **parsed: pointer toward an array of arguments passed as the user
 	input.
 */
 int	get_argc(char **parsed)
@@ -28,7 +28,7 @@ int	get_argc(char **parsed)
 }
 
 /*	Return the number of arguments entered via the input.
-	char *input: command entered by the user.
+	 @param char *input: command entered by the user.
 */
 int	get_nb_input(char *input)
 {

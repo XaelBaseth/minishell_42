@@ -6,7 +6,7 @@
 /*   By: axel <axel@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/25 07:41:55 by acharlot          #+#    #+#             */
-/*   Updated: 2023/09/06 15:29:14 by axel             ###   ########.fr       */
+/*   Updated: 2023/09/08 09:40:41 by axel             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,8 @@
 
 /*	Checks if the character at index is inside quotes so we can ignore
 	the meta-characters except $ 
-	char *input: command entered by the user.
-	int index: number of character in the input.
+	@param char *input: command entered by the user.
+	@param int index: number of character in the input.
 */
 bool 	is_inside_quotes(char *input, int index)
 {
@@ -40,7 +40,7 @@ bool 	is_inside_quotes(char *input, int index)
 
 /*	checks the amount of open '(' and closed ')' brackets so we can make the command
 	fail.
-	char *raw_input: command entered by the user not trimed.
+	@param char *raw_input: command entered by the user not trimed.
 */
 bool	check_brackets(char *raw_input)
 {
@@ -89,7 +89,7 @@ int	unclosed_quote(char *str)
 }
 
 /*	Return the size of a string ignoring quoted characters.
-	char *parsed: input by the user parsed.
+	@param char *parsed: input by the user parsed.
 */
 int	remove_quote_size(char *parsed)
 {
@@ -120,7 +120,7 @@ int	remove_quote_size(char *parsed)
 }
 
 /*	Returns a string with the quoted characters removed.
-	char *parsed: input by the user parsed.
+	@param char *parsed: input by the user parsed.
 */
 char	*remove_quote(char *parsed)
 {

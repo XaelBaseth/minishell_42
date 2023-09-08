@@ -6,14 +6,14 @@
 /*   By: axel <axel@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/10 09:15:47 by cpothin           #+#    #+#             */
-/*   Updated: 2023/09/04 14:37:44 by axel             ###   ########.fr       */
+/*   Updated: 2023/09/08 09:39:42 by axel             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../inc/minishell.h"
 
 /*	Check if the inputed string contains an operator from the enum t_operator.
-	char *input: string passed as a command from the user.
+	@param char *input: string passed as a command from the user.
 */
 bool	has_operator(char *input)
 {
@@ -31,7 +31,7 @@ bool	has_operator(char *input)
 
 /*	Returns the lenght of a token, wether it's a string, an operator or
 	quoted character.
-	char *input_at_i: pointer towards a character from a string inputed
+	@param char *input_at_i: pointer towards a character from a string inputed
 		by the user.
 */
 int	get_token_len(char *input_at_i)
@@ -63,7 +63,7 @@ int	get_token_len(char *input_at_i)
 
 /*	Compare the character inputed to an operator and attribute the correct
 	t_operator symbol.
-	char *operator: string containing, or not, an operator.
+	@param char *operator: string containing, or not, an operator.
 */
 t_operator	get_operator(char *operator)
 {

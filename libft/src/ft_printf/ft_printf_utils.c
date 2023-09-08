@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_printf_utils.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cpothin <cpothin@student.42.fr>            +#+  +:+       +#+        */
+/*   By: axel <axel@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/27 12:26:08 by acharlot          #+#    #+#             */
-/*   Updated: 2023/09/05 09:12:17 by cpothin          ###   ########.fr       */
+/*   Updated: 2023/09/08 14:26:06 by axel             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@ int	ft_printnbr(int n)
 	len = 0;
 	num = ft_itoa(n);
 	len = ft_printstr(num);
-	free(num);
+	gc_free(num);
 	return (len);
 }
 

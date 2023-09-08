@@ -6,14 +6,14 @@
 /*   By: axel <axel@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/31 10:37:29 by acharlot          #+#    #+#             */
-/*   Updated: 2023/08/21 14:28:10 by axel             ###   ########.fr       */
+/*   Updated: 2023/09/08 09:38:02 by axel             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../inc/minishell.h"
 
 /*	Get the PATH variable from the duplicated environment. 
-	t_data *data: linked list element for environmnent.
+	@param t_data *data: linked list element for environmnent.
 */
 char	*get_path(t_data *data)
 {
@@ -35,8 +35,8 @@ char	*get_path(t_data *data)
 }
 
 /*	Split and store the PATH variables into the path structure. 
-	char *path: almagamation of every path.
-	t_data *data: path element of the linked list data.
+	@param char *path: almagamation of every path.
+	@param t_data *data: path element of the linked list data.
 */
 void	store_path(char *path, t_data *data)
 {
@@ -67,7 +67,7 @@ void	store_path(char *path, t_data *data)
 }
 
 /*	Print out the PATH variables.
-	t_data *data: linked list that contains the path array.
+	@param t_data *data: linked list that contains the path array.
  */
 void	print_path(t_data *data)
 {

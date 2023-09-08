@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cpothin <cpothin@student.42.fr>            +#+  +:+       +#+        */
+/*   By: axel <axel@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/18 10:48:07 by acharlot          #+#    #+#             */
-/*   Updated: 2023/09/07 17:43:39 by cpothin          ###   ########.fr       */
+/*   Updated: 2023/09/08 09:38:53 by axel             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ int	event(void)
 	return (EXIT_SUCCESS);
 }
 /*	We initialize element of the data lined list before using them.
-	t_data *data : linked list data.
+	@param t_data *data : linked list data.
  */
 void	init_data(t_data *data)
 {
@@ -34,8 +34,8 @@ void	init_data(t_data *data)
 
 /*	Setup all the variable used for shell.
 	char **envp: environment variable.
-	t_data *data: linked list of data.
-	t_args **args: linked list of args.
+	@param t_data *data: linked list of data.
+	@param t_args **args: linked list of args.
 */
 void	setup_shell(char **envp, t_data *data)
 {

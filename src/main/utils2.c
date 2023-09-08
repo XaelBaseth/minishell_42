@@ -6,7 +6,7 @@
 /*   By: axel <axel@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/04 14:48:44 by axel              #+#    #+#             */
-/*   Updated: 2023/09/06 10:56:20 by axel             ###   ########.fr       */
+/*   Updated: 2023/09/08 09:39:30 by axel             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 /*	Check if a string is equal to a character by comparing their ASCII number.
 	const char *str: string to which we compare the ASCII number.
-	int c: ASCII number of a character.
+	@param int c: ASCII number of a character.
  */
 bool	is_char(const char *str, int c)
 {
@@ -33,8 +33,8 @@ bool	is_char(const char *str, int c)
 }
 
 /*	Compare two string to see wether they are the same or not.
-	char *str1: first string to compare.
-	char *str2: second string to compare.
+	@param char *str1: first string to compare.
+	@param char *str2: second string to compare.
 */
 bool	streq(char *str1, char *str2)
 {
@@ -54,8 +54,8 @@ bool	streq(char *str1, char *str2)
 
 /*	Returns a string without the character at the beginning or at the end
 	of the command
-	char *str1 : basic string to be trimmed.
-	char const *set : set of character that are trimmed.
+	@param char *str1 : basic string to be trimmed.
+	@param char const *set : set of character that are trimmed.
 */
 char	*trim(char *str1, char const *set)
 {

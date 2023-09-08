@@ -6,7 +6,7 @@
 /*   By: axel <axel@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/15 14:37:22 by axel              #+#    #+#             */
-/*   Updated: 2023/09/07 13:29:07 by axel             ###   ########.fr       */
+/*   Updated: 2023/09/08 14:25:29 by axel             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,8 +26,12 @@ static void	redirect_heredoc(t_args *input)
 	{
 		buffer = readline("\033[32m$> \033[0m");
 		if (!buffer)
+		{
+			ft_putendl_fd("minishell: HEREDOC needs a delimitor to exit.\n"
+				, STDERR_FILENO);
 			exit(EXIT_FAILURE);
-		if (streq(buffer, input->next->argv[0]))
+		}
+		if (ft_strstr(buffer, input->next->argv[0]))
 		{
 			free(buffer);
 			break ;

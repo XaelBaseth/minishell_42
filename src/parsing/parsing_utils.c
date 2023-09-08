@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parsing_utils.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cpothin <cpothin@student.42.fr>            +#+  +:+       +#+        */
+/*   By: axel <axel@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/09 15:32:28 by cpothin           #+#    #+#             */
-/*   Updated: 2023/09/07 17:03:45 by cpothin          ###   ########.fr       */
+/*   Updated: 2023/09/08 14:17:56 by axel             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,7 @@ char	*get_input(void)
 }
 
 /*	Check if the character c is a space or a formatting character.
-	char c: character that is checked.
+	@param char c: character that is checked.
 */
 bool	is_space(char c)
 {
@@ -54,7 +54,7 @@ bool	is_space(char c)
 }
 
 /*	Initialize the t_args linked list.
-	int argc: number of argument in one command.
+	@param int argc: number of argument in one command.
 */
 t_args	*new_lst(int argc)
 {
@@ -68,7 +68,7 @@ t_args	*new_lst(int argc)
 	return (new_node);
 }
 /*	Clear the t_args linked list. 
-	t_args **args: array of arguments entered by the user in a command.
+	@param t_args **args: array of arguments entered by the user in a command.
 */
 void	lst_clear(t_args **args)
 {

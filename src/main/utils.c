@@ -6,14 +6,14 @@
 /*   By: axel <axel@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/27 08:38:49 by acharlot          #+#    #+#             */
-/*   Updated: 2023/09/04 14:50:19 by axel             ###   ########.fr       */
+/*   Updated: 2023/09/08 09:39:14 by axel             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../inc/minishell.h"
 
 /*	Throw out an error message and exit the program. 
-	char *str: Message to be printed.
+	@param char *str: Message to be printed.
 */
 void	panic(char *str)
 {
@@ -23,7 +23,7 @@ void	panic(char *str)
 }
 
 /*	Free the matrix used for the args linked list.
-	char **matrix: pointer to a string array.
+	@param char **matrix: pointer to a string array.
 */
 void	free_matrix(char **matrix)
 {
