@@ -6,7 +6,7 @@
 /*   By: cpothin <cpothin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/22 15:50:31 by cpothin           #+#    #+#             */
-/*   Updated: 2023/09/07 17:04:28 by cpothin          ###   ########.fr       */
+/*   Updated: 2023/09/07 17:47:16 by cpothin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -184,13 +184,13 @@ void		sigquit_handler(int sig);
 
 //init
 
-void		setup_shell(char **envp, t_data *data, t_args **args);
+void		setup_shell(char **envp, t_data *data);
 
 /*	PARSING	*/
 //parser
 
 t_args		*parser(char *input);
-void		clean_parsed(t_args **args, t_data *data);
+void		clean_parsed(t_args *args, t_data *data);
 
 //quotes_handler
 

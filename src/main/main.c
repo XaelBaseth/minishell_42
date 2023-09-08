@@ -6,7 +6,7 @@
 /*   By: cpothin <cpothin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/25 07:42:03 by acharlot          #+#    #+#             */
-/*   Updated: 2023/09/07 17:07:03 by cpothin          ###   ########.fr       */
+/*   Updated: 2023/09/07 17:48:55 by cpothin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,15 +26,21 @@ void print_args(t_args *args)
 	}
 }
 
-int main(int argc, char **argv, char **envp)
+static void	process_data(t_data *data)
+{
+	argc_post_parsing(data->args);
+	create_processes(data->args, data);
+	clean_parsed(data->args, data);
+}
+
+int	main(int argc, char **argv, char **envp)
 {
 	t_data	data;
-	t_args	*args;
 	char	*input;
 
 	if (argc > 1 && argv)
 		panic("No arguments are needed.");
-	setup_shell(envp, &data, &args);
+	setup_shell(envp, &data);
 	while (1)
 	{
 		input = get_input();
@@ -49,11 +55,8 @@ int main(int argc, char **argv, char **envp)
 			free(input);
 			continue ;
 		}
-		args = parser(input);
-		argc_post_parsing(args);
-		data.args = args;
-		create_processes(args, &data);
-		clean_parsed(&args, &data);
+		data.args = parser(input);
+		process_data(&data);
 	}
 	gc_free_all();
 	return (EXIT_SUCCESS);
