@@ -3,17 +3,19 @@
 /*                                                        :::      ::::::::   */
 /*   valid_input.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cpothin <cpothin@student.42.fr>            +#+  +:+       +#+        */
+/*   By: acharlot <acharlot@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/17 08:17:48 by acharlot          #+#    #+#             */
-/*   Updated: 2023/09/07 09:08:44 by cpothin          ###   ########.fr       */
+/*   Updated: 2023/09/11 11:16:17 by acharlot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../inc/minishell.h"
 
-/*	Prints out an error message if a character is unrecognized.
+/*	
+	Prints out an error message if a character is unrecognized.
 	@param char `token` : character that is not recognized.
+	@returns `true` - always.
 */
 bool	unexpected_token(char token)
 {
@@ -23,8 +25,10 @@ bool	unexpected_token(char token)
 	return (true);
 }
 
-/*	Check if the operator (or combination of operator) is correct.
-	@param char `*input` : command entered by the user.
+/*	
+	Check if the operator (or combination of operator) is correct.
+	@param `*input` : command entered by the user.
+	@returns `true` or `false` - according to the result of the comparison.
 */
 bool	invalid_operator(char *input)
 {
@@ -55,8 +59,10 @@ bool	invalid_operator(char *input)
 	return (false);
 }
 
-/*	Continuation of the checking for the validation of the inputed string.
-	@param char `*input` : command entered by the user.
+/*	
+	Continuation of the checking for the validation of the inputed string.
+	@param `*input` : command entered by the user.
+	@returns `true` or `false` - according to the result of the comparison.
 */
 bool	invalid_syntax2(char *input)
 {
@@ -83,8 +89,10 @@ bool	invalid_syntax2(char *input)
 	return (false);
 }
 
-/*	Start of the checking for the validation of the inputed string. 
-	@param char `*input` : command entered by the user.
+/*	
+	Start of the checking for the validation of the inputed string. 
+	@param `*input` : command entered by the user.
+	@returns `true` or `false` - according to the result of the comparison.
 */
 bool	invalid_syntax(char *input)
 {
@@ -105,7 +113,8 @@ bool	invalid_syntax(char *input)
 }
 
 /*	Check if the input is valid or not.
-	@param char `*input` : command entered by the user.
+	@param `*input` : command entered by the user.
+	@returns `true` or `false` - according to the result of the comparison.
 */
 bool	valid_input(char *input)
 {

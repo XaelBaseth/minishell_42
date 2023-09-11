@@ -3,15 +3,19 @@
 /*                                                        :::      ::::::::   */
 /*   parsing_utils.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: axel <axel@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: acharlot <acharlot@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/09 15:32:28 by cpothin           #+#    #+#             */
-/*   Updated: 2023/09/08 14:17:56 by axel             ###   ########.fr       */
+/*   Updated: 2023/09/11 10:38:26 by acharlot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../inc/minishell.h"
 
+/*
+	Actualise the numbers of arguments after the parsing.
+	@param `*args`: command entered by the user.
+*/
 void	argc_post_parsing(t_args *args)
 {
 	t_args *tmp;
@@ -24,7 +28,10 @@ void	argc_post_parsing(t_args *args)
 	}
 }
 
-/*	Returns the input of the user after validating it. */
+/*	
+	Returns the input of the user after checking and trimming it.
+	@returns `input` - command entered by the user.
+*/
 char	*get_input(void)
 {
 	char	*raw_input;
@@ -42,8 +49,10 @@ char	*get_input(void)
  	return (input);
 }
 
-/*	Check if the character c is a space or a formatting character.
-	@param char c: character that is checked.
+/*	
+	Check if the character c is a space or a formatting character.
+	@param `c`: character that is checked.
+	@returns `true` or `false` - according to the result of the comparison.
 */
 bool	is_space(char c)
 {
@@ -53,8 +62,10 @@ bool	is_space(char c)
 	return (false);
 }
 
-/*	Initialize the t_args linked list.
-	@param int argc: number of argument in one command.
+/*	
+	Initialize the t_args linked list.
+	@param `argc`: number of argument in one command.
+	@returns `new_node` - created a new t_args point.
 */
 t_args	*new_lst(int argc)
 {
@@ -67,8 +78,9 @@ t_args	*new_lst(int argc)
 	new_node->next = NULL;
 	return (new_node);
 }
-/*	Clear the t_args linked list. 
-	@param t_args **args: array of arguments entered by the user in a command.
+/*	
+	Clear the t_args linked list. 
+	@param `**args`: array of arguments entered by the user in a command.
 */
 void	lst_clear(t_args **args)
 {

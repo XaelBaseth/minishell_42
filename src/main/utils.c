@@ -3,17 +3,19 @@
 /*                                                        :::      ::::::::   */
 /*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: axel <axel@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: acharlot <acharlot@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/27 08:38:49 by acharlot          #+#    #+#             */
-/*   Updated: 2023/09/08 09:39:14 by axel             ###   ########.fr       */
+/*   Updated: 2023/09/11 09:39:58 by acharlot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../inc/minishell.h"
 
-/*	Throw out an error message and exit the program. 
-	@param char *str: Message to be printed.
+/*	
+	Throw out an error message and exit the program. 
+	@param `*str`: Message to be printed.
+	@returns `1` - exit code failure.
 */
 void	panic(char *str)
 {
@@ -22,8 +24,9 @@ void	panic(char *str)
 	exit(EXIT_FAILURE);
 }
 
-/*	Free the matrix used for the args linked list.
-	@param char **matrix: pointer to a string array.
+/*	
+	Free the matrix used for the args linked list.
+	@param `**matrix`: pointer to a string array.
 */
 void	free_matrix(char **matrix)
 {
@@ -42,6 +45,12 @@ void	free_matrix(char **matrix)
 	matrix = NULL;
 }
 
+/*
+	Check if the string contains only numbers.
+	@param `*str`: string to be checked.
+	@returns `true` or `false` - according to wether the string
+	contains only number or not.
+*/
 bool	is_numeric(char *str)
 {
 	int	i;
@@ -57,6 +66,12 @@ bool	is_numeric(char *str)
 	return (true);
 }
 
+/*
+	Check if the string can be turned into an int.
+	@param `*str`: string to be checked.
+	@returns `true` or `false` - according to wether the string
+	can be an int or not.
+*/
 bool	is_int(char *str)
 {
 	long long	big_number;
@@ -69,6 +84,14 @@ bool	is_int(char *str)
 	return(true);
 }
 
+/*
+	Creates a new string by copying specified characters.
+	@param `*s`: string that will be copied.
+	@param `from`: position tracker that start the copying.
+	@param `to`: position tracker that end the copying.
+	@returns `s_copy` - copy of the string with only the
+	specified characters.
+*/
 char	*ft_strdup_range(const char *s, size_t from, size_t to)
 {
 	size_t	i;

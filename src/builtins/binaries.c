@@ -3,16 +3,23 @@
 /*                                                        :::      ::::::::   */
 /*   binaries.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: axel <axel@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: acharlot <acharlot@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/29 09:00:12 by cpothin           #+#    #+#             */
-/*   Updated: 2023/09/07 13:42:20 by axel             ###   ########.fr       */
+/*   Updated: 2023/09/11 08:38:54 by acharlot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 
 #include "../../inc/minishell.h"
 
+
+/*	
+	Execute the binary file found in the path.
+	@param *data: environment of the minishell.
+	@param *arg: the name of the binary file.
+	@param *prefix: characters that prefixes the binare file.
+*/
 void	execute_binary(t_data *data, char *arg, char *prefix)
 {
 	char	*full_path;
@@ -34,7 +41,7 @@ void	execute_binary(t_data *data, char *arg, char *prefix)
 }
 /*
 	Checks if the command is a binary and tries to execute it.
-	@param char `*arg` : the argument to check.
+	@param `*arg` : the argument to check.
 	@returns `true` if the binary exists and starts with no error,
 	`false` if not.
 */

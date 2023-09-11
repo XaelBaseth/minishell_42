@@ -3,17 +3,19 @@
 /*                                                        :::      ::::::::   */
 /*   path.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: axel <axel@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: acharlot <acharlot@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/31 10:37:29 by acharlot          #+#    #+#             */
-/*   Updated: 2023/09/08 09:38:02 by axel             ###   ########.fr       */
+/*   Updated: 2023/09/11 08:38:10 by acharlot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../inc/minishell.h"
 
-/*	Get the PATH variable from the duplicated environment. 
-	@param t_data *data: linked list element for environmnent.
+/*	
+	Get the PATH variable from the duplicated environment. 
+	@param *data: linked list element for environmnent.
+	@returns `char` - string of every path found in the enviromnent.
 */
 char	*get_path(t_data *data)
 {
@@ -34,9 +36,10 @@ char	*get_path(t_data *data)
 	return (path);
 }
 
-/*	Split and store the PATH variables into the path structure. 
+/*	
+	Split and store the PATH variables into the path structure. 
 	@param char *path: almagamation of every path.
-	@param t_data *data: path element of the linked list data.
+	@param *data: path element of the linked list data.
 */
 void	store_path(char *path, t_data *data)
 {
@@ -66,8 +69,9 @@ void	store_path(char *path, t_data *data)
 	gc_free(split_path);
 }
 
-/*	Print out the PATH variables.
-	@param t_data *data: linked list that contains the path array.
+/*	
+	Print out the PATH variables.
+	@param *data: linked list that contains the path array.
  */
 void	print_path(t_data *data)
 {

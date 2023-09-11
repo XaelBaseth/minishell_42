@@ -3,16 +3,24 @@
 /*                                                        :::      ::::::::   */
 /*   expand.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cpothin <cpothin@student.42.fr>            +#+  +:+       +#+        */
+/*   By: acharlot <acharlot@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/31 09:42:37 by cpothin           #+#    #+#             */
-/*   Updated: 2023/09/07 10:47:25 by cpothin          ###   ########.fr       */
+/*   Updated: 2023/09/11 09:09:35 by acharlot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../inc/minishell.h"
 extern int	g_signal;
 
+/*
+	Replace the expanded variable with the exit status of the last
+	child process.
+	@param `*expanded_input_at_i` : string reflecting the value of the
+	exit status.
+	@param `*i` : position tracker inside the `*expanded_input_at_i`.
+	@returns `j` - numbers of characters added to `*expanded_input_at_i`.
+*/
 static int	expand_exit_status(char *expanded_input_at_i, int *i)
 {
 	char	*exit_status;
@@ -30,6 +38,14 @@ static int	expand_exit_status(char *expanded_input_at_i, int *i)
 	return (j);
 }
 
+/*
+	Replace the expanded variable with its true value from the environment.
+	@param `*data`: environmnent of minishell.
+	@param `*new_input`: string reflecting the value of the expanded variable.
+	@param `*input`: command entered by the user.
+	@param `*i`: position tracker inside the `input` string.
+	@returns `j` - number of letters inside the `new input` variable.
+*/
 static int	expand_variable(t_data *data, char *new_input, char *input,
 	int *i)
 {
@@ -60,6 +76,14 @@ static int	expand_variable(t_data *data, char *new_input, char *input,
 	return (j);
 }
 
+/*	
+	Expands the variable defined by an `$` symbol, showing their value
+	from the environment variable. With the exception of $? showing
+	the exit code.
+	@param `*data` : environment of the minishell.
+	@param `*input` : arguments inputed by the user.
+	@returns `expanded input` - value of the expanded variable.
+*/
 char	*expand(t_data *data, char *input)
 {
 	int		i;

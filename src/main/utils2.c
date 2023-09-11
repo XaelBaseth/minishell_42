@@ -3,18 +3,20 @@
 /*                                                        :::      ::::::::   */
 /*   utils2.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: axel <axel@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: acharlot <acharlot@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/04 14:48:44 by axel              #+#    #+#             */
-/*   Updated: 2023/09/08 09:39:30 by axel             ###   ########.fr       */
+/*   Updated: 2023/09/11 10:18:23 by acharlot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../inc/minishell.h"
 
-/*	Check if a string is equal to a character by comparing their ASCII number.
-	const char *str: string to which we compare the ASCII number.
-	@param int c: ASCII number of a character.
+/*	
+	Check if a string is equal to a character by comparing their ASCII number.
+	@param `*str`: string to which we compare the ASCII number.
+	@param `c`: ASCII number of a character.
+	@returns `true` or `false` - according to the result of the comparison.
  */
 bool	is_char(const char *str, int c)
 {
@@ -32,9 +34,11 @@ bool	is_char(const char *str, int c)
 	return (false);
 }
 
-/*	Compare two string to see wether they are the same or not.
-	@param char *str1: first string to compare.
-	@param char *str2: second string to compare.
+/*	
+	Compare two string to see wether they are the same or not.
+	@param `*str1`: first string to compare.
+	@param `*str2`: second string to compare.
+	@returns `true` or `false` - according to the result of the comparison.
 */
 bool	streq(char *str1, char *str2)
 {
@@ -52,10 +56,12 @@ bool	streq(char *str1, char *str2)
 	return (true);
 }
 
-/*	Returns a string without the character at the beginning or at the end
+/*	
+	Returns a string without the character at the beginning or at the end
 	of the command
-	@param char *str1 : basic string to be trimmed.
-	@param char const *set : set of character that are trimmed.
+	@param `*str1`: basic string to be trimmed.
+	@param `*set`: set of character that are trimmed.
+	@returns `trimmed_str` - Trimmes string without the character set.
 */
 char	*trim(char *str1, char const *set)
 {

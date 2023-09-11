@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   config_sig.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: axel <axel@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: acharlot <acharlot@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/31 12:03:38 by acharlot          #+#    #+#             */
-/*   Updated: 2023/09/08 09:38:45 by axel             ###   ########.fr       */
+/*   Updated: 2023/09/11 08:39:41 by acharlot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ int	g_signal;
 	inside it without exiting the heredoc input. Else, we simply
 	clear the input and display a new line.
 	
-	@param int sig: signal handler need a specific signature in order to
+	@param sig: signal handler need a specific signature in order to
 	be used as signal handler, it ensure compatibility with the
 	signature for signal handler.
 */
@@ -43,7 +43,7 @@ void	sigint_handler(int sig)
 
 /*	This is called when the SIGQUIT (QUIT or CTRL + \) signal is received.
 	
-	@param int sig: signal handler need a specific signature in order to
+	@param sig: signal handler need a specific signature in order to
 	be used as signal handler, it ensure compatibility with the
 	signature for signal handler.
 */

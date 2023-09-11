@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   quotes_handler.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: axel <axel@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: acharlot <acharlot@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/25 07:41:55 by acharlot          #+#    #+#             */
-/*   Updated: 2023/09/08 09:40:41 by axel             ###   ########.fr       */
+/*   Updated: 2023/09/11 11:12:08 by acharlot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,9 @@
 
 /*	Checks if the character at index is inside quotes so we can ignore
 	the meta-characters except $ 
-	@param char *input: command entered by the user.
-	@param int index: number of character in the input.
+	@param `*input`: command entered by the user.
+	@param `index`: number of character in the input.
+	@returns `true` or `false` - according to the result of the comparison.
 */
 bool 	is_inside_quotes(char *input, int index)
 {
@@ -38,9 +39,11 @@ bool 	is_inside_quotes(char *input, int index)
 	return (false);
 }
 
-/*	checks the amount of open '(' and closed ')' brackets so we can make the command
+/*	
+	Checks the amount of open '(' and closed ')' brackets so we can make the command
 	fail.
-	@param char *raw_input: command entered by the user not trimed.
+	@param `*raw_input`: command entered by the user not trimed.
+	@returns `true` or `false` - according to the result of the comparison.
 */
 bool	check_brackets(char *raw_input)
 {
@@ -63,6 +66,11 @@ bool	check_brackets(char *raw_input)
 	return (true);
 }
 
+/*
+	Check if the quotes are closed or not.
+	@param `*str`: string to be checked.
+	@returns `1` or `0` - according to the result of the comparison. 
+*/
 int	unclosed_quote(char *str)
 {
 	char	last_opened;
@@ -88,8 +96,10 @@ int	unclosed_quote(char *str)
 		return (1);
 }
 
-/*	Return the size of a string ignoring quoted characters.
-	@param char *parsed: input by the user parsed.
+/*	
+	Return the size of a string ignoring quoted characters.
+	@param `*parsed`: input by the user parsed.
+	@returns `size` - size of the string ignoring quoted characters.
 */
 int	remove_quote_size(char *parsed)
 {
@@ -119,8 +129,10 @@ int	remove_quote_size(char *parsed)
 	return (size);
 }
 
-/*	Returns a string with the quoted characters removed.
-	@param char *parsed: input by the user parsed.
+/*	
+	Returns a string with the quoted characters removed.
+	@param *parsed: input by the user parsed.
+	@returns `unquoted_parse` - string with the quoted characters removed.
 */
 char	*remove_quote(char *parsed)
 {

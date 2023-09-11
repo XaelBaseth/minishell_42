@@ -3,15 +3,19 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: axel <axel@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: acharlot <acharlot@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/25 07:42:03 by acharlot          #+#    #+#             */
-/*   Updated: 2023/09/08 14:21:32 by axel             ###   ########.fr       */
+/*   Updated: 2023/09/11 08:39:10 by acharlot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../inc/minishell.h"
 
+/*	
+	Prints the arguments divided by their places in the t_args structure.
+	@param *args : command inputed by the user.
+*/
 void print_args(t_args *args)
 {
 	int i;
@@ -31,6 +35,11 @@ void print_args(t_args *args)
 	ft_printf("\033[34m#####################################\033[0m\n");
 }
 
+/*	
+	Processes the data used by the minishell in an executor and clean the
+	input.
+	@param *data: data used by the minishell.	
+*/
 static void	process_data(t_data *data)
 {
 	argc_post_parsing(data->args);

@@ -3,20 +3,21 @@
 /*                                                        :::      ::::::::   */
 /*   pipe.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: axel <axel@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: acharlot <acharlot@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/22 13:51:09 by axel              #+#    #+#             */
-/*   Updated: 2023/09/08 13:21:13 by axel             ###   ########.fr       */
+/*   Updated: 2023/09/11 08:37:48 by acharlot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../inc/minishell.h"
 
-/*	Set up the process to redirect its standard output to the write end of a
+/*	
+	Set up the process to redirect its standard output to the write end of a
 	pipe.
-	@param t_args *input : input command of the user.
-	@param t_data *data : environment in which the command would be executed.
-	@param int pdes[2] : pipe file descriptors.
+	@param *input : input command of the user.
+	@param *data : environment in which the command would be executed.
+	@param pdes[2] : pipe file descriptors.
 */
 static void	left_side(t_args *input, t_data *data, int pdes[2])
 {
@@ -26,11 +27,12 @@ static void	left_side(t_args *input, t_data *data, int pdes[2])
 	close(pdes[1]);
 	execute_cmd(input, data);
 }
-/*	Set up the process to redirect its standard input to the read end of a
+/*	
+	Set up the process to redirect its standard input to the read end of a
 	pipe.
-	@param t_args *input : input command of the user.
-	@param t_data *data : environment in which the command would be executed.
-	@param int pdes[2] : pipe file descriptors.
+	@param *input : input command of the user.
+	@param *data : environment in which the command would be executed.
+	@param pdes[2] : pipe file descriptors.
 */
 static void	right_side(t_args *input, t_data *data, int pdes[2])
 {
@@ -41,10 +43,11 @@ static void	right_side(t_args *input, t_data *data, int pdes[2])
 	execute_cmd(input, data);
 }
 
-/*	Handles the execution of commands using pipes, creating a child process
+/*	
+	Handles the execution of commands using pipes, creating a child process
 	to handle the left side and the parent process to handle the right side.
-	@param t_args *input : input command of the user.
-	@param t_data *data : environment in which the command would be executed.
+	@param *input : input command of the user.
+	@param *data : environment in which the command would be executed.
 */
 void	exec_pipe(t_args *input, t_data *data)
 {

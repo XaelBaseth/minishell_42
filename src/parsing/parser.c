@@ -3,19 +3,21 @@
 /*                                                        :::      ::::::::   */
 /*   parser.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: axel <axel@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: acharlot <acharlot@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/17 08:00:57 by acharlot          #+#    #+#             */
-/*   Updated: 2023/09/08 09:39:54 by axel             ###   ########.fr       */
+/*   Updated: 2023/09/11 10:24:29 by acharlot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../inc/minishell.h"
 
-/*	Returns the number of argument passed in the matrix given in the
+/*	
+	Returns the number of argument passed in the matrix given in the
 	parameter. 
-	@param char **parsed: pointer toward an array of arguments passed as the user
+	@param `**parsed`: pointer toward an array of arguments passed as the user
 	input.
+	@returns `i` - numbers of arguments passed.
 */
 int	get_argc(char **parsed)
 {
@@ -27,8 +29,10 @@ int	get_argc(char **parsed)
 	return (i);
 }
 
-/*	Return the number of arguments entered via the input.
-	 @param char *input: command entered by the user.
+/*	
+	Return the number of arguments entered via the input.
+	@param `*input`: command entered by the user.
+	@returns `count` - numbers of argument in the  user input.
 */
 int	get_nb_input(char *input)
 {
@@ -59,9 +63,10 @@ int	get_nb_input(char *input)
 	return (count);
 }
 
-/*	Free the linked list of arguments. 
-	@param t_args `**args`	: pointer to array of command entered by the user.
-	@param t_data `*data`	: linked list of enviromnent in which there are the
+/*	
+	Free the linked list of arguments. 
+	@param `**args`	: pointer to array of command entered by the user.
+	@param `*data`	: linked list of enviromnent in which there are the
 	arguments.
 */
 void	clean_parsed(t_args *args, t_data *data)
@@ -71,9 +76,11 @@ void	clean_parsed(t_args *args, t_data *data)
 	data->args = NULL;
 }
 
-/*	Transform the input of the user into an array of command that can be
+/*	
+	Transform the input of the user into an array of command that can be
 	understood by the minishell.
-	@param char `*input` : command entered by the user.	
+	@param `*input` : command entered by the user.
+	@returns `parsed` - array of input that can be used by the environment.
 */
 char	**parse_input(char *input)
 {
@@ -104,8 +111,10 @@ char	**parse_input(char *input)
 	return (parsed);
 }
 
-/*	Take the command of the user and return a trimed string.
-	@param char `*input` : command entered by the user.
+/*	Take the command of the user and return a trimed string while filling
+	the args structure.
+	@param `*input`: command entered by the user.
+	@returns `head` - trimmed command.
 */
 t_args	*parser(char *input)
 {

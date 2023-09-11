@@ -3,18 +3,19 @@
 /*                                                        :::      ::::::::   */
 /*   redirect.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: axel <axel@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: acharlot <acharlot@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/15 14:37:22 by axel              #+#    #+#             */
-/*   Updated: 2023/09/08 14:25:29 by axel             ###   ########.fr       */
+/*   Updated: 2023/09/11 08:37:12 by acharlot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../inc/minishell.h"
 
- /*	Allows to input multiple line lines until a line containing the 
+ /*	
+ 	Allows to input multiple line lines until a line containing the 
  	delimiter is seen via the '<<' input.
-	@param t_args *input: command that has been inputed.
+	@param *input: command that has been inputed.
  */
 static void	redirect_heredoc(t_args *input)
 {

@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: cpothin <cpothin@student.42.fr>            +#+  +:+       +#+         #
+#    By: acharlot <acharlot@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/07/25 07:42:45 by acharlot          #+#    #+#              #
-#    Updated: 2023/09/07 09:09:06 by cpothin          ###   ########.fr        #
+#    Updated: 2023/09/11 10:04:08 by acharlot         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -118,4 +118,4 @@ fclean:			clean
 re:				fclean all
 					@$(ECHO) "\n$(GREEN)###\tCleaned and rebuilt everything for [MINISHELL]!\t###$(DEF_COLOR)\n"
 
-.PHONY:			build_progress_bar build_with_loading_bar all clean fclean re
+.PHONY:			all clean fclean re echo_message

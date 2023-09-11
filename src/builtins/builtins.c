@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   builtins.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cpothin <cpothin@student.42.fr>            +#+  +:+       +#+        */
+/*   By: acharlot <acharlot@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/25 07:41:52 by acharlot          #+#    #+#             */
-/*   Updated: 2023/09/06 08:55:15 by cpothin          ###   ########.fr       */
+/*   Updated: 2023/09/11 08:33:25 by acharlot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,9 +24,11 @@ int		set_g_status(int status)
 	return (g_signal);
 }
 
-/*	Handles the builtins commands that you cannot in the path.
+/*	
+Handles the builtins commands that you cannot in the path.
 	@param t_args `*input` : command inputed.
 	@param t_data `*data` : environment in which the command must be executed.
+	@returns `true` if the input is a builtins functions. 
  */
 bool	builtins(t_args *input, t_data *data)
 {

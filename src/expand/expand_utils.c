@@ -3,16 +3,21 @@
 /*                                                        :::      ::::::::   */
 /*   expand_utils.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cpothin <cpothin@student.42.fr>            +#+  +:+       +#+        */
+/*   By: acharlot <acharlot@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/02 15:44:19 by cpothin           #+#    #+#             */
-/*   Updated: 2023/09/07 10:54:50 by cpothin          ###   ########.fr       */
+/*   Updated: 2023/09/11 09:15:33 by acharlot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../inc/minishell.h"
 extern int	g_signal;
 
+/*
+	Transform the signal sent to a string.
+	@param `nbr`: signal sent.
+	@returns `nb` : string that holds the signal value.
+*/
 char	*signal_to_str(int nbr)
 {
 	int	nb;
@@ -21,6 +26,13 @@ char	*signal_to_str(int nbr)
 	return (ft_itoa(nb));
 }
 
+/*
+	Initializes variable used in the `expand_variable` function.
+	@param `*i`: position tracker.
+	@param `*size`: size total of the expanded variable.
+	@param `*quotes`: boolean checking if the input is between quotes.
+	@param `*dquotes`: boolean checking if the inpute is between double quotes.
+*/
 void	init_vars(int *i, int *size, bool *quotes, bool *dquotes)
 {
 	*i = 0;
@@ -29,6 +41,10 @@ void	init_vars(int *i, int *size, bool *quotes, bool *dquotes)
 	*dquotes = false;
 }
 
+/*
+	Returns the size of the `exit_status` string.
+	@returns `size` - size total of the `exit_status` string.
+ */
 static int		exit_status_size(void)
 {
 	char	*exit_status;
@@ -40,6 +56,13 @@ static int		exit_status_size(void)
 	return (size);
 }
 
+/*
+	Expand the size of a variable in a string.
+	@param `*input_at_i`: expanded variable.
+	@param `*i`: position tracker inside `*input_at_i`.
+	@param `*data`: environment of minishell.
+	@returns `lenght of var_value` - size total of the value of the variable.
+*/
 static int	expand_size(char *input_at_i, int *i, t_data *data)
 {
 	int		var_size;
@@ -67,6 +90,12 @@ static int	expand_size(char *input_at_i, int *i, t_data *data)
 	return (ft_strlen(var_value));
 }
 
+/*
+	Performs every expansion needed on the variable and returns its size.
+	@param `*data`: environmnent of the minishell.
+	@param `*input`: command inputed by the user.
+	@returns `size`: size total of the string after every expansion needed.
+*/
 int	get_new_length(t_data *data, char *input)
 {
 	int		i;

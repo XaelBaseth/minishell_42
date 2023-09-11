@@ -3,17 +3,19 @@
 /*                                                        :::      ::::::::   */
 /*   operator.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: axel <axel@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: acharlot <acharlot@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/10 09:15:47 by cpothin           #+#    #+#             */
-/*   Updated: 2023/09/08 09:39:42 by axel             ###   ########.fr       */
+/*   Updated: 2023/09/11 10:20:32 by acharlot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../inc/minishell.h"
 
-/*	Check if the inputed string contains an operator from the enum t_operator.
-	@param char *input: string passed as a command from the user.
+/*	
+	Check if the inputed string contains an operator from the enum t_operator.
+	@param *input: string passed as a command from the user.
+	@returns `true` or `false` - according to the result of the comparison.
 */
 bool	has_operator(char *input)
 {
@@ -29,10 +31,12 @@ bool	has_operator(char *input)
 	return (false);
 }
 
-/*	Returns the lenght of a token, wether it's a string, an operator or
+/*	
+	Returns the lenght of a token, wether it's a string, an operator or
 	quoted character.
-	@param char *input_at_i: pointer towards a character from a string inputed
+	@param *input_at_i: pointer towards a character from a string inputed
 		by the user.
+	@returns `i` - size total of the string.
 */
 int	get_token_len(char *input_at_i)
 {
@@ -61,9 +65,11 @@ int	get_token_len(char *input_at_i)
 	return (i);
 }
 
-/*	Compare the character inputed to an operator and attribute the correct
+/*	
+	Compare the character inputed to an operator and attribute the correct
 	t_operator symbol.
-	@param char *operator: string containing, or not, an operator.
+	@param *operator: string containing, or not, an operator.
+	@returns `op` - Symbol corresponding to the correct operator.
 */
 t_operator	get_operator(char *operator)
 {

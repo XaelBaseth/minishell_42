@@ -3,20 +3,21 @@
 /*                                                        :::      ::::::::   */
 /*   exec.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: axel <axel@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: acharlot <acharlot@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/09 08:17:00 by acharlot          #+#    #+#             */
-/*   Updated: 2023/09/08 13:21:01 by axel             ###   ########.fr       */
+/*   Updated: 2023/09/11 08:38:30 by acharlot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../inc/minishell.h"
 extern int	g_signal;
 
-/*	Looks for command to be executed in PATH variables and execute 
+/*	
+	Looks for command to be executed in PATH variables and execute 
 	them. 
-	@param t_args `*input` : command inputed.
-	@param t_data `*data` : environment in which the command must be executed.
+	@param `*input` : command inputed.
+	@param `*data` : environment in which the command must be executed.
 */
 static void	execute_in_path(t_args *input, t_data *data)
 {
@@ -41,10 +42,11 @@ static void	execute_in_path(t_args *input, t_data *data)
 	g_signal = 127;
 }
 
-/*	Check if the command inputed is either part of the added built-ins
+/*	
+	Check if the command inputed is either part of the added built-ins
 	function or part of the PATH functions.
-	@param t_args `*input` : command inputed.
-	@param t_data `*data` : environment in which the command must be executed.
+	@param `*input` : command inputed.
+	@param `*data` : environment in which the command must be executed.
 */
 void	exec_executable(t_args *input, t_data *data)
 {
@@ -56,9 +58,10 @@ void	exec_executable(t_args *input, t_data *data)
 	exit(g_signal);
 }
 
-/*	Redirect towards the correct executor.
-	@param t_args `*input` : command inputed.
-	@param t_data `*data` : environment in which the command must be executed.
+/*	
+	Redirect towards the correct executor.
+	@param `*input` : command inputed.
+	@param `*data` : environment in which the command must be executed.
 */
 void	execute_cmd(t_args *input, t_data *data)
 {

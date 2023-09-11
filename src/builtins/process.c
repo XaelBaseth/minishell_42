@@ -3,18 +3,20 @@
 /*                                                        :::      ::::::::   */
 /*   process.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: axel <axel@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: acharlot <acharlot@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/14 08:08:31 by acharlot          #+#    #+#             */
-/*   Updated: 2023/09/08 13:21:48 by axel             ###   ########.fr       */
+/*   Updated: 2023/09/11 08:37:24 by acharlot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../inc/minishell.h"
 extern int	g_signal;
 
-/*	Returns the number of arguments separated by operator in the input.
-	@param t_args `*input` : command inputed.
+/*	
+	Returns the number of arguments separated by operator in the input.
+	@param `*input` : command inputed.
+	@returns `size` - size total of the arguments separated by an operator.
 */
 static int	lstsize(t_args *input)
 {
@@ -32,9 +34,10 @@ static int	lstsize(t_args *input)
 }
 
 
-/*	Create the processes where to execute the command inputed.
-	@param t_args `*input` : command inputed.
-	@param t_data `*data` : environment in which the command must be executed.
+/*	
+	Create the child processes where to execute the command inputed.
+	@param `*input` : command inputed.
+	@param `*data` : environment in which the command must be executed.
 */
 void	create_processes(t_args *input, t_data *data)
 {

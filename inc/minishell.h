@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cpothin <cpothin@student.42.fr>            +#+  +:+       +#+        */
+/*   By: acharlot <acharlot@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/22 15:50:31 by cpothin           #+#    #+#             */
-/*   Updated: 2023/09/07 17:47:16 by cpothin          ###   ########.fr       */
+/*   Updated: 2023/09/11 10:04:26 by acharlot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,6 @@
 # include "../libft/inc/libft.h"
 # include "../libft/inc/get_next_line.h"
 # include "../libft/inc/ft_gc_alloc.h"
-# include "parser.h"
 
 # include <readline/readline.h>
 # include <readline/history.h>
@@ -125,40 +124,35 @@ void		free_lst_node(t_env *node);
 char		*get_env_value(t_env *lst, char *var_name);
 
 //export_single
-/*Prints the environment variables by ascii order.*/
+
 int			single_export(t_data *data);
 
 //env
 
-/*	Duplicates and stores the environment variables through a 'key and value' variable setup in the t_env structure. */
 void    	store_env(char **envp, t_data *data);
-/*Splits a char * into a t_env node (node->key, node->val).*/
 t_env		*split_env(char *envp);
-/*Prints the environment variables.*/
 int			print_env(t_data *data);
 
 //echo
-/*Does the echo command*/
+
 int			do_echo(t_data *data);
 
 //pwd
-/*Prints the path of the Current Working Directory.*/
+
 int			get_pwd(t_data *data);
 
 //exit
-/*Builtin: exits the current process and SHOULD return an exit status.*/
+
 int			do_exit(t_data *data);
 
 //cd
 
 int			do_cd(t_data *data);
-/*Takes the `$ENV` name and returns its value.*/
+
 char		*get_env(t_data *data, char *str);
 
 //unset
-/*Unsets the specified environment variables.
-If they exist, they are removed.
-If they don't, nothing happens.*/
+
 int			do_unset(t_data *data);
 
 
