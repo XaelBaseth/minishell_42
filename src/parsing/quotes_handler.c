@@ -6,7 +6,7 @@
 /*   By: acharlot <acharlot@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/25 07:41:55 by acharlot          #+#    #+#             */
-/*   Updated: 2023/09/11 11:12:08 by acharlot         ###   ########.fr       */
+/*   Updated: 2023/09/11 14:32:04 by acharlot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,7 +78,7 @@ int	unclosed_quote(char *str)
 	last_opened = 0;
 	while (*str && !last_opened)
 	{
-		if ((*str == '\'' || *str == '\"'))
+		if ((*str == '\'' || *str == '"'))
 			last_opened = *str;
 		str++;
 	}
@@ -103,8 +103,8 @@ int	unclosed_quote(char *str)
 */
 int	remove_quote_size(char *parsed)
 {
-	int	i;
-	int size;
+	int		i;
+	int		size;
 	char	quote;
 
 	i = 0;

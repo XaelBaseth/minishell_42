@@ -6,7 +6,7 @@
 /*   By: acharlot <acharlot@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/31 09:42:37 by cpothin           #+#    #+#             */
-/*   Updated: 2023/09/11 09:09:35 by acharlot         ###   ########.fr       */
+/*   Updated: 2023/09/11 14:32:02 by acharlot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,14 +58,14 @@ static int	expand_variable(t_data *data, char *new_input, char *input,
 	j = 0;
 	k = 0;
 	*i += 1;
-	if (!input[*i] || input[*i] == ' ')
+	if (!input[*i] || input[*i] == ' ' || input[*i] == '\"')
 	{
 		new_input[0] = '$';
 		return (1);
 	}
 	while (input[*i + size] && input[*i + size] != ' '
-		&& input[*i + size] != '\"' && input[*i + size] != '\''
-		&& input[*i + size] != '$' && input[*i + size] != '=')
+		&& input[*i + size] != '\"' && !is_char(QUOTES, input[*i + size])
+		&& input[*i + size] != '$')
 		size += 1;
 	var_value = get_env(data, ft_substr(input, *i, size));
 	*i += size;
@@ -101,9 +101,9 @@ char	*expand(t_data *data, char *input)
 			in_dquotes = !in_dquotes;
 		if (input[i] == '\'' && !in_dquotes)
 			in_quotes = !in_quotes;
-		if (input[i] == '$' && input[i + 1] == '?' && !in_quotes && !in_dquotes)
+		if (input[i] == '$' && input[i + 1] == '?' && !in_quotes)
 			j += expand_exit_status(&(expanded_input[j]), &i);
-		else if (input[i] && input[i] == '$' && !in_quotes && !in_dquotes)
+		else if (input[i] && input[i] == '$' && !in_quotes)
 			j += expand_variable(data, &(expanded_input[j]), input, &i);
 		else
 			expanded_input[j++] = input[i++];

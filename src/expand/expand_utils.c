@@ -6,7 +6,7 @@
 /*   By: acharlot <acharlot@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/02 15:44:19 by cpothin           #+#    #+#             */
-/*   Updated: 2023/09/11 09:15:33 by acharlot         ###   ########.fr       */
+/*   Updated: 2023/09/11 14:32:05 by acharlot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,9 +74,7 @@ static int	expand_size(char *input_at_i, int *i, t_data *data)
 		return (1);
 	var_size = 0;
 	while (input_at_i[var_size + 1] && input_at_i[var_size + 1] != ' '
-		&& input_at_i[var_size + 1] != '\"'
-		&& input_at_i[var_size + 1] != '\''
-		&& input_at_i[var_size + 1] != '='
+		&& !is_char(QUOTES, input_at_i[var_size + 1])
 		&& input_at_i[var_size + 1] != '$')
 		var_size += 1;
 	if (var_size == 0)
@@ -111,12 +109,12 @@ int	get_new_length(t_data *data, char *input)
 		if (input[i] == '\'' && !in_dquotes)
 			in_quotes = !in_quotes;
 		if ((input[i] == '$' && input[i + 1] == '?')
-			&& !in_quotes && !in_dquotes)
+			&& !in_quotes)
 		{
 			size += exit_status_size() - 1;
 			i += 1;
 		}
-		else if (input[i] == '$' && !in_quotes && !in_dquotes)
+		else if (input[i] == '$' && !in_quotes)
 			size += expand_size(&(input[i]), &i, data) - 1;
 		else
 			i += 1;
