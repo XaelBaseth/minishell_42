@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   config_sig.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: acharlot <acharlot@student.42.fr>          +#+  +:+       +#+        */
+/*   By: axel <axel@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/31 12:03:38 by acharlot          #+#    #+#             */
-/*   Updated: 2023/09/11 08:39:41 by acharlot         ###   ########.fr       */
+/*   Updated: 2023/09/12 10:22:10 by axel             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,6 @@ int	g_signal;
 	We check if we are in a heredoc and if so, create a new line
 	inside it without exiting the heredoc input. Else, we simply
 	clear the input and display a new line.
-	
 	@param sig: signal handler need a specific signature in order to
 	be used as signal handler, it ensure compatibility with the
 	signature for signal handler.
@@ -41,8 +40,8 @@ void	sigint_handler(int sig)
 	(void) sig;
 }
 
-/*	This is called when the SIGQUIT (QUIT or CTRL + \) signal is received.
-	
+/*	
+	This is called when the SIGQUIT (QUIT or CTRL + \) signal is received.
 	@param sig: signal handler need a specific signature in order to
 	be used as signal handler, it ensure compatibility with the
 	signature for signal handler.

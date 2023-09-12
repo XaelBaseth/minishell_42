@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: acharlot <acharlot@student.42.fr>          +#+  +:+       +#+        */
+/*   By: axel <axel@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/25 07:42:03 by acharlot          #+#    #+#             */
-/*   Updated: 2023/09/11 08:39:10 by acharlot         ###   ########.fr       */
+/*   Updated: 2023/09/12 15:53:07 by axel             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,6 @@ void print_args(t_args *args)
 static void	process_data(t_data *data)
 {
 	argc_post_parsing(data->args);
-	print_args(data->args);
 	create_processes(data->args, data);
 	clean_parsed(data->args, data);	
 }
