@@ -6,11 +6,11 @@
 /*   By: acharlot <acharlot@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/31 10:37:29 by acharlot          #+#    #+#             */
-/*   Updated: 2023/09/11 08:38:10 by acharlot         ###   ########.fr       */
+/*   Updated: 2023/09/13 08:59:36 by acharlot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../inc/minishell.h"
+#include "../../inc/builtins.h"
 
 /*	
 	Get the PATH variable from the duplicated environment. 
@@ -21,7 +21,7 @@ char	*get_path(t_data *data)
 {
 	char	*path;
 	int		i;
-	
+
 	path = NULL;
 	i = 0;
 	while (data->envp[i])
@@ -29,7 +29,7 @@ char	*get_path(t_data *data)
 		if (strncmp(data->envp[i], "PATH=", 5) == 0)
 		{
 			path = data->envp[i] + 5;
-			break;
+			break ;
 		}
 		i++;
 	}
@@ -43,9 +43,9 @@ char	*get_path(t_data *data)
 */
 void	store_path(char *path, t_data *data)
 {
-	int i;
-	int o;
-	char **split_path;
+	int		i;
+	int		o;
+	char	**split_path;
 
 	i = 0;
 	data->path = path;
@@ -55,7 +55,7 @@ void	store_path(char *path, t_data *data)
 	while (split_path[i])
 		i++;
 	data->arr_path = (t_path *)gc_alloc(sizeof(t_path) * (i + 1),
-		"path:path_array");
+			"path:path_array");
 	if (!data->arr_path)
 		return ;
 	o = 0;

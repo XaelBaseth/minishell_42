@@ -6,11 +6,11 @@
 /*   By: acharlot <acharlot@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/17 08:00:57 by acharlot          #+#    #+#             */
-/*   Updated: 2023/09/11 10:24:29 by acharlot         ###   ########.fr       */
+/*   Updated: 2023/09/13 08:06:02 by acharlot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../inc/minishell.h"
+#include "../../inc/parsing.h"
 
 /*	
 	Returns the number of argument passed in the matrix given in the

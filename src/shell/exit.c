@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   exit.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: axel <axel@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: acharlot <acharlot@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/12 16:46:50 by cpothin           #+#    #+#             */
-/*   Updated: 2023/09/06 09:50:45 by axel             ###   ########.fr       */
+/*   Updated: 2023/09/13 09:10:53 by acharlot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../inc/minishell.h"
+#include "../../inc/shell.h"
 
 void	exit_numeric(t_data *data)
 {
@@ -32,10 +32,10 @@ void	exit_numeric(t_data *data)
 		if the argument is incorrect, the shells shows
 			"bash: exit: truc: numeric argument required"
 */
-int		do_exit(t_data *data)
+int	do_exit(t_data *data)
 {
 	int	exit_status;
-	
+
 	ft_printf("exit\n");
 	if (data->args->argc > 2)
 	{

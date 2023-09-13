@@ -6,11 +6,11 @@
 /*   By: acharlot <acharlot@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/25 07:41:55 by acharlot          #+#    #+#             */
-/*   Updated: 2023/09/11 14:32:04 by acharlot         ###   ########.fr       */
+/*   Updated: 2023/09/13 09:07:23 by acharlot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../inc/minishell.h"
+#include "../../inc/parsing.h"
 
 /*	Checks if the character at index is inside quotes so we can ignore
 	the meta-characters except $ 
@@ -18,7 +18,7 @@
 	@param `index`: number of character in the input.
 	@returns `true` or `false` - according to the result of the comparison.
 */
-bool 	is_inside_quotes(char *input, int index)
+bool	is_inside_quotes(char *input, int index)
 {
 	int	quotes;
 	int	double_quotes;
@@ -136,16 +136,16 @@ int	remove_quote_size(char *parsed)
 */
 char	*remove_quote(char *parsed)
 {
-	int	i;
-	int	j;
+	int		i;
+	int		j;
 	char	quote;
 	char	*unquoted_parsed;
 
 	i = 0;
 	j = 0;
 	quote = '\0';
-	unquoted_parsed = gc_alloc((remove_quote_size(parsed) + 1) *
-		sizeof(char), "unquoted parsed");
+	unquoted_parsed = gc_alloc((remove_quote_size(parsed) + 1)
+			* sizeof(char), "unquoted parsed");
 	while (parsed[i])
 	{
 		while (parsed[i] && !is_char(QUOTES, parsed[i]))
@@ -162,4 +162,3 @@ char	*remove_quote(char *parsed)
 	gc_free(parsed);
 	return (unquoted_parsed);
 }
-

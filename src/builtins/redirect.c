@@ -3,20 +3,20 @@
 /*                                                        :::      ::::::::   */
 /*   redirect.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: axel <axel@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: acharlot <acharlot@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/15 14:37:22 by axel              #+#    #+#             */
-/*   Updated: 2023/09/12 16:08:22 by axel             ###   ########.fr       */
+/*   Updated: 2023/09/13 09:16:04 by acharlot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../inc/minishell.h"
+#include "../../inc/builtins.h"
 
- /*	
+/*
  	Allows to input multiple line lines until a line containing the 
- 	delimiter is seen via the '<<' input.
+	delimiter is seen via the '<<' input.
 	@param *input: command that has been inputed.
- */
+*/
 static void	redirect_heredoc(t_args *input)
 {
 	char	*buffer;
@@ -28,8 +28,8 @@ static void	redirect_heredoc(t_args *input)
 		buffer = readline("\033[32m$> \033[0m");
 		if (!buffer)
 		{
-			ft_putendl_fd("minishell: HEREDOC needs a delimitor to exit.\n"
-				, STDERR_FILENO);
+			ft_putendl_fd("minishell: HEREDOC needs a delimitor to exit.\n",
+				STDERR_FILENO);
 			exit(EXIT_FAILURE);
 		}
 		if (ft_strstr(buffer, input->next->argv[0]))
@@ -101,8 +101,8 @@ static void	redirect_output(t_args *input)
 */
 void	exec_redirect(t_args *input, t_data *data)
 {
-	t_args *temp;
-	
+	t_args	*temp;
+
 	temp = input;
 	if (input->operator == REDIR_INPUT)
 		redirect_input(input);
@@ -112,7 +112,7 @@ void	exec_redirect(t_args *input, t_data *data)
 		redirect_output(input);
 	temp->operator = NONE;
 	while (input->operator != NONE && input->operator != PIPE)
-		input = input->next;	
+		input = input->next;
 	if (input->operator == NONE)
 		execute_cmd(temp, data);
 	else

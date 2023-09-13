@@ -6,7 +6,7 @@
 /*   By: acharlot <acharlot@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/27 08:38:49 by acharlot          #+#    #+#             */
-/*   Updated: 2023/09/11 09:39:58 by acharlot         ###   ########.fr       */
+/*   Updated: 2023/09/13 09:03:37 by acharlot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ void	panic(char *str)
 void	free_matrix(char **matrix)
 {
 	int	i;
-	
+
 	i = 0;
 	if (!matrix)
 		return ;
@@ -81,7 +81,7 @@ bool	is_int(char *str)
 	big_number = ft_atoll(str);
 	if (big_number < INT_MIN || big_number > INT_MAX)
 		return (false);
-	return(true);
+	return (true);
 }
 
 /*

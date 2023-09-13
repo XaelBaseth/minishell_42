@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   libft.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: axel <axel@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: acharlot <acharlot@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/12 08:05:21 by acharlot          #+#    #+#             */
-/*   Updated: 2023/09/08 13:53:09 by axel             ###   ########.fr       */
+/*   Updated: 2023/09/13 08:53:04 by acharlot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef	LIBFT_H
+#ifndef LIBFT_H
 # define LIBFT_H
 
 # include <stdlib.h>
@@ -55,7 +55,7 @@ char		*ft_strtrim(char const *s1, char const *set);
 char		**ft_split(char const *s, char c);
 char		*ft_itoa(int n);
 char		*ft_strmapi(char const *s, char (*f)(unsigned int, char));
-char 		*ft_strncpy(char *dest, const char *src, size_t n);
+char		*ft_strncpy(char *dest, const char *src, size_t n);
 char		*ft_strstr(char *big, char *little);
 
 int			ft_isalnum(int c);

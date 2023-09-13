@@ -6,11 +6,12 @@
 /*   By: acharlot <acharlot@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/25 07:41:52 by acharlot          #+#    #+#             */
-/*   Updated: 2023/09/11 08:33:25 by acharlot         ###   ########.fr       */
+/*   Updated: 2023/09/13 08:58:18 by acharlot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../inc/minishell.h"
+#include "../../inc/builtins.h"
+
 extern int	g_signal;
 
 /*
@@ -18,7 +19,7 @@ extern int	g_signal;
 	@param int `status`
 	@returns `int` - the signal
 */
-int		set_g_status(int status)
+int	set_g_status(int status)
 {
 	g_signal = status;
 	return (g_signal);

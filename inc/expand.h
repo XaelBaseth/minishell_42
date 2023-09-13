@@ -1,31 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strcmp.c                                        :+:      :+:    :+:   */
+/*   expand.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: acharlot <acharlot@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/08/21 14:52:05 by cpothin           #+#    #+#             */
-/*   Updated: 2023/09/13 08:55:38 by acharlot         ###   ########.fr       */
+/*   Created: 2023/09/13 08:24:20 by acharlot          #+#    #+#             */
+/*   Updated: 2023/09/13 08:51:29 by acharlot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-/*
-	LIBRARY: string.h
+#ifndef EXPAND_H
+# define EXPAND_H
 
-	SYNOPSIS: 	Compare two string s1 and s2 and return the ASCII
-				difference.
-*/
-#include "../../inc/libft.h"
+/*	LIBRARY	*/
 
-int	ft_strcmp(char *s1, char *s2)
-{
-	int	i;
+# include "minishell.h"
 
-	i = 0;
-	if ((s1 && !s2) || (!s1 && s2))
-		return (0);
-	while (s1[i] == s2[i] && s1[i] != '\0' && s2[i] != '\0')
-		i++;
-	return (s1[i] - s2[i]);
-}
+/*	STRUCTURE	*/
+
+typedef struct s_data	t_data;
+
+/*	FUNCTIONS	*/
+
+char		*expand(t_data *data, char *input);
+char		*signal_to_str(int nbr);
+void		init_vars(int *i, int *size, bool *quotes, bool *dquotes);
+int			get_new_length(t_data *data, char *input);
+
+#endif

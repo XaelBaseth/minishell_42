@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   cd.c                                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cpothin <cpothin@student.42.fr>            +#+  +:+       +#+        */
+/*   By: acharlot <acharlot@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/16 10:16:52 by cpothin           #+#    #+#             */
-/*   Updated: 2023/09/04 14:08:29 by cpothin          ###   ########.fr       */
+/*   Updated: 2023/09/13 09:10:02 by acharlot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../inc/minishell.h"
+#include "../../inc/shell.h"
 
 char	*get_env(t_data *data, char *str)
 {
@@ -41,11 +41,13 @@ static bool	check_directory(t_data *data, const char *directory_path)
 			return (true);
 		else
 		{
-			ft_printf("minishell: cd: %s: Not a directory\n", data->args->argv[1]);
+			ft_printf("minishell: cd: %s: Not a directory\n",
+				data->args->argv[1]);
 			return (false);
 		}
 	}
-	ft_printf("minishell: cd: %s: No such file or directory\n", data->args->argv[1]);
+	ft_printf("minishell: cd: %s: No such file or directory\n",
+		data->args->argv[1]);
 	return (false);
 }
 

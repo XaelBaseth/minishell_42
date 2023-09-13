@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   pwd.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cpothin <cpothin@student.42.fr>            +#+  +:+       +#+        */
+/*   By: acharlot <acharlot@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/11 10:58:31 by cpothin           #+#    #+#             */
-/*   Updated: 2023/09/06 09:17:51 by cpothin          ###   ########.fr       */
+/*   Updated: 2023/09/13 09:11:45 by acharlot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../inc/minishell.h"
+#include "../../inc/shell.h"
 
-int		get_pwd(t_data *data)
+int	get_pwd(t_data *data)
 {
 	if (data->args->argv[1])
 	{

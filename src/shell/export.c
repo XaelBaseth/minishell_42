@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   export.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cpothin <cpothin@student.42.fr>            +#+  +:+       +#+        */
+/*   By: acharlot <acharlot@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/16 15:01:03 by cpothin           #+#    #+#             */
-/*   Updated: 2023/09/07 09:37:15 by cpothin          ###   ########.fr       */
+/*   Updated: 2023/09/13 09:11:37 by acharlot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../inc/minishell.h"
+#include "../../inc/shell.h"
 
 bool	check_arg_value(char *arg)
 {
@@ -85,7 +85,7 @@ void	export_var(t_data *data, char *arg)
 	gc_free(short_var);
 }
 
-int		do_export(t_data *data)
+int	do_export(t_data *data)
 {
 	int	i;
 

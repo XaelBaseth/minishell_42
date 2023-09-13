@@ -6,11 +6,11 @@
 /*   By: acharlot <acharlot@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/10 09:15:47 by cpothin           #+#    #+#             */
-/*   Updated: 2023/09/11 10:20:32 by acharlot         ###   ########.fr       */
+/*   Updated: 2023/09/13 09:05:18 by acharlot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../inc/minishell.h"
+#include "../../inc/parsing.h"
 
 /*	
 	Check if the inputed string contains an operator from the enum t_operator.
@@ -25,7 +25,7 @@ bool	has_operator(char *input)
 	while (input[i])
 	{
 		if (is_char(OPERATOR, input[i]))
-			return true;
+			return (true);
 		i += 1;
 	}
 	return (false);

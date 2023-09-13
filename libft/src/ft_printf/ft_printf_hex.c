@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_printf_hex.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cpothin <cpothin@student.42.fr>            +#+  +:+       +#+        */
+/*   By: acharlot <acharlot@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/27 12:25:34 by acharlot          #+#    #+#             */
-/*   Updated: 2023/08/11 11:50:43 by cpothin          ###   ########.fr       */
+/*   Updated: 2023/09/13 08:54:29 by acharlot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ int	ft_hex_len(unsigned int num)
 		num = num / 16;
 	}
 	return (len);
-}	
+}
 
 void	ft_put_hex(unsigned int num, const char format)
 {

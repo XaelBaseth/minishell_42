@@ -6,11 +6,12 @@
 /*   By: acharlot <acharlot@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/09 08:17:00 by acharlot          #+#    #+#             */
-/*   Updated: 2023/09/11 08:38:30 by acharlot         ###   ########.fr       */
+/*   Updated: 2023/09/13 08:58:56 by acharlot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../inc/minishell.h"
+#include "../../inc/builtins.h"
+
 extern int	g_signal;
 
 /*	
@@ -31,7 +32,8 @@ static void	execute_in_path(t_args *input, t_data *data)
 		temp = ft_strjoin(data->arr_path[i].path, "/");
 		bin_path = ft_strjoin(temp, input->argv[0]);
 		if (!bin_path)
-			ft_printf("%s not found in any directories in PATH\n", data->args->argv[0]);
+			ft_printf("%s not found in any directories in PATH\n",
+				data->args->argv[0]);
 		if (access(bin_path, F_OK | X_OK) == 0)
 		{
 			execve(bin_path, input->argv, data->envp);

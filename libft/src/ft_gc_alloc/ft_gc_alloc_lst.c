@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_gc_alloc_lst.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cpothin <cpothin@student.42.fr>            +#+  +:+       +#+        */
+/*   By: acharlot <acharlot@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/03 08:46:17 by acharlot          #+#    #+#             */
-/*   Updated: 2023/09/04 10:15:21 by cpothin          ###   ########.fr       */
+/*   Updated: 2023/09/13 08:54:10 by acharlot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ void	lst_add_back(t_alloc_ptr *lst, t_alloc_ptr *new)
 /*	This function defines a new node. */
 t_alloc_ptr	*new_node(size_t size, char *name)
 {
-	t_alloc_ptr *lst;
+	t_alloc_ptr	*lst;
 
 	lst = malloc(sizeof(t_alloc_ptr));
 	if (!lst)
@@ -48,6 +48,7 @@ void	free_elem(t_alloc_ptr *element)
 		free(element);
 	}
 }
+
 /*	This function frees and remove the address of the given node in the
 	list. */
 t_alloc_ptr	*remove_address(int index, t_alloc_ptr *lst)

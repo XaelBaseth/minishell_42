@@ -6,11 +6,11 @@
 /*   By: acharlot <acharlot@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/09 15:32:28 by cpothin           #+#    #+#             */
-/*   Updated: 2023/09/11 10:38:26 by acharlot         ###   ########.fr       */
+/*   Updated: 2023/09/13 09:14:28 by acharlot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../inc/minishell.h"
+#include "../../inc/parsing.h"
 
 /*
 	Actualise the numbers of arguments after the parsing.
@@ -18,7 +18,7 @@
 */
 void	argc_post_parsing(t_args *args)
 {
-	t_args *tmp;
+	t_args	*tmp;
 
 	tmp = args;
 	while (tmp->next)
@@ -35,7 +35,7 @@ void	argc_post_parsing(t_args *args)
 char	*get_input(void)
 {
 	char	*raw_input;
-	char 	*input;
+	char	*input;
 
 	raw_input = readline("\033[32mminishell$\033[0m ");
 	if (!raw_input)
@@ -46,7 +46,7 @@ char	*get_input(void)
 		exit (EXIT_FAILURE);
 	}
 	input = trim(raw_input, " \t");
- 	return (input);
+	return (input);
 }
 
 /*	
@@ -78,6 +78,7 @@ t_args	*new_lst(int argc)
 	new_node->next = NULL;
 	return (new_node);
 }
+
 /*	
 	Clear the t_args linked list. 
 	@param `**args`: array of arguments entered by the user in a command.

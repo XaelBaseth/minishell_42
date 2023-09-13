@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: axel <axel@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: acharlot <acharlot@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/25 07:42:03 by acharlot          #+#    #+#             */
-/*   Updated: 2023/09/12 15:53:07 by axel             ###   ########.fr       */
+/*   Updated: 2023/09/13 09:04:41 by acharlot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,9 +16,9 @@
 	Prints the arguments divided by their places in the t_args structure.
 	@param *args : command inputed by the user.
 */
-void print_args(t_args *args)
+void	print_args(t_args *args)
 {
-	int i;
+	int	i;
 
 	ft_printf("\033[34m#####################################\033[0m\n\n\n");
 	while (args)
@@ -44,7 +44,7 @@ static void	process_data(t_data *data)
 {
 	argc_post_parsing(data->args);
 	create_processes(data->args, data);
-	clean_parsed(data->args, data);	
+	clean_parsed(data->args, data);
 }
 
 int	main(int argc, char **argv, char **envp)

@@ -6,11 +6,11 @@
 /*   By: acharlot <acharlot@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/17 08:17:48 by acharlot          #+#    #+#             */
-/*   Updated: 2023/09/11 11:16:17 by acharlot         ###   ########.fr       */
+/*   Updated: 2023/09/13 09:14:58 by acharlot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../inc/minishell.h"
+#include "../../inc/parsing.h"
 
 /*	
 	Prints out an error message if a character is unrecognized.
@@ -34,7 +34,7 @@ bool	invalid_operator(char *input)
 {
 	int		i;
 	bool	in_quotes;
-	
+
 	in_quotes = false;
 	i = -1;
 	while (has_operator(&input[++i]))
@@ -47,10 +47,10 @@ bool	invalid_operator(char *input)
 				i++;
 			i++;
 			if (input[i] == ' ')
-			{	
+			{
 				while (input[++i] && input[++i] == ' ')
-				if (is_char(OPERATOR, input[i]))
-					return (unexpected_token(input[i]));
+					if (is_char(OPERATOR, input[i]))
+						return (unexpected_token(input[i]));
 			}
 			if (is_char(OPERATOR, input[i]))
 				return (unexpected_token(input[i]));
@@ -70,18 +70,18 @@ bool	invalid_syntax2(char *input)
 	bool	in_quotes;
 
 	i = 0;
-	while(input[i])
+	while (input[i])
 	{
 		if (is_char(QUOTES, input[i]))
 			in_quotes = !in_quotes;
 		if (((input[i] == '>' && input[i + 1] == '<')
-			||(input[i] == '<' && input[i + 1] == '>')
-			|| (input[i] == '|' && input[i + 1] == '|')) && !in_quotes)
+				|| (input[i] == '<' && input[i + 1] == '>')
+				|| (input[i] == '|' && input[i + 1] == '|')) && !in_quotes)
 			return (unexpected_token(input[i + 1]));
 		else if ((input[i] == '{' || input[i] == '}'
-			|| input[i] == '(' || input[i] == ')'
-			|| input[i] == '[' || input[i] == ']'
-			||input[i] == ';' || input[i] == '&' || input[i] == '*')
+				|| input[i] == '(' || input[i] == ')'
+				|| input[i] == '[' || input[i] == ']'
+				||input[i] == ';' || input[i] == '&' || input[i] == '*')
 			&& !in_quotes)
 			return (unexpected_token(input[i]));
 		i++;
@@ -109,7 +109,6 @@ bool	invalid_syntax(char *input)
 		return (true);
 	}
 	return (false);
-
 }
 
 /*	Check if the input is valid or not.

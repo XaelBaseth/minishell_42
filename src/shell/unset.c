@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   unset.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: axel <axel@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: acharlot <acharlot@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/17 09:06:04 by cpothin           #+#    #+#             */
-/*   Updated: 2023/09/06 09:55:15 by axel             ###   ########.fr       */
+/*   Updated: 2023/09/13 09:11:56 by acharlot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../inc/minishell.h"
+#include "../../inc/shell.h"
 
 static void	free_node(t_env *node)
 {
@@ -53,7 +53,6 @@ static void	unset_var(t_data *data, char *arg)
 		tmp = tmp->next;
 	}
 }
-
 
 /*Unsets the specified environment variables.
 If they exist, they are removed.

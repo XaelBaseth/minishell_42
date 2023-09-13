@@ -6,13 +6,11 @@
 /*   By: acharlot <acharlot@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/29 09:00:12 by cpothin           #+#    #+#             */
-/*   Updated: 2023/09/11 08:38:54 by acharlot         ###   ########.fr       */
+/*   Updated: 2023/09/13 09:14:04 by acharlot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-
-#include "../../inc/minishell.h"
-
+#include "../../inc/builtins.h"
 
 /*	
 	Execute the binary file found in the path.
@@ -39,6 +37,7 @@ void	execute_binary(t_data *data, char *arg, char *prefix)
 	(void)data;
 	(void)arg;
 }
+
 /*
 	Checks if the command is a binary and tries to execute it.
 	@param `*arg` : the argument to check.
@@ -49,8 +48,8 @@ bool	check_if_binary(t_data *data, char *arg)
 {
 	char	*bin_name;
 	int		i;
-	
-	if (arg[0] == '/'  && arg[1])
+
+	if (arg[0] == '/' && arg[1])
 	{
 		execute_binary(data, arg, "/");
 		return (true);

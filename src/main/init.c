@@ -6,7 +6,7 @@
 /*   By: acharlot <acharlot@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/18 10:48:07 by acharlot          #+#    #+#             */
-/*   Updated: 2023/09/11 09:40:08 by acharlot         ###   ########.fr       */
+/*   Updated: 2023/09/13 09:03:02 by acharlot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,7 @@ int	event(void)
 {
 	return (EXIT_SUCCESS);
 }
+
 /*	
 	We initialize element of the data lined list before using them.
 	@param *data : linked list data.
@@ -43,7 +44,7 @@ void	init_data(t_data *data)
 */
 void	setup_shell(char **envp, t_data *data)
 {
-	char *path;
+	char	*path;
 
 	init_data(data);
 	store_env(envp, data);

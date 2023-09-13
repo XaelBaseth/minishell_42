@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   export_single.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cpothin <cpothin@student.42.fr>            +#+  +:+       +#+        */
+/*   By: acharlot <acharlot@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/22 15:13:55 by cpothin           #+#    #+#             */
-/*   Updated: 2023/09/04 14:24:55 by cpothin          ###   ########.fr       */
+/*   Updated: 2023/09/13 09:11:58 by acharlot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../inc/minishell.h"
+#include "../../inc/shell.h"
 
 t_env	*find_min_value(t_data *data)
 {
@@ -53,7 +53,7 @@ t_env	*find_next_min_value(t_data *data, t_env *cur_lst)
 	return (min_lst);
 }
 
-int		single_export(t_data *data)
+int	single_export(t_data *data)
 {
 	t_env	*last_value;
 

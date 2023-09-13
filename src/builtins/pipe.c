@@ -6,11 +6,11 @@
 /*   By: acharlot <acharlot@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/22 13:51:09 by axel              #+#    #+#             */
-/*   Updated: 2023/09/11 08:37:48 by acharlot         ###   ########.fr       */
+/*   Updated: 2023/09/13 08:59:53 by acharlot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../inc/minishell.h"
+#include "../../inc/builtins.h"
 
 /*	
 	Set up the process to redirect its standard output to the write end of a
@@ -27,6 +27,7 @@ static void	left_side(t_args *input, t_data *data, int pdes[2])
 	close(pdes[1]);
 	execute_cmd(input, data);
 }
+
 /*	
 	Set up the process to redirect its standard input to the read end of a
 	pipe.

@@ -6,11 +6,12 @@
 /*   By: acharlot <acharlot@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/31 09:42:37 by cpothin           #+#    #+#             */
-/*   Updated: 2023/09/11 14:32:02 by acharlot         ###   ########.fr       */
+/*   Updated: 2023/09/13 09:01:20 by acharlot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../inc/minishell.h"
+#include "../../inc/expand.h"
+
 extern int	g_signal;
 
 /*

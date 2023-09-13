@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_gc_alloc.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cpothin <cpothin@student.42.fr>            +#+  +:+       +#+        */
+/*   By: acharlot <acharlot@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/03 08:46:13 by acharlot          #+#    #+#             */
-/*   Updated: 2023/08/10 08:47:01 by cpothin          ###   ########.fr       */
+/*   Updated: 2023/09/13 08:54:09 by acharlot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,7 @@ int	lst_lenght(int code)
 void	gc_free_all(void)
 {
 	t_alloc_ptr	*lst;
-	t_alloc_ptr *tmp;
+	t_alloc_ptr	*tmp;
 
 	lst = addr_save(NULL, 1);
 	while (lst)

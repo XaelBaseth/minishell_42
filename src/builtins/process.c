@@ -6,11 +6,12 @@
 /*   By: acharlot <acharlot@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/14 08:08:31 by acharlot          #+#    #+#             */
-/*   Updated: 2023/09/11 08:37:24 by acharlot         ###   ########.fr       */
+/*   Updated: 2023/09/13 09:14:03 by acharlot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../inc/minishell.h"
+#include "../../inc/builtins.h"
+
 extern int	g_signal;
 
 /*	
@@ -32,7 +33,6 @@ static int	lstsize(t_args *input)
 	}
 	return (size);
 }
-
 
 /*	
 	Create the child processes where to execute the command inputed.

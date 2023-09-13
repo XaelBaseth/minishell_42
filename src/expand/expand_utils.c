@@ -6,11 +6,12 @@
 /*   By: acharlot <acharlot@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/02 15:44:19 by cpothin           #+#    #+#             */
-/*   Updated: 2023/09/11 14:32:05 by acharlot         ###   ########.fr       */
+/*   Updated: 2023/09/13 09:01:53 by acharlot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../inc/minishell.h"
+#include "../../inc/expand.h"
+
 extern int	g_signal;
 
 /*
@@ -45,7 +46,7 @@ void	init_vars(int *i, int *size, bool *quotes, bool *dquotes)
 	Returns the size of the `exit_status` string.
 	@returns `size` - size total of the `exit_status` string.
  */
-static int		exit_status_size(void)
+static int	exit_status_size(void)
 {
 	char	*exit_status;
 	int		size;
