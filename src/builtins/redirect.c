@@ -6,7 +6,7 @@
 /*   By: acharlot <acharlot@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/15 14:37:22 by axel              #+#    #+#             */
-/*   Updated: 2023/09/13 09:16:04 by acharlot         ###   ########.fr       */
+/*   Updated: 2023/09/14 11:31:13 by acharlot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,9 +17,10 @@
 	delimiter is seen via the '<<' input.
 	@param *input: command that has been inputed.
 */
-static void	redirect_heredoc(t_args *input)
+static void	redirect_heredoc(t_args *input, t_data *data)
 {
 	char	*buffer;
+	char 	*expanded_buffer;
 	int		fd[2];
 
 	pipe(fd);
@@ -28,16 +29,14 @@ static void	redirect_heredoc(t_args *input)
 		buffer = readline("\033[32m$> \033[0m");
 		if (!buffer)
 		{
-			ft_putendl_fd("minishell: HEREDOC needs a delimitor to exit.\n",
+			ft_putendl_fd("minishell: HEREDOC needs a delimitor to exit.",
 				STDERR_FILENO);
 			exit(EXIT_FAILURE);
 		}
 		if (ft_strstr(buffer, input->next->argv[0]))
-		{
-			free(buffer);
 			break ;
-		}
-		ft_putendl_fd(buffer, fd[1]);
+		expanded_buffer = expand(data, buffer);
+		ft_putendl_fd(expanded_buffer, fd[1]);
 		free(buffer);
 	}
 	close(fd[1]);
@@ -104,15 +103,17 @@ void	exec_redirect(t_args *input, t_data *data)
 	t_args	*temp;
 
 	temp = input;
-	if (input->operator == REDIR_INPUT)
-		redirect_input(input);
-	else if (input->operator == REDIR_INPUT_UNTIL)
-		redirect_heredoc(input);
-	else
-		redirect_output(input);
-	temp->operator = NONE;
 	while (input->operator != NONE && input->operator != PIPE)
+	{
+		if (input->operator == REDIR_INPUT)
+			redirect_input(input);
+		else if (input->operator == REDIR_INPUT_UNTIL)
+			redirect_heredoc(input, data);
+		else
+			redirect_output(input);
 		input = input->next;
+	}
+	temp->operator = NONE;
 	if (input->operator == NONE)
 		execute_cmd(temp, data);
 	else
