@@ -6,7 +6,7 @@
 /*   By: acharlot <acharlot@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/15 14:37:22 by axel              #+#    #+#             */
-/*   Updated: 2023/09/14 11:31:13 by acharlot         ###   ########.fr       */
+/*   Updated: 2023/09/14 11:32:51 by acharlot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@
 static void	redirect_heredoc(t_args *input, t_data *data)
 {
 	char	*buffer;
-	char 	*expanded_buffer;
+	char	*expanded_buffer;
 	int		fd[2];
 
 	pipe(fd);
