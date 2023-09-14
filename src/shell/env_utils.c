@@ -6,12 +6,17 @@
 /*   By: acharlot <acharlot@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/17 09:34:08 by cpothin           #+#    #+#             */
-/*   Updated: 2023/09/13 08:43:49 by acharlot         ###   ########.fr       */
+/*   Updated: 2023/09/14 13:31:46 by acharlot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../inc/shell.h"
 
+/*
+	Free the memory allocated to the enviromnent array `envp` sructure
+	found in the minishell environmnent.
+	@param `*data`: environmnent of minishell.
+*/
 void	free_env_arr(t_data *data)
 {
 	int	i;
@@ -23,6 +28,12 @@ void	free_env_arr(t_data *data)
 	data->envp = NULL;
 }
 
+/*
+	Duplicate the shell environmnent inside the `envp` structure of minishell.
+	@param `*data`: environmnent of minishell.
+	@param `**envp`: environment of the shell.
+	@returns `**new_env` - copy of the shell inside the minishell. 
+*/
 char	**env_copy(t_data *data, char **envp)
 {
 	char	**new_env;
@@ -46,6 +57,11 @@ char	**env_copy(t_data *data, char **envp)
 	return (new_env);
 }
 
+/*
+	Creates an environment variable string from a `t_env` structure and
+	@param `*lst_env`: copy of the shell environmnent.
+	@returns *env` - string of the environmnent variables.
+*/
 char	*create_env_from_lst(t_env *lst_env)
 {
 	int		size;
@@ -63,6 +79,10 @@ char	*create_env_from_lst(t_env *lst_env)
 	return (env);
 }
 
+/*
+	Rebuild an array of environment variables from a t_env structure.
+	@param `*data`: environmnent of the minishell.
+*/
 void	re_store_env(t_data *data)
 {
 	t_env	*lst_env;
@@ -88,6 +108,12 @@ void	re_store_env(t_data *data)
 	data->envp[i] = NULL;
 }
 
+/*
+	Extract a short form of the environmnent variable name in the
+	format "name=value".
+	@param `*arg`: string of the variable to shorten.
+	@return `str` - string of the shortened variable.
+*/
 char	*get_short_var(char *arg)
 {
 	char	*str;

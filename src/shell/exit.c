@@ -6,12 +6,17 @@
 /*   By: acharlot <acharlot@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/12 16:46:50 by cpothin           #+#    #+#             */
-/*   Updated: 2023/09/13 09:10:53 by acharlot         ###   ########.fr       */
+/*   Updated: 2023/09/14 14:23:36 by acharlot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../inc/shell.h"
 
+/*
+	Print out the message requiring a code numeric to properly
+	exit the minishell.
+	@param `*data`:  environmnent of minishell.
+*/
 void	exit_numeric(t_data *data)
 {
 	ft_printf("minishell: exit: %s\
@@ -21,16 +26,10 @@ void	exit_numeric(t_data *data)
 }
 
 /*
-	Checks first the amount of arguments.
-	
-	- if there are multiple arguments and the first is correct, 
-	the shell doesn't exit and shows "bash: exit: too many arguments"
-	- if the first argument is incorrect, the shell exits and shows
-		"bash: exit: truc: numeric argument required"
-
-	- if there is only one argument, the shell exits.
-		if the argument is incorrect, the shells shows
-			"bash: exit: truc: numeric argument required"
+	Quit the minishell while handling the arguments and exit code
+	signal.
+	@param `*data`: environmnent of minishell.
+	@returns `g_status` - int of the exit code of the command.
 */
 int	do_exit(t_data *data)
 {

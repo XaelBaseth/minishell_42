@@ -6,12 +6,17 @@
 /*   By: acharlot <acharlot@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/22 15:13:55 by cpothin           #+#    #+#             */
-/*   Updated: 2023/09/13 09:11:58 by acharlot         ###   ########.fr       */
+/*   Updated: 2023/09/14 14:01:50 by acharlot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../inc/shell.h"
 
+/*
+	Find the smallest environment variable with the smallest key.
+	@param `*data`: environmnent of minishell.
+	@returns `min_lst` - smallest environment variable.
+*/
 t_env	*find_min_value(t_data *data)
 {
 	t_env	*lst;
@@ -28,6 +33,13 @@ t_env	*find_min_value(t_data *data)
 	return (min_lst);
 }
 
+/*
+	Find the next smallest key with a reference point.
+	@param `*data`: environnment of minishell.
+	@param `*cur_lst`: current environmnent variable acting as a reference
+	point.
+	@returns `min_lst` - next smallest environment variable.
+*/
 t_env	*find_next_min_value(t_data *data, t_env *cur_lst)
 {
 	t_env	*lst;
@@ -53,6 +65,11 @@ t_env	*find_next_min_value(t_data *data, t_env *cur_lst)
 	return (min_lst);
 }
 
+/*
+	Print environmnent variable formatted in alphabetical order.
+	@param `*data`: environmnent of minishell.
+	@return `0` - code of success.
+*/
 int	single_export(t_data *data)
 {
 	t_env	*last_value;

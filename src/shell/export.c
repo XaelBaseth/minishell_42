@@ -6,12 +6,17 @@
 /*   By: acharlot <acharlot@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/16 15:01:03 by cpothin           #+#    #+#             */
-/*   Updated: 2023/09/13 09:11:37 by acharlot         ###   ########.fr       */
+/*   Updated: 2023/09/14 14:23:37 by acharlot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../inc/shell.h"
 
+/*
+	Check if the argument given contains a `=` sign.
+	@param `*arg`: argument given to the command.
+	@return `true` or `false` - depending if the condition is met.
+*/
 bool	check_arg_value(char *arg)
 {
 	int	i;
@@ -25,6 +30,12 @@ bool	check_arg_value(char *arg)
 	return (false);
 }
 
+/*
+	Check and edit a variable to the environment list.
+	@param `*data`: environment of the minishell.
+	@param `*arg`: argument given as a variable.
+	@param `*short_var`: name of the variable to edit.
+*/
 void	edit_env_var(t_data *data, char *arg, char *short_var)
 {
 	t_env	*lst;
@@ -44,6 +55,11 @@ void	edit_env_var(t_data *data, char *arg, char *short_var)
 	}
 }
 
+/*
+	Add a new variable to the environment.
+	@param `*data`: environment of minishell.
+	@param `*arg`: argument given as a variable.
+*/
 void	new_env_var(t_data *data, char *arg)
 {
 	t_env	*lst;
@@ -60,6 +76,12 @@ void	new_env_var(t_data *data, char *arg)
 	}
 }
 
+/*
+	Check if the environment variable exist, and either
+	add or edit the variable given to the environment list.
+	@param `*data`: environment of minishell.
+	@param `*arg`: variable given.
+*/
 void	export_var(t_data *data, char *arg)
 {
 	bool	exists;
@@ -85,6 +107,14 @@ void	export_var(t_data *data, char *arg)
 	gc_free(short_var);
 }
 
+/*
+	Check if the export command has an argument or not.
+	If there is an argument, either add it or edit the environment list.
+	If not, prints out the environment list formatted and in alphabetical
+	order.
+	@param `*data`: environment of minishell.
+	@returns `g_status` - int of the exit code of the command.
+*/
 int	do_export(t_data *data)
 {
 	int	i;

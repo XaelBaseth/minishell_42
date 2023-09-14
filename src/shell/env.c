@@ -6,12 +6,17 @@
 /*   By: acharlot <acharlot@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/27 11:01:28 by cpothin           #+#    #+#             */
-/*   Updated: 2023/09/13 09:10:18 by acharlot         ###   ########.fr       */
+/*   Updated: 2023/09/14 14:23:36 by acharlot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../inc/shell.h"
 
+/*
+	Check if the character is an equal sign.
+	@param `c` : character to check.
+	@return `true` or `false` - depending if the conditions is met or not.
+*/
 static bool	char_is_equal(char c)
 {
 	if (c == '=')
@@ -20,6 +25,12 @@ static bool	char_is_equal(char c)
 		return (false);
 }
 
+/*
+	Split the environment string into the a key and value system with the `=`
+	as a delimiter.
+	@param `*envp`: string that contains the environment variable system.
+	@return `new_var` - variable separated by the `=` for its key and value.
+*/
 t_env	*split_env(char *envp)
 {
 	t_env	*new_var;
@@ -48,6 +59,12 @@ t_env	*split_env(char *envp)
 	return (new_var);
 }
 
+/*
+	Store the splited environmnent into the structure of an array with a key
+	and value system.
+	@param `**envp`: copy of the environmnent data.
+	@param `*data`: environmnent of minishell.
+*/
 void	store_env(char **envp, t_data *data)
 {
 	int		i;
@@ -75,7 +92,11 @@ void	store_env(char **envp, t_data *data)
 	data->lst_env = head;
 }
 
-/*	Prints out a copy of the ENV data cloned into envp. */
+/*
+	Prints out the copy of the environment.
+	@param `*data`: environment of minishell.
+	@return `g_status` - int of the exit code of the command.
+*/
 int	print_env(t_data *data)
 {
 	t_env	*lst;

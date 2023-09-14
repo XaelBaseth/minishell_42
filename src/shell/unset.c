@@ -6,12 +6,16 @@
 /*   By: acharlot <acharlot@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/17 09:06:04 by cpothin           #+#    #+#             */
-/*   Updated: 2023/09/13 09:11:56 by acharlot         ###   ########.fr       */
+/*   Updated: 2023/09/14 14:23:33 by acharlot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../inc/shell.h"
 
+/*
+	Free the allocated memory of the given node.
+	@param `*node` : element of an array.
+*/
 static void	free_node(t_env *node)
 {
 	gc_free(node->key);
@@ -19,6 +23,11 @@ static void	free_node(t_env *node)
 	gc_free(node);
 }
 
+/*
+	Deletes the first node in an environmnent list.
+	@param `*data`: environment of minishell.
+	@param `*tmp`: environment list of minishell.
+*/
 static void	delete_first_lst_env(t_data *data, t_env *tmp)
 {
 	if (tmp->next)
@@ -27,6 +36,11 @@ static void	delete_first_lst_env(t_data *data, t_env *tmp)
 		data->lst_env = NULL;
 }
 
+/*
+	Removes an element of the environment list.
+	@param `*data`: environment of minishell.
+	@param `*arg`: element to be removed.
+*/
 static void	unset_var(t_data *data, char *arg)
 {
 	t_env	*tmp;
@@ -54,9 +68,12 @@ static void	unset_var(t_data *data, char *arg)
 	}
 }
 
-/*Unsets the specified environment variables.
-If they exist, they are removed.
-If they don't, nothing happens.*/
+/*
+	Unsets the specified environment variables. If they exist,
+	they are removed. If they don't, nothing happens.
+	@param `*data`: environment of minishell.
+	@returns `g_status` - int of the exit code of the command.
+*/
 int	do_unset(t_data *data)
 {
 	int	i;

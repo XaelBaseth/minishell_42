@@ -6,12 +6,16 @@
 /*   By: acharlot <acharlot@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/21 15:40:37 by cpothin           #+#    #+#             */
-/*   Updated: 2023/09/13 08:43:51 by acharlot         ###   ########.fr       */
+/*   Updated: 2023/09/14 13:38:53 by acharlot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../inc/shell.h"
 
+/*
+	Free the allocated memory of the `envp` array.
+	@param `*node`: Variable of the copy array to free.
+*/
 void	free_lst_node(t_env *node)
 {
 	gc_free(node->key);
@@ -21,6 +25,12 @@ void	free_lst_node(t_env *node)
 	gc_free(node);
 }
 
+/*
+	Extract and set a new value for an environment variable.
+	@param `*env`: copy of the environment of minishell
+	@param `*arg`: value to add to the environmnent of minishell.
+	@returns `*new_val` - new variable added to the environmnent of minishell. 
+*/
 char	*new_env_val(t_env *env, char *arg)
 {
 	char	*new_val;
@@ -40,6 +50,13 @@ char	*new_env_val(t_env *env, char *arg)
 	return (new_val);
 }
 
+/*
+	Return the value of a specific environmnent variable.
+	@param `*lst`: copy of the environment of minishell
+	@param `*var_name`:
+	@returns `temp->val` or `NULL` - Either a variable value or
+	Null.
+*/
 char	*get_env_value(t_env *lst, char *var_name)
 {
 	t_env	*temp;

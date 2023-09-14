@@ -6,12 +6,17 @@
 /*   By: acharlot <acharlot@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/11 10:58:31 by cpothin           #+#    #+#             */
-/*   Updated: 2023/09/13 09:11:45 by acharlot         ###   ########.fr       */
+/*   Updated: 2023/09/14 14:23:42 by acharlot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../inc/shell.h"
 
+/*
+	Returns a string containing the path to the current working directory.
+	@param `*data`: environment of minishell.
+	@returns `g_status` - int of the exit code of the command.
+*/
 int	get_pwd(t_data *data)
 {
 	if (data->args->argv[1])
