@@ -6,7 +6,7 @@
 /*   By: acharlot <acharlot@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/25 07:42:03 by acharlot          #+#    #+#             */
-/*   Updated: 2023/09/13 09:04:41 by acharlot         ###   ########.fr       */
+/*   Updated: 2023/09/15 14:30:25 by acharlot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,8 +28,6 @@ void	print_args(t_args *args)
 		while (args->argv[i])
 			ft_printf("\033[34mARGV: %s\033[0m\n", args->argv[i++]);
 		ft_printf("\033[34mOPERATOR : %d\033[0m\n\n\n", args->operator);
-		if (args == NULL)
-			ft_printf("\033[34m~No more args~033[0m\n");
 		args = args->next;
 	}
 	ft_printf("\033[34m#####################################\033[0m\n");
@@ -43,6 +41,7 @@ void	print_args(t_args *args)
 static void	process_data(t_data *data)
 {
 	argc_post_parsing(data->args);
+	print_args(data->args);
 	create_processes(data->args, data);
 	clean_parsed(data->args, data);
 }

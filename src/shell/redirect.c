@@ -6,7 +6,7 @@
 /*   By: acharlot <acharlot@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/15 14:37:22 by axel              #+#    #+#             */
-/*   Updated: 2023/09/14 11:32:51 by acharlot         ###   ########.fr       */
+/*   Updated: 2023/09/15 14:40:54 by acharlot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,13 +17,11 @@
 	delimiter is seen via the '<<' input.
 	@param *input: command that has been inputed.
 */
-static void	redirect_heredoc(t_args *input, t_data *data)
+static void	redirect_heredoc(t_args *input, t_data *data, int *fd)
 {
 	char	*buffer;
 	char	*expanded_buffer;
-	int		fd[2];
 
-	pipe(fd);
 	while (1)
 	{
 		buffer = readline("\033[32m$> \033[0m");
@@ -33,18 +31,31 @@ static void	redirect_heredoc(t_args *input, t_data *data)
 				STDERR_FILENO);
 			exit(EXIT_FAILURE);
 		}
-		if (ft_strstr(buffer, input->next->argv[0]))
+		if (ft_strcmp(buffer, input->next->argv[0]) == 0)
 			break ;
 		expanded_buffer = expand(data, buffer);
 		ft_putendl_fd(expanded_buffer, fd[1]);
 		free(buffer);
+	}
+}
+
+static void	handle_multiple_heredoc(t_args *input, t_data *data)
+{
+	int	fd[2];
+
+	pipe(fd);
+	while (input->operator == REDIR_INPUT_UNTIL)
+	{
+		redirect_heredoc(input, data, fd);
+		input = input->next;
 	}
 	close(fd[1]);
 	dup2(fd[0], STDIN_FILENO);
 	close(fd[0]);
 }
 
-/*	Redirect the input of a command into the file via the '<' operator.
+/*	
+	Redirect the input of a command into the file via the '<' operator.
 	@param t_args *input: command that has been inputed.
 */
 static void	redirect_input(t_args *input)
@@ -71,7 +82,8 @@ static void	redirect_input(t_args *input)
 	}
 }
 
-/*	Check the operator used and create or replace a document if '>', or
+/*	
+	Check the operator used and create or replace a document if '>', or
 	append a document if '>>'.
 	@param t_args *input: command that has been inputed.
 */
@@ -94,7 +106,8 @@ static void	redirect_output(t_args *input)
 		open(input->next->argv[0], O_WRONLY | O_APPEND | O_CREAT, 0666);
 }
 
-/*	Check for the redirection symbol, or pipe, and execute the correct command.
+/*	
+	Check for the redirection symbol, or pipe, and execute the correct command.
 	@param t_args *input: command inputed with the operator.
 	@param t_data *data : environment in which the command is executed.
 */
@@ -103,16 +116,14 @@ void	exec_redirect(t_args *input, t_data *data)
 	t_args	*temp;
 
 	temp = input;
+	if (input->operator == REDIR_INPUT)
+		redirect_input(input);
+	else if (input->operator == REDIR_INPUT_UNTIL)
+			handle_multiple_heredoc(input, data);
+	else
+		redirect_output(input);
 	while (input->operator != NONE && input->operator != PIPE)
-	{
-		if (input->operator == REDIR_INPUT)
-			redirect_input(input);
-		else if (input->operator == REDIR_INPUT_UNTIL)
-			redirect_heredoc(input, data);
-		else
-			redirect_output(input);
 		input = input->next;
-	}
 	temp->operator = NONE;
 	if (input->operator == NONE)
 		execute_cmd(temp, data);

@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: axel <axel@student.42.fr>                  +#+  +:+       +#+         #
+#    By: acharlot <acharlot@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/07/25 07:42:45 by acharlot          #+#    #+#              #
-#    Updated: 2023/09/12 15:02:47 by axel             ###   ########.fr        #
+#    Updated: 2023/09/14 14:28:17 by acharlot         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -38,11 +38,11 @@ CYAN		=	\033[0;96m
 WHITE		=	\033[0;97m
 
 #Files
-BUILT_DIR	=	builtins/
+BUILT_DIR	=	shell/
 BUILT_FILES	=	builtins exec process redirect path pipe binaries
 PARS_DIR	=	parsing/
 PARS_FILES	=	operator parser parsing_utils quotes_handler valid_input 
-SHELL_DIR	=	shell/
+SHELL_DIR	=	builtins/
 SHELL_FILES	=	env echo pwd exit cd unset export export_single \
 				env_utils env_utils2
 EXPAND_DIR	=	expand/

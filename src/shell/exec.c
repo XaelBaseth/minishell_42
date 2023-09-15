@@ -6,7 +6,7 @@
 /*   By: acharlot <acharlot@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/09 08:17:00 by acharlot          #+#    #+#             */
-/*   Updated: 2023/09/13 08:58:56 by acharlot         ###   ########.fr       */
+/*   Updated: 2023/09/14 14:57:04 by acharlot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,9 +70,9 @@ void	execute_cmd(t_args *input, t_data *data)
 	signal(SIGINT, sigint_handler);
 	if (input->operator == PIPE)
 		exec_pipe(input, data);
-	else if (input->operator == NONE)
-		exec_executable(input, data);
-	else
+	else if (input->operator != NONE && input->operator != PIPE)
 		exec_redirect(input, data);
+	else
+		exec_executable(input, data);
 	exit(g_signal);
 }
