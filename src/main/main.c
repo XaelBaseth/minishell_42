@@ -6,7 +6,7 @@
 /*   By: acharlot <acharlot@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/25 07:42:03 by acharlot          #+#    #+#             */
-/*   Updated: 2023/09/15 14:30:25 by acharlot         ###   ########.fr       */
+/*   Updated: 2023/09/15 14:44:11 by acharlot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,6 @@ void	print_args(t_args *args)
 static void	process_data(t_data *data)
 {
 	argc_post_parsing(data->args);
-	print_args(data->args);
 	create_processes(data->args, data);
 	clean_parsed(data->args, data);
 }
