@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   env_utils2.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: acharlot <acharlot@student.42.fr>          +#+  +:+       +#+        */
+/*   By: axel <axel@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/21 15:40:37 by cpothin           #+#    #+#             */
-/*   Updated: 2023/09/14 13:38:53 by acharlot         ###   ########.fr       */
+/*   Updated: 2023/09/16 13:04:09 by axel             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../inc/shell.h"
+#include "../../inc/builtins.h"
 
 /*
 	Free the allocated memory of the `envp` array.

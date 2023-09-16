@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: acharlot <acharlot@student.42.fr>          +#+  +:+       +#+         #
+#    By: axel <axel@student.42.fr>                  +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/07/25 07:42:45 by acharlot          #+#    #+#              #
-#    Updated: 2023/09/14 14:28:17 by acharlot         ###   ########.fr        #
+#    Updated: 2023/09/16 13:18:31 by axel             ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -39,7 +39,7 @@ WHITE		=	\033[0;97m
 
 #Files
 BUILT_DIR	=	shell/
-BUILT_FILES	=	builtins exec process redirect path pipe binaries
+BUILT_FILES	=	builtins exec process redirect path pipe binaries heredoc
 PARS_DIR	=	parsing/
 PARS_FILES	=	operator parser parsing_utils quotes_handler valid_input 
 SHELL_DIR	=	builtins/

@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   pwd.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: acharlot <acharlot@student.42.fr>          +#+  +:+       +#+        */
+/*   By: axel <axel@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/11 10:58:31 by cpothin           #+#    #+#             */
-/*   Updated: 2023/09/14 14:23:42 by acharlot         ###   ########.fr       */
+/*   Updated: 2023/09/16 13:04:27 by axel             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../inc/shell.h"
+#include "../../inc/builtins.h"
 
 /*
 	Returns a string containing the path to the current working directory.

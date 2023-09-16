@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   pipe.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: acharlot <acharlot@student.42.fr>          +#+  +:+       +#+        */
+/*   By: axel <axel@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/22 13:51:09 by axel              #+#    #+#             */
-/*   Updated: 2023/09/13 08:59:53 by acharlot         ###   ########.fr       */
+/*   Updated: 2023/09/16 13:03:36 by axel             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../inc/builtins.h"
+#include "../../inc/shell.h"
 
 /*	
 	Set up the process to redirect its standard output to the write end of a

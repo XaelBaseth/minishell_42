@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   expand.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: acharlot <acharlot@student.42.fr>          +#+  +:+       +#+        */
+/*   By: axel <axel@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/13 08:24:20 by acharlot          #+#    #+#             */
-/*   Updated: 2023/09/13 08:51:29 by acharlot         ###   ########.fr       */
+/*   Updated: 2023/09/16 13:18:50 by axel             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@
 /*	LIBRARY	*/
 
 # include "minishell.h"
+# include <stdbool.h>
 
 /*	STRUCTURE	*/
 

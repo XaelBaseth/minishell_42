@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   binaries.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: acharlot <acharlot@student.42.fr>          +#+  +:+       +#+        */
+/*   By: axel <axel@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/29 09:00:12 by cpothin           #+#    #+#             */
-/*   Updated: 2023/09/13 09:14:04 by acharlot         ###   ########.fr       */
+/*   Updated: 2023/09/16 13:03:11 by axel             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../inc/builtins.h"
+#include "../../inc/shell.h"
 
 /*	
 	Execute the binary file found in the path.

@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   exec.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: acharlot <acharlot@student.42.fr>          +#+  +:+       +#+        */
+/*   By: axel <axel@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/09 08:17:00 by acharlot          #+#    #+#             */
-/*   Updated: 2023/09/14 14:57:04 by acharlot         ###   ########.fr       */
+/*   Updated: 2023/09/16 13:03:22 by axel             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../inc/builtins.h"
+#include "../../inc/shell.h"
 
 extern int	g_signal;
 
@@ -41,6 +41,7 @@ static void	execute_in_path(t_args *input, t_data *data)
 			panic(EXEC_ERR);
 		}
 	}
+	ft_printf("minishell: command not found: %s .\n", input->argv[0]);
 	g_signal = 127;
 }
 

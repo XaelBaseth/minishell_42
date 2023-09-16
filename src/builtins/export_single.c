@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   export_single.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: acharlot <acharlot@student.42.fr>          +#+  +:+       +#+        */
+/*   By: axel <axel@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/22 15:13:55 by cpothin           #+#    #+#             */
-/*   Updated: 2023/09/14 14:01:50 by acharlot         ###   ########.fr       */
+/*   Updated: 2023/09/16 13:04:19 by axel             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../inc/shell.h"
+#include "../../inc/builtins.h"
 
 /*
 	Find the smallest environment variable with the smallest key.

@@ -3,57 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   redirect.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: acharlot <acharlot@student.42.fr>          +#+  +:+       +#+        */
+/*   By: axel <axel@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/15 14:37:22 by axel              #+#    #+#             */
-/*   Updated: 2023/09/15 14:44:59 by acharlot         ###   ########.fr       */
+/*   Updated: 2023/09/16 13:02:56 by axel             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../inc/builtins.h"
-
-/*
- 	Allows to input multiple line lines until a line containing the 
-	delimiter is seen via the '<<' input.
-	@param *input: command that has been inputed.
-*/
-static void	redirect_heredoc(t_args *input, t_data *data, int *fd)
-{
-	char	*buffer;
-	char	*expanded_buffer;
-
-	while (1)
-	{
-		buffer = readline("\033[32m$> \033[0m");
-		if (!buffer)
-		{
-			ft_putendl_fd("minishell: HEREDOC needs a delimitor to exit.",
-				STDERR_FILENO);
-			exit(EXIT_FAILURE);
-		}
-		if (ft_strcmp(buffer, input->next->argv[0]) == 0)
-			break ;
-		expanded_buffer = expand(data, buffer);
-		ft_putendl_fd(expanded_buffer, fd[1]);
-		free(buffer);
-	}
-}
-
-static void	handle_multiple_heredoc(t_args *input, t_data *data)
-{
-	int	fd[2];
-
-	pipe(fd);
-	while (input->operator == REDIR_INPUT_UNTIL)
-	{
-		redirect_heredoc(input, data, fd);
-		input = input->next;
-	}
-	close(fd[1]);
-	dup2(fd[0], STDIN_FILENO);
-	close(fd[0]);
-}
-
+#include "../../inc/shell.h"
 /*	
 	Redirect the input of a command into the file via the '<' operator.
 	@param t_args *input: command that has been inputed.
@@ -116,14 +73,22 @@ void	exec_redirect(t_args *input, t_data *data)
 	t_args	*temp;
 
 	temp = input;
-	if (input->operator == REDIR_INPUT)
-		redirect_input(input);
-	else if (input->operator == REDIR_INPUT_UNTIL)
-			handle_multiple_heredoc(input, data);
-	else
-		redirect_output(input);
-	while (input->operator != NONE && input->operator != PIPE)
-		input = input->next;
+		while (input->operator != NONE && input->operator != PIPE)
+		{
+			if (input->operator == REDIR_INPUT)
+				redirect_input(input);
+			else if (input->operator == REDIR_INPUT_UNTIL &&
+				input->next->operator == REDIR_INPUT_UNTIL)
+			{
+				exec_multiple_heredoc(input, data);
+				break ;
+			}
+			else if (input->operator == REDIR_INPUT_UNTIL)
+					exec_heredoc(input, data);
+			else
+				redirect_output(input);
+			input = input->next;
+		}
 	temp->operator = NONE;
 	if (input->operator == NONE)
 		execute_cmd(temp, data);
