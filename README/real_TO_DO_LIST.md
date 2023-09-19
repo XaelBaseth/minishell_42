@@ -1,1 +1,0 @@
-- Handle `$?` <-- last command int return (errors, 0 = success). It's probably a variable only. Make every command return that int!

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   redirect.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: axel <axel@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: acharlot <acharlot@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/15 14:37:22 by axel              #+#    #+#             */
-/*   Updated: 2023/09/16 13:02:56 by axel             ###   ########.fr       */
+/*   Updated: 2023/09/19 08:48:21 by acharlot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,22 +73,22 @@ void	exec_redirect(t_args *input, t_data *data)
 	t_args	*temp;
 
 	temp = input;
-		while (input->operator != NONE && input->operator != PIPE)
+	while (input->operator != NONE && input->operator != PIPE)
+	{
+		if (input->operator == REDIR_INPUT)
+			redirect_input(input);
+		else if (input->operator == REDIR_INPUT_UNTIL
+			&& input->next->operator == REDIR_INPUT_UNTIL)
 		{
-			if (input->operator == REDIR_INPUT)
-				redirect_input(input);
-			else if (input->operator == REDIR_INPUT_UNTIL &&
-				input->next->operator == REDIR_INPUT_UNTIL)
-			{
-				exec_multiple_heredoc(input, data);
-				break ;
-			}
-			else if (input->operator == REDIR_INPUT_UNTIL)
-					exec_heredoc(input, data);
-			else
-				redirect_output(input);
-			input = input->next;
+			exec_multiple_heredoc(input, data);
+			break ;
 		}
+		else if (input->operator == REDIR_INPUT_UNTIL)
+			exec_heredoc(input, data);
+		else
+			redirect_output(input);
+		input = input->next;
+	}
 	temp->operator = NONE;
 	if (input->operator == NONE)
 		execute_cmd(temp, data);

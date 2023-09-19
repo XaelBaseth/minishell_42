@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   heredoc.c                                          :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: acharlot <acharlot@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/09/19 08:46:46 by acharlot          #+#    #+#             */
+/*   Updated: 2023/09/19 08:47:35 by acharlot         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../../inc/shell.h"
 
 /*
@@ -51,7 +63,7 @@ void	exec_multiple_heredoc(t_args *input, t_data *data)
 {
 	char	*buffer;
 	char	*expanded_buffer;
-	int	fd[2];
+	int		fd[2];
 
 	pipe(fd);
 	while (input->operator == REDIR_INPUT_UNTIL)
