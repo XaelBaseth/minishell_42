@@ -1,8 +1,8 @@
 <h2>Minishell has to:</h2>
 
-- display a prompt. X
+- display a prompt. 
 
-- have a working history. X
+- have a working history.
 
 - search and launch the right executable (PATH/relative/absolute path).
 

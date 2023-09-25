@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   exec.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: axel <axel@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: acharlot <acharlot@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/09 08:17:00 by acharlot          #+#    #+#             */
-/*   Updated: 2023/09/16 13:03:22 by axel             ###   ########.fr       */
+/*   Updated: 2023/09/19 09:05:22 by acharlot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ static void	execute_in_path(t_args *input, t_data *data)
 			panic(EXEC_ERR);
 		}
 	}
-	ft_printf("minishell: command not found: %s .\n", input->argv[0]);
+	ft_printf("minishell: command not found: %s.\n", input->argv[0]);
 	g_signal = 127;
 }
 

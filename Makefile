@@ -6,7 +6,7 @@
 #    By: acharlot <acharlot@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/07/25 07:42:45 by acharlot          #+#    #+#              #
-#    Updated: 2023/09/19 08:43:20 by acharlot         ###   ########.fr        #
+#    Updated: 2023/09/25 09:43:17 by acharlot         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -40,16 +40,19 @@ WHITE		=	\033[0;97m
 #Files
 BUILT_DIR	=	shell/
 BUILT_FILES	=	builtins exec process redirect path pipe binaries heredoc
+
 PARS_DIR	=	parsing/
 PARS_FILES	=	operator parser parsing_utils quotes_handler valid_input 
+
 SHELL_DIR	=	builtins/
 SHELL_FILES	=	env echo pwd exit cd unset export export_single \
 				env_utils env_utils2
+
 EXPAND_DIR	=	expand/
 EXPAND_FILES=	expand expand_utils
+
 MAIN_DIR	=	main/
 MAIN_FILES	=	main utils config_sig init utils2
-
 
 SRC_BUI_FILE=	$(addprefix $(BUILT_DIR), $(BUILT_FILES))
 SRC_PAR_FILE=	$(addprefix $(PARS_DIR), $(PARS_FILES))
@@ -78,10 +81,11 @@ OBJF		=	.cache_exists
 OBJ 		=	$(BOBJ) $(POBJ) $(SOBJ) $(EOBJ) $(MOBJ)
 
 #Rules
-all:			echo_message $(NAME)
 
-echo_message:
-			@echo "\n$(YELLOW)[Starting to build...]$(DEF_COLOR)\n\n$(MAGENTA)"
+all:			message $(NAME)
+
+message: ## Display the building of files.
+					@echo "\n$(YELLOW)[Starting to build...]$(DEF_COLOR)\n\n$(MAGENTA)"
 
 $(NAME):		$(OBJ) $(OBJF)
 					@make -C $(LIBFT)
@@ -103,19 +107,26 @@ $(OBJF):
 					@mkdir -p $(OBJ_DIR)$(MAIN_DIR)
 					@touch $(OBJF)
 
-clean:
+help: ## Print help on Makefile.
+					@grep '^[^.#]\+:\s\+.*#' Makefile | \
+					sed "s/\(.\+\):\s*\(.*\) #\s*\(.*\)/`printf "$(GRAY)"`\1`printf "$(DEF_COLOR)"`	\3 /" | \
+					expand -t8
+
+clean: ## Clean generated files and cache.
 					@$(RM) $(OBJ_DIR)
 					@$(RM) $(OBJF)
 					@$(RM) libft/obj
 					@$(ECHO) "$(BLUE)[MINISHELL]:\tobject files$(DEF_COLOR)\t$(GREEN) => Cleaned!$(DEF_COLOR)\n"
 
-fclean:			clean
+fclean: ## Clean all generated file, including binaries.		
+					@make clean
 					@$(RM) $(NAME)
 					@$(RM) libft.a
 					@make fclean -C $(LIBFT)
 					@$(ECHO) "$(CYAN)[MINISHELL]:\texec. files$(DEF_COLOR)\t$(GREEN) => Cleaned!$(DEF_COLOR)\n"
 					
-re:				fclean all
+re: ## Clean and rebuild binary file.
+					@make fclean all
 					@$(ECHO) "\n$(GREEN)###\tCleaned and rebuilt everything for [MINISHELL]!\t###$(DEF_COLOR)\n"
 
-.PHONY:			all clean fclean re echo_message
+.PHONY:			all clean fclean re message help

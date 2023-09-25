@@ -70,8 +70,7 @@ SRC_FILES+=$(addprefix $(FTGC_DIR), $(FTGC))
 SRC 		= 	$(addprefix $(SRC_DIR), $(addsuffix .c, $(SRC_FILES)))
 OBJ 		= 	$(addprefix $(OBJ_DIR), $(addsuffix .o, $(SRC_FILES)))
 
-
-###
+#Rules
 
 OBJF		=	.cache_exists
 all:		$(NAME)
@@ -97,17 +96,24 @@ $(OBJF):
 			@mkdir -p $(OBJ_DIR)$(FTGC_DIR)
 			@touch $(OBJF)
 
-clean:
+help: ## Print help on Makefile.
+					@grep '^[^.#]\+:\s\+.*#' Makefile | \
+					sed "s/\(.\+\):\s*\(.*\) #\s*\(.*\)/`printf "$(GRAY)"`\1`printf "$(DEF_COLOR)"`	\3 /" | \
+					expand -t8
+
+clean: ## Clean generated files and cache.
 			@$(RM) -r $(OBJ_DIR)
 			@$(RM) $(OBJF)
 			@$(RM) .cache_exists
 			@echo "$(BLUE)[LIBFT]:\tobject files$(DEF_COLOR)$(GREEN)\t => Cleaned!$(DEF_COLOR)\n"
 
-fclean:		clean
+fclean: ## Clean all generated file, including binaries.
+			make clean
 			@$(RM) $(NAME)
 			@echo "$(CYAN)[LIBFT]:\texec. files$(DEF_COLOR)$(GREEN)\t => Cleaned!$(DEF_COLOR)\n"
 
-re:			fclean all
+re: ## Clean and rebuild binary file.
+			@make fclean all
 			@$(ECHO) "$(GREEN)Cleaned and rebuilt everything for libft!$(DEF_COLOR)\n"
 
 .PHONY:		all clean fclean re
