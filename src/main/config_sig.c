@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   config_sig.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: axel <axel@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: cpothin <cpothin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/31 12:03:38 by acharlot          #+#    #+#             */
-/*   Updated: 2023/09/06 15:27:01 by axel             ###   ########.fr       */
+/*   Updated: 2023/09/08 11:41:54 by cpothin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../inc/minishell.h"
 
-int	g_signal;
+extern int	g_signal;
 
 /*	This is called when the SIGINT (INTERRUPT or CTRL + C) signal is received.
 	We check if we are in a heredoc and if so, create a new line
