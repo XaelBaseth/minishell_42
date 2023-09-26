@@ -6,7 +6,7 @@
 #    By: acharlot <acharlot@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/07/25 07:42:45 by acharlot          #+#    #+#              #
-#    Updated: 2023/09/25 09:43:17 by acharlot         ###   ########.fr        #
+#    Updated: 2023/09/26 09:09:39 by acharlot         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -82,10 +82,18 @@ OBJ 		=	$(BOBJ) $(POBJ) $(SOBJ) $(EOBJ) $(MOBJ)
 
 #Rules
 
-all:			message $(NAME)
+all:            progress_bar message $(NAME)
 
 message: ## Display the building of files.
 					@echo "\n$(YELLOW)[Starting to build...]$(DEF_COLOR)\n\n$(MAGENTA)"
+
+progress_bar: 
+					@echo "            __      __   _   __     _   _   ______   _     _   ______   _        _                "
+					@echo "      /|   |  \    /  | | | |  \   | | | | |  ____| | |   | | |  ____| | |      | |        |\     "
+					@echo "     / |   |   \  /   | | | |   \  | | | | | |____  | |___| | | |___   | |      | |        | \    "
+					@echo "    / /|   | |\ \/ /| | | | | |\ \ | | | | |____  | |  ___  | |  ___|  | |      | |        |\ \   "
+					@echo "   / / |   | | \  / | | | | | | \ \| | | |  ____| | | |   | | | |____  | |____  | |____    | \ \  "
+					@echo "  / / /|   |_|  \/  |_| |_| |_|  \___| |_| |______| |_|   |_| |______| |______| |______|   |\ \ \ "
 
 $(NAME):		$(OBJ) $(OBJF)
 					@make -C $(LIBFT)
